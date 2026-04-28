@@ -379,6 +379,20 @@
     .language-toggle{top:10px;right:10px;}
     .language-toggle button{padding:6px 9px;font-size:.68rem;}
   }
+
+  /* English mode swaps each chapter to a complete English body. */
+  .en-version{display:none;}
+  html[data-lang="en"] section.chapter > :not(.en-version){display:none!important;}
+  html[data-lang="en"] section.chapter > .en-version{display:block!important;}
+  html[data-lang="en"] section.chapter > .en-version > h2{
+    font-family:"OpenAI Sans Hangul","Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-weight:800;
+    font-size:clamp(1.7rem,3.6vw,2.6rem);
+    line-height:1.1;margin:0 0 14px;letter-spacing:-.015em;
+    border-bottom:2px solid var(--ink);padding-bottom:18px;
+  }
+  html[data-lang="en"] section.chapter > .en-version > .lede{
+    font-size:1.05rem;color:#3d3a33;max-width:740px;margin:0 0 30px;
+  }
 </style>
 </head>
 <body>
@@ -1830,7 +1844,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 </section>
 
 <!-- ============ CHECKLIST ============ -->
-<section class="chapter">
+<section class="chapter" id="rollout-checklist">
   <div class="chap-num">Closing</div>
   <h2 data-i18n="checklist-title">롤아웃 체크리스트 — 한 장 요약</h2>
   <table>
@@ -1861,7 +1875,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 <!-- ============ SOURCES ============ -->
 <section class="sources">
   <div class="sources-inner">
-    <h2>출처 / 참고 링크 — All sources</h2>
+    <h2 data-i18n="sources-title">출처 / 참고 링크 — All sources</h2>
     <ul>
       <li><a href="https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise" target="_blank">Managing workspace settings in ChatGPT Enterprise (OpenAI Help)</a></li>
       <li><a href="https://help.openai.com/en/articles/8265430-what-is-a-chatgpt-enterprise-workspace-how-can-i-switch-workspaces" target="_blank">What is a ChatGPT Enterprise workspace?</a></li>
@@ -1902,7 +1916,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   </div>
 </section>
 
-<footer>
+<footer data-i18n="footer-note">
   본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-04-28
 </footer>
 
@@ -2012,8 +2026,387 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "check-12-note": "Audit logs and usage reporting",
       "check-13-area": "Final Check",
       "check-13-action": "Run <strong>final validation</strong> with sample users",
-      "check-13-note": "Verify login, MFA, RBAC, managed policies, and analytics visibility"
+      "check-13-note": "Verify login, MFA, RBAC, managed policies, and analytics visibility",
+      "sources-title": "Sources / Reference Links — All Sources",
+      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-04-28"
     };
+
+    const englishSections = {
+      "intro": `
+        <div class="chap-num">Part 01 · ChatGPT Enterprise</div>
+        <h2>ChatGPT Enterprise · Workspace Settings Entry Point</h2>
+        <p class="lede">In ChatGPT Enterprise and Edu, workspace-wide administration starts from the profile menu in the lower-left corner, then <strong>Workspace settings</strong>. This is where admins manage members, seats, permissions, GPT governance, apps, analytics, SSO/SCIM, domains, and IP controls.</p>
+        <div class="box">
+          <div class="label">Entry path</div>
+          <div class="path">ChatGPT lower-left <b>profile icon</b> → <b>Workspace settings</b></div>
+          <p><strong>Owners</strong> and <strong>Admins</strong> can change administrative settings. Regular Members may be able to open the screen, but cannot change core controls such as permissions, seats, spend controls, or feature toggles. <a href="https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise" target="_blank">[OpenAI official]</a></p>
+        </div>
+        <h4 class="sub">All menus at a glance</h4>
+        <table>
+          <thead><tr><th>Menu</th><th>Primary purpose</th><th>Access</th></tr></thead>
+          <tbody>
+            <tr><td>General</td><td>Workspace name, logo, policy modal, and identifiers</td><td>Owner / Admin</td></tr>
+            <tr><td>Members</td><td>Invites, roles, and ChatGPT/Codex seat management</td><td>Owner / Admin</td></tr>
+            <tr><td>Groups</td><td>Group creation and SCIM-synced group management</td><td>Owner / Admin</td></tr>
+            <tr><td>Permissions &amp; Roles</td><td>RBAC, default permissions, custom roles, and feature toggles</td><td>Owner</td></tr>
+            <tr><td>Available Models</td><td>Model visibility and role-based model access</td><td>Owner / Admin</td></tr>
+            <tr><td>GPTs</td><td>GPT ownership, sharing, third-party GPT access, and Action domains</td><td>Owner / Admin</td></tr>
+            <tr><td>Apps</td><td>External apps, connectors, synced data sources, and MCP apps</td><td>Owner / Admin</td></tr>
+            <tr><td>Workspace Analytics</td><td>Adoption, usage, task insights, and impact surveys</td><td>Owner / Admin / Analytics Viewer</td></tr>
+            <tr><td>Identity &amp; Access</td><td>SSO/SAML, SCIM, domain verification, and IP allowlists</td><td>Owner</td></tr>
+            <tr><td>Billing</td><td>Invoices, seat counts, and billing details</td><td>Owner</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.85rem;color:var(--muted)">As of the January 2026 update, older areas such as “Settings &amp; permissions,” “Identity &amp; provisioning,” and “IP allowlists” are consolidated into the newer <strong>Permissions &amp; Roles</strong> and <strong>Identity &amp; Access</strong> structure. <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Release notes]</a></p>
+      `,
+      "general": `
+        <div class="chap-num">Section 02 · ChatGPT</div>
+        <h2>General — Basic Workspace Settings</h2>
+        <div class="path">Workspace settings → <b>General</b></div>
+        <p class="lede">The General tab controls the workspace identity and baseline policy experience: name, logo, workspace instructions, policy modal, and identifiers used by governance integrations.</p>
+        <h3 class="menu"><span class="num">02.1</span>Workspace name &amp; image</h3>
+        <p>Use the pencil/edit control next to the workspace name to update the name and image. Saved changes are reflected for all members.</p>
+        <h3 class="menu"><span class="num">02.2</span>Workspace instructions</h3>
+        <p>Organization-level guidance that tells ChatGPT how to answer. Use it for tone, banned wording, preferred terminology, and common operating rules.</p>
+        <h3 class="menu"><span class="num">02.3</span>Workspace policy modal</h3>
+        <p>Admins can present an organization-specific AI usage policy when users first sign in, and again after policy updates. This is useful for compliance and audit readiness.</p>
+        <h3 class="menu"><span class="num">02.4</span>Workspace &amp; organization identifiers</h3>
+        <p>The workspace ID and OpenAI organization ID are used when connecting Compliance API, Microsoft Purview, Tenable, and other governance tools.</p>
+        <div class="box green"><div class="label">Note</div>The ChatGPT workspace org ID and the API Platform org ID should generally align. If they differ, a separate organization may have been created; ask the Account Director to confirm consolidation.</div>
+      `,
+      "members": `
+        <div class="chap-num">Section 03 · ChatGPT</div>
+        <h2>Members — Member and Seat Management</h2>
+        <div class="path">Workspace settings → <b>Members</b></div>
+        <p class="lede">Invites, removals, role changes, and <strong>seat type changes</strong> happen here. Enterprise can mix ChatGPT seats and Codex seats in one workspace, including Codex-only users.</p>
+        <h3 class="menu"><span class="num">03.1</span>Four role types</h3>
+        <table>
+          <thead><tr><th>Role</th><th>Permission summary</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Owner</strong></td><td>Full workspace configuration, billing, identity, and owner assignment.</td></tr>
+            <tr><td><strong>Admin</strong></td><td>Day-to-day user and group administration. Cannot appoint Owners.</td></tr>
+            <tr><td><strong>Analytics Viewer</strong> <span class="pill green">new</span></td><td>Member permissions plus read-only Workspace Analytics access.</td></tr>
+            <tr><td><strong>Member</strong></td><td>Normal ChatGPT/Codex usage with no admin permissions.</td></tr>
+          </tbody>
+        </table>
+        <h3 class="menu"><span class="num">03.2</span>Two seat types</h3>
+        <ul>
+          <li><strong>ChatGPT seat</strong> — full ChatGPT interface, including chat, GPTs, Apps, Canvas, and related features.</li>
+          <li><strong>Codex seat</strong> — Codex surfaces only: App, CLI, IDE, Cloud, and Code Review. No ChatGPT chat, memory, or project access.</li>
+        </ul>
+        <div class="box"><div class="label">Seat-change warning</div>Changing a ChatGPT seat to a Codex seat hides that user's chat history, memories, and projects, including shared projects. The data is not deleted and reappears if the user is changed back to a ChatGPT seat.</div>
+        <h3 class="menu"><span class="num">03.3</span>Key tasks</h3>
+        <ul>
+          <li>Invite members manually or by CSV using email, role, and seat type.</li>
+          <li>Bulk import hundreds of users at once.</li>
+          <li>Change roles and seat types; Owner permissions are required for sensitive changes.</li>
+          <li>Approve or reject pending invites and join requests.</li>
+          <li>Remove members from the overflow menu.</li>
+          <li>Set the default seat type for future signups, including SCIM-provisioned users.</li>
+        </ul>
+      `,
+      "groups": `
+        <div class="chap-num">Section 04 · ChatGPT</div>
+        <h2>Groups</h2>
+        <div class="path">Workspace settings → <b>Groups</b></div>
+        <p class="lede">Groups are the unit for RBAC and for sharing GPTs or projects. They can be created directly in the workspace or synced from the identity provider through SCIM.</p>
+        <ul>
+          <li>Create and delete groups, add and remove members, and review membership.</li>
+          <li>SCIM-synced groups are marked with a SCIM badge so admins can distinguish them from manually managed groups.</li>
+          <li>If a group with the same name already exists, SCIM creates a separate group instead of overwriting it.</li>
+        </ul>
+        <div class="box green"><div class="label">Required for RBAC</div>Custom roles are assigned to <strong>groups</strong>, not directly to individual users. RBAC therefore requires a clean group model.</div>
+      `,
+      "permissions": `
+        <div class="chap-num">Section 05 · ChatGPT</div>
+        <h2>Permissions &amp; Roles — Core Governance Tab</h2>
+        <div class="path">Workspace settings → <b>Permissions &amp; Roles</b></div>
+        <p class="lede">This is the most important governance screen for Enterprise and Edu admins. It defines workspace defaults and more restrictive or more permissive Custom Roles by group.</p>
+        <h3 class="menu"><span class="num">05.1</span>Default permissions</h3>
+        <p>Default permissions apply to users who do not have a Custom Role. Admins scroll through feature toggles to define the baseline workspace behavior.</p>
+        <div class="box"><div class="label">Important</div><strong>Default permissions do not apply to users with a Custom Role.</strong> Any feature you want enabled for those users must also be explicitly enabled in their Custom Role.</div>
+        <h3 class="menu"><span class="num">05.2</span>Custom Role categories</h3>
+        <ul>
+          <li>Canvas code execution and network access defaults</li>
+          <li>ChatGPT agent and web automation access</li>
+          <li>Codex access for local and cloud surfaces</li>
+          <li>Apps and connected data, including app-by-app selection and action-level controls</li>
+          <li>GPT creation, editing, sharing scope, third-party GPT access, and project creation</li>
+          <li>Memory/Notes, Search, shared projects, link sharing, model access, and usage limits</li>
+        </ul>
+        <p>When a user belongs to multiple Custom Roles, permissions are interpreted as the union of the most permissive grants.</p>
+        <h3 class="menu"><span class="num">05.3</span>Spend controls</h3>
+        <p>Credit or usage pools can be allocated by team or role to avoid unexpected overspend. Give AI champion groups more room and keep default user groups conservative.</p>
+        <h3 class="menu"><span class="num">05.4</span>Early Access Features</h3>
+        <p>Owners can enable or disable pre-release features at the workspace level.</p>
+      `,
+      "models": `
+        <div class="chap-num">Section 06 · ChatGPT</div>
+        <h2>Available Models — Model Visibility</h2>
+        <div class="path">Workspace settings → <b>Permissions &amp; Roles</b> or <b>Available Models</b></div>
+        <p class="lede">Admins choose which models are visible in the workspace, such as GPT-5 family models, GPT-4 family models, o-series models, and GPT-5-Codex. Custom Roles can further restrict which models a group can use.</p>
+        <div class="box green"><div class="label">Legacy model access</div>Enterprise and Edu can receive a separate option to keep older models available for a period of time.</div>
+      `,
+      "gpts": `
+        <div class="chap-num">Section 07 · ChatGPT</div>
+        <h2>GPTs — Governance, Ownership, and Action Domains</h2>
+        <div class="path">Workspace settings → <b>GPTs</b></div>
+        <p class="lede">This section lets admins govern every Custom GPT created inside the workspace. Enterprise offers deeper controls than Business.</p>
+        <h3 class="menu"><span class="num">07.1</span>Create, edit, and share permissions</h3>
+        <ul>
+          <li>Decide who can create or edit GPTs by role.</li>
+          <li>Set the maximum sharing scope: invite-only, workspace-only, or broader sharing.</li>
+          <li>Enterprise can fully block sharing outside the workspace.</li>
+        </ul>
+        <h3 class="menu"><span class="num">07.2</span>Third-party GPT access</h3>
+        <p>Choose whether to allow all third-party GPTs, only Owner-approved GPTs, or block third-party GPTs entirely.</p>
+        <h3 class="menu"><span class="num">07.3</span>GPT ownership</h3>
+        <p>Admins can review all GPTs in the workspace. If an owner leaves, the GPT is transferred to workspace Owners and marked unassigned; ownership can be restored or reassigned later.</p>
+        <h3 class="menu"><span class="num">07.4</span>Actions and allowed domains</h3>
+        <p>Actions call external APIs and are therefore sensitive. Owners can define allowed domains; actions calling other domains are blocked. An empty allowlist blocks all Actions.</p>
+        <h3 class="menu"><span class="num">07.5</span>Apps inside GPTs</h3>
+        <p>Admins decide whether workspace-created GPTs can call Apps and connectors. This is a workspace-level setting and does not apply to third-party GPTs.</p>
+      `,
+      "apps": `
+        <div class="chap-num">Section 08 · ChatGPT</div>
+        <h2>Apps — External Tool Connections</h2>
+        <div class="path">Workspace settings → <b>Apps</b></div>
+        <p class="lede">OpenAI consolidated “Connectors” and “Apps” under the Apps name. Google Drive, SharePoint, Outlook, Slack, GitHub, Salesforce, Jira, Linear, Asana, and MCP-style tools are managed here.</p>
+        <h3 class="menu"><span class="num">08.1</span>Workspace-level settings</h3>
+        <ul>
+          <li>Enterprise and Edu default apps to OFF; Owners must enable them.</li>
+          <li>Admins can enable or disable each app and immediately choose which Custom Roles can see it.</li>
+          <li>When an app supports action-level controls, admins can review and block individual actions.</li>
+        </ul>
+        <h3 class="menu"><span class="num">08.2</span>Sync and indexing</h3>
+        <p>Google Drive, SharePoint, GitHub, and similar apps can support pre-indexing for better answer quality and latency. Admins can limit shared drives, folders, and file types.</p>
+        <h3 class="menu"><span class="num">08.3</span>RBAC for Apps</h3>
+        <p>Inside Permissions &amp; Roles → Custom Role → Connected data, turn on app usage and select the specific apps for that group. For example, Marketing can receive Slack/Drive while Engineering also receives GitHub/Linear.</p>
+        <h3 class="menu"><span class="num">08.4</span>Custom MCP Apps</h3>
+        <p>Only trusted internal apps should be registered. Owners or developer-mode users can register and publish them; Members cannot publish custom apps by default.</p>
+        <h3 class="menu"><span class="num">08.5</span>Microsoft integration notes</h3>
+        <p>Outlook, Teams, and SharePoint require Microsoft Entra ID consent for each service. Google Workspace scopes may also require reauthorization when Drive, Docs, Sheets, or Slides scopes change.</p>
+      `,
+      "analytics": `
+        <div class="chap-num">Section 09 · ChatGPT</div>
+        <h2>Workspace Analytics — Adoption and Impact Measurement</h2>
+        <div class="path">Workspace settings → <b>Workspace analytics</b></div>
+        <p class="lede">Workspace Analytics answers whether paid seats are actually being used. The 2025-2026 analytics model adds Overview, Usage, Task Insights, Impact, and the Analytics Viewer role.</p>
+        <h3 class="menu"><span class="num">09.1</span>Overview</h3>
+        <ul><li>Purchased seats, activated seats, and activation rate</li><li>Weekly and daily active users</li><li>Activation, first-use, and repeat-use trends</li><li>Date and SCIM group filters</li></ul>
+        <h3 class="menu"><span class="num">09.2</span>Usage</h3>
+        <ul><li>Total messages and messages per user</li><li>Model, tool, and connector distribution</li><li>SCIM group comparisons, with small groups suppressed for privacy</li><li>CSV or JSON export by week or month</li></ul>
+        <h3 class="menu"><span class="num">09.3</span>Task Insights</h3>
+        <p>Task Insights shows aggregated task categories and topics only. It does not expose individual prompts or conversations. Owners/Admins can disable it in Usage Analytics.</p>
+        <h3 class="menu"><span class="num">09.4</span>Impact Surveys</h3>
+        <p>Owners can create admin-created surveys. Question and answer sets use OpenAI defaults today; customization is expected later.</p>
+        <h3 class="menu"><span class="num">09.5</span>Analytics Viewer</h3>
+        <p>Analytics Viewer gives AI champions, team leads, and program managers read-only analytics access without broad admin rights.</p>
+      `,
+      "identity": `
+        <div class="chap-num">Section 10 · ChatGPT</div>
+        <h2>Identity &amp; Access — Login, Provisioning, and IP Controls</h2>
+        <div class="path">Workspace settings → <b>Identity &amp; Access</b></div>
+        <p class="lede">This security-critical tab defines who can enter, how they authenticate, how they are provisioned, and where they can connect from. Only Owners can change it.</p>
+        <h3 class="menu"><span class="num">10.1</span>Domain Verification</h3>
+        <ul><li>At least one domain must be verified before SSO, SCIM, or AAC.</li><li>Add the issued TXT record to DNS.</li><li>Subdomains must be verified separately.</li></ul>
+        <h3 class="menu"><span class="num">10.2</span>Login configuration · SSO/SAML</h3>
+        <ul><li><strong>Enable SSO</strong> allows IdP authentication while passwords or social login can remain available.</li><li><strong>Enforce SSO</strong> requires verified-domain users to use SSO only.</li><li>Supported IdPs include Okta, Entra ID, Google Workspace, PingFederate, OneLogin, Rippling, and WorkOS-supported providers.</li><li>Use Optional mode first and test in a separate browser to avoid lockout.</li></ul>
+        <h3 class="menu"><span class="num">10.3</span>Provisioning</h3>
+        <table><thead><tr><th>Method</th><th>Behavior</th><th>Best fit</th></tr></thead><tbody><tr><td>Manual invite</td><td>Invite users from Members or CSV</td><td>Small rollout or POC</td></tr><tr><td>SCIM Directory Sync</td><td>IdP group changes invite and deprovision users automatically</td><td>Large-scale operations</td></tr><tr><td>Automatic Account Creation</td><td>Verified-domain users join on login without email invite</td><td>Domain-wide access policy</td></tr><tr><td>API invite endpoint</td><td>Programmatic invite flow</td><td>Platform integration</td></tr></tbody></table>
+        <div class="box"><div class="label">Important</div>Do not enable SCIM and Automatic Account Creation at the same time. Unmanaged users can be provisioned outside SCIM deprovisioning.</div>
+        <h3 class="menu"><span class="num">10.4</span>External domain invites</h3>
+        <p>Controls whether partner or vendor domains can be invited. SSO applies only to verified domains, so external guests may still enter without SSO.</p>
+        <h3 class="menu"><span class="num">10.5</span>SCIM group visibility</h3>
+        <p>Controls whether SCIM groups appear as share targets for GPTs and projects.</p>
+        <h3 class="menu"><span class="num">10.6</span>IP Allowlisting</h3>
+        <p>Enterprise and Edu can maintain separate allowlists for the workspace and Compliance API. Once activated, non-allowed IPs are blocked even with valid credentials. Compliance API keys always enforce IP restrictions.</p>
+      `,
+      "billing": `
+        <div class="chap-num">Section 11 · ChatGPT</div>
+        <h2>Billing</h2>
+        <div class="path">Workspace settings → <b>Billing</b></div>
+        <ul>
+          <li>Download invoices and manage payment details.</li>
+          <li>Review purchased ChatGPT seats, Codex seats, and active/inactive status.</li>
+          <li>Manage workspace billing data such as tax ID and billing address.</li>
+          <li>Because Codex uses seats plus credit pools, admins should also track credit balance and usage trends here.</li>
+        </ul>
+      `,
+      "codex-intro": `
+        <div class="chap-num">Part 02 · Codex Enterprise</div>
+        <h2>Codex Enterprise — Where and How to Configure It</h2>
+        <p class="lede">Codex Enterprise is part of the ChatGPT Enterprise workspace. The admin entry point is still <strong>Workspace Settings</strong>, with Codex-specific controls inside it. Codex splits into Local surfaces (App, CLI, IDE extension) and Cloud surfaces (web, iOS, Code Review, Slack, Linear), each enabled independently.</p>
+        <div class="box dark"><div class="label">Enterprise security provided by Codex</div><ul><li>No training on customer data</li><li>App, CLI, and IDE use Zero Data Retention; code stays in the developer environment</li><li>Residency and retention follow ChatGPT Enterprise policies</li><li>AES-256 at rest and TLS 1.2+ in transit</li><li>Compliance API can audit usage records</li></ul></div>
+        <h3 class="menu"><span class="num">11.1</span>Codex setup flow</h3>
+        <div class="setup-flow">
+          <div class="flow-step"><div class="kicker">Step 01</div><h4>Confirm owners</h4><p>Assign Workspace Owner, Security Owner, and Analytics Owner.</p></div>
+          <div class="flow-step"><div class="kicker">Step 02</div><h4>Choose surfaces</h4><p>Decide whether to start with Local, Cloud, or both.</p></div>
+          <div class="flow-step"><div class="kicker">Step 03</div><h4>Enable toggles</h4><p>Enable only the required Local, device code, and Cloud toggles.</p></div>
+          <div class="flow-step"><div class="kicker">Step 04</div><h4>RBAC groups</h4><p>Separate Codex Users from Codex Admins.</p></div>
+          <div class="flow-step"><div class="kicker">Step 05</div><h4>Policies</h4><p>Use cloud-managed requirements for sandbox, approval, search, MCP, and command rules.</p></div>
+          <div class="flow-step"><div class="kicker">Step 06</div><h4>Deploy by OS</h4><p>Define macOS MDM, Windows Intune/GPO, and Linux /etc or Ansible baselines.</p></div>
+          <div class="flow-step"><div class="kicker">Step 07</div><h4>Cloud/GitHub</h4><p>Configure GitHub Connector, repo scope, environments, internet access, and code review.</p></div>
+          <div class="flow-step"><div class="kicker">Step 08</div><h4>Audit / observe</h4><p>Monitor with Analytics Dashboard, Analytics API, and Compliance API.</p></div>
+        </div>
+        <h3 class="menu"><span class="num">11.2</span>How this guide separates Codex settings</h3>
+        <ul><li><strong>App / CLI / IDE / Cloud</strong> separates where users run Codex.</li><li><strong>Windows / macOS / Linux</strong> separates installation, credentials, sandboxing, and policy deployment.</li><li><span class="pill green">OS-neutral</span> means the behavior is the same across operating systems.</li></ul>
+      `,
+      "codex-toggle": `
+        <div class="chap-num">Section 12 · Codex</div>
+        <h2>Codex Surface and OS Tabs — App / CLI / IDE / Cloud</h2>
+        <div class="path">Workspace Settings → <b>Settings and Permissions</b> → Codex</div>
+        <h3 class="menu"><span class="num">12.1</span>Allow members to use Codex Local</h3>
+        <p>Enables the Codex App, CLI, and IDE extension. New Enterprise workspaces have this ON by default. If it is OFF, users see a 403 unauthorized message and must contact their ChatGPT admin.</p>
+        <h4 class="sub">Device code authentication for CLI</h4>
+        <p>Device code login supports remote development boxes, SSH servers, and containers. Teams using remote or Linux servers should keep it ON. Command: <code>codex login --device-code</code>.</p>
+        <h3 class="menu"><span class="num">12.2</span>Surface comparison</h3>
+        <table><thead><tr><th>Surface</th><th>Best fit</th><th>Admin control</th></tr></thead><tbody><tr><td>App</td><td>Desktop UI, diffs, worktrees, in-app browser, Computer Use, and visual review</td><td>Codex Local + managed requirements</td></tr><tr><td>CLI</td><td>Terminal, remote development, containers, SSH servers, CI/CD automation</td><td>Codex Local + device code where needed</td></tr><tr><td>IDE Extension</td><td>Codex inside VS Code, Cursor, Windsurf, or JetBrains-style workflows</td><td>Codex Local + editor extension policy</td></tr><tr><td>Cloud</td><td>Hosted async tasks from browser, iOS, GitHub, Slack, or Linear</td><td>Codex Cloud + GitHub Connector + environments</td></tr></tbody></table>
+        <h3 class="menu"><span class="num">12.3</span>OS comparison</h3>
+        <table><thead><tr><th>OS</th><th>Supported surfaces</th><th>Key operating point</th></tr></thead><tbody><tr><td>Windows</td><td>App, CLI, IDE, Cloud</td><td>Use native sandbox or WSL2. Pair Intune/GPO with cloud-managed requirements.</td></tr><tr><td>macOS</td><td>App, CLI, IDE, Cloud</td><td>Best OS-level enforcement via MDM and <code>com.openai.codex</code>.</td></tr><tr><td>Linux</td><td>CLI, IDE, Cloud</td><td>No desktop App. Use CLI/IDE/Cloud with <code>bwrap</code> sandboxing and <code>/etc/codex/</code> policies.</td></tr></tbody></table>
+        <h3 class="menu"><span class="num">12.4</span>Authentication flow</h3>
+        <ul><li>OAuth browser flow is the default.</li><li>Device code is for headless or remote environments.</li><li>API key login can be used through environment variables or CLI login.</li><li>Tokens are stored in macOS Keychain, Windows Credential Manager, or Linux <code>~/.codex/auth.json</code>.</li></ul>
+      `,
+      "codex-cloud-toggle": `
+        <div class="chap-num">Section 12B · Codex</div>
+        <h2>Codex Cloud — Master Toggle and Sub-Options</h2>
+        <div class="path">Workspace Settings → <b>Settings and Permissions</b> → Codex Cloud</div>
+        <h3 class="menu"><span class="num">12B.1</span>Allow members to use Codex Cloud</h3>
+        <p>Cloud runs in the browser and is OS-neutral. It requires GitHub Cloud repositories and the ChatGPT GitHub Connector. After enabling the toggle, Codex can take up to 10 minutes to appear in navigation.</p>
+        <ul><li>On-prem or non-GitHub codebases require a custom Codex SDK approach.</li><li>GitHub Enterprise Managed Users may require the organization Owner to preinstall the Codex GitHub App.</li></ul>
+        <h3 class="menu"><span class="num">12B.2</span>Sub-options</h3>
+        <ul><li>Post answer body to Slack, or only reply with a task link.</li><li>Allow Cloud agent internet access only with domain allowlists and HTTP method restrictions.</li><li>Allow iOS or Android access to open and review Cloud tasks from mobile.</li></ul>
+      `,
+      "codex-rbac": `
+        <div class="chap-num">Section 13 · Codex</div>
+        <h2>Codex RBAC and Codex Admin Group</h2>
+        <div class="path">Workspace settings → <b>Permissions &amp; Roles</b> → Custom Roles → Codex permissions</div>
+        <p class="lede">ChatGPT RBAC extends to Codex. The key control is <strong>Allow members to administer Codex</strong>, which gives a Custom Role group Codex Admin capabilities.</p>
+        <h3 class="menu"><span class="num">13.1</span>What Codex Admins can do</h3>
+        <ul><li>View Codex workspace analytics.</li><li>Create and assign cloud-managed <code>requirements.toml</code> policies.</li><li>Set group policies and default fallback policies.</li><li>Edit or delete Codex Cloud environments.</li></ul>
+        <h3 class="menu"><span class="num">13.2</span>Recommended group structure</h3>
+        <ul><li><strong>Codex Users</strong> for all developers using Codex.</li><li><strong>Codex Admin</strong> for the small policy, environment, and governance operator group.</li><li>Manage Codex Admin membership through SCIM so membership changes are auditable.</li></ul>
+      `,
+      "codex-policies": `
+        <div class="chap-num">Section 14 · Codex</div>
+        <h2>Codex Policies — Cloud-Managed requirements.toml</h2>
+        <div class="path"><a href="https://chatgpt.com/codex/settings/policies" target="_blank">chatgpt.com/codex/settings/policies</a></div>
+        <p class="lede">Policies let admins apply different local Codex constraints by group without pushing files to every laptop. Policies sync automatically to App, CLI, and IDE when the user signs into Codex with ChatGPT.</p>
+        <h3 class="menu"><span class="num">14.1</span>Controllable items</h3>
+        <ul><li>Allowed approval policies such as untrusted or on-request.</li><li>Allowed sandbox modes such as read-only, workspace-write, or danger-full-access.</li><li>Allowed web search modes.</li><li>MCP server allowlist by name or identity.</li><li>Restrictive command rules for risky commands such as <code>rm</code> or <code>git push</code>.</li><li>Disable specific surfaces such as Browser Use, in-app browser, or Computer Use.</li></ul>
+        <h3 class="menu"><span class="num">14.2</span>Example policy</h3>
+        <pre><code>allowed_web_search_modes = ["disabled", "cached"]
+allowed_sandbox_modes = ["workspace-write"]
+allowed_approval_policies = ["on-request"]</code></pre>
+        <h3 class="menu"><span class="num">14.3</span>Group assignment and fallback</h3>
+        <p>Assign each policy to groups and define a default fallback policy for unmatched users. If a user matches multiple group rules, only the first matching rule applies.</p>
+        <h3 class="menu"><span class="num">14.4</span>Policy lookup</h3>
+        <p>Admins can search by email or group to confirm exactly which policy applies.</p>
+      `,
+      "codex-managed": `
+        <div class="chap-num">Section 15 · Codex</div>
+        <h2>Managed Configuration — Complete OS Guide</h2>
+        <p class="lede">In addition to cloud-managed requirements, admins can deploy policy files to user machines. The key point is that Windows, macOS, and Linux differ in enforcement path and strength.</p>
+        <h3 class="menu"><span class="num">15.1</span>Priority order</h3>
+        <ol><li><strong>Cloud-managed requirements</strong> from the Codex Policies page. OS-neutral and not user-bypassable.</li><li><strong>OS-level managed settings</strong>: macOS MDM or Linux <code>/etc/codex/</code>. Windows has no equivalent official global path.</li><li><strong>User settings</strong>: <code>~/.codex/config.toml</code>, which users can change.</li></ol>
+        <h3 class="menu"><span class="num">15.2</span>Requirements vs managed defaults</h3>
+        <table><thead><tr><th>Type</th><th>File</th><th>Meaning</th><th>User change</th></tr></thead><tbody><tr><td>Requirements</td><td><code>requirements.toml</code></td><td>Hard lock; violations block behavior</td><td>No</td></tr><tr><td>Managed defaults</td><td><code>managed_config.toml</code></td><td>Safe starting defaults</td><td>Can be changed during a session</td></tr></tbody></table>
+        <h3 class="menu"><span class="num">15.3</span>OS support matrix</h3>
+        <table><thead><tr><th>Item</th><th>macOS</th><th>Windows</th><th>Linux</th></tr></thead><tbody><tr><td>System path</td><td><code>/etc/codex/</code></td><td>No official equivalent</td><td><code>/etc/codex/</code></td></tr><tr><td>User path</td><td><code>~/.codex/</code></td><td><code>%USERPROFILE%\\.codex\\</code></td><td><code>~/.codex/</code></td></tr><tr><td>OS enforcement</td><td>MDM profile</td><td>Intune/GPO plus ACL as support only</td><td>Root-owned /etc files and automation</td></tr><tr><td>Best enforcement</td><td>MDM + policies</td><td>Cloud-managed requirements</td><td>/etc files + cloud-managed requirements</td></tr></tbody></table>
+        <h3 class="menu"><span class="num">15.4</span>Common policy baseline</h3>
+        <pre><code>approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+network_access = false</code></pre>
+        <h3 class="menu"><span class="num">15.5</span>Deployment by OS</h3>
+        <ul><li><strong>macOS:</strong> push <code>com.openai.codex</code> MDM payloads with base64-encoded config or requirements TOML.</li><li><strong>Windows:</strong> use Intune, GPO, SCCM, or logon scripts for standardization, but rely on cloud-managed requirements for real enforcement.</li><li><strong>Linux:</strong> deploy root-owned files under <code>/etc/codex/</code>, ideally through Ansible or another configuration tool.</li></ul>
+        <h3 class="menu"><span class="num">15.6</span>Guardrails and validation</h3>
+        <ul><li>Use <strong>workspace-write + on-request</strong> for most users.</li><li>Reserve <code>danger-full-access</code> for controlled containers.</li><li>Keep network access off unless explicitly allowlisted.</li><li>Keep prompt logging off unless required by policy.</li><li>Check the Codex config summary for <code>(managed)</code> or <code>(requirement)</code> markers.</li></ul>
+      `,
+      "codex-team": `
+        <div class="chap-num">Section 16 · Codex</div>
+        <h2>Team Config — Repository-Level Standardization <span class="pill green">OS-neutral</span></h2>
+        <p class="lede">Team Config applies the same Codex behavior to anyone entering a specific repository. Commit a <code>.codex/</code> folder into the repo, and Codex reads it automatically when users open that repo. Because it lives in Git, it works across macOS, Windows, and Linux.</p>
+        <table><thead><tr><th>Type</th><th>Path</th><th>Use</th></tr></thead><tbody><tr><td>Config basics</td><td><code>.codex/config.toml</code></td><td>Sandbox mode, approval policy, model, and reasoning effort defaults</td></tr><tr><td>Rules</td><td><code>.codex/rules/</code></td><td>Command controls outside the sandbox</td></tr><tr><td>Skills</td><td><code>.codex/skills/</code></td><td>Shared team skills</td></tr></tbody></table>
+        <p>Start with the highest-traffic repositories first.</p>
+      `,
+      "codex-cloud": `
+        <div class="chap-num">Section 17 · Codex</div>
+        <h2>Codex Cloud Environments and GitHub Connection <span class="pill green">OS-neutral · browser</span></h2>
+        <p class="lede">After enabling Cloud, decide which repositories Codex can access and which hosted container environments it should use. Because Cloud runs in the browser, it behaves the same from macOS, Windows, and Linux.</p>
+        <ol><li>Open <a href="https://chatgpt.com/codex" target="_blank">chatgpt.com/codex</a> and select Get started.</li><li>Connect GitHub through the ChatGPT GitHub Connector.</li><li>Select the GitHub organization.</li><li>Choose all repositories or an explicit subset.</li></ol>
+        <h3 class="menu"><span class="num">17.1</span>Security model</h3>
+        <ul><li>Each task receives a short-lived least-privilege GitHub App installation token.</li><li>Codex follows the user's GitHub permissions and branch protection rules.</li><li>GitHub Enterprise Managed Users may need organization Owner preinstallation.</li></ul>
+        <h3 class="menu"><span class="num">17.2</span>IP allowlist</h3>
+        <p>If the GitHub organization uses IP allowlisting, add the Codex egress ranges from <a href="https://openai.com/chatgpt-agents.json" target="_blank">openai.com/chatgpt-agents.json</a>. Automate updates because the range can change.</p>
+        <h3 class="menu"><span class="num">17.3</span>Environments</h3>
+        <p>Define build/test containers per repository, including packages, environment variables, secrets, setup commands, and internet-access controls.</p>
+      `,
+      "codex-review": `
+        <div class="chap-num">Section 18 · Codex</div>
+        <h2>Code Review — Automated PR Reviews with Codex <span class="pill green">OS-neutral</span></h2>
+        <div class="path"><a href="https://chatgpt.com/codex/settings/code-review" target="_blank">Settings → Code review</a></div>
+        <p class="lede">Codex Cloud can review GitHub pull requests automatically. Admins can enable it by workspace or repository, and users can opt into automatic review for their own PRs where allowed.</p>
+        <h3 class="menu"><span class="num">18.1</span>Auto review</h3>
+        <p>Controls whether Codex automatically reviews PRs in connected repositories.</p>
+        <h3 class="menu"><span class="num">18.2</span>Triggers</h3>
+        <p>Choose which PR events trigger review, such as open, push, or draft-ready transitions.</p>
+      `,
+      "codex-security": `
+        <div class="chap-num">Section 19 · Codex</div>
+        <h2>Codex Security — Find, Verify, and Fix Vulnerabilities <span class="pill green">OS-neutral</span></h2>
+        <p class="lede">Engineering and security teams can use Codex Security to identify potential vulnerabilities in connected GitHub repositories, verify likely findings, and receive structured fix suggestions.</p>
+        <ul><li>Scan connected repositories by commit.</li><li>Prioritize likely findings and verify when possible.</li><li>Provide evidence, risk, and recommended fixes for each finding.</li><li>Improve review quality by refining the repository Threat Model.</li></ul>
+      `,
+      "codex-gov": `
+        <div class="chap-num">Section 20 · Codex</div>
+        <h2>Governance &amp; Observability <span class="pill green">OS-neutral</span></h2>
+        <p class="lede">Codex governance covers both adoption and audit: how much Codex is used and who did what. Use three channels together.</p>
+        <h3 class="menu"><span class="num">20.1</span>Analytics Dashboard</h3>
+        <ul><li>Daily users by product surface: CLI, IDE, Cloud, and Code Review.</li><li>Daily code review count, priority distribution, and feedback sentiment.</li><li>Daily Cloud tasks, VS Code users, and CLI users.</li><li>CSV or JSON exports for code reviews, Cloud usage, sessions, and messages.</li></ul>
+        <h3 class="menu"><span class="num">20.2</span>Analytics API</h3>
+        <p>For BI or data warehouse automation, issue a platform API key with the <code>codex.enterprise.analytics.read</code> scope and call Codex analytics endpoints.</p>
+        <h3 class="menu"><span class="num">20.3</span>Compliance API</h3>
+        <p>For SIEM, eDiscovery, or DLP workflows, Compliance API can provide prompts, responses, token usage, task records, and environment records with the appropriate scoped key.</p>
+        <div class="box green"><div class="label">Recommended pattern</div>Run the dashboard for daily monitoring, Analytics API for automated reporting, and Compliance API for audit and investigation.</div>
+        <h3 class="menu"><span class="num">20.4</span>Metrics not provided</h3>
+        <p>OpenAI intentionally does not provide generated lines of code, suggestion acceptance rate, or direct code-quality/performance KPIs because these create weak incentives or depend heavily on context.</p>
+      `,
+      "rollout-checklist": `
+        <div class="chap-num">Closing</div>
+        <h2>Rollout Checklist — One-Page Summary</h2>
+        <table><thead><tr><th>Step</th><th>Area</th><th>Action</th><th>Note</th></tr></thead><tbody>
+          <tr><td>01</td><td><a href="#codex-intro">Ownership</a></td><td>Assign Owner, Security owner, and Analytics owner</td><td>Separate setup, security, and analytics responsibility</td></tr>
+          <tr><td>02</td><td><a href="#identity">Identity</a></td><td>Verify domains and configure SSO/SCIM</td><td>Keep SSO Optional first to avoid lockout</td></tr>
+          <tr><td>03</td><td><a href="#members">Seat</a></td><td>Choose default seat type and automatic seat assignment policy</td><td>Define ChatGPT seat vs Codex seat rules</td></tr>
+          <tr><td>04</td><td><a href="#permissions">Permissions</a></td><td>Design default permissions, Custom Roles, and spend controls</td><td>Use least-privilege role design</td></tr>
+          <tr><td>05</td><td><a href="#gpts">GPT Governance</a></td><td>Decide sharing scope, third-party access, and Action domains</td><td>Control external connections and visibility</td></tr>
+          <tr><td>06</td><td><a href="#apps">Apps</a></td><td>Enable or disable Apps at workspace level and expose by group</td><td>Restrict sensitive apps by group</td></tr>
+          <tr><td>07</td><td><a href="#analytics">Analytics</a></td><td>Grant Analytics Viewer and design impact survey</td><td>Prepare adoption impact measurement</td></tr>
+          <tr><td>08</td><td><a href="#identity">Network</a></td><td>Apply IP Allowlist where required</td><td>Use only for organizations that need it</td></tr>
+          <tr><td>09</td><td><a href="#codex-toggle">Codex Basics</a></td><td>Define Local/Cloud toggles, Codex Admin group, and requirements policies</td><td>Separate surfaces and admin group</td></tr>
+          <tr><td>10</td><td><a href="#codex-managed">Codex Clients</a></td><td>Define OS-specific client deployment strategy</td><td>macOS MDM, Windows Intune/GPO plus cloud policies, Linux /etc plus Ansible</td></tr>
+          <tr><td>11</td><td><a href="#codex-review">Codex Extensions</a></td><td>Enable Code Review and Codex Security</td><td>Operate review and security at repository level</td></tr>
+          <tr><td>12</td><td><a href="#codex-gov">Audit / Reporting</a></td><td>Issue Compliance API key, connect SIEM, and automate Analytics API reports</td><td>Cover audit logs and usage reporting</td></tr>
+          <tr><td>13</td><td><a href="#codex-intro">Final Check</a></td><td>Validate with sample users</td><td>Confirm login, MFA, RBAC, managed policies, and analytics visibility</td></tr>
+        </tbody></table>
+      `
+    };
+
+    function injectEnglishSections(){
+      Object.entries(englishSections).forEach(([id, html]) => {
+        const section = document.getElementById(id);
+        if (!section || section.querySelector(":scope > .en-version")) return;
+        const container = document.createElement("div");
+        container.className = "en-version";
+        container.setAttribute("lang", "en");
+        container.innerHTML = html;
+        section.insertBefore(container, section.firstChild);
+      });
+    }
+
+    injectEnglishSections();
 
     const looseTranslations = {
       "ChatGPT Enterprise · Workspace Settings 진입 경로": "ChatGPT Enterprise · Workspace Settings Entry Point",
@@ -2192,6 +2585,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       const normalized = lang === "en" ? "en" : "ko";
       document.documentElement.lang = normalized;
       document.documentElement.dataset.lang = normalized;
+      document.title = normalized === "en"
+        ? "ChatGPT Enterprise & Codex Enterprise — Workspace Settings Complete Guide"
+        : "ChatGPT Enterprise & Codex Enterprise — Workspace Settings 완전 정리";
       nodes.forEach((node) => {
         const key = node.dataset.i18n;
         node.innerHTML = normalized === "en" && translations[key] ? translations[key] : original.get(key);
