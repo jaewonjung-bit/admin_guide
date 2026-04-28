@@ -413,7 +413,7 @@
 
 <!-- ============ TOC ============ -->
 <aside class="toc">
-  <h4 data-i18n="toc-part1">목차 — Part 1</h4>
+  <h4 data-i18n="toc-part1">목차 — Part 1 · ChatGPT Enterprise</h4>
   <ol>
     <li><a href="#intro" data-i18n="toc-intro">개요와 진입 경로</a></li>
     <li><a href="#general" data-i18n="toc-general">General (일반)</a></li>
@@ -1915,7 +1915,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "meta-updated": "Last updated: 2026-04-28",
       "meta-sources": "Sources: OpenAI Help Center · OpenAI Academy · developers.openai.com",
       "meta-language": "Language: English / Korean toggle",
-      "toc-part1": "Contents — Part 1",
+      "toc-part1": "Contents — Part 1 · ChatGPT Enterprise",
       "toc-intro": "Overview and entry points",
       "toc-general": "General",
       "toc-members": "Members / Seats",
@@ -2015,9 +2015,178 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "check-13-note": "Verify login, MFA, RBAC, managed policies, and analytics visibility"
     };
 
+    const looseTranslations = {
+      "ChatGPT Enterprise · Workspace Settings 진입 경로": "ChatGPT Enterprise · Workspace Settings Entry Point",
+      "전체 메뉴 한눈에 보기": "All Menus at a Glance",
+      "탭(메뉴)": "Tab / Menu",
+      "주요 역할": "Primary Purpose",
+      "접근 권한": "Access",
+      "General — 일반 설정": "General — Basic Settings",
+      "Members — 멤버 / Seat 관리": "Members — Member and Seat Management",
+      "역할(Role) 4종": "Four Role Types",
+      "Seat 타입 2종": "Two Seat Types",
+      "주요 작업": "Key Tasks",
+      "Groups — 그룹": "Groups",
+      "Permissions & Roles — 핵심 거버넌스 탭": "Permissions & Roles — Core Governance Tab",
+      "Default permissions(기본 권한)": "Default Permissions",
+      "Custom Roles — 토글 가능한 권한 카테고리": "Custom Roles — Toggleable Permission Categories",
+      "Spend controls (Usage limits)": "Spend Controls (Usage Limits)",
+      "Early Access Features": "Early Access Features",
+      "Available Models — 모델 가시성": "Available Models — Model Visibility",
+      "GPTs — 거버넌스 / 소유권 / Action 도메인": "GPTs — Governance, Ownership, and Action Domains",
+      "생성·편집·공유 권한": "Create, Edit, and Share Permissions",
+      "서드파티 GPT 접근": "Third-Party GPT Access",
+      "GPT 소유권 관리": "GPT Ownership Management",
+      "Action / Allowed domains": "Actions / Allowed Domains",
+      "GPT 안에서 Apps 사용 허용": "Allow Apps Inside GPTs",
+      "Apps (구 Connectors) — 외부 도구 연결": "Apps (formerly Connectors) — External Tool Connections",
+      "워크스페이스 단위 설정": "Workspace-Level Settings",
+      "Sync(인덱싱) 설정": "Sync / Indexing Settings",
+      "Custom MCP Apps (Developer mode)": "Custom MCP Apps (Developer Mode)",
+      "Microsoft 계열 연결 시 주의": "Notes for Microsoft Integrations",
+      "Workspace Analytics — 채택률·임팩트 측정": "Workspace Analytics — Adoption and Impact Measurement",
+      "Overview 탭": "Overview Tab",
+      "Usage(사용량)": "Usage",
+      "Impact Surveys": "Impact Surveys",
+      "Analytics Viewer 역할": "Analytics Viewer Role",
+      "Identity & Access — 로그인·프로비저닝·IP 통제": "Identity & Access — Login, Provisioning, and IP Controls",
+      "Domain Verification": "Domain Verification",
+      "Login configuration · SSO/SAML": "Login Configuration · SSO/SAML",
+      "Provisioning(사용자 자동 생성)": "Provisioning (Automatic User Creation)",
+      "External domain invites": "External Domain Invites",
+      "SCIM Group 노출 제어": "SCIM Group Visibility Control",
+      "IP Allowlisting": "IP Allowlisting",
+      "Billing — 결제": "Billing",
+      "Codex Cloud — 마스터 토글 & 하위 옵션": "Codex Cloud — Master Toggle and Sub-Options",
+      "하위 옵션": "Sub-Options",
+      "Codex RBAC & Codex Admin 그룹": "Codex RBAC and Codex Admin Group",
+      "Codex Admin이 할 수 있는 일": "What Codex Admins Can Do",
+      "권장 그룹 구조": "Recommended Group Structure",
+      "Codex Policies — 클라우드 관리 requirements.toml": "Codex Policies — Cloud-Managed requirements.toml",
+      "제어 가능한 항목": "Controllable Items",
+      "예시 정책": "Example Policy",
+      "그룹 할당 & 폴백": "Group Assignment and Fallback",
+      "Policy lookup — 누구에게 어떤 정책이 적용되는지 확인": "Policy Lookup — Check Which Policy Applies to Whom",
+      "Managed Configuration — OS별 완전 가이드": "Managed Configuration — Complete OS Guide",
+      "적용 우선순위 (3단계)": "Application Priority (3 Levels)",
+      "Requirements vs Managed defaults — 두 종류의 정책": "Requirements vs Managed Defaults — Two Policy Types",
+      "OS별 지원 매트릭스 — 한눈에 보기": "OS Support Matrix at a Glance",
+      "공통 정책 예시": "Common Policy Example",
+      "파일 위치": "File Locations",
+      "MDM 워크플로 (Jamf Pro / Kandji / Fleet / Mosyle 공통)": "MDM Workflow (Jamf Pro / Kandji / Fleet / Mosyle)",
+      "검증 명령": "Validation Commands",
+      "방법 ① Microsoft Intune (권장)": "Method 1: Microsoft Intune (Recommended)",
+      "방법 ② Group Policy (GPO) — 도메인 환경": "Method 2: Group Policy (GPO) — Domain Environment",
+      "방법 ③ SCCM / 단순 로그온 스크립트": "Method 3: SCCM / Simple Logon Script",
+      "사용자에게 안내할 메시지 템플릿": "User Message Template",
+      "검증 명령 (PowerShell)": "Validation Commands (PowerShell)",
+      "수동 배포": "Manual Deployment",
+      "Ansible 플레이북 예시": "Example Ansible Playbook",
+      "공통 권장 가드레일": "Common Recommended Guardrails",
+      "검증 — config summary 읽는 법": "Validation — How to Read the Config Summary",
+      "Team Config — 레포지토리 단위 표준화": "Team Config — Repository-Level Standardization",
+      "Codex Cloud 환경 & GitHub 연결": "Codex Cloud Environments and GitHub Connection",
+      "보안 모델": "Security Model",
+      "Code Review — Codex가 자동 PR 리뷰하기": "Code Review — Automated PR Reviews with Codex",
+      "Codex Security — 취약점 탐지·확인·수정": "Codex Security — Find, Verify, and Fix Vulnerabilities",
+      "Governance & Observability": "Governance & Observability",
+      "제공되지 않는 지표": "Metrics Not Provided",
+      "출처 / 참고 링크 — All sources": "Sources / Reference Links — All Sources",
+      "진입 경로": "Entry Path",
+      "중요": "Important",
+      "참고": "Note",
+      "권장 패턴": "Recommended Pattern",
+      "현재 제공되는 Apps/Connectors": "Currently Available Apps / Connectors",
+      "요약": "Summary",
+      "항목": "Item",
+      "구분": "Category",
+      "의미": "Meaning",
+      "사용자 변경": "User Change",
+      "파일 이름": "File Name",
+      "기준": "Criterion",
+      "성능": "Performance",
+      "설정 난이도": "Setup Difficulty",
+      "기업 환경 호환": "Enterprise Compatibility",
+      "파일 시스템": "File System",
+      "리포지토리 위치": "Repository Location",
+      "설치": "Installation",
+      "설정 위치": "Configuration Location",
+      "샌드박스": "Sandbox",
+      "지원 표면": "Supported Surfaces",
+      "인증 저장": "Credential Storage",
+      "관리형 정책": "Managed Policy",
+      "고유 기능": "Native Capabilities"
+    };
+
+    const phraseTranslations = [
+      ["워크스페이스", "workspace"], ["관리자", "admin"], ["관리", "management"], ["설정", "settings"],
+      ["권한", "permissions"], ["역할", "role"], ["멤버", "member"], ["시트", "seat"],
+      ["그룹", "group"], ["도메인", "domain"], ["검증", "verification"], ["로그인", "login"],
+      ["프로비저닝", "provisioning"], ["결제", "billing"], ["분석", "analytics"], ["사용량", "usage"],
+      ["채택률", "adoption"], ["임팩트", "impact"], ["설문", "survey"], ["소유권", "ownership"],
+      ["공유", "sharing"], ["외부", "external"], ["연결", "connection"], ["보안", "security"],
+      ["정책", "policy"], ["토글", "toggle"], ["활성화", "enable"], ["비활성", "disable"],
+      ["허용", "allow"], ["차단", "block"], ["제어", "control"], ["범위", "scope"],
+      ["자동", "automatic"], ["생성", "creation"], ["편집", "edit"], ["삭제", "delete"],
+      ["가시성", "visibility"], ["감사", "audit"], ["보고", "reporting"], ["검토", "review"],
+      ["환경", "environment"], ["브라우저", "browser"], ["클라우드", "cloud"], ["로컬", "local"],
+      ["표면", "surface"], ["운영체제", "operating system"], ["기본", "default"], ["필수", "required"],
+      ["선택", "optional"], ["주의", "warning"], ["예시", "example"], ["공통", "common"],
+      ["명령", "command"], ["파일", "file"], ["위치", "location"], ["사용자", "user"],
+      ["조직", "organization"], ["전역", "global"], ["전사", "organization-wide"], ["고객", "customer"],
+      ["데이터", "data"], ["암호화", "encryption"], ["저장", "storage"], ["전송", "transit"],
+      ["적용", "apply"], ["우선순위", "priority"], ["한눈에 보기", "at a glance"], ["공식 가이드", "official guide"],
+      ["문서", "document"], ["출처", "source"], ["참고 링크", "reference links"], ["최종 업데이트", "last updated"],
+      ["목차", "contents"], ["개요", "overview"], ["진입", "entry"], ["경로", "path"],
+      ["역할별 최소 권한 기준", "least-privilege role baseline"], ["잠금 사고", "lockout incident"],
+      ["필요한 조직만 적용", "apply only where needed"], ["사용 표면과 관리자 그룹 분리", "separate product surfaces and admin group"],
+      ["레포 단위 리뷰/보안 운영", "repo-level review and security operations"], ["감사 로그와 사용량 리포팅", "audit logs and usage reporting"]
+    ];
+
+    function withOriginalSpacing(originalText, translatedText){
+      const leading = originalText.match(/^\\s*/)[0];
+      const trailing = originalText.match(/\\s*$/)[0];
+      return `${leading}${translatedText}${trailing}`;
+    }
+
+    function looseTranslate(text){
+      const trimmed = text.trim();
+      if (!trimmed || !/[가-힣]/.test(trimmed)) return text;
+      if (looseTranslations[trimmed]) return withOriginalSpacing(text, looseTranslations[trimmed]);
+      let translated = trimmed;
+      phraseTranslations.forEach(([ko, en]) => {
+        translated = translated.split(ko).join(en);
+      });
+      translated = translated
+        .replace(/합니다/g, "")
+        .replace(/됩니다/g, "")
+        .replace(/입니다/g, "")
+        .replace(/하세요/g, "")
+        .replace(/습니다/g, "")
+        .replace(/세요/g, "")
+        .replace(/[가-힣]+/g, "")
+        .replace(/\\s{2,}/g, " ")
+        .replace(/\\s+([,.;:])/g, "$1")
+        .trim();
+      return withOriginalSpacing(text, translated || "See original Korean text");
+    }
+
     const original = new Map();
     const nodes = document.querySelectorAll("[data-i18n]");
     nodes.forEach((node) => original.set(node.dataset.i18n, node.innerHTML));
+    const translatedContainers = new Set(nodes);
+    const textNodeOriginals = [];
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node){
+        const parent = node.parentElement;
+        if (!parent || !/[가-힣]/.test(node.textContent)) return NodeFilter.FILTER_REJECT;
+        if (parent.closest("script, style, code, pre, [data-i18n], .language-toggle")) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (walker.nextNode()) {
+      textNodeOriginals.push([walker.currentNode, walker.currentNode.textContent]);
+    }
 
     function setLanguage(lang){
       const normalized = lang === "en" ? "en" : "ko";
@@ -2026,6 +2195,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       nodes.forEach((node) => {
         const key = node.dataset.i18n;
         node.innerHTML = normalized === "en" && translations[key] ? translations[key] : original.get(key);
+      });
+      textNodeOriginals.forEach(([node, value]) => {
+        node.textContent = normalized === "en" ? looseTranslate(value) : value;
       });
       document.querySelectorAll("[data-lang-switch]").forEach((button) => {
         const active = button.dataset.langSwitch === normalized;
