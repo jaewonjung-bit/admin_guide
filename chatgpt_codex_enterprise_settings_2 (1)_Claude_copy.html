@@ -1845,8 +1845,8 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 <!-- ============ CODEX GOVERNANCE ============ -->
 <section class="chapter" id="codex-gov">
   <div class="chap-num">Section 20 · Codex</div>
-  <h2>Governance &amp; Observability <span class="pill green">OS 무관</span></h2>
-  <p class="lede">
+  <h2 data-i18n="codex-gov-title">Governance &amp; Observability <span class="pill green">OS 무관</span></h2>
+  <p class="lede" data-i18n="codex-gov-lede">
     “Codex가 얼마나 쓰이는가”와 “누가 무엇을 했는가”를 동시에 다룹니다. 세 가지 채널을 조합해 사용합니다.
   </p>
 
@@ -1854,48 +1854,48 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <img src="https://developers.openai.com/images/codex/enterprise/analytics.png"
          alt="Codex analytics dashboard"
          onerror="this.parentElement.style.display='none'"/>
-    <figcaption>Codex Analytics Dashboard · <a href="https://developers.openai.com/codex/enterprise/governance" target="_blank">출처</a></figcaption>
+    <figcaption data-i18n="codex-gov-caption">Codex Analytics Dashboard · <a href="https://developers.openai.com/codex/enterprise/governance" target="_blank">출처</a></figcaption>
   </figure>
 
-  <h3 class="menu"><span class="num">20.1</span>① Analytics Dashboard</h3>
+  <h3 class="menu" data-i18n="codex-gov-dashboard-title"><span class="num">20.1</span>① Analytics Dashboard</h3>
   <p><a href="https://chatgpt.com/codex/settings/analytics" target="_blank">chatgpt.com/codex/settings/analytics</a></p>
   <ul>
-    <li>제품(CLI / IDE / Cloud / Code Review)별 일일 사용자</li>
-    <li>일일 코드 리뷰 수 · 우선순위별 분포 · 피드백 감성(긍정/부정)</li>
-    <li>일일 Cloud 태스크 · VS Code 사용자 · CLI 사용자</li>
+    <li data-i18n="codex-gov-dashboard-1">제품(CLI / IDE / Cloud / Code Review)별 일일 사용자</li>
+    <li data-i18n="codex-gov-dashboard-2">일일 코드 리뷰 수 · 우선순위별 분포 · 피드백 감성(긍정/부정)</li>
+    <li data-i18n="codex-gov-dashboard-3">일일 Cloud 태스크 · VS Code 사용자 · CLI 사용자</li>
   </ul>
 
-  <h3 class="menu"><span class="num">20.2</span>② Codex Data Export <span class="pill">CSV / JSON</span></h3>
-  <p>
+  <h3 class="menu" data-i18n="codex-gov-export-title"><span class="num">20.2</span>② Codex Data Export <span class="pill">CSV / JSON</span></h3>
+  <p data-i18n="codex-gov-export-body">
     Codex Governance 문서 기준으로 Codex 분석 데이터는 CSV 또는 JSON으로 내보낼 수 있습니다.
     Workspace Analytics의 CSV가 ChatGPT 채택률 중심이라면, 이 Export는 <strong>Codex 표면별 사용량</strong>과 Code Review 운영 현황을 보는 용도입니다.
   </p>
   <table>
-    <thead><tr><th>Export</th><th>포함 항목</th><th>Excel 활용</th></tr></thead>
+    <thead><tr><th>Export</th><th data-i18n="codex-gov-export-th-included">포함 항목</th><th data-i18n="codex-gov-export-th-excel">Excel 활용</th></tr></thead>
     <tbody>
-      <tr><td>Code review users and reviews</td><td>Code Review 일일 고유 사용자, 완료 리뷰 수</td><td>리뷰 도입률·팀별 사용량</td></tr>
-      <tr><td>Code review findings and feedback</td><td>댓글, 반응, reply, priority-level finding</td><td>리뷰 품질·피드백 추세</td></tr>
-      <tr><td>Cloud users and tasks</td><td>Cloud 일일 고유 사용자, 완료 task 수</td><td>Cloud task 증가 추세</td></tr>
-      <tr><td>CLI and VS Code users</td><td>CLI / VS Code Extension 일일 고유 사용자</td><td>Local adoption 추적</td></tr>
-      <tr><td>Sessions and messages per user</td><td>표면 전체의 일일 세션 시작, 사용자 메시지 수</td><td>사용량 급증·오버리지 전조 확인</td></tr>
+      <tr><td>Code review users and reviews</td><td data-i18n="codex-gov-export-r1-included">Code Review 일일 고유 사용자, 완료 리뷰 수</td><td data-i18n="codex-gov-export-r1-excel">리뷰 도입률·팀별 사용량</td></tr>
+      <tr><td>Code review findings and feedback</td><td data-i18n="codex-gov-export-r2-included">댓글, 반응, reply, priority-level finding</td><td data-i18n="codex-gov-export-r2-excel">리뷰 품질·피드백 추세</td></tr>
+      <tr><td>Cloud users and tasks</td><td data-i18n="codex-gov-export-r3-included">Cloud 일일 고유 사용자, 완료 task 수</td><td data-i18n="codex-gov-export-r3-excel">Cloud task 증가 추세</td></tr>
+      <tr><td>CLI and VS Code users</td><td data-i18n="codex-gov-export-r4-included">CLI / VS Code Extension 일일 고유 사용자</td><td data-i18n="codex-gov-export-r4-excel">Local adoption 추적</td></tr>
+      <tr><td>Sessions and messages per user</td><td data-i18n="codex-gov-export-r5-included">표면 전체의 일일 세션 시작, 사용자 메시지 수</td><td data-i18n="codex-gov-export-r5-excel">사용량 급증·오버리지 전조 확인</td></tr>
     </tbody>
   </table>
 
-  <h3 class="menu"><span class="num">20.3</span>③ Analytics API <span class="pill">programmatic</span></h3>
-  <p>
+  <h3 class="menu" data-i18n="codex-gov-api-title"><span class="num">20.3</span>③ Analytics API <span class="pill">programmatic</span></h3>
+  <p data-i18n="codex-gov-api-body">
     BI/데이터 웨어하우스 연동용. <code>codex.enterprise.analytics.read</code> 스코프 전용 API 키 필요.
   </p>
   <ol>
-    <li>Platform Portal → API keys → 신규 키 생성(읽기 전용 권장)</li>
-    <li><code>support@openai.com</code> 메일로 <strong>스코프 한정 요청</strong></li>
-    <li>승인 후 <code>https://api.chatgpt.com/v1/analytics/codex/workspaces/{workspace_id}/...</code> 엔드포인트 호출</li>
+    <li data-i18n="codex-gov-api-step-1">Platform Portal → API keys → 신규 키 생성(읽기 전용 권장)</li>
+    <li data-i18n="codex-gov-api-step-2"><code>support@openai.com</code> 메일로 <strong>스코프 한정 요청</strong></li>
+    <li data-i18n="codex-gov-api-step-3">승인 후 <code>https://api.chatgpt.com/v1/analytics/codex/workspaces/{workspace_id}/...</code> 엔드포인트 호출</li>
   </ol>
   <pre><code>curl -H "Authorization: Bearer YOUR_PLATFORM_API_KEY" \
   "https://api.chatgpt.com/v1/analytics/codex/workspaces/WORKSPACE_ID/usage"</code></pre>
-  <p>주요 엔드포인트: <code>/usage</code> · <code>/code_reviews</code> · <code>/code_review_responses</code></p>
+  <p data-i18n="codex-gov-api-endpoints">주요 엔드포인트: <code>/usage</code> · <code>/code_reviews</code> · <code>/code_review_responses</code></p>
 
-  <h3 class="menu"><span class="num">20.4</span>④ Compliance API <span class="pill">audit</span></h3>
-  <p>
+  <h3 class="menu" data-i18n="codex-gov-compliance-title"><span class="num">20.4</span>④ Compliance API <span class="pill">audit</span></h3>
+  <p data-i18n="codex-gov-compliance-body">
     Compliance API는 워크스페이스의 감사·컴플라이언스 데이터를 SIEM, 데이터 레이크, eDiscovery, DLP 도구로 가져오는 채널입니다.
     OpenAI Help 문서 기준 Compliance Logs Platform의 보존 기간은 <strong>30일</strong>이므로, 더 긴 보존이 필요하면 모든 로그를 지속적으로 다운로드해 고객 보존 정책에 맞춰 저장해야 합니다.
   </p>
@@ -1904,9 +1904,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   </p>
   <pre><code>curl -L -H "Authorization: Bearer YOUR_COMPLIANCE_API_KEY" \
   "https://api.chatgpt.com/v1/compliance/workspaces/WORKSPACE_ID/logs?event_type=CODEX_LOG&amp;after=2026-03-01T00:00:00Z"</code></pre>
-  <p>주요 엔드포인트: <code>/logs</code> · <code>/codex_tasks</code> · <code>/codex_environments</code></p>
+  <p data-i18n="codex-gov-compliance-endpoints">주요 엔드포인트: <code>/logs</code> · <code>/codex_tasks</code> · <code>/codex_environments</code></p>
 
-  <div class="box green">
+  <div class="box green" data-i18n="codex-gov-pattern">
     <div class="label">권장 패턴</div>
     <strong>Workspace Analytics CSV</strong>(ChatGPT adoption) + <strong>Codex CSV/JSON Export</strong>(Codex usage) +
     <strong>Analytics API</strong>(자동화 보고) + <strong>Compliance API</strong>(감사·조사)를
@@ -1915,8 +1915,8 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <a href="https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers" target="_blank">[Compliance Platform]</a>
   </div>
 
-  <h3 class="menu"><span class="num">20.5</span>제공되지 않는 지표</h3>
-  <p style="font-size:.92rem">
+  <h3 class="menu" data-i18n="codex-gov-missing-title"><span class="num">20.5</span>제공되지 않는 지표</h3>
+  <p style="font-size:.92rem" data-i18n="codex-gov-missing-body">
     OpenAI는 의도적으로 다음을 제공하지 않습니다:
     <em>“생성된 코드 라인 수”</em>(잘못된 인센티브 야기), <em>“제안 수락률”</em>(거의 100%라 의미 없음),
     <em>“코드 품질/성능 KPI”</em>(맥락에 너무 의존). 자체 KPI는 PR 리뷰 데이터·메타데이터로 직접 계산하라는 입장입니다.
@@ -2070,6 +2070,39 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "surface-cloud-body": "A cloud agent runs repository tasks in a hosted container. It is OS-neutral and requires GitHub Cloud repositories plus Connector setup.",
       "os-tabs-title": "<span class=\"num\">12.3</span>OS Tabs — Windows / macOS / Linux",
       "os-tabs-lede": "Even when the Codex product surface is the same, installation path, credential storage, sandboxing, and managed policy deployment differ by OS.",
+      "codex-gov-title": "Governance &amp; Observability <span class=\"pill green\">OS-neutral</span>",
+      "codex-gov-lede": "This section covers both “how much Codex is being used” and “who did what.” Use these three channels together.",
+      "codex-gov-caption": "Codex Analytics Dashboard · <a href=\"https://developers.openai.com/codex/enterprise/governance\" target=\"_blank\">Source</a>",
+      "codex-gov-dashboard-title": "<span class=\"num\">20.1</span>① Analytics Dashboard",
+      "codex-gov-dashboard-1": "Daily users by product surface: CLI, IDE, Cloud, and Code Review",
+      "codex-gov-dashboard-2": "Daily code review count, priority distribution, and feedback sentiment: positive or negative",
+      "codex-gov-dashboard-3": "Daily Cloud tasks, VS Code users, and CLI users",
+      "codex-gov-export-title": "<span class=\"num\">20.2</span>② Codex Data Export <span class=\"pill\">CSV / JSON</span>",
+      "codex-gov-export-body": "According to the Codex Governance documentation, Codex analytics data can be exported as CSV or JSON. While Workspace Analytics CSV is centered on ChatGPT adoption, this export is for tracking <strong>Codex usage by surface</strong> and Code Review operations.",
+      "codex-gov-export-th-included": "Included fields",
+      "codex-gov-export-th-excel": "Excel use",
+      "codex-gov-export-r1-included": "Daily unique Code Review users and completed review count",
+      "codex-gov-export-r1-excel": "Review adoption and team-level usage",
+      "codex-gov-export-r2-included": "Comments, reactions, replies, and priority-level findings",
+      "codex-gov-export-r2-excel": "Review quality and feedback trends",
+      "codex-gov-export-r3-included": "Daily unique Cloud users and completed task count",
+      "codex-gov-export-r3-excel": "Cloud task growth trend",
+      "codex-gov-export-r4-included": "Daily unique CLI and VS Code Extension users",
+      "codex-gov-export-r4-excel": "Local adoption tracking",
+      "codex-gov-export-r5-included": "Daily sessions started and user message count across all surfaces",
+      "codex-gov-export-r5-excel": "Detect usage spikes and early overage signals",
+      "codex-gov-api-title": "<span class=\"num\">20.3</span>③ Analytics API <span class=\"pill\">programmatic</span>",
+      "codex-gov-api-body": "For BI and data warehouse integration. Requires a dedicated API key scoped to <code>codex.enterprise.analytics.read</code>.",
+      "codex-gov-api-step-1": "Platform Portal → API keys → create a new key; read-only is recommended",
+      "codex-gov-api-step-2": "Email <code>support@openai.com</code> to request the limited scope",
+      "codex-gov-api-step-3": "After approval, call the <code>https://api.chatgpt.com/v1/analytics/codex/workspaces/{workspace_id}/...</code> endpoints",
+      "codex-gov-api-endpoints": "Key endpoints: <code>/usage</code> · <code>/code_reviews</code> · <code>/code_review_responses</code>",
+      "codex-gov-compliance-title": "<span class=\"num\">20.4</span>④ Compliance API <span class=\"pill\">audit</span>",
+      "codex-gov-compliance-body": "The Compliance API is the channel for bringing workspace audit and compliance data into SIEM, data lake, eDiscovery, and DLP tools. OpenAI Help states that the Compliance Logs Platform retention period is <strong>30 days</strong>, so customers that need longer retention should continuously download all logs and store them according to their own retention policy.",
+      "codex-gov-compliance-endpoints": "Key endpoints: <code>/logs</code> · <code>/codex_tasks</code> · <code>/codex_environments</code>",
+      "codex-gov-pattern": "<div class=\"label\">Recommended pattern</div><strong>Workspace Analytics CSV</strong> (ChatGPT adoption) + <strong>Codex CSV/JSON Export</strong> (Codex usage) + <strong>Analytics API</strong> (automated reporting) + <strong>Compliance API</strong> (audit and investigation) is the standard operating pattern. <a href=\"https://developers.openai.com/codex/enterprise/governance\" target=\"_blank\">[Codex Governance]</a> · <a href=\"https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers\" target=\"_blank\">[Compliance Platform]</a>",
+      "codex-gov-missing-title": "<span class=\"num\">20.5</span>Metrics Not Provided",
+      "codex-gov-missing-body": "OpenAI intentionally does not provide: <em>“lines of code generated”</em> because it creates the wrong incentives, <em>“suggestion acceptance rate”</em> because it is often near 100% and not meaningful, or <em>“code quality/performance KPI”</em> because those depend too heavily on context. The expected approach is to calculate custom KPIs from PR review data and metadata.",
       "checklist-title": "Rollout Checklist — One-Page Summary",
       "table-step": "Step",
       "table-area": "Area",
