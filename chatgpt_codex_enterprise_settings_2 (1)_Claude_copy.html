@@ -826,10 +826,32 @@
   <ul>
     <li>총 메시지, 사용자당 메시지, 모델별·도구별·연결앱별 분포</li>
     <li>SCIM 그룹별 비교(10명 미만 그룹은 익명화 위해 표시 제외)</li>
-    <li>CSV / JSON 내보내기 — 주별/월별 단위 (커스텀 기간은 아직 미지원)</li>
+    <li><strong>CSV 내보내기</strong> — Excel에서 바로 열 수 있는 on-demand 리포트</li>
   </ul>
 
-  <h3 class="menu"><span class="num">09.3</span>Task Insights <span class="pill green">기본 ON</span></h3>
+  <h3 class="menu"><span class="num">09.3</span>Export data — Excel용 CSV 다운로드</h3>
+  <p>
+    Workspace Analytics의 Export는 현재 <strong>CSV 형식만 지원</strong>합니다. Excel 파일(.xlsx)을 직접 받는 방식은 아니지만,
+    CSV를 Excel/Sheets에서 열어 사용자·GPT·프로젝트·임팩트 설문 분석용으로 사용할 수 있습니다.
+  </p>
+  <table>
+    <thead><tr><th>Export 대상</th><th>용도</th><th>기간</th></tr></thead>
+    <tbody>
+      <tr><td>Users</td><td>활성/비활성 사용자, 채택률, 부서별 확산 확인</td><td>Preset 또는 Custom</td></tr>
+      <tr><td>GPTs</td><td>GPT 생성·소유·활용 현황 점검</td><td>Preset 또는 Custom</td></tr>
+      <tr><td>Projects</td><td>프로젝트 단위 활용 현황 점검</td><td>Preset 또는 Custom</td></tr>
+      <tr><td>Impact survey</td><td>임팩트 설문 응답 분석</td><td>Export 시점 기준</td></tr>
+    </tbody>
+  </table>
+  <ol>
+    <li>Workspace settings → Workspace analytics로 이동</li>
+    <li><strong>Export data</strong> 선택</li>
+    <li>Data type 선택</li>
+    <li>Preset 기간 또는 Custom 기간 선택(Custom은 최대 12개월, 종료일은 오늘 이후 불가)</li>
+    <li><strong>Generate CSV</strong>로 다운로드</li>
+  </ol>
+
+  <h3 class="menu"><span class="num">09.4</span>Task Insights <span class="pill green">기본 ON</span></h3>
   <ul>
     <li>대화를 “Task 카테고리 / 토픽”으로 자동 분류한 <strong>집계 결과</strong>만 보여줌</li>
     <li>개별 프롬프트·대화는 절대 노출되지 않음</li>
@@ -838,18 +860,24 @@
       (이전에 만들어진 집계 데이터는 즉시 삭제되지 않음)</li>
   </ul>
 
-  <h3 class="menu"><span class="num">09.4</span>Impact Surveys</h3>
+  <h3 class="menu"><span class="num">09.5</span>Impact Surveys</h3>
   <ul>
     <li>Owner는 “Admin-created survey” 생성 가능</li>
     <li>다만 <strong>질문/답안은 OpenAI 기본 세트 고정</strong> — 커스터마이징은 향후 지원 예정</li>
     <li>OpenAI-created 설문은 opt-out 가능</li>
   </ul>
 
-  <h3 class="menu"><span class="num">09.5</span>Analytics Viewer 역할</h3>
+  <h3 class="menu"><span class="num">09.6</span>Analytics Viewer 역할</h3>
   <p>
     AI 챔피언, 부서 리더, 프로그램 매니저가 <strong>관리자 권한 없이</strong> 분석 화면만 읽을 수 있도록 하는 신규 역할.
     채택 보고서를 만드는 사람과 권한을 분리해 보안성을 높이는 용도입니다.
   </p>
+
+  <div class="box">
+    <div class="label">범위 구분</div>
+    Workspace Analytics는 <strong>집계 분석 화면</strong>입니다. 메시지 본문, 파일 내용, item-level compliance record는 제공하지 않습니다.
+    원시 로그·법무·보안 감사 목적은 아래 Codex Governance의 <strong>Compliance API</strong>로 분리해서 운영하세요.
+  </div>
 
   <p style="font-size:.88rem;color:var(--muted)">
     <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">→ Workspace analytics 공식 가이드</a> ·
@@ -936,8 +964,22 @@
     <li>인보이스 다운로드 / 결제 수단 관리</li>
     <li>구매한 ChatGPT seat 수, Codex seat 수, 활성/비활성 상태</li>
     <li>워크스페이스 단위 결제 정보(과세 ID, 청구 주소)</li>
-    <li>Codex는 시트 + <strong>크레딧 풀</strong> 모델이라, 크레딧 잔량/사용 추이도 여기서 확인</li>
+    <li>Owner는 <a href="https://chatgpt.com/admin/billing" target="_blank">chatgpt.com/admin/billing</a>에서 ChatGPT 워크스페이스 청구 정보를 확인</li>
   </ul>
+  <div class="box">
+    <div class="label">오버리지 방지 기준</div>
+    ChatGPT(chatgpt.com) 청구와 API Platform(platform.openai.com) 청구는 <strong>별도 시스템</strong>입니다.
+    따라서 ChatGPT Enterprise seat/Codex seat/워크스페이스 청구는 ChatGPT Billing에서, API 사용량과 API 청구는 Platform Billing에서 따로 확인해야 합니다.
+    중복 구독이나 별도 Platform 사용량이 섞이면 비용이 분리 청구될 수 있으므로 Owner가 두 화면을 함께 점검하세요.
+  </div>
+  <table>
+    <thead><tr><th>비용 리스크</th><th>확인 위치</th><th>운영 액션</th></tr></thead>
+    <tbody>
+      <tr><td>구매 seat 대비 낮은 활성화</td><td>Workspace Analytics CSV</td><td>비활성 사용자 회수, 부서별 adoption 캠페인</td></tr>
+      <tr><td>Codex 사용량 급증</td><td>Codex Analytics CSV/JSON</td><td>Cloud task, CLI/VS Code 사용자, 세션/메시지 추세 점검</td></tr>
+      <tr><td>워크스페이스와 API 청구 혼동</td><td>ChatGPT Billing + Platform Billing</td><td>청구 소유자 분리, 월간 reconciliation</td></tr>
+    </tbody>
+  </table>
 </section>
 
 <hr class="div"/>
@@ -1803,10 +1845,25 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <li>제품(CLI / IDE / Cloud / Code Review)별 일일 사용자</li>
     <li>일일 코드 리뷰 수 · 우선순위별 분포 · 피드백 감성(긍정/부정)</li>
     <li>일일 Cloud 태스크 · VS Code 사용자 · CLI 사용자</li>
-    <li>CSV / JSON 내보내기 — 코드 리뷰, Cloud 사용량, 세션/메시지 등 항목별</li>
   </ul>
 
-  <h3 class="menu"><span class="num">20.2</span>② Analytics API <span class="pill">programmatic</span></h3>
+  <h3 class="menu"><span class="num">20.2</span>② Codex Data Export <span class="pill">CSV / JSON</span></h3>
+  <p>
+    Codex Governance 문서 기준으로 Codex 분석 데이터는 CSV 또는 JSON으로 내보낼 수 있습니다.
+    Workspace Analytics의 CSV가 ChatGPT 채택률 중심이라면, 이 Export는 <strong>Codex 표면별 사용량</strong>과 Code Review 운영 현황을 보는 용도입니다.
+  </p>
+  <table>
+    <thead><tr><th>Export</th><th>포함 항목</th><th>Excel 활용</th></tr></thead>
+    <tbody>
+      <tr><td>Code review users and reviews</td><td>Code Review 일일 고유 사용자, 완료 리뷰 수</td><td>리뷰 도입률·팀별 사용량</td></tr>
+      <tr><td>Code review findings and feedback</td><td>댓글, 반응, reply, priority-level finding</td><td>리뷰 품질·피드백 추세</td></tr>
+      <tr><td>Cloud users and tasks</td><td>Cloud 일일 고유 사용자, 완료 task 수</td><td>Cloud task 증가 추세</td></tr>
+      <tr><td>CLI and VS Code users</td><td>CLI / VS Code Extension 일일 고유 사용자</td><td>Local adoption 추적</td></tr>
+      <tr><td>Sessions and messages per user</td><td>표면 전체의 일일 세션 시작, 사용자 메시지 수</td><td>사용량 급증·오버리지 전조 확인</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="menu"><span class="num">20.3</span>③ Analytics API <span class="pill">programmatic</span></h3>
   <p>
     BI/데이터 웨어하우스 연동용. <code>codex.enterprise.analytics.read</code> 스코프 전용 API 키 필요.
   </p>
@@ -1819,10 +1876,10 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   "https://api.chatgpt.com/v1/analytics/codex/workspaces/WORKSPACE_ID/usage"</code></pre>
   <p>주요 엔드포인트: <code>/usage</code> · <code>/code_reviews</code> · <code>/code_review_responses</code></p>
 
-  <h3 class="menu"><span class="num">20.3</span>③ Compliance API <span class="pill">audit</span></h3>
+  <h3 class="menu"><span class="num">20.4</span>④ Compliance API <span class="pill">audit</span></h3>
   <p>
-    SIEM/eDiscovery/DLP에 붙여 사용자 프롬프트 본문, 응답, 토큰 사용량까지 감사 가능.
-    별도 API 키 + <code>read</code>/<code>delete</code>/둘 다 스코프 신청 필요.
+    Compliance API는 워크스페이스의 감사·컴플라이언스 데이터를 SIEM, 데이터 레이크, eDiscovery, DLP 도구로 가져오는 채널입니다.
+    OpenAI Help 문서 기준 Compliance Logs Platform의 보존 기간은 <strong>30일</strong>이므로, 더 긴 보존이 필요하면 모든 로그를 지속적으로 다운로드해 고객 보존 정책에 맞춰 저장해야 합니다.
   </p>
   <pre><code>curl -L -H "Authorization: Bearer YOUR_COMPLIANCE_API_KEY" \
   "https://api.chatgpt.com/v1/compliance/workspaces/WORKSPACE_ID/logs?event_type=CODEX_LOG&amp;after=2026-03-01T00:00:00Z"</code></pre>
@@ -1830,12 +1887,14 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 
   <div class="box green">
     <div class="label">권장 패턴</div>
-    <strong>대시보드</strong>(일상 모니터링) + <strong>Analytics API</strong>(자동화 보고) + <strong>Compliance API</strong>(감사·조사)를
+    <strong>Workspace Analytics CSV</strong>(ChatGPT adoption) + <strong>Codex CSV/JSON Export</strong>(Codex usage) +
+    <strong>Analytics API</strong>(자동화 보고) + <strong>Compliance API</strong>(감사·조사)를
     동시에 운영하는 것이 표준 패턴입니다.
-    <a href="https://developers.openai.com/codex/enterprise/governance" target="_blank">[Governance 문서]</a>
+    <a href="https://developers.openai.com/codex/enterprise/governance" target="_blank">[Codex Governance]</a> ·
+    <a href="https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers" target="_blank">[Compliance Platform]</a>
   </div>
 
-  <h3 class="menu"><span class="num">20.4</span>제공되지 않는 지표</h3>
+  <h3 class="menu"><span class="num">20.5</span>제공되지 않는 지표</h3>
   <p style="font-size:.92rem">
     OpenAI는 의도적으로 다음을 제공하지 않습니다:
     <em>“생성된 코드 라인 수”</em>(잘못된 인센티브 야기), <em>“제안 수락률”</em>(거의 100%라 의미 없음),
@@ -1889,6 +1948,8 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><a href="https://help.openai.com/en/articles/10479654-understanding-your-ideal-user-management-setup" target="_blank">Understanding your ideal user management setup</a></li>
       <li><a href="https://help.openai.com/en/articles/10489721-authentication-troubleshooting-faq" target="_blank">Authentication troubleshooting FAQ</a></li>
       <li><a href="https://help.openai.com/en/articles/12111596-ip-allowlisting-for-chatgpt" target="_blank">IP Allowlisting for ChatGPT</a></li>
+      <li><a href="https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers" target="_blank">OpenAI Compliance Platform for Enterprise and Edu Customers</a></li>
+      <li><a href="https://help.openai.com/en/articles/9039756-billing-settings-in-chatgpt-vs-platform" target="_blank">Billing settings in ChatGPT vs Platform</a></li>
       <li><a href="https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-in-apps-enterprise-edu-and-business" target="_blank">Admin Controls, Security &amp; Compliance in Apps</a></li>
       <li><a href="https://help.openai.com/en/articles/8555535-gpts-chatgpt-enterprise-version" target="_blank">Managing GPT access in Enterprise &amp; Edu</a></li>
       <li><a href="https://help.openai.com/en/articles/9442513-gpt-actions-domain-settings-chatgpt-enterprise" target="_blank">GPT Actions — Domain Settings</a></li>
@@ -2195,13 +2256,18 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
         <h3 class="menu"><span class="num">09.1</span>Overview</h3>
         <ul><li>Purchased seats, activated seats, and activation rate</li><li>Weekly and daily active users</li><li>Activation, first-use, and repeat-use trends</li><li>Date and SCIM group filters</li></ul>
         <h3 class="menu"><span class="num">09.2</span>Usage</h3>
-        <ul><li>Total messages and messages per user</li><li>Model, tool, and connector distribution</li><li>SCIM group comparisons, with small groups suppressed for privacy</li><li>CSV or JSON export by week or month</li></ul>
-        <h3 class="menu"><span class="num">09.3</span>Task Insights</h3>
+        <ul><li>Total messages and messages per user</li><li>Model, tool, and connector distribution</li><li>SCIM group comparisons, with small groups suppressed for privacy</li><li>On-demand CSV exports that can be opened in Excel or Sheets</li></ul>
+        <h3 class="menu"><span class="num">09.3</span>Export data — CSV for Excel</h3>
+        <p>Workspace Analytics Export currently supports CSV only. It does not directly produce .xlsx files, but the CSV can be opened in Excel or Sheets for adoption analysis.</p>
+        <table><thead><tr><th>Export type</th><th>Use</th><th>Date range</th></tr></thead><tbody><tr><td>Users</td><td>Active/inactive users, adoption, and group rollout tracking</td><td>Preset or Custom</td></tr><tr><td>GPTs</td><td>GPT creation, ownership, and usage review</td><td>Preset or Custom</td></tr><tr><td>Projects</td><td>Project-level usage review</td><td>Preset or Custom</td></tr><tr><td>Impact survey</td><td>Impact survey response analysis</td><td>At export time</td></tr></tbody></table>
+        <ol><li>Go to Workspace settings → Workspace analytics.</li><li>Select Export data.</li><li>Select the data type.</li><li>Select a preset date range or a Custom range. Custom ranges can cover up to 12 months and cannot end after the current date.</li><li>Select Generate CSV.</li></ol>
+        <h3 class="menu"><span class="num">09.4</span>Task Insights</h3>
         <p>Task Insights shows aggregated task categories and topics only. It does not expose individual prompts or conversations. Owners/Admins can disable it in Usage Analytics.</p>
-        <h3 class="menu"><span class="num">09.4</span>Impact Surveys</h3>
+        <h3 class="menu"><span class="num">09.5</span>Impact Surveys</h3>
         <p>Owners can create admin-created surveys. Question and answer sets use OpenAI defaults today; customization is expected later.</p>
-        <h3 class="menu"><span class="num">09.5</span>Analytics Viewer</h3>
+        <h3 class="menu"><span class="num">09.6</span>Analytics Viewer</h3>
         <p>Analytics Viewer gives AI champions, team leads, and program managers read-only analytics access without broad admin rights.</p>
+        <div class="box"><div class="label">Scope</div>Workspace Analytics is an aggregated analytics experience. It does not expose message text, file contents, or item-level compliance records. Use Compliance API for raw logs, legal/security workflows, and compliance controls.</div>
       `,
       "identity": `
         <div class="chap-num">Section 10 · ChatGPT</div>
@@ -2230,8 +2296,10 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
           <li>Download invoices and manage payment details.</li>
           <li>Review purchased ChatGPT seats, Codex seats, and active/inactive status.</li>
           <li>Manage workspace billing data such as tax ID and billing address.</li>
-          <li>Because Codex uses seats plus credit pools, admins should also track credit balance and usage trends here.</li>
+          <li>Workspace Owners can review ChatGPT workspace billing at <a href="https://chatgpt.com/admin/billing" target="_blank">chatgpt.com/admin/billing</a>.</li>
         </ul>
+        <div class="box"><div class="label">Overage control</div>ChatGPT billing and API Platform billing are separate systems. Track ChatGPT Enterprise seats, Codex seats, and workspace billing in ChatGPT Billing, while API usage and API billing must be checked separately in Platform Billing. If both surfaces are used, owners should reconcile both billing views monthly.</div>
+        <table><thead><tr><th>Cost risk</th><th>Where to check</th><th>Action</th></tr></thead><tbody><tr><td>Low activation versus purchased seats</td><td>Workspace Analytics CSV</td><td>Recover inactive users and run adoption campaigns by group</td></tr><tr><td>Codex usage spike</td><td>Codex Analytics CSV/JSON</td><td>Review Cloud tasks, CLI/VS Code users, sessions, and messages</td></tr><tr><td>Workspace/API billing confusion</td><td>ChatGPT Billing + Platform Billing</td><td>Separate billing owners and run monthly reconciliation</td></tr></tbody></table>
       `,
       "codex-intro": `
         <div class="chap-num">Part 02 · Codex Enterprise</div>
@@ -2364,13 +2432,16 @@ network_access = false</code></pre>
         <h2>Governance &amp; Observability <span class="pill green">OS-neutral</span></h2>
         <p class="lede">Codex governance covers both adoption and audit: how much Codex is used and who did what. Use three channels together.</p>
         <h3 class="menu"><span class="num">20.1</span>Analytics Dashboard</h3>
-        <ul><li>Daily users by product surface: CLI, IDE, Cloud, and Code Review.</li><li>Daily code review count, priority distribution, and feedback sentiment.</li><li>Daily Cloud tasks, VS Code users, and CLI users.</li><li>CSV or JSON exports for code reviews, Cloud usage, sessions, and messages.</li></ul>
-        <h3 class="menu"><span class="num">20.2</span>Analytics API</h3>
+        <ul><li>Daily users by product surface: CLI, IDE, Cloud, and Code Review.</li><li>Daily code review count, priority distribution, and feedback sentiment.</li><li>Daily Cloud tasks, VS Code users, and CLI users.</li></ul>
+        <h3 class="menu"><span class="num">20.2</span>Codex Data Export <span class="pill">CSV / JSON</span></h3>
+        <p>Codex analytics data can be exported as CSV or JSON. Unlike Workspace Analytics CSV, which is centered on ChatGPT adoption, this export is focused on Codex surface usage and Code Review operations.</p>
+        <table><thead><tr><th>Export</th><th>Included data</th><th>Excel use</th></tr></thead><tbody><tr><td>Code review users and reviews</td><td>Daily unique Code Review users and total completed reviews</td><td>Review adoption and team usage</td></tr><tr><td>Code review findings and feedback</td><td>Comments, reactions, replies, and priority-level findings</td><td>Review quality and feedback trends</td></tr><tr><td>Cloud users and tasks</td><td>Daily unique Cloud users and completed tasks</td><td>Cloud task growth</td></tr><tr><td>CLI and VS Code users</td><td>Daily unique users for CLI and VS Code extension</td><td>Local adoption tracking</td></tr><tr><td>Sessions and messages per user</td><td>Daily session starts and user message counts across Codex surfaces</td><td>Usage spikes and early overage signals</td></tr></tbody></table>
+        <h3 class="menu"><span class="num">20.3</span>Analytics API</h3>
         <p>For BI or data warehouse automation, issue a platform API key with the <code>codex.enterprise.analytics.read</code> scope and call Codex analytics endpoints.</p>
-        <h3 class="menu"><span class="num">20.3</span>Compliance API</h3>
-        <p>For SIEM, eDiscovery, or DLP workflows, Compliance API can provide prompts, responses, token usage, task records, and environment records with the appropriate scoped key.</p>
-        <div class="box green"><div class="label">Recommended pattern</div>Run the dashboard for daily monitoring, Analytics API for automated reporting, and Compliance API for audit and investigation.</div>
-        <h3 class="menu"><span class="num">20.4</span>Metrics not provided</h3>
+        <h3 class="menu"><span class="num">20.4</span>Compliance API</h3>
+        <p>Compliance API is the audit and compliance channel for SIEM, data lake, eDiscovery, and DLP workflows. The Compliance Logs Platform retains data for 30 days, so customers needing longer retention should continuously download logs and store them according to their own retention policy.</p>
+        <div class="box green"><div class="label">Recommended pattern</div>Run Workspace Analytics CSV for ChatGPT adoption, Codex CSV/JSON export for Codex usage, Analytics API for automated reporting, and Compliance API for audit or investigation.</div>
+        <h3 class="menu"><span class="num">20.5</span>Metrics not provided</h3>
         <p>OpenAI intentionally does not provide generated lines of code, suggestion acceptance rate, or direct code-quality/performance KPIs because these create weak incentives or depend heavily on context.</p>
       `,
       "rollout-checklist": `
