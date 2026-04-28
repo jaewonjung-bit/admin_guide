@@ -1823,19 +1823,19 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 <!-- ============ CODEX SECURITY ============ -->
 <section class="chapter" id="codex-security">
   <div class="chap-num">Section 19 · Codex</div>
-  <h2>Codex Security — 취약점 탐지·확인·수정 <span class="pill green">OS 무관</span></h2>
-  <p class="lede">
+  <h2 data-i18n="codex-security-title">Codex Security — 취약점 탐지·확인·수정 <span class="pill green">OS 무관</span></h2>
+  <p class="lede" data-i18n="codex-security-lede">
     엔지니어링/보안 팀이 연결된 GitHub 레포의 잠재 취약점을 찾고, 검증하고, 수정 제안까지 받을 수 있는 영역입니다.
   </p>
 
   <ul>
-    <li>커밋 단위로 연결된 레포를 스캔</li>
-    <li>유력 발견(finding)을 우선순위화하고, 가능하면 자동 검증</li>
-    <li>각 발견에 대해 <strong>증거 + 위험도 + 권장 수정안</strong>을 구조화해서 제공</li>
-    <li>레포별 <strong>Threat Model</strong>을 다듬어 우선순위·리뷰 품질 향상</li>
+    <li data-i18n="codex-security-ops-1">커밋 단위로 연결된 레포를 스캔</li>
+    <li data-i18n="codex-security-ops-2">유력 발견(finding)을 우선순위화하고, 가능하면 자동 검증</li>
+    <li data-i18n="codex-security-ops-3">각 발견에 대해 <strong>증거 + 위험도 + 권장 수정안</strong>을 구조화해서 제공</li>
+    <li data-i18n="codex-security-ops-4">레포별 <strong>Threat Model</strong>을 다듬어 우선순위·리뷰 품질 향상</li>
   </ul>
 
-  <p style="font-size:.88rem;color:var(--muted)">
+  <p style="font-size:.88rem;color:var(--muted)" data-i18n="codex-security-links">
     <a href="https://developers.openai.com/codex/security" target="_blank">→ Codex Security 개요</a> ·
     <a href="https://developers.openai.com/codex/security/setup" target="_blank">[셋업]</a> ·
     <a href="https://developers.openai.com/codex/security/threat-model" target="_blank">[Threat model]</a>
@@ -2070,6 +2070,13 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "surface-cloud-body": "A cloud agent runs repository tasks in a hosted container. It is OS-neutral and requires GitHub Cloud repositories plus Connector setup.",
       "os-tabs-title": "<span class=\"num\">12.3</span>OS Tabs — Windows / macOS / Linux",
       "os-tabs-lede": "Even when the Codex product surface is the same, installation path, credential storage, sandboxing, and managed policy deployment differ by OS.",
+      "codex-security-title": "Codex Security — Find, Verify, and Fix Vulnerabilities <span class=\"pill green\">OS-neutral</span>",
+      "codex-security-lede": "This area helps engineering and security teams find potential vulnerabilities in connected GitHub repositories, validate them, and receive suggested fixes.",
+      "codex-security-ops-1": "Scan connected repositories at the commit level",
+      "codex-security-ops-2": "Prioritize likely findings and automatically validate them when possible",
+      "codex-security-ops-3": "For each finding, provide a structured summary with <strong>evidence + risk level + recommended fix</strong>",
+      "codex-security-ops-4": "Refine the repository-level <strong>Threat Model</strong> to improve prioritization and review quality",
+      "codex-security-links": "<a href=\"https://developers.openai.com/codex/security\" target=\"_blank\">→ Codex Security overview</a> · <a href=\"https://developers.openai.com/codex/security/setup\" target=\"_blank\">[Setup]</a> · <a href=\"https://developers.openai.com/codex/security/threat-model\" target=\"_blank\">[Threat model]</a>",
       "codex-gov-title": "Governance &amp; Observability <span class=\"pill green\">OS-neutral</span>",
       "codex-gov-lede": "This section covers both “how much Codex is being used” and “who did what.” Use these three channels together.",
       "codex-gov-caption": "Codex Analytics Dashboard · <a href=\"https://developers.openai.com/codex/enterprise/governance\" target=\"_blank\">Source</a>",
