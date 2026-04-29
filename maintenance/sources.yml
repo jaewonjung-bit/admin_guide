@@ -1,0 +1,216 @@
+guide:
+  file: chatgpt-codex-enterprise-settings.html
+  baseline_language: ko
+  secondary_language: en
+  last_reviewed: 2026-04-29
+
+sources:
+  - id: workspace-settings
+    url: https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [intro, general, available-models]
+
+  - id: enterprise-release-notes
+    url: https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [general]
+
+  - id: enterprise-workspace-overview
+    url: https://help.openai.com/en/articles/8265430-what-is-a-chatgpt-enterprise-workspace-how-can-i-switch-workspaces
+    owner: openai_help
+    cadence: monthly
+    priority: medium
+    sections: [general]
+
+  - id: enterprise-members
+    url: https://help.openai.com/en/articles/8266401-how-do-i-add-change-or-remove-chatgpt-enterprise-members
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [members]
+
+  - id: enterprise-roles
+    url: https://help.openai.com/en/articles/8266431-what-is-the-difference-between-different-roles-on-my-chatgpt-enterprise-workspace
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [members, permissions]
+
+  - id: rbac
+    url: https://help.openai.com/en/articles/11750701-rbac
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [permissions, codex-rbac]
+
+  - id: apps-admin-controls
+    url: https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-in-apps-enterprise-edu-and-business
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [apps]
+
+  - id: enterprise-gpts
+    url: https://help.openai.com/en/articles/8555535-gpts-chatgpt-enterprise-version
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [gpts]
+
+  - id: gpt-actions-domains
+    url: https://help.openai.com/en/articles/9442513-gpt-actions-domain-settings-chatgpt-enterprise
+    owner: openai_help
+    cadence: monthly
+    priority: medium
+    sections: [gpts]
+
+  - id: workspace-analytics
+    url: https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [analytics]
+
+  - id: sso-overview
+    url: https://help.openai.com/en/articles/10468051-sso-overview
+    owner: openai_help
+    cadence: monthly
+    priority: medium
+    sections: [identity]
+
+  - id: configuring-sso
+    url: https://help.openai.com/en/articles/9534785-configuring-sso
+    owner: openai_help
+    cadence: monthly
+    priority: medium
+    sections: [identity]
+
+  - id: scim-faq
+    url: https://help.openai.com/en/articles/9627404-openai-chatgpt-scim-integration-faq
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [identity]
+
+  - id: identity-provisioning
+    url: https://help.openai.com/en/articles/9672121-getting-started-with-identity-and-provisioning-in-chatgpt-enterprise-edu-and-chatgpt-for-teachers
+    owner: openai_help
+    cadence: monthly
+    priority: medium
+    sections: [identity]
+
+  - id: ip-allowlisting
+    url: https://help.openai.com/en/articles/12111596-ip-allowlisting-for-chatgpt
+    owner: openai_help
+    cadence: monthly
+    priority: medium
+    sections: [identity, codex-gov]
+
+  - id: billing-settings
+    url: https://help.openai.com/en/articles/9039756-billing-settings-in-chatgpt-vs-platform
+    owner: openai_help
+    cadence: monthly
+    priority: medium
+    sections: [billing]
+
+  - id: compliance-platform
+    url: https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [codex-gov]
+
+  - id: codex-admin-setup
+    url: https://developers.openai.com/codex/enterprise/admin-setup
+    owner: openai_developers
+    cadence: weekly
+    priority: high
+    sections: [codex-intro, codex-toggle, codex-cloud-toggle, codex-rbac, codex-policies, codex-review]
+
+  - id: codex-managed-configuration
+    url: https://developers.openai.com/codex/enterprise/managed-configuration
+    owner: openai_developers
+    cadence: weekly
+    priority: high
+    sections: [codex-policies, codex-managed]
+
+  - id: codex-governance
+    url: https://developers.openai.com/codex/enterprise/governance
+    owner: openai_developers
+    cadence: weekly
+    priority: high
+    sections: [codex-gov]
+
+  - id: codex-auth
+    url: https://developers.openai.com/codex/auth
+    owner: openai_developers
+    cadence: monthly
+    priority: medium
+    sections: [codex-toggle]
+
+  - id: codex-approvals-security
+    url: https://developers.openai.com/codex/agent-approvals-security
+    owner: openai_developers
+    cadence: monthly
+    priority: medium
+    sections: [codex-policies]
+
+  - id: codex-security
+    url: https://developers.openai.com/codex/security
+    owner: openai_developers
+    cadence: monthly
+    priority: medium
+    sections: [codex-security]
+
+  - id: codex-security-setup
+    url: https://developers.openai.com/codex/security/setup
+    owner: openai_developers
+    cadence: monthly
+    priority: medium
+    sections: [codex-security]
+
+  - id: codex-security-threat-model
+    url: https://developers.openai.com/codex/security/threat-model
+    owner: openai_developers
+    cadence: monthly
+    priority: medium
+    sections: [codex-security]
+
+  - id: codex-cloud-environments
+    url: https://developers.openai.com/codex/cloud/environments
+    owner: openai_developers
+    cadence: weekly
+    priority: high
+    sections: [codex-cloud]
+
+  - id: codex-github
+    url: https://developers.openai.com/codex/integrations/github
+    owner: openai_developers
+    cadence: monthly
+    priority: medium
+    sections: [codex-cloud]
+
+  - id: codex-config-basic
+    url: https://developers.openai.com/codex/config-basic
+    owner: openai_developers
+    cadence: monthly
+    priority: medium
+    sections: [codex-team]
+
+  - id: intune-management-extension
+    url: https://learn.microsoft.com/en-us/mem/intune/apps/intune-management-extension
+    owner: microsoft
+    cadence: monthly
+    priority: low
+    sections: [codex-managed]
+
+  - id: windows-group-policy-file-preferences
+    url: https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn789196(v=ws.11)
+    owner: microsoft
+    cadence: monthly
+    priority: low
+    sections: [codex-managed]
