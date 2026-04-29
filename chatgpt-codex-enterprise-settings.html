@@ -458,7 +458,7 @@
   <h4 data-i18n="toc-part2">목차 — Part 2 · Codex</h4>
   <ol>
     <li><a href="#codex-intro" data-i18n="toc-codex-intro">Codex Enterprise 개요 &amp; 설정 순서도</a></li>
-    <li><a href="#codex-toggle" data-i18n="toc-codex-tabs">Codex 표면·OS 탭</a></li>
+    <li><a href="#codex-toggle" data-i18n="toc-codex-tabs">Codex 사용 환경·OS 탭</a></li>
     <li><a href="#codex-cloud-toggle" data-i18n="toc-codex-cloud-toggle">Codex Cloud 토글</a></li>
     <li><a href="#codex-rbac">Codex RBAC &amp; Codex Admin</a></li>
     <li><a href="#codex-policies" data-i18n="toc-codex-policies">Policies (requirements.toml)</a></li>
@@ -484,7 +484,7 @@
   <p class="lede">
     ChatGPT Enterprise(및 Edu)에서 관리자가 워크스페이스 전체 설정을 다루는 곳은
     화면 좌측 하단 <b>프로필 아이콘 → Workspace settings</b> 메뉴입니다.
-    이 한 화면에 멤버, 시트(seat), 권한, GPT 거버넌스, 앱(연결), 분석, ID
+    이 한 화면에 멤버, seat(사용권), 권한, GPT 거버넌스, 앱(연결), 분석, ID
     공급자(SSO/SCIM) 등 거의 모든 항목이 모여 있습니다.
   </p>
 
@@ -493,7 +493,7 @@
     <div class="path">ChatGPT 좌측 하단 <b>프로필 아이콘</b> → <b>Workspace settings</b></div>
     <p style="margin:6px 0 0">
       <strong>Owner</strong>와 <strong>Admin</strong>은 모든 항목을 변경할 수 있고, 일반 Member는
-      이 화면 자체를 열 수는 있어도 핵심 설정(권한·시트·지출·기능 토글)을 바꿀 수 없습니다.
+      이 화면 자체를 열 수는 있어도 핵심 설정(권한·seat·지출·기능 토글)을 바꿀 수 없습니다.
       <a href="https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise" target="_blank">[OpenAI 공식]</a>
     </p>
   </div>
@@ -505,15 +505,15 @@
     </thead>
     <tbody>
       <tr><td>General</td><td>워크스페이스 이름·로고·정책·식별자</td><td>Owner / Admin</td></tr>
-      <tr><td>Members</td><td>초대·역할·시트(ChatGPT/Codex) 관리</td><td>Owner / Admin</td></tr>
+      <tr><td>Members</td><td>초대·역할·seat(ChatGPT/Codex) 관리</td><td>Owner / Admin</td></tr>
       <tr><td>Groups</td><td>그룹 생성·SCIM 동기화</td><td>Owner / Admin</td></tr>
       <tr><td>Permissions &amp; Roles</td><td>RBAC, 기본 권한, 기능별 토글</td><td>Owner</td></tr>
       <tr><td>Available Models</td><td>워크스페이스에서 사용 가능한 모델 목록</td><td>Owner / Admin</td></tr>
       <tr><td>GPTs</td><td>GPT 소유권·공유·서드파티·Action 도메인</td><td>Owner / Admin</td></tr>
       <tr><td>Apps (구 Connectors)</td><td>Google Drive, Slack, GitHub 등 연결 앱·MCP</td><td>Owner / Admin</td></tr>
-      <tr><td>Workspace Analytics</td><td>채택률·사용량·Task Insights·Impact 설문</td><td>Owner / Admin / Analytics Viewer</td></tr>
-      <tr><td>Identity &amp; Access</td><td>SSO/SAML, SCIM, 도메인 검증, IP 허용목록</td><td>Owner</td></tr>
-      <tr><td>Billing</td><td>인보이스·시트 수·결제 정보</td><td>Owner</td></tr>
+      <tr><td>Workspace Analytics</td><td>도입률·사용량·Task Insights·Impact 설문</td><td>Owner / Admin / Analytics Viewer</td></tr>
+      <tr><td>Identity &amp; Access</td><td>SSO/SAML, SCIM, 도메인 검증, IP 허용 목록</td><td>Owner</td></tr>
+      <tr><td>Billing</td><td>인보이스·seat 수·결제 정보</td><td>Owner</td></tr>
     </tbody>
   </table>
   <p style="font-size:.85rem;color:var(--muted)">
@@ -574,7 +574,7 @@
   <h2>Members — 멤버 / Seat 관리</h2>
   <div class="path">Workspace settings → <b>Members</b></div>
   <p class="lede">
-    초대·삭제·역할 변경·<strong>Seat(시트) 타입 변경</strong>이 모두 이 탭에서 일어납니다.
+    초대·삭제·역할 변경·<strong>seat 타입 변경</strong>이 모두 이 탭에서 일어납니다.
     Enterprise는 ChatGPT seat과 Codex seat을 자유롭게 섞어서 발급할 수 있고, 한 워크스페이스에
     Codex-only seat만 둘 수도 있습니다.
   </p>
@@ -596,11 +596,11 @@
   <h3 class="menu"><span class="num">03.2</span>Seat 타입 2종</h3>
   <ul>
     <li><strong>ChatGPT seat</strong> — 표준 ChatGPT 인터페이스(채팅·GPT·Apps·캔버스 등) 전체 사용.</li>
-    <li><strong>Codex seat</strong> — Codex 표면(App / CLI / IDE / Cloud / Code Review)만 사용.
+    <li><strong>Codex seat</strong> — Codex 사용 환경(App / CLI / IDE / Cloud / Code Review)만 사용.
       ChatGPT 채팅·메모리·프로젝트 접근 불가.</li>
   </ul>
   <div class="box">
-    <div class="label">⚠ 시트 변경 주의</div>
+    <div class="label">⚠ seat 변경 주의</div>
     ChatGPT seat을 Codex seat으로 바꾸면 해당 사용자의 <strong>채팅 기록·메모리·프로젝트(공유 프로젝트 포함)</strong>가
     화면에서 사라집니다. 데이터가 삭제된 것은 아니며 ChatGPT seat으로 되돌리면 복구됩니다.
   </div>
@@ -613,11 +613,11 @@
     <li><strong>Seat 변경</strong> — Owner만 가능.</li>
     <li><strong>Pending invites/Requests</strong> — 보류 중 초대·가입 요청을 승인/거절.</li>
     <li><strong>멤버 제거</strong> — ··· 메뉴 → Remove member.</li>
-    <li><strong>기본 시트 타입(Default seat type)</strong> 설정 — 이후 신규 가입자(SCIM 포함)는 이 값으로 발급.</li>
+    <li><strong>기본 seat 타입(Default seat type)</strong> 설정 — 이후 신규 가입자(SCIM 포함)는 이 값으로 발급.</li>
   </ul>
 
   <p style="font-size:.88rem;color:var(--muted)">
-    <a href="https://help.openai.com/en/articles/8266401-how-do-i-add-change-or-remove-chatgpt-enterprise-members" target="_blank">→ 멤버/시트/역할 관리 가이드</a>
+    <a href="https://help.openai.com/en/articles/8266401-how-do-i-add-change-or-remove-chatgpt-enterprise-members" target="_blank">→ 멤버/seat/역할 관리 가이드</a>
   </p>
 </section>
 
@@ -747,7 +747,7 @@
   <h3 class="menu"><span class="num">07.3</span>GPT 소유권 관리</h3>
   <ul>
     <li>워크스페이스의 모든 GPT 일람</li>
-    <li>소유자가 워크스페이스에서 제거되면 GPT는 자동으로 <strong>워크스페이스 Owner에게 이관</strong>되고 “unassigned”로 마킹</li>
+    <li>소유자가 워크스페이스에서 제거되면 GPT는 자동으로 <strong>워크스페이스 Owner에게 이관</strong>되고 “unassigned”로 표시</li>
     <li>원래 작성자가 다시 추가되면 자동 복구. Owner는 언제든 다른 멤버에게 수동 재할당 가능</li>
     <li>GPT 삭제(Deleting GPTs)도 이 화면에서 처리</li>
   </ul>
@@ -827,16 +827,16 @@
 <!-- ============ ANALYTICS ============ -->
 <section class="chapter" id="analytics">
   <div class="chap-num">Section 09 · ChatGPT</div>
-  <h2>Workspace Analytics — 채택률·임팩트 측정</h2>
+  <h2>Workspace Analytics — 도입률·임팩트 측정</h2>
   <div class="path">Workspace settings → <b>Workspace analytics</b></div>
   <p class="lede">
-    “돈을 내고 산 시트가 실제로 쓰이고 있는가?”에 답하는 영역입니다. 2025–2026년에 대대적으로 개편되어
+    “구매한 seat이 실제로 쓰이고 있는가?”에 답하는 영역입니다. 2025–2026년에 대대적으로 개편되어
     <strong>Overview / Usage / Task Insights / Impact</strong> 4개 탭과 <strong>Analytics Viewer</strong> 신규 역할이 추가되었습니다.
   </p>
 
   <h3 class="menu"><span class="num">09.1</span>Overview 탭</h3>
   <ul>
-    <li>구매 시트 · 활성화 시트 · 활성화율</li>
+    <li>구매 seat · 활성화 seat · 활성화율</li>
     <li>주간 활성 사용자(WAU), 일일 활성 사용자(DAU)</li>
     <li>활성화 / 첫 사용 / 반복 사용 단계별 추세</li>
     <li>날짜·SCIM 그룹(부서) 필터</li>
@@ -857,7 +857,7 @@
   <table>
     <thead><tr><th>Export 대상</th><th>용도</th><th>기간</th></tr></thead>
     <tbody>
-      <tr><td>Users</td><td>활성/비활성 사용자, 채택률, 부서별 확산 확인</td><td>Preset 또는 Custom</td></tr>
+      <tr><td>Users</td><td>활성/비활성 사용자, 도입률, 부서별 확산 확인</td><td>Preset 또는 Custom</td></tr>
       <tr><td>GPTs</td><td>GPT 생성·소유·활용 현황 점검</td><td>Preset 또는 Custom</td></tr>
       <tr><td>Projects</td><td>프로젝트 단위 활용 현황 점검</td><td>Preset 또는 Custom</td></tr>
       <tr><td>Impact survey</td><td>임팩트 설문 응답 분석</td><td>Export 시점 기준</td></tr>
@@ -873,9 +873,9 @@
 
   <h3 class="menu"><span class="num">09.4</span>Task Insights <span class="pill green">기본 ON</span></h3>
   <ul>
-    <li>대화를 “Task 카테고리 / 토픽”으로 자동 분류한 <strong>집계 결과</strong>만 보여줌</li>
+    <li>대화를 “작업 카테고리 / 토픽”으로 자동 분류한 <strong>집계 결과</strong>만 보여줌</li>
     <li>개별 프롬프트·대화는 절대 노출되지 않음</li>
-    <li>Heat map 으로 Task × 부서(SCIM 그룹) 교차 분석</li>
+    <li>Heat map으로 작업 × 부서(SCIM 그룹) 교차 분석</li>
     <li>Owner/Admin은 <em>Workspace settings → Usage Analytics</em>에서 OFF 가능
       (이전에 만들어진 집계 데이터는 즉시 삭제되지 않음)</li>
   </ul>
@@ -941,7 +941,7 @@
     <thead><tr><th>방법</th><th>특징</th><th>권장 시나리오</th></tr></thead>
     <tbody>
       <tr><td>수동 초대</td><td>Members 탭에서 1인씩 또는 CSV</td><td>소규모/POC</td></tr>
-      <tr><td>SCIM Directory Sync</td><td>IdP 그룹 변화 → 자동 invite/deprovision</td><td>대규모 운영 ※ 권장</td></tr>
+      <tr><td>SCIM Directory Sync</td><td>IdP 그룹 변화 → 자동 초대/접근 회수</td><td>대규모 운영 ※ 권장</td></tr>
       <tr><td>Automatic Account Creation (AAC)</td><td>검증 도메인 사용자가 로그인 시 자동 추가, 이메일 초대 없음</td><td>도메인 전체 오픈 정책</td></tr>
       <tr><td>API 초대 엔드포인트</td><td>프로젝트 단위 지정 가능</td><td>Platform 측 통합</td></tr>
     </tbody>
@@ -949,7 +949,7 @@
   <div class="box">
     <div class="label">중요</div>
     <strong>SCIM과 AAC를 동시에 켜지 마세요.</strong> 비관리(unmanaged) 사용자가 프로비저닝되어
-    SCIM의 자동 deprovision이 작동하지 않는 사고가 발생합니다.
+    SCIM의 자동 접근 회수가 작동하지 않는 사고가 발생합니다.
   </div>
   <p style="font-size:.88rem;color:var(--muted)">
     <a href="https://help.openai.com/en/articles/9627404-openai-chatgpt-scim-integration-faq" target="_blank">→ SCIM integration FAQ</a>
@@ -994,7 +994,7 @@
     <li>Owner는 <a href="https://chatgpt.com/admin/billing" target="_blank">chatgpt.com/admin/billing</a>에서 ChatGPT 워크스페이스 청구 정보를 확인</li>
   </ul>
   <div class="box">
-    <div class="label">오버리지 방지 기준</div>
+    <div class="label">초과 사용 방지 기준</div>
     ChatGPT(chatgpt.com) 청구와 API Platform(platform.openai.com) 청구는 <strong>별도 시스템</strong>입니다.
     따라서 ChatGPT Enterprise seat/Codex seat/워크스페이스 청구는 ChatGPT Billing에서, API 사용량과 API 청구는 Platform Billing에서 따로 확인해야 합니다.
     중복 구독이나 별도 Platform 사용량이 섞이면 비용이 분리 청구될 수 있으므로 Owner가 두 화면을 함께 점검하세요.
@@ -1003,9 +1003,9 @@
   <table>
     <thead><tr><th>비용 리스크</th><th>확인 위치</th><th>운영 액션</th></tr></thead>
     <tbody>
-      <tr><td>구매 seat 대비 낮은 활성화</td><td>Workspace Analytics CSV</td><td>비활성 사용자 회수, 부서별 adoption 캠페인</td></tr>
-      <tr><td>Codex 사용량 급증</td><td>Codex Analytics CSV/JSON</td><td>Cloud task, CLI/VS Code 사용자, 세션/메시지 추세 점검</td></tr>
-      <tr><td>워크스페이스와 API 청구 혼동</td><td>ChatGPT Billing + Platform Billing</td><td>청구 소유자 분리, 월간 reconciliation</td></tr>
+      <tr><td>구매 seat 대비 낮은 활성화</td><td>Workspace Analytics CSV</td><td>비활성 사용자 회수, 부서별 도입 확산 캠페인</td></tr>
+      <tr><td>Codex 사용량 급증</td><td>Codex Analytics CSV/JSON</td><td>Cloud 작업, CLI/VS Code 사용자, 세션/메시지 추세 점검</td></tr>
+      <tr><td>워크스페이스와 API 청구 혼동</td><td>ChatGPT Billing + Platform Billing</td><td>청구 소유자 분리, 월간 대사</td></tr>
     </tbody>
   </table>
 </section>
@@ -1022,7 +1022,7 @@
   <p class="lede" data-i18n="codex-intro-lede">
     Codex(Enterprise)는 ChatGPT Enterprise 워크스페이스 안에 “포함”되는 형태입니다. 따라서 모든 관리 진입점은
     동일한 <strong>Workspace Settings</strong>이며, Codex 전용 화면은 그 안에 별도 섹션으로 존재합니다.
-    Codex는 <strong>Local</strong>(App/CLI/IDE 확장) 과 <strong>Cloud</strong>(웹/iOS/Code Review/Slack/Linear) 두 표면으로 나뉘며,
+    Codex는 <strong>Local</strong>(App/CLI/IDE 확장) 과 <strong>Cloud</strong>(웹/iOS/Code Review/Slack/Linear) 두 사용 환경으로 나뉘며,
     둘은 독립적으로 켜고 끌 수 있습니다.
   </p>
 
@@ -1049,7 +1049,7 @@
 
   <h3 class="menu" style="margin-top:30px" data-i18n="setup-flow-title"><span class="num">11.1</span>Codex 설정 순서도</h3>
   <p data-i18n="setup-flow-lede">
-    OpenAI Developers의 Admin Setup 흐름은 먼저 사용할 표면(Local/Cloud)을 정하고, 그 다음 RBAC와 정책,
+    OpenAI Developers의 Admin Setup 흐름은 먼저 사용할 환경(Local/Cloud)을 정하고, 그 다음 RBAC와 정책,
     GitHub/Cloud 환경, 모니터링을 붙이는 순서입니다. 실제 고객 롤아웃도 아래 순서로 진행하면 잠금 사고와 과권한을 줄일 수 있습니다.
   </p>
   <p class="setup-flow-note" data-i18n="setup-flow-note">
@@ -1067,7 +1067,7 @@
     </div>
     <div class="flow-step">
       <div class="kicker">Step 02</div>
-      <h4 data-i18n="flow-2-title">표면 선택</h4>
+      <h4 data-i18n="flow-2-title">사용 환경 선택</h4>
       <p data-i18n="flow-2-body">Local(App/CLI/IDE), Cloud, 또는 Both 중 어떤 방식으로 시작할지 결정합니다.</p>
       <div class="related"><a href="#codex-toggle">12 Surfaces</a></div>
     </div>
@@ -1111,10 +1111,10 @@
 
   <h3 class="menu" style="margin-top:30px" data-i18n="division-title"><span class="num">11.2</span>이 문서의 구분 규칙</h3>
   <p data-i18n="division-body">
-    Codex는 <strong>사용 표면</strong>과 <strong>운영체제</strong>가 동시에 섞이기 때문에, 아래 두 축으로 나눠 봐야 합니다.
+    Codex는 <strong>사용 환경</strong>과 <strong>운영체제</strong>가 동시에 섞이기 때문에, 아래 두 축으로 나눠 봐야 합니다.
   </p>
   <ul>
-    <li data-i18n="division-1"><strong>App / CLI / IDE / Cloud 탭</strong> — 사용자가 어떤 표면에서 Codex를 쓰는지 기준</li>
+    <li data-i18n="division-1"><strong>App / CLI / IDE / Cloud 탭</strong> — 사용자가 어떤 환경에서 Codex를 쓰는지 기준</li>
     <li data-i18n="division-2"><strong>macOS / Windows / Linux 배너</strong> — 그 아래 내용은 해당 OS에만 적용</li>
     <li data-i18n="division-3"><span class="pill green">OS 무관</span> 라벨 — macOS/Windows/Linux 모두 동일하게 동작</li>
     <li data-i18n="division-4">상세 정책 배포는 Section 15의 Managed Configuration에서 다시 OS별로 정리</li>
@@ -1124,7 +1124,7 @@
 <!-- ============ CODEX TOGGLE ============ -->
 <section class="chapter" id="codex-toggle">
   <div class="chap-num">Section 12 · Codex</div>
-  <h2 data-i18n="codex-tabs-title">Codex 표면·OS별 탭 — App / CLI / IDE / Cloud</h2>
+  <h2 data-i18n="codex-tabs-title">Codex 사용 환경·OS별 탭 — App / CLI / IDE / Cloud</h2>
   <div class="path">Workspace Settings → <b>Settings and Permissions</b> → Codex 영역</div>
 
   <h3 class="menu" data-i18n="local-toggle-title"><span class="num">12.1</span>Allow members to use Codex Local</h3>
@@ -1148,10 +1148,10 @@
     명령어는 OS 무관: <code>codex login --device-code</code>
   </p>
 
-  <h3 class="menu" data-i18n="surface-tabs-title"><span class="num">12.2</span>표면별 탭 — App / CLI / IDE / Cloud</h3>
+  <h3 class="menu" data-i18n="surface-tabs-title"><span class="num">12.2</span>사용 환경별 탭 — App / CLI / IDE / Cloud</h3>
   <p data-i18n="surface-tabs-lede">
     OpenAI Academy는 Codex를 개발자가 일하는 위치에 맞춘 하나의 제품으로 설명합니다. 따라서 관리자 가이드는
-    “어떤 표면을 켤 것인가”부터 분리해서 읽는 편이 가장 빠릅니다.
+    “어떤 사용 환경을 켤 것인가”부터 분리해서 읽는 편이 가장 빠릅니다.
   </p>
   <div class="tab-shell">
     <input class="tab-input" type="radio" id="surface-app" name="surface-tabs" checked>
@@ -1168,7 +1168,7 @@
       <div class="tab-panel" id="surface-app-panel">
         <div class="surface-grid">
           <div>
-            <h4 data-i18n="surface-app-title">Codex App — 로컬 작업을 가장 쉽게 시작하는 표면</h4>
+            <h4 data-i18n="surface-app-title">Codex App — 로컬 작업을 가장 쉽게 시작하는 환경</h4>
             <p data-i18n="surface-app-body">데스크톱 UI에서 스레드, diff, worktree, in-app browser, Computer Use 같은 로컬 기능을 한 화면에서 다룹니다.</p>
             <ul>
               <li><strong>관리 토글</strong>: Allow members to use Codex Local</li>
@@ -1190,7 +1190,7 @@
         <div class="surface-grid">
           <div>
             <h4 data-i18n="surface-cli-title">Codex CLI — 터미널·원격·자동화 중심</h4>
-            <p data-i18n="surface-cli-body"><code>codex</code> 명령으로 로컬 repo에서 작업합니다. 원격 개발 박스, SSH 서버, 컨테이너, CI/CD 자동화에는 CLI가 가장 잘 맞습니다.</p>
+            <p data-i18n="surface-cli-body"><code>codex</code> 명령으로 로컬 리포지토리에서 작업합니다. 원격 개발 박스, SSH 서버, 컨테이너, CI/CD 자동화에는 CLI가 가장 잘 맞습니다.</p>
             <ul>
               <li><strong>관리 토글</strong>: Allow members to use Codex Local + 필요 시 device code authentication</li>
               <li><strong>인증</strong>: OAuth 브라우저 흐름, <code>codex login --device-code</code>, 또는 API key</li>
@@ -1211,7 +1211,7 @@
         <div class="surface-grid">
           <div>
             <h4 data-i18n="surface-ide-title">IDE Extension — 개발자가 이미 쓰는 편집기 안의 Codex</h4>
-            <p data-i18n="surface-ide-body">VS Code, Cursor, Windsurf, JetBrains 계열에서 repo 문맥과 diff를 유지한 채 Codex를 사용합니다.</p>
+            <p data-i18n="surface-ide-body">VS Code, Cursor, Windsurf, JetBrains 계열에서 리포지토리 문맥과 diff를 유지한 채 Codex를 사용합니다.</p>
             <ul>
               <li><strong>관리 토글</strong>: Allow members to use Codex Local</li>
               <li><strong>적합한 상황</strong>: 개발자 일상 워크플로, 코드 설명, refactor, 테스트 작성, 작은 PR 단위 변경</li>
@@ -1222,7 +1222,7 @@
             <strong>OS 차이</strong>
             <ul>
               <li>macOS / Windows / Linux 모두 사용 가능</li>
-              <li>Linux 데스크톱 App 대안으로 가장 자연스러운 표면</li>
+              <li>Linux 데스크톱 App 대안으로 가장 자연스러운 사용 환경</li>
               <li>편집기 권한·확장 설치 정책은 회사 MDM/endpoint 정책과 함께 점검</li>
             </ul>
           </div>
@@ -1232,11 +1232,11 @@
         <div class="surface-grid">
           <div>
             <h4 data-i18n="surface-cloud-title">Codex Cloud — 브라우저·iOS·GitHub·Slack/Linear 기반 비동기 작업</h4>
-            <p data-i18n="surface-cloud-body">Cloud agent가 hosted container에서 repo task를 수행합니다. OS와 무관하며, GitHub Cloud repo와 Connector 설정이 전제입니다.</p>
+            <p data-i18n="surface-cloud-body">Cloud agent가 hosted container에서 리포지토리 작업을 수행합니다. OS와 무관하며, GitHub Cloud 리포지토리와 Connector 설정이 전제입니다.</p>
             <ul>
               <li><strong>관리 토글</strong>: Allow members to use Codex Cloud</li>
-              <li><strong>전제</strong>: ChatGPT GitHub Connector, repo scope, Codex environments</li>
-              <li><strong>연동</strong>: Code Review, Slack task, Linear task, iOS/모바일 확인</li>
+              <li><strong>전제</strong>: ChatGPT GitHub Connector, 리포지토리 범위, Codex environments</li>
+              <li><strong>연동</strong>: Code Review, Slack 작업, Linear 작업, iOS/모바일 확인</li>
             </ul>
           </div>
           <div class="surface-card green">
@@ -1270,7 +1270,7 @@
         <table>
           <thead><tr><th>항목</th><th>Windows 기준</th></tr></thead>
           <tbody>
-            <tr><td>지원 표면</td><td>App, CLI, IDE Extension, Cloud</td></tr>
+            <tr><td>지원 환경</td><td>App, CLI, IDE Extension, Cloud</td></tr>
             <tr><td>설치</td><td>App은 MSI/winget, CLI는 <code>npm i -g @openai/codex</code>, 필요 시 WSL2 안에서 Linux 절차 사용</td></tr>
             <tr><td>인증 저장</td><td>Windows Credential Manager. WSL2 사용 시 Linux 홈의 인증 파일 흐름을 따름</td></tr>
             <tr><td>설정 위치</td><td><code>C:\Users\&lt;계정&gt;\.codex\config.toml</code>, WSL2는 <code>~/.codex/config.toml</code></td></tr>
@@ -1279,18 +1279,18 @@
         </table>
         <div class="warn">
           <span class="label">Windows 운영 포인트</span>
-          Native sandbox가 endpoint 정책에 막히면 WSL2로 폴백합니다. 다만 repo는 <code>/mnt/c</code>보다 WSL 홈 아래에 두는 편이 안정적입니다.
+          Native sandbox가 endpoint 정책에 막히면 WSL2로 폴백합니다. 다만 리포지토리는 <code>/mnt/c</code>보다 WSL 홈 아래에 두는 편이 안정적입니다.
         </div>
       </div>
       <div class="tab-panel" id="os-macos-panel">
         <div class="os-banner macos" style="margin-top:0">
           <span class="ico">macOS</span>
-          <span class="tagline">전 표면 지원</span>
+          <span class="tagline">전 환경 지원</span>
         </div>
         <table>
           <thead><tr><th>항목</th><th>macOS 기준</th></tr></thead>
           <tbody>
-            <tr><td>지원 표면</td><td>App, CLI, IDE Extension, Cloud</td></tr>
+            <tr><td>지원 환경</td><td>App, CLI, IDE Extension, Cloud</td></tr>
             <tr><td>설치</td><td>App은 DMG, CLI는 <code>brew install --cask codex</code> 또는 <code>npm i -g @openai/codex</code></td></tr>
             <tr><td>인증 저장</td><td>macOS Keychain (<code>com.openai.codex</code>)</td></tr>
             <tr><td>설정 위치</td><td><code>~/.codex/config.toml</code>, 관리형 정책은 <code>/etc/codex/requirements.toml</code> 또는 MDM</td></tr>
@@ -1307,7 +1307,7 @@
         <table>
           <thead><tr><th>항목</th><th>Linux 기준</th></tr></thead>
           <tbody>
-            <tr><td>지원 표면</td><td>CLI, IDE Extension, Cloud. <strong>데스크톱 App은 없음</strong></td></tr>
+            <tr><td>지원 환경</td><td>CLI, IDE Extension, Cloud. <strong>데스크톱 App은 없음</strong></td></tr>
             <tr><td>설치</td><td>Node.js 22+ 이후 <code>npm i -g @openai/codex</code>, 또는 배포판별 패키지/바이너리 사용</td></tr>
             <tr><td>인증 저장</td><td><code>~/.codex/auth.json</code> 권한 600 권장. 원격 서버는 device code 사용</td></tr>
             <tr><td>설정 위치</td><td><code>~/.codex/config.toml</code>, 전역 정책은 <code>/etc/codex/requirements.toml</code></td></tr>
@@ -1316,7 +1316,7 @@
         </table>
         <div class="box green">
           <div class="label">Linux 답변 요약</div>
-          Linux에서도 Codex는 충분히 사용할 수 있습니다. 다만 “데스크톱 앱”이 아니라 CLI, IDE 확장, Cloud를 표준 표면으로 안내해야 합니다.
+          Linux에서도 Codex는 충분히 사용할 수 있습니다. 다만 “데스크톱 앱”이 아니라 CLI, IDE 확장, Cloud를 표준 사용 환경으로 안내해야 합니다.
         </div>
       </div>
     </div>
@@ -1357,10 +1357,10 @@
 
   <h3 class="menu"><span class="num">12B.2</span>하위 옵션</h3>
   <ul>
-    <li><strong>Slack에 답변 본문 게시</strong> — OFF면 Slack에는 task 링크만 회신</li>
+    <li><strong>Slack에 답변 본문 게시</strong> — OFF면 Slack에는 작업 링크만 회신</li>
     <li><strong>Codex agent 인터넷 접근</strong> —
-      <em>기본은 OFF</em>(prompt injection 방어). 켤 경우 도메인 allowlist + HTTP 메서드 제한 가능</li>
-    <li><strong>iOS / Android 모바일 앱 접근</strong> — Cloud task를 모바일에서 열고 결과 확인 가능</li>
+      <em>기본은 OFF</em>(prompt injection 방어). 켤 경우 도메인 허용 목록 + HTTP 메서드 제한 가능</li>
+    <li><strong>iOS / Android 모바일 앱 접근</strong> — Cloud 작업을 모바일에서 열고 결과 확인 가능</li>
   </ul>
 </section>
 
@@ -1425,12 +1425,12 @@
 
   <h3 class="menu"><span class="num">14.1</span>제어 가능한 항목</h3>
   <ul>
-    <li><code>allowed_approval_policies</code> — <em>untrusted</em>, <em>on-request</em> 등 승인 모드 화이트리스트</li>
+    <li><code>allowed_approval_policies</code> — <em>untrusted</em>, <em>on-request</em> 등 승인 모드 허용 목록</li>
     <li><code>allowed_sandbox_modes</code> — <em>read-only</em> / <em>workspace-write</em> / <em>danger-full-access</em> 중 허용 목록</li>
     <li><code>allowed_web_search_modes</code> — <em>disabled</em> / <em>cached</em> / <em>live</em></li>
-    <li><strong>MCP 서버 allowlist</strong> — 어떤 MCP 서버만 허용할지 이름·identity로 매칭. 빈 배열이면 <strong>전 MCP 차단</strong></li>
+    <li><strong>MCP 서버 허용 목록</strong> — 어떤 MCP 서버만 허용할지 이름·identity로 매칭. 빈 배열이면 <strong>전 MCP 차단</strong></li>
     <li><strong>Restrictive command rules</strong> — <code>rm</code>, <code>git push</code> 같은 위험 명령에 prompt/forbidden 적용</li>
-    <li>Browser Use, in-app browser, Computer Use 등 <strong>특정 표면 비활성화</strong></li>
+    <li>Browser Use, in-app browser, Computer Use 등 <strong>특정 사용 환경 비활성화</strong></li>
   </ul>
 
   <h3 class="menu"><span class="num">14.2</span>예시 정책</h3>
@@ -1767,7 +1767,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   <h2>Team Config — 레포지토리 단위 표준화 <span class="pill green">OS 무관</span></h2>
   <p>
     조직 전체가 아닌 <strong>특정 레포지토리에 들어오는 사람</strong>에게 동일한 Codex 행동을 강제하고 싶을 때 사용합니다.
-    <code>.codex/</code> 폴더를 레포에 커밋해두면 사용자가 그 레포를 열 때 Codex가 자동으로 읽어 적용합니다.
+    <code>.codex/</code> 폴더를 리포지토리에 커밋해두면 사용자가 그 리포지토리를 열 때 Codex가 자동으로 읽어 적용합니다.
     Git 리포지토리 안에 들어가는 파일이라 <strong>macOS · Windows · Linux 모두 동일하게 동작</strong>합니다.
   </p>
   <table>
@@ -1779,7 +1779,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </tbody>
   </table>
   <p style="font-size:.88rem;color:var(--muted)">
-    가장 트래픽 많은 레포부터 Team Config를 적용하면 효과가 큽니다.
+    가장 트래픽 많은 리포지토리부터 Team Config를 적용하면 효과가 큽니다.
     <a href="https://developers.openai.com/codex/config-basic" target="_blank">[Config basics 문서]</a>
   </p>
 </section>
@@ -1789,7 +1789,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   <div class="chap-num">Section 17 · Codex</div>
   <h2>Codex Cloud 환경 &amp; GitHub 연결 <span class="pill green">OS 무관 · 브라우저</span></h2>
   <p>
-    Cloud 토글을 켠 뒤, 어떤 레포에 Codex를 붙일지·어떤 환경(컨테이너)에서 돌릴지 정합니다.
+    Cloud 토글을 켠 뒤, 어떤 리포지토리에 Codex를 붙일지·어떤 환경(컨테이너)에서 돌릴지 정합니다.
     Cloud는 브라우저에서 동작하므로 macOS/Windows/Linux 어느 OS에서도 동일하게 사용 가능합니다.
   </p>
 
@@ -1797,7 +1797,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <li><a href="https://chatgpt.com/codex" target="_blank">chatgpt.com/codex</a> → <em>Get started</em></li>
     <li><strong>Connect to GitHub</strong>로 ChatGPT GitHub Connector 설치</li>
     <li>설치 대상 조직 선택</li>
-    <li>Codex가 접근 가능한 레포 명시(전체 / 일부)</li>
+    <li>Codex가 접근 가능한 리포지토리 명시(전체 / 일부)</li>
   </ol>
 
   <h3 class="menu"><span class="num">17.1</span>보안 모델</h3>
@@ -1807,16 +1807,16 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <li>GitHub Enterprise Managed Users는 조직 Owner가 Codex GitHub App을 사전 설치</li>
   </ul>
 
-  <h3 class="menu"><span class="num">17.2</span>IP allowlist (egress)</h3>
+  <h3 class="menu"><span class="num">17.2</span>IP 허용 목록 (egress)</h3>
   <p>
-    GitHub 조직이 IP 화이트리스트로 통제 중이라면, Codex의 egress IP 범위
+    GitHub 조직이 IP 허용 목록으로 통제 중이라면, Codex의 egress IP 범위
     (<a href="https://openai.com/chatgpt-agents.json" target="_blank">openai.com/chatgpt-agents.json</a>)를 추가해야 합니다.
     <strong>이 IP 범위는 변경될 수 있으므로 자동 갱신 스크립트 권장</strong>.
   </p>
 
   <h3 class="menu"><span class="num">17.3</span>Environments</h3>
   <p>
-    각 레포별로 빌드/테스트 컨테이너 정의. 패키지, 환경 변수, secret, 사전 설치 명령 등.
+    각 리포지토리별로 빌드/테스트 컨테이너 정의. 패키지, 환경 변수, secret, 사전 설치 명령 등.
     Cloud agent의 인터넷 접근(<em>Internet Access</em>)도 환경 단위로 추가 제어됩니다.
     <a href="https://developers.openai.com/codex/cloud/environments" target="_blank">[Cloud environments]</a>
   </p>
@@ -1828,7 +1828,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   <h2>Code Review — Codex가 자동 PR 리뷰하기 <span class="pill green">OS 무관</span></h2>
   <div class="path"><a href="https://chatgpt.com/codex/settings/code-review" target="_blank">Settings → Code review</a></div>
   <p>
-    Codex Cloud로 GitHub PR을 자동 리뷰합니다. 워크스페이스/레포 단위로 켜고, 사용자별로 본인 PR에 자동 리뷰 옵션을 켤 수도 있습니다.
+    Codex Cloud로 GitHub PR을 자동 리뷰합니다. 워크스페이스/리포지토리 단위로 켜고, 사용자별로 본인 PR에 자동 리뷰 옵션을 켤 수도 있습니다.
   </p>
 
   <figure>
@@ -1839,7 +1839,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   </figure>
 
   <h3 class="menu"><span class="num">18.1</span>Auto review</h3>
-  <p>연결된 레포의 PR을 Codex가 자동 리뷰할지 여부.</p>
+  <p>연결된 리포지토리의 PR을 Codex가 자동 리뷰할지 여부.</p>
   <figure>
     <img src="https://developers.openai.com/images/codex/enterprise/auto_code_review_settings.png"
          alt="Automatic code review settings"
@@ -1862,14 +1862,14 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   <div class="chap-num">Section 19 · Codex</div>
   <h2 data-i18n="codex-security-title">Codex Security — 취약점 탐지·확인·수정 <span class="pill green">OS 무관</span></h2>
   <p class="lede" data-i18n="codex-security-lede">
-    엔지니어링/보안 팀이 연결된 GitHub 레포의 잠재 취약점을 찾고, 검증하고, 수정 제안까지 받을 수 있는 영역입니다.
+    엔지니어링/보안 팀이 연결된 GitHub 리포지토리의 잠재 취약점을 찾고, 검증하고, 수정 제안까지 받을 수 있는 영역입니다.
   </p>
 
   <ul>
-    <li data-i18n="codex-security-ops-1">커밋 단위로 연결된 레포를 스캔</li>
-    <li data-i18n="codex-security-ops-2">유력 발견(finding)을 우선순위화하고, 가능하면 자동 검증</li>
+    <li data-i18n="codex-security-ops-1">커밋 단위로 연결된 리포지토리를 스캔</li>
+    <li data-i18n="codex-security-ops-2">유력 탐지 항목(finding)을 우선순위화하고, 가능하면 자동 검증</li>
     <li data-i18n="codex-security-ops-3">각 발견에 대해 <strong>증거 + 위험도 + 권장 수정안</strong>을 구조화해서 제공</li>
-    <li data-i18n="codex-security-ops-4">레포별 <strong>Threat Model</strong>을 다듬어 우선순위·리뷰 품질 향상</li>
+    <li data-i18n="codex-security-ops-4">리포지토리별 <strong>Threat Model</strong>을 다듬어 우선순위·리뷰 품질 향상</li>
   </ul>
 
   <p style="font-size:.88rem;color:var(--muted)" data-i18n="codex-security-links">
@@ -1898,23 +1898,23 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   <p><a href="https://chatgpt.com/codex/settings/analytics" target="_blank">chatgpt.com/codex/settings/analytics</a></p>
   <ul>
     <li data-i18n="codex-gov-dashboard-1">제품(CLI / IDE / Cloud / Code Review)별 일일 사용자</li>
-    <li data-i18n="codex-gov-dashboard-2">일일 코드 리뷰 수 · 우선순위별 분포 · 피드백 감성(긍정/부정)</li>
-    <li data-i18n="codex-gov-dashboard-3">일일 Cloud 태스크 · VS Code 사용자 · CLI 사용자</li>
+    <li data-i18n="codex-gov-dashboard-2">일일 코드 리뷰 수 · 우선순위별 분포 · 피드백 성향(긍정/부정)</li>
+    <li data-i18n="codex-gov-dashboard-3">일일 Cloud 작업 · VS Code 사용자 · CLI 사용자</li>
   </ul>
 
   <h3 class="menu" data-i18n="codex-gov-export-title"><span class="num">20.2</span>② Codex Data Export <span class="pill">CSV / JSON</span></h3>
   <p data-i18n="codex-gov-export-body">
     Codex Governance 문서 기준으로 Codex 분석 데이터는 CSV 또는 JSON으로 내보낼 수 있습니다.
-    Workspace Analytics의 CSV가 ChatGPT 채택률 중심이라면, 이 Export는 <strong>Codex 표면별 사용량</strong>과 Code Review 운영 현황을 보는 용도입니다.
+    Workspace Analytics의 CSV가 ChatGPT 도입률 중심이라면, 이 Export는 <strong>Codex 사용 환경별 사용량</strong>과 Code Review 운영 현황을 보는 용도입니다.
   </p>
   <table>
     <thead><tr><th>Export</th><th data-i18n="codex-gov-export-th-included">포함 항목</th><th data-i18n="codex-gov-export-th-excel">Excel 활용</th></tr></thead>
     <tbody>
       <tr><td>Code review users and reviews</td><td data-i18n="codex-gov-export-r1-included">Code Review 일일 고유 사용자, 완료 리뷰 수</td><td data-i18n="codex-gov-export-r1-excel">리뷰 도입률·팀별 사용량</td></tr>
-      <tr><td>Code review findings and feedback</td><td data-i18n="codex-gov-export-r2-included">댓글, 반응, reply, priority-level finding</td><td data-i18n="codex-gov-export-r2-excel">리뷰 품질·피드백 추세</td></tr>
-      <tr><td>Cloud users and tasks</td><td data-i18n="codex-gov-export-r3-included">Cloud 일일 고유 사용자, 완료 task 수</td><td data-i18n="codex-gov-export-r3-excel">Cloud task 증가 추세</td></tr>
-      <tr><td>CLI and VS Code users</td><td data-i18n="codex-gov-export-r4-included">CLI / VS Code Extension 일일 고유 사용자</td><td data-i18n="codex-gov-export-r4-excel">Local adoption 추적</td></tr>
-      <tr><td>Sessions and messages per user</td><td data-i18n="codex-gov-export-r5-included">표면 전체의 일일 세션 시작, 사용자 메시지 수</td><td data-i18n="codex-gov-export-r5-excel">사용량 급증·오버리지 전조 확인</td></tr>
+      <tr><td>Code review findings and feedback</td><td data-i18n="codex-gov-export-r2-included">댓글, 반응, 답글, 우선순위별 탐지 항목</td><td data-i18n="codex-gov-export-r2-excel">리뷰 품질·피드백 추세</td></tr>
+      <tr><td>Cloud users and tasks</td><td data-i18n="codex-gov-export-r3-included">Cloud 일일 고유 사용자, 완료 작업 수</td><td data-i18n="codex-gov-export-r3-excel">Cloud 작업 증가 추세</td></tr>
+      <tr><td>CLI and VS Code users</td><td data-i18n="codex-gov-export-r4-included">CLI / VS Code Extension 일일 고유 사용자</td><td data-i18n="codex-gov-export-r4-excel">로컬 도입률 추적</td></tr>
+      <tr><td>Sessions and messages per user</td><td data-i18n="codex-gov-export-r5-included">전체 사용 환경의 일일 세션 시작, 사용자 메시지 수</td><td data-i18n="codex-gov-export-r5-excel">사용량 급증·초과 사용 전조 확인</td></tr>
     </tbody>
   </table>
 
@@ -1969,14 +1969,14 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <tr><td data-i18n="compare-access">접근 방식</td><td data-i18n="compare-chatgpt-access">웹 UI / CSV 다운로드</td><td data-i18n="compare-codex-access">웹 UI + Bearer 토큰 API</td><td data-i18n="compare-compliance-access">전용 Compliance Key + REST</td></tr>
       <tr><td data-i18n="compare-retention">보존</td><td data-i18n="compare-chatgpt-retention">워크스페이스와 동일</td><td data-i18n="compare-codex-retention">워크스페이스와 동일</td><td data-i18n="compare-compliance-retention">30일, 이후 자체 보관 필요</td></tr>
       <tr><td data-i18n="compare-users">주 사용자</td><td data-i18n="compare-chatgpt-users">Owner / Admin / Analytics Viewer</td><td data-i18n="compare-codex-users">Owner / Admin / 데이터팀</td><td data-i18n="compare-compliance-users">보안 / 법무 / 컴플라이언스팀</td></tr>
-      <tr><td data-i18n="compare-purpose">주 용도</td><td data-i18n="compare-chatgpt-purpose">채택률·효과 측정</td><td data-i18n="compare-codex-purpose">Codex 채택·생산성 메트릭</td><td data-i18n="compare-compliance-purpose">감사·증거·DLP·SIEM</td></tr>
+      <tr><td data-i18n="compare-purpose">주 용도</td><td data-i18n="compare-chatgpt-purpose">도입률·효과 측정</td><td data-i18n="compare-codex-purpose">Codex 도입률·생산성 메트릭</td><td data-i18n="compare-compliance-purpose">감사·증거·DLP·SIEM</td></tr>
       <tr><td data-i18n="compare-ip">IP Allowlist</td><td data-i18n="compare-chatgpt-ip">워크스페이스 설정 따름</td><td data-i18n="compare-codex-ip">워크스페이스 설정 따름</td><td data-i18n="compare-compliance-ip">항상 강제, OFF 불가</td></tr>
     </tbody>
   </table>
 
   <div class="box green" data-i18n="codex-gov-pattern">
     <div class="label">권장 패턴</div>
-    <strong>Workspace Analytics CSV</strong>(ChatGPT adoption) + <strong>Codex CSV/JSON Export</strong>(Codex usage) +
+    <strong>Workspace Analytics CSV</strong>(ChatGPT 도입률) + <strong>Codex CSV/JSON Export</strong>(Codex 사용량) +
     <strong>Analytics API</strong>(자동화 보고) + <strong>Compliance API</strong>(감사·조사)를
     동시에 운영하는 것이 표준 패턴입니다.
     <a href="https://developers.openai.com/codex/enterprise/governance" target="_blank">[Codex Governance]</a> ·
@@ -2002,15 +2002,15 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <tbody>
       <tr><td>01</td><td><a href="#codex-intro" data-i18n="check-1-area">운영 책임</a></td><td data-i18n="check-1-action"><strong>Owner / Security owner / Analytics owner</strong> 임명</td><td data-i18n="check-1-note">설정·보안·분석 책임 분리</td></tr>
       <tr><td>02</td><td><a href="#identity">Identity</a></td><td data-i18n="check-2-action">도메인 검증 + SSO/SCIM 설정</td><td data-i18n="check-2-note">잠금 사고 방지를 위해 SSO는 일단 Optional 유지</td></tr>
-      <tr><td>03</td><td><a href="#members">Seat</a></td><td data-i18n="check-3-action">기본 시트 타입 결정 + 신규 사용자 자동 시트 발급 정책</td><td data-i18n="check-3-note">ChatGPT seat / Codex seat 기준 확정</td></tr>
+      <tr><td>03</td><td><a href="#members">Seat</a></td><td data-i18n="check-3-action">기본 seat 타입 결정 + 신규 사용자 자동 seat 발급 정책</td><td data-i18n="check-3-note">ChatGPT seat / Codex seat 기준 확정</td></tr>
       <tr><td>04</td><td><a href="#permissions" data-i18n="check-4-area">권한</a></td><td data-i18n="check-4-action">Default permissions와 Custom Roles, Spend controls 설계</td><td data-i18n="check-4-note">역할별 최소 권한 기준</td></tr>
       <tr><td>05</td><td><a href="#gpts" data-i18n="check-5-area">GPT 거버넌스</a></td><td data-i18n="check-5-action">공유 범위·서드파티·Action 도메인 결정</td><td data-i18n="check-5-note">외부 연결과 공개 범위 통제</td></tr>
       <tr><td>06</td><td><a href="#apps">Apps</a></td><td data-i18n="check-6-action">Apps 워크스페이스 단위 활성/비활성 + 그룹별 노출</td><td data-i18n="check-6-note">민감 앱은 그룹 단위로 제한</td></tr>
       <tr><td>07</td><td><a href="#analytics">Analytics</a></td><td data-i18n="check-7-action">Workspace Analytics에 <strong>Analytics Viewer</strong> 부여, 임팩트 설문 설계</td><td data-i18n="check-7-note">도입 효과 측정 준비</td></tr>
       <tr><td>08</td><td><a href="#identity">Network</a></td><td data-i18n="check-8-action">IP Allowlist 적용</td><td data-i18n="check-8-note">필요한 조직만 적용</td></tr>
-      <tr><td>09</td><td><a href="#codex-toggle" data-i18n="check-9-area">Codex 기본 설정</a></td><td data-i18n="check-9-action">Codex Local/Cloud 토글, Codex Admin 그룹, Policies(<code>requirements.toml</code>) 정의</td><td data-i18n="check-9-note">사용 표면과 관리자 그룹 분리</td></tr>
+      <tr><td>09</td><td><a href="#codex-toggle" data-i18n="check-9-area">Codex 기본 설정</a></td><td data-i18n="check-9-action">Codex Local/Cloud 토글, Codex Admin 그룹, Policies(<code>requirements.toml</code>) 정의</td><td data-i18n="check-9-note">사용 환경과 관리자 그룹 분리</td></tr>
       <tr><td>10</td><td><a href="#codex-managed" data-i18n="check-10-area">Codex 클라이언트</a></td><td data-i18n="check-10-action"><strong>OS별 클라이언트 배포 전략 수립</strong></td><td data-i18n="check-10-note">macOS MDM, Windows Intune/GPO + Cloud-managed requirements, Linux <code>/etc/codex/</code> + Ansible</td></tr>
-      <tr><td>11</td><td><a href="#codex-review" data-i18n="check-11-area">Codex 확장 기능</a></td><td data-i18n="check-11-action">Code Review · Codex Security 활성화</td><td data-i18n="check-11-note">레포 단위 리뷰/보안 운영</td></tr>
+      <tr><td>11</td><td><a href="#codex-review" data-i18n="check-11-area">Codex 확장 기능</a></td><td data-i18n="check-11-action">Code Review · Codex Security 활성화</td><td data-i18n="check-11-note">리포지토리 단위 리뷰/보안 운영</td></tr>
       <tr><td>12</td><td><a href="#codex-gov" data-i18n="check-12-area">감사·리포트</a></td><td data-i18n="check-12-action">Compliance API 키 발급 + SIEM 연동, Analytics API 자동화 리포트 구축</td><td data-i18n="check-12-note">감사 로그와 사용량 리포팅</td></tr>
       <tr><td>13</td><td><a href="#codex-intro" data-i18n="check-13-area">최종 검증</a></td><td data-i18n="check-13-action">샘플 사용자로 <strong>최종 검증</strong></td><td data-i18n="check-13-note">로그인, MFA, RBAC, 관리형 정책, 분석 가시성 확인</td></tr>
     </tbody>
@@ -2057,14 +2057,20 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 
   <section class="chapter" id="general">
     <div class="chap-num">Section 02 · ChatGPT</div>
-    <h2>General</h2>
+    <h2>General - Basic Settings</h2>
     <div class="path">Workspace settings → <b>General</b></div>
-    <ul>
-      <li><strong>Workspace name &amp; image</strong>: changes are visible to every member immediately.</li>
-      <li><strong>Workspace instructions</strong>: organization-level guidance added to ChatGPT behavior.</li>
-      <li><strong>Workspace policy modal</strong>: required acknowledgement flow for company AI policy.</li>
-      <li><strong>Identifiers</strong>: workspace ID and organization ID for governance integrations.</li>
-    </ul>
+    <p>
+      This tab defines the workspace "appearance" and "baseline policy": elements users see every day, such as the
+      workspace name and image, plus organization-wide AI policy content that applies to every user.
+    </p>
+    <h3 class="menu"><span class="num">02.1</span>Workspace name &amp; image</h3>
+    <p>Use the edit icon next to the name to change the workspace name and image. Saved changes appear immediately for every member.</p>
+    <h3 class="menu"><span class="num">02.2</span>Workspace instructions</h3>
+    <p>Organization-level guidance that tells ChatGPT how to answer, including tone, prohibited phrasing, and shared terminology.</p>
+    <h3 class="menu"><span class="num">02.3</span>Workspace policy modal</h3>
+    <p>Displays a required acknowledgement modal when users first log in, and again whenever the policy is updated.</p>
+    <h3 class="menu"><span class="num">02.4</span>Workspace &amp; organization identifiers</h3>
+    <p>Shows the workspace ID and OpenAI organization ID used when integrating governance tools such as Compliance API, Microsoft Purview, or Tenable.</p>
     <div class="box green">
       <div class="label">Note</div>
       ChatGPT workspace <code>org-id</code> and API Platform <code>org-id</code> are normally the same. If they differ,
@@ -2074,8 +2080,13 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 
   <section class="chapter" id="members">
     <div class="chap-num">Section 03 · ChatGPT</div>
-    <h2>Members and Seats</h2>
+    <h2>Members - Members / Seat Management</h2>
     <div class="path">Workspace settings → <b>Members</b></div>
+    <p class="lede">
+      Invites, removals, role changes, and <strong>seat-type changes</strong> all happen here. Enterprise workspaces can
+      mix ChatGPT seats and Codex seats freely, including Codex-only populations.
+    </p>
+    <h3 class="menu"><span class="num">03.1</span>Four workspace roles</h3>
     <table>
       <thead><tr><th>Role</th><th>Summary</th></tr></thead>
       <tbody>
@@ -2085,6 +2096,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
         <tr><td>Member</td><td>Standard ChatGPT/Codex usage without admin privileges.</td></tr>
       </tbody>
     </table>
+    <h3 class="menu"><span class="num">03.2</span>Two seat types</h3>
     <ul>
       <li><strong>ChatGPT seat</strong>: full ChatGPT interface access.</li>
       <li><strong>Codex seat</strong>: Codex-only access across App, CLI, IDE, Cloud, and Code Review.</li>
@@ -2094,6 +2106,13 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       Switching a user from a ChatGPT seat to a Codex seat hides chats, memory, and projects from view.
       The data is not deleted and becomes visible again if the user is switched back.
     </div>
+    <h3 class="menu"><span class="num">03.3</span>Key actions</h3>
+    <ul>
+      <li><strong>Invite member</strong> by email or CSV upload.</li>
+      <li><strong>Bulk import</strong> hundreds of users at once with <code>email,role,seat type</code>.</li>
+      <li><strong>Role changes</strong> and <strong>seat changes</strong> are owner-only actions.</li>
+      <li>Review <strong>Pending invites / Requests</strong>, remove members, and set the default seat type for future users.</li>
+    </ul>
   </section>
 
   <section class="chapter" id="groups">
@@ -2109,15 +2128,27 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li>SCIM-synced groups are visually distinguished from manually managed groups.</li>
       <li>If a group name already exists, SCIM creates a separate group rather than overwriting it.</li>
     </ul>
+    <div class="box green">
+      <div class="label">Required for RBAC</div>
+      Roles are assigned to <strong>groups</strong>, not directly to individual users. If you use RBAC, groups are mandatory.
+    </div>
   </section>
 
   <section class="chapter" id="permissions">
     <div class="chap-num">Section 05 · ChatGPT</div>
-    <h2>Permissions &amp; Roles</h2>
+    <h2>Permissions &amp; Roles - Core Governance Surface</h2>
     <div class="path">Workspace settings → <b>Permissions &amp; Roles</b></div>
     <p class="lede">
       This is the core governance surface. Owners define the workspace baseline and create group-based custom roles.
     </p>
+    <h3 class="menu"><span class="num">05.1</span>Default permissions</h3>
+    <p>Workspace-wide defaults for users without a custom role.</p>
+    <div class="box">
+      <div class="label">Important</div>
+      <strong>Default permissions do not apply to users who already have a custom role.</strong> Anything that should remain
+      available to them must be explicitly included in the custom role as well.
+    </div>
+    <h3 class="menu"><span class="num">05.2</span>Custom roles - controllable permission categories</h3>
     <ul>
       <li><strong>Default permissions</strong> apply only to users without a custom role.</li>
       <li><strong>Custom roles</strong> can control Canvas, ChatGPT agent, Codex, Apps, GPTs, project creation, memory,
@@ -2125,55 +2156,139 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li>If a user belongs to multiple custom roles, permissions are interpreted as the union of those roles.</li>
       <li><strong>Spend controls</strong> let admins allocate usage pools by role or group.</li>
     </ul>
+    <h3 class="menu"><span class="num">05.3</span>Spend controls / usage limits</h3>
+    <p>Allocate credit pools by role or group to avoid unexpected overuse by a single population.</p>
+    <h3 class="menu"><span class="num">05.4</span>Early Access Features</h3>
+    <p>Owner-only area for enabling or disabling pre-GA features at the workspace level.</p>
   </section>
 
   <section class="chapter" id="models">
     <div class="chap-num">Section 06 · ChatGPT</div>
-    <h2>Available Models</h2>
+    <h2>Available Models - Model Visibility</h2>
     <p>
       Owners and admins decide which model families are visible in the workspace, and custom roles can further
       restrict model access for selected groups.
     </p>
+    <div class="box green">
+      <div class="label">Legacy Model Access</div>
+      Enterprise and Edu can keep certain legacy models available for a defined transition period.
+    </div>
   </section>
 
   <section class="chapter" id="gpts">
     <div class="chap-num">Section 07 · ChatGPT</div>
-    <h2>GPTs</h2>
+    <h2>GPTs - Governance / Ownership / Action Domains</h2>
+    <div class="path">Workspace settings → <b>GPTs</b></div>
+    <p class="lede">
+      Admin surface for controlling every custom GPT created inside the organization. Enterprise offers much finer control than Business.
+    </p>
+    <h3 class="menu"><span class="num">07.1</span>Create, edit, and share permissions</h3>
     <ul>
       <li>Control who can create, edit, and share GPTs.</li>
       <li>Set the maximum sharing scope and third-party GPT access policy.</li>
-      <li>Manage ownership transfers and deleted GPT handling.</li>
-      <li>Define allowed domains for GPT Actions and whether Apps can be used inside GPTs.</li>
+      <li>Enterprise can fully block sharing outside the workspace.</li>
     </ul>
+    <h3 class="menu"><span class="num">07.2</span>Third-party GPT access</h3>
+    <ul>
+      <li>Allow all GPTs.</li>
+      <li>Allow only owner-approved GPTs.</li>
+      <li>Block all third-party GPTs.</li>
+    </ul>
+    <h3 class="menu"><span class="num">07.3</span>GPT ownership management</h3>
+    <ul>
+      <li>View every GPT in the workspace.</li>
+      <li>If an owner leaves, the GPT transfers to a workspace owner and is marked unassigned.</li>
+      <li>Owners can manually reassign GPTs, and deleted GPTs are managed from the same area.</li>
+    </ul>
+    <h3 class="menu"><span class="num">07.4</span>Actions / allowed domains</h3>
+    <ul>
+      <li>Restrict the domains that GPT Actions can call.</li>
+      <li>If the allowed-domain list is empty, all Actions are blocked.</li>
+    </ul>
+    <h3 class="menu"><span class="num">07.5</span>Allow Apps inside GPTs</h3>
+    <p>Workspace-wide toggle for whether workspace-created GPTs may call Apps. It does not apply to third-party GPTs.</p>
   </section>
 
   <section class="chapter" id="apps">
     <div class="chap-num">Section 08 · ChatGPT</div>
-    <h2>Apps</h2>
+    <h2>Apps - External Tool Connections</h2>
+    <div class="path">Workspace settings → <b>Apps</b></div>
     <p class="lede">
       Apps are the unified admin surface for external tools such as Drive, Slack, GitHub, Salesforce, Jira, Linear, and MCP apps.
     </p>
+    <h3 class="menu"><span class="num">08.1</span>Workspace-level controls</h3>
     <ul>
       <li>Enterprise/Edu apps start OFF by default and must be enabled by an owner.</li>
       <li>Admins can expose only selected apps to selected roles.</li>
-      <li>Synced connectors can improve answer quality through pre-indexing.</li>
-      <li>Custom MCP apps should be restricted to trusted internal use cases.</li>
+      <li>If an app supports action-level control, admins can review or block actions individually.</li>
     </ul>
+    <h3 class="menu"><span class="num">08.2</span>Sync / indexing controls</h3>
+    <ul>
+      <li>Synced connectors can improve answer quality through pre-indexing.</li>
+      <li>Admins can scope specific shared drives or folders and exclude selected file types.</li>
+      <li>Two setup modes are available:
+        <ul>
+          <li><strong>Quick setup</strong>: the user authenticates with their own account.</li>
+          <li><strong>Admin-controlled access</strong>: admins configure tighter centralized access.</li>
+        </ul>
+      </li>
+    </ul>
+    <h3 class="menu"><span class="num">08.3</span>RBAC for Apps</h3>
+    <p>Use custom roles to decide which app set each group can access.</p>
+    <h3 class="menu"><span class="num">08.4</span>Custom MCP Apps / developer mode</h3>
+    <ul>
+      <li>Only trusted internal apps should be registered.</li>
+      <li>Owners or users with developer-mode permission can register and publish them.</li>
+      <li>RBAC should separate who can develop, test, and use them.</li>
+    </ul>
+    <h3 class="menu"><span class="num">08.5</span>Microsoft integration notes</h3>
+    <p>Outlook, Teams, and SharePoint often require prior permissions in Microsoft Entra ID, and some Google Workspace integrations may require re-consent for scopes.</p>
   </section>
 
   <section class="chapter" id="analytics">
     <div class="chap-num">Section 09 · ChatGPT</div>
-    <h2>Workspace Analytics</h2>
+    <h2>Workspace Analytics - Adoption and Impact Measurement</h2>
+    <div class="path">Workspace settings → <b>Workspace analytics</b></div>
     <p class="lede">
       Workspace Analytics answers whether purchased seats are actually being adopted and where usage is growing.
     </p>
+    <h3 class="menu"><span class="num">09.1</span>Overview</h3>
     <ul>
       <li><strong>Overview</strong>: seats, activation, WAU, DAU, and adoption stages.</li>
+    </ul>
+    <h3 class="menu"><span class="num">09.2</span>Usage</h3>
+    <ul>
       <li><strong>Usage</strong>: messages, model/tool/app distribution, and group comparison.</li>
+    </ul>
+    <h3 class="menu"><span class="num">09.3</span>Export data - CSV for Excel</h3>
+    <p>Exports are currently CSV only, but they can be opened directly in Excel or Sheets for analysis.</p>
+    <table>
+      <thead><tr><th>Export target</th><th>Use</th><th>Range</th></tr></thead>
+      <tbody>
+        <tr><td>Users</td><td>Activation, inactivity, and adoption by department</td><td>Preset or custom</td></tr>
+        <tr><td>GPTs</td><td>Creation, ownership, and usage review</td><td>Preset or custom</td></tr>
+        <tr><td>Projects</td><td>Project-level activity review</td><td>Preset or custom</td></tr>
+        <tr><td>Impact survey</td><td>Survey response analysis</td><td>At export time</td></tr>
+      </tbody>
+    </table>
+    <ol>
+      <li>Go to Workspace settings → Workspace analytics.</li>
+      <li>Select <strong>Export data</strong>.</li>
+      <li>Choose a data type.</li>
+      <li>Select a preset or custom date range.</li>
+      <li>Click <strong>Generate CSV</strong>.</li>
+    </ol>
+    <h3 class="menu"><span class="num">09.4</span>Task Insights</h3>
+    <ul>
       <li><strong>Export data</strong>: CSV exports for users, GPTs, projects, and impact surveys.</li>
       <li><strong>Task Insights</strong>: aggregated task categories, not raw prompts.</li>
+    </ul>
+    <h3 class="menu"><span class="num">09.5</span>Impact Surveys</h3>
+    <ul>
       <li><strong>Impact Surveys</strong>: standardized surveys for adoption impact measurement.</li>
     </ul>
+    <h3 class="menu"><span class="num">09.6</span>Analytics Viewer role</h3>
+    <p>A read-only analytics role for AI champions, team leads, and program managers who should not receive broader admin privileges.</p>
     <div class="box">
       <div class="label">Scope boundary</div>
       Workspace Analytics is an aggregated reporting surface. It is not a raw-log, legal, or investigation system.
@@ -2183,10 +2298,37 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 
   <section class="chapter" id="identity">
     <div class="chap-num">Section 10 · ChatGPT</div>
-    <h2>Identity &amp; Access</h2>
+    <h2>Identity &amp; Access - Login, Provisioning, and IP Control</h2>
+    <div class="path">Workspace settings → <b>Identity &amp; Access</b></div>
+    <p class="lede">Security-critical area for who can enter, how they authenticate, and from where they can connect.</p>
+    <h3 class="menu"><span class="num">10.1</span>Domain verification</h3>
     <ul>
       <li><strong>Domain verification</strong> is required before SSO, SCIM, or AAC.</li>
+    </ul>
+    <h3 class="menu"><span class="num">10.2</span>Login configuration / SSO / SAML</h3>
+    <ul>
       <li><strong>SSO/SAML</strong> can be enabled or enforced. Test before enforcement to avoid lockouts.</li>
+    </ul>
+    <h3 class="menu"><span class="num">10.3</span>Provisioning</h3>
+    <table>
+      <thead><tr><th>Method</th><th>Characteristic</th><th>Best fit</th></tr></thead>
+      <tbody>
+        <tr><td>Manual invite</td><td>One-by-one or CSV from Members</td><td>Small pilots</td></tr>
+        <tr><td>SCIM Directory Sync</td><td>Automatic invite and deprovision from IdP groups</td><td>Large-scale operations</td></tr>
+        <tr><td>Automatic Account Creation</td><td>Verified-domain users are added when they log in</td><td>Open-domain rollout</td></tr>
+        <tr><td>Invite API endpoint</td><td>Can target specific projects</td><td>Platform-side integration</td></tr>
+      </tbody>
+    </table>
+    <div class="box">
+      <div class="label">Important</div>
+      Do not enable <strong>SCIM</strong> and <strong>AAC</strong> at the same time.
+    </div>
+    <h3 class="menu"><span class="num">10.4</span>External domain invites</h3>
+    <p>Controls whether users from unverified external domains can be invited.</p>
+    <h3 class="menu"><span class="num">10.5</span>SCIM group visibility</h3>
+    <p>Controls whether synchronized groups appear as share targets in GPT and project sharing flows.</p>
+    <h3 class="menu"><span class="num">10.6</span>IP allowlisting</h3>
+    <ul>
       <li><strong>Provisioning</strong> can be manual, SCIM-based, AAC-based, or API-based.</li>
       <li><strong>SCIM and AAC</strong> should not be enabled together.</li>
       <li><strong>IP Allowlisting</strong> applies to workspace traffic, and Compliance API allowlists are always enforced.</li>
@@ -2196,11 +2338,24 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   <section class="chapter" id="billing">
     <div class="chap-num">Section 11 · ChatGPT</div>
     <h2>Billing</h2>
+    <div class="path">Workspace settings → <b>Billing</b></div>
     <ul>
       <li>Invoice downloads, payment methods, tax IDs, billing address, and seat counts.</li>
       <li>ChatGPT workspace billing and API Platform billing are separate systems.</li>
       <li>Workspace owners should monitor ChatGPT seats and shared credits separately from API usage.</li>
     </ul>
+    <div class="box">
+      <div class="label">Avoid overage confusion</div>
+      ChatGPT billing and API Platform billing are separate systems. Review both if a customer uses ChatGPT seats and API Platform usage in parallel.
+    </div>
+    <table>
+      <thead><tr><th>Cost risk</th><th>Where to check</th><th>Operating action</th></tr></thead>
+      <tbody>
+        <tr><td>Low activation relative to purchased seats</td><td>Workspace Analytics CSV</td><td>Recover inactive users and run adoption campaigns</td></tr>
+        <tr><td>Spike in Codex usage</td><td>Codex Analytics CSV / JSON</td><td>Review cloud tasks, CLI/VS Code users, and session/message trends</td></tr>
+        <tr><td>Confusion between workspace and API billing</td><td>ChatGPT Billing + Platform Billing</td><td>Separate billing owners and run monthly reconciliation</td></tr>
+      </tbody>
+    </table>
   </section>
 
   <section class="chapter" id="codex-intro">
@@ -2210,9 +2365,29 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       Codex Enterprise is configured inside the same Workspace Settings area, but it has its own local, cloud,
       policy, review, and governance controls.
     </p>
+    <figure>
+      <img src="https://developers.openai.com/images/codex/codex_enterprise_admin.png"
+           alt="Codex Enterprise admin toggles"
+           onerror="this.parentElement.style.display='none'"/>
+      <figcaption>
+        Codex Enterprise admin toggles ·
+        <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source: developers.openai.com/codex/enterprise/admin-setup</a>
+      </figcaption>
+    </figure>
+    <div class="box dark">
+      <div class="label">Enterprise security model</div>
+      <ul style="margin:6px 0 0">
+        <li>Customer data is <strong>not used for training</strong>.</li>
+        <li>App, CLI, and IDE surfaces use <strong>Zero Data Retention</strong>; code stays in the developer environment.</li>
+        <li>Residency and retention follow the same workspace policy as ChatGPT Enterprise.</li>
+        <li>Data is protected with AES-256 at rest and TLS 1.2+ in transit.</li>
+        <li><strong>Compliance API</strong> supports full auditability.</li>
+      </ul>
+    </div>
     <p class="setup-flow-note">
       The cards below show the rollout order; each chip jumps to the detailed section that explains that step.
     </p>
+    <h3 class="menu"><span class="num">11.1</span>Codex setup flow</h3>
     <div class="setup-flow">
       <div class="flow-step"><div class="kicker">Step 01</div><h4>Confirm owners</h4><p>Assign workspace, security, and analytics owners.</p><div class="related"><a href="#codex-intro">11 Overview</a><a href="#rollout-checklist">Checklist</a></div></div>
       <div class="flow-step"><div class="kicker">Step 02</div><h4>Choose surfaces</h4><p>Decide whether to launch Local, Cloud, or both.</p><div class="related"><a href="#codex-toggle">12 Surfaces</a></div></div>
@@ -2223,106 +2398,638 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <div class="flow-step"><div class="kicker">Step 07</div><h4>Extend operations</h4><p>Configure team standards, cloud integration, review, and security.</p><div class="related"><a href="#codex-team">17 Team</a><a href="#codex-cloud">18 Cloud</a><a href="#codex-review">19 Review</a><a href="#codex-security">20 Security</a></div></div>
       <div class="flow-step"><div class="kicker">Step 08</div><h4>Observe</h4><p>Use analytics and compliance tooling together.</p><div class="related"><a href="#codex-gov">21 Governance</a></div></div>
     </div>
+    <h3 class="menu"><span class="num">11.2</span>How this guide is organized</h3>
+    <ul>
+      <li><strong>App / CLI / IDE / Cloud</strong> tabs separate the user surface.</li>
+      <li><strong>macOS / Windows / Linux</strong> sections separate OS-specific deployment differences.</li>
+      <li><span class="pill green">OS-neutral</span> labels mark controls that behave the same across platforms.</li>
+      <li>Detailed client deployment guidance is revisited in Section 16.</li>
+    </ul>
   </section>
 
   <section class="chapter" id="codex-toggle">
     <div class="chap-num">Section 12 · Codex</div>
-    <h2>Codex Surfaces and Client Matrix</h2>
+    <h2>Codex Surface and OS Tabs - App / CLI / IDE / Cloud</h2>
+    <div class="path">Workspace Settings → <b>Settings and Permissions</b> → Codex area</div>
+
+    <h3 class="menu"><span class="num">12.1</span>Allow members to use Codex Local</h3>
+    <p>
+      Enables Codex App, CLI, and IDE extension access. New Enterprise workspaces are <strong>ON by default</strong>.
+      If the toggle is off, users see <code>403 - Unauthorized. Contact your ChatGPT administrator for access.</code>
+    </p>
+    <figure>
+      <img src="https://developers.openai.com/images/codex/enterprise/local-toggle-config.png"
+           alt="Codex Local toggle"
+           onerror="this.parentElement.style.display='none'"/>
+      <figcaption>Codex Local toggle · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
+    </figure>
+
+    <h4 class="sub">Device code authentication for CLI</h4>
+    <p>
+      Enables CLI sign-in in non-interactive environments such as remote boxes, SSH servers, and containers.
+      Teams working on remote or Linux systems should keep this ON. The command is OS-neutral:
+      <code>codex login --device-code</code>.
+    </p>
+
+    <h3 class="menu"><span class="num">12.2</span>Surface tabs - App / CLI / IDE / Cloud</h3>
+    <p>
+      Treat Codex as one product with multiple working surfaces. The fastest way to read the admin model is to decide
+      first where users will work.
+    </p>
+    <div class="tab-shell">
+      <input class="tab-input" type="radio" id="surface-app-en" name="surface-tabs-en" checked>
+      <input class="tab-input" type="radio" id="surface-cli-en" name="surface-tabs-en">
+      <input class="tab-input" type="radio" id="surface-ide-en" name="surface-tabs-en">
+      <input class="tab-input" type="radio" id="surface-cloud-en" name="surface-tabs-en">
+      <div class="tab-list" role="tablist" aria-label="Codex surfaces">
+        <label for="surface-app-en">App</label>
+        <label for="surface-cli-en">CLI</label>
+        <label for="surface-ide-en">IDE Extension</label>
+        <label for="surface-cloud-en">Cloud</label>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" id="surface-app-en-panel">
+          <div class="surface-grid">
+            <div>
+              <h4>Codex App - the easiest local starting point</h4>
+              <p>Desktop UI for threads, diffs, worktrees, in-app browser, and local GUI-assisted workflows.</p>
+              <ul>
+                <li><strong>Admin toggle</strong>: Allow members to use Codex Local</li>
+                <li><strong>Best for</strong>: visual pilots, shared demos, and local approval workflows</li>
+                <li><strong>Policy path</strong>: cloud-managed requirements plus OS-managed configuration</li>
+              </ul>
+            </div>
+            <div class="surface-card">
+              <strong>OS differences</strong>
+              <ul>
+                <li>macOS: DMG, Keychain, MDM, Computer Use</li>
+                <li>Windows: MSI / winget, Credential Manager, native sandbox or WSL2</li>
+                <li>Linux: no desktop App; use CLI or IDE extension instead</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tab-panel" id="surface-cli-en-panel">
+          <div class="surface-grid">
+            <div>
+              <h4>Codex CLI - terminal, remote, and automation first</h4>
+              <p>Use <code>codex</code> directly inside local repos, remote boxes, SSH sessions, containers, and automation.</p>
+              <ul>
+                <li><strong>Admin toggle</strong>: Codex Local plus device code when needed</li>
+                <li><strong>Auth</strong>: browser OAuth, device code, or API key</li>
+                <li><strong>Main config</strong>: <code>~/.codex/config.toml</code>, <code>requirements.toml</code>, command rules</li>
+              </ul>
+            </div>
+            <div class="surface-card green">
+              <strong>Operating tips</strong>
+              <ul>
+                <li>Headless servers need device code enabled.</li>
+                <li>Use WSL2 when native Windows sandboxing is blocked.</li>
+                <li>Confirm <code>bwrap</code> support on Linux.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tab-panel" id="surface-ide-en-panel">
+          <div class="surface-grid">
+            <div>
+              <h4>IDE Extension - Codex inside the editor developers already use</h4>
+              <p>Works inside VS Code, Cursor, Windsurf, and JetBrains-style workflows while preserving repo context.</p>
+              <ul>
+                <li><strong>Admin toggle</strong>: Allow members to use Codex Local</li>
+                <li><strong>Best for</strong>: daily development, explanation, refactor, tests, and small PR work</li>
+                <li><strong>Policy path</strong>: same cloud-managed requirements as App and CLI</li>
+              </ul>
+            </div>
+            <div class="surface-card">
+              <strong>OS differences</strong>
+              <ul>
+                <li>Available on macOS, Windows, and Linux</li>
+                <li>Most natural desktop alternative for Linux users</li>
+                <li>Editor permissions still need endpoint-policy review</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tab-panel" id="surface-cloud-en-panel">
+          <div class="surface-grid">
+            <div>
+              <h4>Codex Cloud - asynchronous work from browser, iOS, GitHub, Slack, and Linear</h4>
+              <p>Hosted agents run repo tasks in cloud containers. This path is OS-neutral but depends on GitHub Cloud.</p>
+              <ul>
+                <li><strong>Admin toggle</strong>: Allow members to use Codex Cloud</li>
+                <li><strong>Prerequisites</strong>: GitHub Connector, repo scope, Codex environments</li>
+                <li><strong>Integrations</strong>: Code Review, Slack tasks, Linear tasks, and mobile viewing</li>
+              </ul>
+            </div>
+            <div class="surface-card green">
+              <strong>Avoid duplication</strong>
+              <p>Use this tab to decide whether Cloud belongs in the rollout. Detailed Cloud controls are covered in Sections 12B and 17.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="menu"><span class="num">12.3</span>OS tabs - Windows / macOS / Linux</h3>
+    <p>The same product behaves differently by OS because install path, credential store, sandbox, and managed policy delivery all differ.</p>
+    <div class="tab-shell">
+      <input class="tab-input" type="radio" id="os-windows-en" name="os-tabs-en" checked>
+      <input class="tab-input" type="radio" id="os-macos-en" name="os-tabs-en">
+      <input class="tab-input" type="radio" id="os-linux-en" name="os-tabs-en">
+      <div class="tab-list" role="tablist" aria-label="Codex operating systems">
+        <label for="os-windows-en">Windows</label>
+        <label for="os-macos-en">macOS</label>
+        <label for="os-linux-en">Linux</label>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" id="os-windows-en-panel">
+          <div class="os-banner windows" style="margin-top:0">
+            <span class="ico">Windows</span>
+            <span class="tagline">native sandbox or WSL2</span>
+          </div>
+          <table>
+            <thead><tr><th>Item</th><th>Windows baseline</th></tr></thead>
+            <tbody>
+              <tr><td>Supported surfaces</td><td>App, CLI, IDE Extension, Cloud</td></tr>
+              <tr><td>Install</td><td>MSI / winget for App, <code>npm i -g @openai/codex</code> for CLI, or Linux flow inside WSL2</td></tr>
+              <tr><td>Credential store</td><td>Windows Credential Manager; WSL2 follows Linux home-based storage</td></tr>
+              <tr><td>Config path</td><td><code>C:\Users\&lt;user&gt;\.codex\config.toml</code>; WSL2 uses <code>~/.codex/config.toml</code></td></tr>
+              <tr><td>Managed policy</td><td>Pair endpoint tooling with <strong>cloud-managed requirements</strong></td></tr>
+            </tbody>
+          </table>
+          <div class="warn">
+            <span class="label">Windows operating point</span>
+            Fall back to WSL2 when endpoint controls block the native sandbox, and keep repos under the WSL home directory rather than <code>/mnt/c</code>.
+          </div>
+        </div>
+        <div class="tab-panel" id="os-macos-en-panel">
+          <div class="os-banner macos" style="margin-top:0">
+            <span class="ico">macOS</span>
+            <span class="tagline">all surfaces supported</span>
+          </div>
+          <table>
+            <thead><tr><th>Item</th><th>macOS baseline</th></tr></thead>
+            <tbody>
+              <tr><td>Supported surfaces</td><td>App, CLI, IDE Extension, Cloud</td></tr>
+              <tr><td>Install</td><td>DMG for App, <code>brew install --cask codex</code> or <code>npm i -g @openai/codex</code> for CLI</td></tr>
+              <tr><td>Credential store</td><td>macOS Keychain (<code>com.openai.codex</code>)</td></tr>
+              <tr><td>Config path</td><td><code>~/.codex/config.toml</code>, with managed policy in <code>/etc/codex/requirements.toml</code> or MDM</td></tr>
+              <tr><td>Unique capability</td><td>Codex App supports Computer Use, in-app browser, and local GUI automation</td></tr>
+            </tbody>
+          </table>
+          <p>For enterprise deployment, Jamf, Kandji, Mosyle, or Fleet are the strongest paths for the <code>com.openai.codex</code> payload.</p>
+        </div>
+        <div class="tab-panel" id="os-linux-en-panel">
+          <div class="os-banner linux" style="margin-top:0">
+            <span class="ico">Linux</span>
+            <span class="tagline">CLI / IDE / Cloud first</span>
+          </div>
+          <table>
+            <thead><tr><th>Item</th><th>Linux baseline</th></tr></thead>
+            <tbody>
+              <tr><td>Supported surfaces</td><td>CLI, IDE Extension, Cloud; <strong>no desktop App</strong></td></tr>
+              <tr><td>Install</td><td>Node.js 22+ then <code>npm i -g @openai/codex</code>, or distro-specific package / binary</td></tr>
+              <tr><td>Credential store</td><td><code>~/.codex/auth.json</code> with 600 permissions recommended</td></tr>
+              <tr><td>Config path</td><td><code>~/.codex/config.toml</code>; global policy in <code>/etc/codex/requirements.toml</code></td></tr>
+              <tr><td>Sandbox</td><td><code>bwrap</code>-based isolation; install <code>bubblewrap</code> where needed</td></tr>
+            </tbody>
+          </table>
+          <div class="box green">
+            <div class="label">Linux summary</div>
+            Linux fully supports Codex through CLI, IDE extension, and Cloud. The key difference is the lack of a desktop App.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="menu"><span class="num">12.4</span>Authentication flow - OS-neutral</h3>
     <ul>
-      <li><strong>App</strong>: easiest local starting point for GUI-based work.</li>
-      <li><strong>CLI</strong>: best for terminals, remote boxes, and automation.</li>
-      <li><strong>IDE extension</strong>: best for editor-native workflows.</li>
-      <li><strong>Cloud</strong>: asynchronous repo work from browser, iOS, GitHub, Slack, or Linear.</li>
+      <li><strong>OAuth browser flow</strong> is the default local sign-in path.</li>
+      <li><strong>Device code</strong> covers headless and remote environments.</li>
+      <li><strong>API key</strong> supports automation or service-style access.</li>
+      <li>Tokens are then stored by OS: macOS Keychain, Windows Credential Manager, or Linux <code>~/.codex/auth.json</code>.</li>
     </ul>
-    <table>
-      <thead><tr><th>Surface</th><th>macOS</th><th>Windows</th><th>Linux</th><th>Notes</th></tr></thead>
-      <tbody>
-        <tr><td>Codex App</td><td>Supported</td><td>Supported</td><td>No desktop app</td><td>Best GUI surface</td></tr>
-        <tr><td>CLI</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Best for remote and automation use</td></tr>
-        <tr><td>IDE Extension</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Editor-native workflow</td></tr>
-        <tr><td>Cloud</td><td colspan="3">OS-neutral</td><td>Requires GitHub cloud repositories</td></tr>
-      </tbody>
-    </table>
   </section>
 
   <section class="chapter" id="codex-cloud-toggle">
-    <div class="chap-num">Section 13 · Codex</div>
+    <div class="chap-num">Section 12B · Codex</div>
     <h2>Codex Cloud Toggle</h2>
     <p>
       Codex Cloud is separate from local Codex access. It controls hosted environments, GitHub-based work,
       code review, and integrations such as Slack and Linear.
     </p>
+    <h3 class="menu"><span class="num">12B.1</span>Allow members to use Codex Cloud</h3>
+    <ul>
+      <li>Requires GitHub Cloud repositories and the ChatGPT GitHub Connector.</li>
+      <li>The Codex navigation entry may take up to 10 minutes to appear after enablement.</li>
+      <li>Enterprise Managed Users may require the GitHub App to be installed by an org owner first.</li>
+    </ul>
+    <figure>
+      <img src="https://developers.openai.com/images/codex/enterprise/cloud-toggle-config.png"
+           alt="Codex Cloud toggle"
+           onerror="this.parentElement.style.display='none'"/>
+      <figcaption>Codex Cloud toggle · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
+    </figure>
+    <h3 class="menu"><span class="num">12B.2</span>Sub-options</h3>
+    <ul>
+      <li>Whether Slack receives answer bodies or only task links.</li>
+      <li>Whether Codex Cloud agents may access the internet.</li>
+      <li>Whether mobile app access is available for viewing Cloud tasks.</li>
+    </ul>
   </section>
 
   <section class="chapter" id="codex-rbac">
-    <div class="chap-num">Section 14 · Codex</div>
+    <div class="chap-num">Section 13 · Codex</div>
     <h2>Codex RBAC and Admins</h2>
+    <figure>
+      <img src="https://developers.openai.com/images/codex/enterprise/rbac_custom_roles.png"
+           alt="Codex RBAC custom roles"
+           onerror="this.parentElement.style.display='none'"/>
+      <figcaption>Codex RBAC custom role · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
+    </figure>
+    <p>
+      Create a distinct Codex Admin group instead of overloading workspace owners. Separate user access from
+      policy-administration access, and prefer SCIM-managed groups for repeatability.
+    </p>
+    <h3 class="menu"><span class="num">13.1</span>What Codex Admins can do</h3>
     <ul>
-      <li>Create a distinct Codex Admin group instead of overloading workspace owners.</li>
-      <li>Separate user access from policy-administration access.</li>
-      <li>Prefer SCIM-managed groups for repeatability.</li>
+      <li>Review Codex workspace analytics.</li>
+      <li>Author and assign cloud-managed policy files.</li>
+      <li>Manage Codex Cloud environments.</li>
+    </ul>
+    <h3 class="menu"><span class="num">13.2</span>Recommended group model</h3>
+    <ul>
+      <li><strong>Codex Users</strong> for all practitioners.</li>
+      <li><strong>Codex Admins</strong> for the small operations group.</li>
     </ul>
   </section>
 
   <section class="chapter" id="codex-policies">
-    <div class="chap-num">Section 15 · Codex</div>
+    <div class="chap-num">Section 14 · Codex</div>
     <h2>Policies and Managed Configuration</h2>
+    <figure>
+      <img src="https://developers.openai.com/images/codex/enterprise/policies_and_configurations_page.png"
+           alt="Codex policies and configurations page"
+           onerror="this.parentElement.style.display='none'"/>
+      <figcaption>Codex Policies and Configurations · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
+    </figure>
     <ul>
       <li><strong>requirements.toml</strong> can enforce sandbox, approvals, network, MCP, and command rules.</li>
       <li>Cloud-managed requirements apply across App, CLI, and IDE after authentication.</li>
       <li>macOS is strongest with MDM; Windows usually combines cloud-managed rules with Intune/GPO; Linux uses <code>/etc/codex/</code> plus automation.</li>
     </ul>
+    <h3 class="menu"><span class="num">14.1</span>Controls you can enforce</h3>
+    <ul>
+      <li>Approval policy allowlists, sandbox mode allowlists, web-search mode allowlists, MCP allowlists, and command rules.</li>
+    </ul>
+    <h3 class="menu"><span class="num">14.2</span>Example policy</h3>
+    <figure>
+      <img src="https://developers.openai.com/images/codex/enterprise/example_policy.png"
+           alt="Example Codex policy"
+           onerror="this.parentElement.style.display='none'"/>
+      <figcaption>Example managed requirements policy · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
+    </figure>
+    <h3 class="menu"><span class="num">14.3</span>Group assignment and fallback</h3>
+    <p>Policies can be assigned by group, and a default fallback policy can catch everyone else.</p>
+    <figure>
+      <img src="https://developers.openai.com/images/codex/enterprise/policy_lookup.png"
+           alt="Codex policy lookup"
+           onerror="this.parentElement.style.display='none'"/>
+      <figcaption>Policy lookup view · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
+    </figure>
+    <h3 class="menu"><span class="num">14.4</span>Policy lookup</h3>
+    <p>The policy lookup view makes it easier to inspect which policy is effective for a given user.</p>
   </section>
 
   <section class="chapter" id="codex-managed">
-    <div class="chap-num">Section 16 · Codex</div>
-    <h2>Managed Configuration by OS</h2>
+    <div class="chap-num">Section 15 · Codex</div>
+    <h2>Managed Configuration - Complete Guide by OS</h2>
+    <p class="lede">
+      Beyond cloud-managed requirements, admins can deploy policy files directly to user machines. The critical point
+      is that the enforcement path, file location, and bypass risk differ by OS.
+    </p>
+
+    <h3 class="menu"><span class="num">15.1</span>Configuration priority</h3>
+    <p>If the same key appears in multiple places, the higher layer wins.</p>
+    <ol>
+      <li><strong>Cloud-managed requirements</strong>: synced from ChatGPT after sign-in and not bypassable by users.</li>
+      <li><strong>OS-managed configuration</strong>: MDM on macOS or <code>/etc/codex/</code> on Linux.</li>
+      <li><strong>User-local configuration</strong>: <code>~/.codex/config.toml</code>, editable by the user.</li>
+    </ol>
+
+    <h3 class="menu"><span class="num">15.2</span>Requirements vs managed defaults</h3>
     <table>
-      <thead><tr><th>OS</th><th>Best enforcement path</th><th>Key note</th></tr></thead>
+      <thead><tr><th>Type</th><th>File</th><th>Meaning</th><th>User changes</th></tr></thead>
       <tbody>
-        <tr><td>macOS</td><td>MDM profile</td><td>Strongest OS-level policy path</td></tr>
-        <tr><td>Windows</td><td>Cloud-managed requirements + Intune/GPO</td><td>Needs layered enforcement</td></tr>
-        <tr><td>Linux</td><td><code>/etc/codex/</code> + automation</td><td>Good fit for Ansible-style standardization</td></tr>
+        <tr><td><strong>Requirements</strong></td><td><code>requirements.toml</code></td><td>Hard lock; violations block the action</td><td>No</td></tr>
+        <tr><td><strong>Managed defaults</strong></td><td><code>managed_config.toml</code></td><td>Starting defaults for a safer baseline</td><td>Can change during the session</td></tr>
       </tbody>
     </table>
+
+    <h3 class="menu"><span class="num">15.3</span>OS support matrix</h3>
+    <table>
+      <thead><tr><th>Item</th><th>macOS</th><th>Windows</th><th>Linux</th></tr></thead>
+      <tbody>
+        <tr><td>System-wide path</td><td><code>/etc/codex/</code></td><td>None</td><td><code>/etc/codex/</code></td></tr>
+        <tr><td>User config path</td><td><code>~/.codex/</code></td><td><code>%USERPROFILE%\.codex\</code></td><td><code>~/.codex/</code></td></tr>
+        <tr><td>OS-level enforcement</td><td>MDM</td><td>Partial through Intune / GPO</td><td><code>/etc</code> permissions + automation</td></tr>
+        <tr><td>Official MDM key</td><td><code>com.openai.codex</code></td><td>No</td><td>No</td></tr>
+        <tr><td>Practical enforcement</td><td>MDM profile</td><td><strong>Cloud-managed requirements required</strong></td><td>Root-owned files + automation</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="menu"><span class="num">15.4</span>Shared policy example</h3>
+    <p>The TOML itself is the same across operating systems; only the placement changes.</p>
+    <pre class="lang-pre" data-lang="toml"><code>approval_policy = "on-request"
+sandbox_mode    = "workspace-write"
+
+[sandbox_workspace_write]
+network_access = false
+
+[otel]
+environment      = "prod"
+exporter         = "otlp-http"
+log_user_prompt  = false</code></pre>
+
+    <div class="os-banner macos">
+      <span class="ico">macOS</span>MDM-based deployment
+      <span class="tagline">strongest OS-level enforcement</span>
+    </div>
+    <h4 class="sub">File locations</h4>
+    <ul>
+      <li>Managed defaults: <code>/etc/codex/managed_config.toml</code></li>
+      <li>Requirements: <code>/etc/codex/requirements.toml</code></li>
+      <li>MDM domain: <code>com.openai.codex</code></li>
+      <li>Payload keys: <code>config_toml_base64</code> and <code>requirements_toml_base64</code></li>
+    </ul>
+    <h4 class="sub">MDM workflow</h4>
+    <ol>
+      <li>Write the TOML policy.</li>
+      <li>Base64-encode it as a single line.</li>
+      <li>Add the payload to the MDM profile.</li>
+      <li>Push the profile to target devices and restart Codex.</li>
+      <li>Confirm <code>(managed)</code> appears in the config summary.</li>
+      <li>Update only the payload when the policy changes.</li>
+    </ol>
+    <h4 class="sub">Verification commands</h4>
+    <pre class="lang-pre" data-lang="bash"><code>defaults read com.openai.codex
+codex --print-config | grep managed</code></pre>
+
+    <div class="os-banner windows">
+      <span class="ico">Windows</span>limits and workaround
+      <span class="tagline">must be paired with cloud-managed requirements</span>
+    </div>
+    <div class="warn">
+      <span class="label">Windows limitation</span>
+      OpenAI does not currently provide a Windows equivalent of <code>/etc/codex</code> or a dedicated MDM domain.
+      Files under <code>%USERPROFILE%\.codex\</code> can still be changed by privileged users, so enforce real policy
+      through cloud-managed requirements and use local deployment for standardization.
+    </div>
+    <h4 class="sub">File locations</h4>
+    <ul>
+      <li>Managed defaults: <code>C:\Users\&lt;user&gt;\.codex\managed_config.toml</code></li>
+      <li>Requirements: <code>C:\Users\&lt;user&gt;\.codex\requirements.toml</code></li>
+      <li>Optional relocation: <code>CODEX_HOME=D:\codex-config</code></li>
+    </ul>
+    <h4 class="sub">Method 1 - Microsoft Intune</h4>
+    <ol>
+      <li>Create a Windows 10+ configuration profile in Intune.</li>
+      <li>Use Win32 app packaging or PowerShell scripts for file deployment.</li>
+      <li>Run the deployment in user context.</li>
+      <li>Write the requirements file and tighten ACLs.</li>
+    </ol>
+    <h4 class="sub">Method 2 - Group Policy</h4>
+    <ol>
+      <li>Open User Configuration → Preferences → Windows Settings → Files.</li>
+      <li>Use an internal SMB source for <code>requirements.toml</code>.</li>
+      <li>Deploy to <code>%USERPROFILE%\.codex\requirements.toml</code>.</li>
+      <li>Use Replace on logon or a logon script for refresh.</li>
+    </ol>
+    <h4 class="sub">Method 3 - SCCM or logon script</h4>
+    <pre class="lang-pre" data-lang="batch"><code>@echo off
+if not exist "%USERPROFILE%\.codex" mkdir "%USERPROFILE%\.codex"
+copy /Y "\\fileserver\codex\requirements.toml" "%USERPROFILE%\.codex\requirements.toml"</code></pre>
+    <h4 class="sub">User notice template</h4>
+    <div class="box">
+      <div class="label">Internal notice example</div>
+      The Codex policy file is deployed automatically to <code>C:\Users\&lt;user&gt;\.codex\requirements.toml</code>.
+      Users do not need to create or edit it manually, and it is redeployed on sign-in if removed.
+    </div>
+    <h4 class="sub">Verification commands</h4>
+    <pre class="lang-pre" data-lang="powershell"><code>Test-Path "$env:USERPROFILE\.codex\requirements.toml"
+Get-Acl "$env:USERPROFILE\.codex\requirements.toml" | Format-List
+codex --print-config</code></pre>
+
+    <div class="os-banner linux">
+      <span class="ico">Linux</span>system files plus automation
+      <span class="tagline">classic /etc model</span>
+    </div>
+    <h4 class="sub">File locations</h4>
+    <ul>
+      <li>Managed defaults: <code>/etc/codex/managed_config.toml</code></li>
+      <li>Requirements: <code>/etc/codex/requirements.toml</code></li>
+      <li>Ownership and mode: <code>root:root</code> plus <code>chmod 644</code></li>
+    </ul>
+    <h4 class="sub">Manual deployment</h4>
+    <pre class="lang-pre" data-lang="bash"><code>sudo mkdir -p /etc/codex
+sudo cp requirements.toml /etc/codex/requirements.toml
+sudo chown root:root /etc/codex/requirements.toml
+sudo chmod 644 /etc/codex/requirements.toml</code></pre>
+    <h4 class="sub">Ansible example</h4>
+    <pre class="lang-pre" data-lang="yaml"><code>- name: Deploy Codex managed requirements
+  hosts: developers
+  become: yes
+  tasks:
+    - name: Ensure /etc/codex exists
+      file:
+        path: /etc/codex
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+    - name: Copy requirements.toml
+      copy:
+        src: files/codex/requirements.toml
+        dest: /etc/codex/requirements.toml
+        owner: root
+        group: root
+        mode: '0644'</code></pre>
+    <h4 class="sub">Verification commands</h4>
+    <pre class="lang-pre" data-lang="bash"><code>ls -la /etc/codex/
+codex --print-config | grep -E "managed|requirements"</code></pre>
+
+    <h3 class="menu"><span class="num">15.5</span>Common recommended guardrails</h3>
+    <div class="box">
+      <div class="label">Recommended defaults</div>
+      <ul style="margin:6px 0 0">
+        <li>Use <strong>workspace-write</strong> plus <strong>on-request</strong> for most users.</li>
+        <li>Reserve <code>danger-full-access</code> for tightly controlled containers only.</li>
+        <li>Keep <code>network_access = false</code> unless explicit allowlists are needed.</li>
+        <li>Keep <code>log_user_prompt = false</code> unless policy requires otherwise.</li>
+        <li>Review diffs between local config and managed policy regularly.</li>
+        <li>Pair Windows with cloud-managed requirements by default.</li>
+      </ul>
+    </div>
+
+    <h3 class="menu"><span class="num">15.6</span>Reading the config summary</h3>
+    <p>
+      When Codex starts, the config summary shows whether a value came from managed configuration or a hard requirement.
+      Look for <code>(managed)</code> and <code>(requirement)</code>; values without those markers come from user-local config.
+    </p>
   </section>
 
   <section class="chapter" id="codex-team">
-    <div class="chap-num">Section 17 · Codex</div>
+    <div class="chap-num">Section 16 · Codex</div>
     <h2>Team Config</h2>
     <p>
       Repository-level <code>.codex/</code> files provide shared configuration, rules, and skills for everyone who works
       in a specific repo.
     </p>
+    <table>
+      <thead><tr><th>Type</th><th>Path</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>Config basics</td><td><code>.codex/config.toml</code></td><td>Defaults such as sandbox mode and reasoning effort</td></tr>
+        <tr><td>Rules</td><td><code>.codex/rules/</code></td><td>Command controls</td></tr>
+        <tr><td>Skills</td><td><code>.codex/skills/</code></td><td>Shared team skills</td></tr>
+      </tbody>
+    </table>
   </section>
 
   <section class="chapter" id="codex-cloud">
-    <div class="chap-num">Section 18 · Codex</div>
+    <div class="chap-num">Section 17 · Codex</div>
     <h2>Cloud Environments and GitHub</h2>
+    <ol>
+      <li>Open <a href="https://chatgpt.com/codex" target="_blank">chatgpt.com/codex</a> and select <em>Get started</em>.</li>
+      <li>Install the ChatGPT GitHub Connector.</li>
+      <li>Select the target GitHub organization.</li>
+      <li>Choose whether Codex can access all repositories or only selected ones.</li>
+    </ol>
+    <h3 class="menu"><span class="num">17.1</span>Security model</h3>
     <ul>
-      <li>Install the GitHub connector and scope repository access carefully.</li>
-      <li>Define environments, packages, secrets, and internet access per repo.</li>
-      <li>Codex uses short-lived, least-privilege GitHub installation tokens.</li>
+      <li>Codex issues short-lived, least-privilege GitHub App installation tokens per task.</li>
+      <li>Existing GitHub permissions and branch-protection rules remain in force.</li>
+      <li>GitHub Enterprise Managed Users require the org owner to pre-install the Codex GitHub App.</li>
     </ul>
+    <h3 class="menu"><span class="num">17.2</span>IP allowlist / egress</h3>
+    <p>Organizations with GitHub allowlists need to include Codex egress IPs.</p>
+    <h3 class="menu"><span class="num">17.3</span>Environments</h3>
+    <p>Define build containers, packages, secrets, setup commands, and internet access per repository.</p>
   </section>
 
   <section class="chapter" id="codex-review">
-    <div class="chap-num">Section 19 · Codex</div>
+    <div class="chap-num">Section 18 · Codex</div>
     <h2>Code Review and Codex Security</h2>
+    <figure>
+      <img src="https://developers.openai.com/images/codex/enterprise/code_review_settings_overview.png"
+           alt="Code review settings overview"
+           onerror="this.parentElement.style.display='none'"/>
+      <figcaption>Code review overview · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
+    </figure>
+    <h3 class="menu"><span class="num">18.1</span>Auto review</h3>
+    <p>Choose whether Codex automatically reviews pull requests in connected repositories.</p>
+    <figure>
+      <img src="https://developers.openai.com/images/codex/enterprise/auto_code_review_settings.png"
+           alt="Automatic code review settings"
+           onerror="this.parentElement.style.display='none'"/>
+      <figcaption>Auto review settings · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
+    </figure>
+    <h3 class="menu"><span class="num">18.2</span>Triggers</h3>
+    <p>Select which pull request events, such as open, push, or draft-ready, should trigger a review.</p>
+    <figure>
+      <img src="https://developers.openai.com/images/codex/enterprise/review_triggers.png"
+           alt="Code review triggers"
+           onerror="this.parentElement.style.display='none'"/>
+      <figcaption>Review triggers · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
+    </figure>
+  </section>
+
+  <section class="chapter" id="codex-security">
+    <div class="chap-num">Section 19 · Codex</div>
+    <h2>Codex Security - Find, Verify, and Fix Vulnerabilities <span class="pill green">OS-neutral</span></h2>
+    <p class="lede">
+      Security surface for scanning connected repositories, validating likely findings, and proposing fixes.
+    </p>
     <ul>
-      <li>Enable repo-level automated reviews and choose the review triggers.</li>
-      <li>Use Codex Security to scan repositories, validate findings, and suggest fixes.</li>
-      <li>Refine threat models to improve prioritization and review quality.</li>
+      <li>Scan connected repositories commit by commit.</li>
+      <li>Prioritize likely findings and validate them where possible.</li>
+      <li>Return evidence, risk level, and recommended remediation.</li>
+      <li>Improve review quality through repository-specific threat models.</li>
     </ul>
   </section>
 
   <section class="chapter" id="codex-gov">
     <div class="chap-num">Section 20 · Codex</div>
-    <h2>Governance and Observability</h2>
+    <h2>Governance and Observability <span class="pill green">OS-neutral</span></h2>
     <p class="lede">
-      Use dashboards, exports, APIs, and audit logs as separate layers: one for adoption, one for operational reporting,
-      and one for investigation or compliance.
+      Treat usage visibility and auditability as separate layers. Dashboards, exports, APIs, and raw audit logs serve
+      different operating needs and should be read together.
     </p>
+    <figure>
+      <img src="https://developers.openai.com/images/codex/enterprise/analytics.png"
+           alt="Codex analytics dashboard"
+           onerror="this.parentElement.style.display='none'"/>
+      <figcaption>Codex Analytics Dashboard · <a href="https://developers.openai.com/codex/enterprise/governance" target="_blank">Source</a></figcaption>
+    </figure>
+
+    <h3 class="menu"><span class="num">20.1</span>Analytics Dashboard</h3>
+    <p><a href="https://chatgpt.com/codex/settings/analytics" target="_blank">chatgpt.com/codex/settings/analytics</a></p>
+    <ul>
+      <li>Daily users by product surface: CLI, IDE, Cloud, and Code Review.</li>
+      <li>Daily code-review volume, priority mix, and positive or negative feedback signals.</li>
+      <li>Daily Cloud tasks, VS Code users, and CLI users.</li>
+    </ul>
+
+    <h3 class="menu"><span class="num">20.2</span>Codex Data Export <span class="pill">CSV / JSON</span></h3>
+    <p>
+      Codex Governance supports CSV or JSON exports for surface-level usage. If Workspace Analytics is mainly for
+      ChatGPT adoption, these exports are for Codex usage and Code Review operations.
+    </p>
+    <table>
+      <thead><tr><th>Export</th><th>Included data</th><th>Typical Excel use</th></tr></thead>
+      <tbody>
+        <tr><td>Code review users and reviews</td><td>Daily unique users and completed reviews</td><td>Review adoption by team</td></tr>
+        <tr><td>Code review findings and feedback</td><td>Comments, reactions, replies, and priority-level findings</td><td>Review quality and feedback trend</td></tr>
+        <tr><td>Cloud users and tasks</td><td>Daily unique users and completed Cloud tasks</td><td>Cloud growth tracking</td></tr>
+        <tr><td>CLI and VS Code users</td><td>Daily unique users for CLI and VS Code Extension</td><td>Local adoption tracking</td></tr>
+        <tr><td>Sessions and messages per user</td><td>Daily sessions started and user messages across surfaces</td><td>Spike detection and overage signals</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="menu"><span class="num">20.3</span>Analytics API <span class="pill">programmatic</span></h3>
+    <p>
+      Use the Analytics API for BI or warehouse integrations. It requires an API key scoped to
+      <code>codex.enterprise.analytics.read</code>.
+    </p>
+    <ol>
+      <li>Create a new read-only API key in the Platform Portal.</li>
+      <li>Email <code>support@openai.com</code> to request the limited analytics scope.</li>
+      <li>After approval, call endpoints under <code>https://api.chatgpt.com/v1/analytics/codex/workspaces/{workspace_id}/...</code>.</li>
+    </ol>
+    <pre><code>curl -H "Authorization: Bearer YOUR_PLATFORM_API_KEY" \
+  "https://api.chatgpt.com/v1/analytics/codex/workspaces/WORKSPACE_ID/usage"</code></pre>
+    <p>Main endpoints: <code>/usage</code>, <code>/code_reviews</code>, and <code>/code_review_responses</code>.</p>
+
+    <h3 class="menu"><span class="num">20.4</span>Compliance API <span class="pill">audit</span></h3>
+    <p>
+      Compliance API is the channel for bringing workspace audit and compliance data into SIEM, data lakes,
+      eDiscovery, or DLP tooling. Compliance Logs Platform retention is <strong>30 days</strong>, so longer retention
+      requires continuous export into customer-managed storage.
+    </p>
+    <pre><code>curl -L -H "Authorization: Bearer YOUR_COMPLIANCE_API_KEY" \
+  "https://api.chatgpt.com/v1/compliance/workspaces/WORKSPACE_ID/logs?event_type=CODEX_LOG&amp;after=2026-03-01T00:00:00Z"</code></pre>
+    <p>Main endpoints: <code>/logs</code>, <code>/codex_tasks</code>, and <code>/codex_environments</code>.</p>
+
+    <h3 class="menu"><span class="num">20.5</span>Separate Compliance API from Platform Audit Log API</h3>
+    <div class="warn">
+      <span class="label">Common point of confusion</span>
+      <strong>Compliance API</strong> covers ChatGPT workspace activity, Codex activity, authentication, and audit logs.
+      <strong>Admin / Audit Log API</strong> covers API Platform organization events such as API key creation, project
+      management, and membership changes. They are separate systems, so organizations using both ChatGPT Enterprise
+      and the API Platform should monitor both.
+    </div>
+
+    <h3 class="menu"><span class="num">20.6</span>Workspace Analytics vs Codex Analytics vs Compliance API</h3>
     <table>
       <thead><tr><th>Dimension</th><th>Workspace Analytics</th><th>Codex Analytics</th><th>Compliance API</th></tr></thead>
       <tbody>
@@ -2330,8 +3037,11 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
         <tr><td>Format</td><td>Dashboard + CSV</td><td>Dashboard + CSV/JSON + REST</td><td>Raw JSONL logs</td></tr>
         <tr><td>Message body</td><td>No</td><td>No</td><td>Yes</td></tr>
         <tr><td>Latency</td><td>6-24 hours</td><td>Daily</td><td>Minute-level</td></tr>
+        <tr><td>Access</td><td>Web UI / CSV download</td><td>Web UI + Bearer-token API</td><td>Dedicated compliance key + REST</td></tr>
         <tr><td>Retention</td><td>Workspace retention</td><td>Workspace retention</td><td>30 days</td></tr>
+        <tr><td>Primary users</td><td>Owner / Admin / Analytics Viewer</td><td>Owner / Admin / data team</td><td>Security / legal / compliance</td></tr>
         <tr><td>Main use</td><td>Adoption measurement</td><td>Productivity reporting</td><td>Audit, evidence, DLP, SIEM</td></tr>
+        <tr><td>IP allowlist</td><td>Follows workspace policy</td><td>Follows workspace policy</td><td>Always enforced</td></tr>
       </tbody>
     </table>
     <div class="box green">
@@ -2339,21 +3049,37 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       Combine <strong>Workspace Analytics CSV</strong>, <strong>Codex CSV/JSON exports</strong>,
       <strong>Analytics API</strong>, and <strong>Compliance API</strong> rather than forcing one system to do every job.
     </div>
+    <h3 class="menu"><span class="num">20.7</span>Metrics that are intentionally not provided</h3>
+    <p style="font-size:.92rem">
+      OpenAI intentionally does not provide generated lines of code, suggestion acceptance rate, or generic code-quality
+      KPIs because those measures create poor incentives or depend too heavily on context. Build custom KPIs from pull
+      request review data and repository metadata instead.
+    </p>
   </section>
 
   <section class="chapter" id="rollout-checklist">
     <div class="chap-num">Closing</div>
     <h2>Rollout Checklist</h2>
-    <ol>
-      <li>Assign workspace, security, and analytics owners.</li>
-      <li>Verify domains and configure SSO/SCIM safely.</li>
-      <li>Choose default seat types and automatic seat assignment rules.</li>
-      <li>Design permissions, custom roles, and spend controls.</li>
-      <li>Set GPT, Apps, and external-domain governance.</li>
-      <li>Prepare Analytics Viewer access and impact measurement.</li>
-      <li>Define Codex local/cloud, policy, OS deployment, review, and audit operations.</li>
-      <li>Validate login, MFA, RBAC, managed policy, and analytics visibility with sample users.</li>
-    </ol>
+    <table>
+      <thead>
+        <tr><th>Step</th><th>Area</th><th>Action</th><th>Note</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>01</td><td><a href="#codex-intro">Operating ownership</a></td><td>Assign <strong>Owner / Security owner / Analytics owner</strong>.</td><td>Separate setup, security, and analytics responsibility.</td></tr>
+        <tr><td>02</td><td><a href="#identity">Identity</a></td><td>Verify domains and configure SSO / SCIM.</td><td>Keep SSO optional until validation is complete.</td></tr>
+        <tr><td>03</td><td><a href="#members">Seat</a></td><td>Choose default seat type and automatic seat assignment rules.</td><td>Lock the ChatGPT seat / Codex seat model first.</td></tr>
+        <tr><td>04</td><td><a href="#permissions">Permissions</a></td><td>Design default permissions, custom roles, and spend controls.</td><td>Use least privilege by role.</td></tr>
+        <tr><td>05</td><td><a href="#gpts">GPT governance</a></td><td>Set sharing scope, third-party policy, and action domains.</td><td>Control public reach and external calls.</td></tr>
+        <tr><td>06</td><td><a href="#apps">Apps</a></td><td>Enable or disable apps at workspace level and expose them by group.</td><td>Restrict sensitive apps by role.</td></tr>
+        <tr><td>07</td><td><a href="#analytics">Analytics</a></td><td>Assign <strong>Analytics Viewer</strong> and define impact measurement.</td><td>Prepare adoption reporting.</td></tr>
+        <tr><td>08</td><td><a href="#identity">Network</a></td><td>Apply IP allowlisting where needed.</td><td>Use only where the organization requires it.</td></tr>
+        <tr><td>09</td><td><a href="#codex-toggle">Codex basics</a></td><td>Define Codex Local / Cloud toggles, Codex Admin groups, and policy requirements.</td><td>Separate user surfaces from admin groups.</td></tr>
+        <tr><td>10</td><td><a href="#codex-managed">Codex clients</a></td><td>Set the deployment strategy by OS.</td><td>macOS MDM, Windows Intune/GPO + cloud requirements, Linux <code>/etc/codex/</code> + Ansible.</td></tr>
+        <tr><td>11</td><td><a href="#codex-review">Codex extensions</a></td><td>Enable Code Review and Codex Security.</td><td>Operate review and security at repository level.</td></tr>
+        <tr><td>12</td><td><a href="#codex-gov">Audit and reporting</a></td><td>Issue Compliance API keys and build Analytics API reporting.</td><td>Cover audit logs and usage reporting together.</td></tr>
+        <tr><td>13</td><td><a href="#codex-intro">Final validation</a></td><td>Validate with sample users.</td><td>Check login, MFA, RBAC, managed policy, and analytics visibility.</td></tr>
+      </tbody>
+    </table>
   </section>
 </template>
 
@@ -2441,7 +3167,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "setup-flow-note": "The cards below show the rollout order; each chip jumps to the detailed section that explains that step.",
       "flow-1-title": "Confirm owners",
       "flow-1-body": "Assign Workspace Owner, Security Owner, and Analytics Owner first.",
-      "flow-2-title": "Choose surfaces",
+    "flow-2-title": "Choose surfaces",
       "flow-2-body": "Decide whether to start with Local (App/CLI/IDE), Cloud, or Both.",
       "flow-3-title": "Enable toggles",
       "flow-3-body": "In Workspace Settings, enable only the required Codex Local, device code, and Codex Cloud toggles.",
@@ -2450,7 +3176,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "flow-5-body": "Use cloud-managed requirements to enforce sandbox, approval, web search, MCP, and command rules.",
       "flow-6-title": "Deploy by OS",
       "flow-6-body": "Define the macOS MDM, Windows Intune/GPO, and Linux /etc or Ansible baseline.",
-      "flow-7-body": "Configure GitHub Connector, repo scope, environments, internet access, and code review.",
+    "flow-7-body": "Configure GitHub Connector, repo scope, environments, internet access, and code review.",
       "flow-8-title": "Audit / observe",
       "flow-8-body": "Use Analytics Dashboard, Analytics API, and Compliance API to monitor usage and audit logs.",
       "division-title": "<span class=\"num\">11.2</span>How This Guide Separates Codex Settings",
