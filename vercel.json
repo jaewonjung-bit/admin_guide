@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/chatgpt-codex-enterprise-settings.html"
+      "destination": "/chatgpt-codex-enterprise-settings"
     }
   ]
 }
