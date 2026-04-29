@@ -46,7 +46,7 @@
     position:relative;
     overflow:hidden;
   }
-  .hero-inner{position:relative;z-index:2;max-width:1020px;margin:0 auto;}
+  .hero-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;}
   .eyebrow{
     font-family:"SFMono-Regular","Menlo","Consolas",monospace;
     font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;
@@ -58,7 +58,7 @@
     line-height:1.04;margin:0 0 24px;letter-spacing:0;
   }
   h1.title em{font-style:normal;color:var(--ink);font-weight:800;}
-  .subtitle{font-size:1.05rem;color:#303030;max-width:840px;line-height:1.8;}
+  .subtitle{font-size:1.05rem;color:#303030;max-width:980px;line-height:1.8;}
   .meta{
     margin-top:30px;display:flex;flex-wrap:wrap;gap:10px;
     font-family:"SFMono-Regular","Menlo","Consolas",monospace;font-size:.8rem;color:var(--muted);
@@ -66,7 +66,7 @@
   .meta span{padding:6px 12px;border:1px solid var(--line-light);border-radius:999px;background:#fff;}
 
   /* ---------- LAYOUT ---------- */
-  .shell{max-width:1180px;margin:0 auto;padding:0 8vw;display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px;}
+  .shell{max-width:1440px;margin:0 auto;padding:0 4vw;display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px;}
   @media (max-width:900px){
     .shell{grid-template-columns:1fr;gap:30px;padding:0 6vw;}
     aside.toc{position:static!important;order:-1;}
@@ -122,7 +122,7 @@
     line-height:1.15;margin:0 0 14px;letter-spacing:0;
   }
   section.chapter > .lede{
-    font-size:1.02rem;color:#333;max-width:760px;margin:0 0 30px;
+    font-size:1.02rem;color:#333;max-width:920px;margin:0 0 30px;
   }
   section.chapter:is(#intro,#codex-intro){
     border-color:#dcdcd7;
@@ -210,7 +210,7 @@
     background:var(--paper);color:var(--ink);
     margin-top:60px;padding:60px 8vw;border-top:1px solid var(--line-light);
   }
-  .sources-inner{max-width:1200px;margin:0 auto;}
+  .sources-inner{max-width:1440px;margin:0 auto;}
   .sources h2{
     font-family:"OpenAI Sans Hangul","Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-weight:800;
     font-size:2rem;margin:0 0 28px;letter-spacing:0;
@@ -2110,10 +2110,14 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
         <tr><td>Member</td><td>Standard ChatGPT/Codex usage without admin privileges.</td></tr>
       </tbody>
     </table>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://help.openai.com/en/articles/8266431-what-is-the-difference-between-different-roles-on-my-chatgpt-enterprise-workspace" target="_blank">→ Official role comparison table</a>
+    </p>
     <h3 class="menu"><span class="num">03.2</span>Two seat types</h3>
     <ul>
-      <li><strong>ChatGPT seat</strong>: full ChatGPT interface access.</li>
-      <li><strong>Codex seat</strong>: Codex-only access across App, CLI, IDE, Cloud, and Code Review.</li>
+      <li><strong>ChatGPT seat</strong> - full access to the standard ChatGPT interface, including chat, GPTs, Apps, and Canvas.</li>
+      <li><strong>Codex seat</strong> - access only to Codex surfaces such as App, CLI, IDE, Cloud, and Code Review.
+        ChatGPT chat, memory, and projects are not available.</li>
     </ul>
     <div class="box">
       <div class="label">Seat-change warning</div>
@@ -2122,11 +2126,17 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </div>
     <h3 class="menu"><span class="num">03.3</span>Key actions</h3>
     <ul>
-      <li><strong>Invite member</strong> by email or CSV upload.</li>
-      <li><strong>Bulk import</strong> hundreds of users at once with <code>email,role,seat type</code>.</li>
-      <li><strong>Role changes</strong> and <strong>seat changes</strong> are owner-only actions.</li>
-      <li>Review <strong>Pending invites / Requests</strong>, remove members, and set the default seat type for future users.</li>
+      <li><strong>Invite member</strong> - enter email directly or upload a CSV with <code>email,role,seat type</code>.</li>
+      <li><strong>Bulk import</strong> - register hundreds of users at once through CSV, for example <code>user1@co.com,member,Codex</code>.</li>
+      <li><strong>Role change</strong> - owner only.</li>
+      <li><strong>Seat change</strong> - owner only.</li>
+      <li><strong>Pending invites / Requests</strong> - approve or reject outstanding invites and join requests.</li>
+      <li><strong>Remove member</strong> - use the overflow menu and select Remove member.</li>
+      <li><strong>Default seat type</strong> - define what future users, including SCIM-provisioned users, receive by default.</li>
     </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://help.openai.com/en/articles/8266401-how-do-i-add-change-or-remove-chatgpt-enterprise-members" target="_blank">→ Member / seat / role management guide</a>
+    </p>
   </section>
 
   <section class="chapter" id="groups">
@@ -2138,13 +2148,15 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       or synchronized from the identity provider through SCIM.
     </p>
     <ul>
-      <li>Use groups for role assignment rather than attaching roles to individual users.</li>
-      <li>SCIM-synced groups are visually distinguished from manually managed groups.</li>
+      <li>Create or delete groups and add or remove members.</li>
+      <li>Review group membership.</li>
+      <li>SCIM-synced groups display a <strong>SCIM badge</strong> so they are visually distinguished from manually managed groups.</li>
       <li>If a group name already exists, SCIM creates a separate group rather than overwriting it.</li>
     </ul>
     <div class="box green">
       <div class="label">Required for RBAC</div>
       Roles are assigned to <strong>groups</strong>, not directly to individual users. If you use RBAC, groups are mandatory.
+      <a href="https://help.openai.com/en/articles/9627404-openai-chatgpt-scim-integration-faq" target="_blank">[SCIM FAQ]</a>
     </div>
   </section>
 
@@ -2156,22 +2168,41 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       This is the core governance surface. Owners define the workspace baseline and create group-based custom roles.
     </p>
     <h3 class="menu"><span class="num">05.1</span>Default permissions</h3>
-    <p>Workspace-wide defaults for users without a custom role.</p>
+    <p>
+      Workspace-wide defaults for users without a custom role. Admins scroll through the page and decide feature-level
+      ON/OFF states with toggles.
+    </p>
     <div class="box">
       <div class="label">Important</div>
       <strong>Default permissions do not apply to users who already have a custom role.</strong> Anything that should remain
       available to them must be explicitly included in the custom role as well.
+      <a href="https://help.openai.com/en/articles/11750701-rbac" target="_blank">[RBAC guide]</a>
     </div>
     <h3 class="menu"><span class="num">05.2</span>Custom roles - controllable permission categories</h3>
+    <p>Each custom role can independently enable or disable the following categories.</p>
     <ul>
-      <li><strong>Default permissions</strong> apply only to users without a custom role.</li>
-      <li><strong>Custom roles</strong> can control Canvas, ChatGPT agent, Codex, Apps, GPTs, project creation, memory,
-        search, sharing, available models, and usage limits.</li>
-      <li>If a user belongs to multiple custom roles, permissions are interpreted as the union of those roles.</li>
-      <li><strong>Spend controls</strong> let admins allocate usage pools by role or group.</li>
+      <li><strong>Canvas</strong> - code execution and network-access defaults inside Canvas.</li>
+      <li><strong>ChatGPT agent</strong> - access to agent mode for web automation.</li>
+      <li><strong>Codex access</strong> - local and cloud Codex access.</li>
+      <li><strong>Apps</strong> - whether apps are allowed, which apps appear, and action-level controls where supported.</li>
+      <li><strong>GPTs</strong> - create, edit, sharing scope, and third-party GPT access.</li>
+      <li><strong>Project creation</strong> - permission to create projects.</li>
+      <li><strong>Record</strong> - memory and notes features.</li>
+      <li><strong>Search</strong> - web search and agent search.</li>
+      <li><strong>Shared projects</strong> - participation in shared projects.</li>
+      <li><strong>Link sharing</strong> - scope for conversation-link sharing.</li>
+      <li><strong>Available models</strong> - which models that role may use.</li>
+      <li><strong>Usage limits / spend controls</strong> - credit or message limits.</li>
     </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Users in multiple custom roles receive the <strong>union, or least restrictive set,</strong> of those permissions.
+    </p>
     <h3 class="menu"><span class="num">05.3</span>Spend controls / usage limits</h3>
-    <p>Allocate credit pools by role or group to avoid unexpected overuse by a single population.</p>
+    <p>
+      Allocate <strong>credit pools</strong> by team or role so that one group does not unexpectedly consume too much usage.
+      A common pattern is to give AI champions more room while keeping general-user groups more conservative.
+      <a href="https://help.openai.com/en/articles/8411955" target="_blank">[Related doc]</a>
+    </p>
     <h3 class="menu"><span class="num">05.4</span>Early Access Features</h3>
     <p>Owner-only area for enabling or disabling pre-GA features at the workspace level.</p>
   </section>
@@ -2179,13 +2210,16 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   <section class="chapter" id="models">
     <div class="chap-num">Section 06 · ChatGPT</div>
     <h2>Available Models - Model Visibility</h2>
+    <div class="path">Workspace settings → <b>Permissions &amp; Roles</b> or the separate Available Models area</div>
     <p>
-      Owners and admins decide which model families are visible in the workspace, and custom roles can further
-      restrict model access for selected groups.
+      Owners and admins choose which model families appear in the workspace, for example GPT-5 families, GPT-4 families,
+      o3 / o4-mini, or GPT-5-codex. Custom roles can further restrict which models selected groups may use, which makes it
+      possible to expose higher-cost models only to selected populations.
     </p>
     <div class="box green">
       <div class="label">Legacy Model Access</div>
       Enterprise and Edu can keep certain legacy models available for a defined transition period.
+      <a href="https://help.openai.com/en/articles/8265430-what-is-a-chatgpt-enterprise-workspace-how-can-i-switch-workspaces" target="_blank">[Enterprise overview]</a>
     </div>
   </section>
 
@@ -2196,11 +2230,18 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <p class="lede">
       Admin surface for controlling every custom GPT created inside the organization. Enterprise offers much finer control than Business.
     </p>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://help.openai.com/en/articles/8555535-gpts-chatgpt-enterprise-version" target="_blank">→ Official GPT access / governance guide</a>
+    </p>
     <h3 class="menu"><span class="num">07.1</span>Create, edit, and share permissions</h3>
     <ul>
       <li>Control who can create, edit, and share GPTs.</li>
-      <li>Set the maximum sharing scope and third-party GPT access policy.</li>
-      <li>Enterprise can fully block sharing outside the workspace.</li>
+      <li>Set the maximum sharing scope - <em>invite only</em>, <em>workspace only</em>, or broader sharing.
+        <ul>
+          <li>Enterprise can <strong>fully block sharing outside the workspace</strong>.</li>
+          <li>Business users may share without admin approval.</li>
+        </ul>
+      </li>
     </ul>
     <h3 class="menu"><span class="num">07.2</span>Third-party GPT access</h3>
     <ul>
@@ -2212,13 +2253,16 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <ul>
       <li>View every GPT in the workspace.</li>
       <li>If an owner leaves, the GPT transfers to a workspace owner and is marked unassigned.</li>
-      <li>Owners can manually reassign GPTs, and deleted GPTs are managed from the same area.</li>
+      <li>If the original creator returns, ownership is restored automatically; owners can also reassign manually at any time.</li>
+      <li>GPT deletion is also handled from this screen.</li>
     </ul>
     <h3 class="menu"><span class="num">07.4</span>Actions / allowed domains</h3>
-    <ul>
-      <li>Restrict the domains that GPT Actions can call.</li>
-      <li>If the allowed-domain list is empty, all Actions are blocked.</li>
-    </ul>
+    <p>
+      External API calls through <strong>Actions</strong> are one of the riskiest GPT surfaces. Owners can define an
+      <strong>Allowed domains</strong> list so GPT Actions can call only approved domains. Parent domains also cover
+      subdomains. If the list is empty, <strong>all Actions are blocked</strong>.
+      <a href="https://help.openai.com/en/articles/9442513-gpt-actions-domain-settings-chatgpt-enterprise" target="_blank">[Action domain settings]</a>
+    </p>
     <h3 class="menu"><span class="num">07.5</span>Allow Apps inside GPTs</h3>
     <p>Workspace-wide toggle for whether workspace-created GPTs may call Apps. It does not apply to third-party GPTs.</p>
   </section>
@@ -2228,12 +2272,17 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h2>Apps - External Tool Connections</h2>
     <div class="path">Workspace settings → <b>Apps</b></div>
     <p class="lede">
-      Apps are the unified admin surface for external tools such as Drive, Slack, GitHub, Salesforce, Jira, Linear, and MCP apps.
+      On December 17, 2025, OpenAI unified the old “Connectors” and “Apps” names under <strong>Apps</strong>.
+      External tools such as Google Drive, SharePoint, Outlook, Slack, GitHub, Salesforce, Jira, Linear, Asana, and MCP apps are managed here.
+    </p>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-in-apps-enterprise-edu-and-business" target="_blank">→ Official Apps admin controls guide</a>
     </p>
     <h3 class="menu"><span class="num">08.1</span>Workspace-level controls</h3>
     <ul>
       <li>Enterprise/Edu apps start OFF by default and must be enabled by an owner.</li>
-      <li>Admins can expose only selected apps to selected roles.</li>
+      <li>Admins can toggle each app on or off individually.</li>
+      <li>When an app is enabled, admins can immediately decide which custom roles should see it.</li>
       <li>If an app supports action-level control, admins can review or block actions individually.</li>
     </ul>
     <h3 class="menu"><span class="num">08.2</span>Sync / indexing controls</h3>
@@ -2248,11 +2297,17 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       </li>
     </ul>
     <h3 class="menu"><span class="num">08.3</span>RBAC for Apps</h3>
-    <p>Use custom roles to decide which app set each group can access.</p>
+    <p>
+      In Permissions &amp; Roles → Custom Role → <strong>Connected data</strong>, enable <em>Allow members to use apps</em>
+      and use <strong>Select</strong> to expose only specific apps. This enables patterns such as “Marketing gets Slack and Drive,
+      Engineering also gets GitHub and Linear.”
+      <a href="https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-in-apps-enterprise-edu-and-business" target="_blank">[Apps admin controls]</a>
+    </p>
     <h3 class="menu"><span class="num">08.4</span>Custom MCP Apps / developer mode</h3>
     <ul>
       <li>Only trusted internal apps should be registered.</li>
       <li>Owners or users with developer-mode permission can register and publish them.</li>
+      <li>Members cannot self-register them.</li>
       <li>RBAC should separate who can develop, test, and use them.</li>
     </ul>
     <h3 class="menu"><span class="num">08.5</span>Microsoft integration notes</h3>
@@ -2264,15 +2319,22 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h2>Workspace Analytics - Adoption and Impact Measurement</h2>
     <div class="path">Workspace settings → <b>Workspace analytics</b></div>
     <p class="lede">
-      Workspace Analytics answers whether purchased seats are actually being adopted and where usage is growing.
+      Workspace Analytics answers, “Are the seats we purchased actually being used?” It was substantially expanded in
+      2025-2026 with four tabs - <strong>Overview / Usage / Task Insights / Impact</strong> - and the new
+      <strong>Analytics Viewer</strong> role.
     </p>
     <h3 class="menu"><span class="num">09.1</span>Overview</h3>
     <ul>
-      <li><strong>Overview</strong>: seats, activation, WAU, DAU, and adoption stages.</li>
+      <li>Purchased seats, activated seats, and activation rate.</li>
+      <li>Weekly active users (WAU) and daily active users (DAU).</li>
+      <li>Stage trends for activation, first use, and repeat use.</li>
+      <li>Date and SCIM-group filters.</li>
     </ul>
     <h3 class="menu"><span class="num">09.2</span>Usage</h3>
     <ul>
-      <li><strong>Usage</strong>: messages, model/tool/app distribution, and group comparison.</li>
+      <li>Total messages, messages per user, and distribution by model, tool, and connected app.</li>
+      <li>Comparison by SCIM group, with groups under 10 users omitted for anonymity.</li>
+      <li><strong>CSV export</strong> for on-demand reports that open directly in Excel.</li>
     </ul>
     <h3 class="menu"><span class="num">09.3</span>Export data - CSV for Excel</h3>
     <p>Exports are currently CSV only, but they can be opened directly in Excel or Sheets for analysis.</p>
@@ -2289,17 +2351,21 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li>Go to Workspace settings → Workspace analytics.</li>
       <li>Select <strong>Export data</strong>.</li>
       <li>Choose a data type.</li>
-      <li>Select a preset or custom date range.</li>
+      <li>Select a preset or custom date range. Custom ranges can cover up to 12 months and cannot end after today.</li>
       <li>Click <strong>Generate CSV</strong>.</li>
     </ol>
-    <h3 class="menu"><span class="num">09.4</span>Task Insights</h3>
+    <h3 class="menu"><span class="num">09.4</span>Task Insights <span class="pill green">ON by default</span></h3>
     <ul>
-      <li><strong>Export data</strong>: CSV exports for users, GPTs, projects, and impact surveys.</li>
-      <li><strong>Task Insights</strong>: aggregated task categories, not raw prompts.</li>
+      <li>Shows only <strong>aggregated</strong> task categories and topics derived from conversations.</li>
+      <li>Individual prompts and conversations are never exposed.</li>
+      <li>Uses a heat map for task-by-department analysis across SCIM groups.</li>
+      <li>Owners and admins can turn it off from <em>Workspace settings → Usage Analytics</em>; already-created aggregate data is not deleted immediately.</li>
     </ul>
     <h3 class="menu"><span class="num">09.5</span>Impact Surveys</h3>
     <ul>
-      <li><strong>Impact Surveys</strong>: standardized surveys for adoption impact measurement.</li>
+      <li>Owners can create an <strong>Admin-created survey</strong>.</li>
+      <li>Question and answer sets are currently fixed to the OpenAI default set; customization is planned for later.</li>
+      <li>OpenAI-created surveys can be opted out of.</li>
     </ul>
     <h3 class="menu"><span class="num">09.6</span>Analytics Viewer role</h3>
     <p>A read-only analytics role for AI champions, team leads, and program managers who should not receive broader admin privileges.</p>
@@ -2308,21 +2374,39 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       Workspace Analytics is an aggregated reporting surface. It is not a raw-log, legal, or investigation system.
       Use the Compliance API for those needs.
     </div>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">→ Official Workspace analytics guide</a> ·
+      <a href="https://academy.openai.com/public/clubs/admins-6o6xf/resources/chatgpt-enterprise-user-analytics-guide" target="_blank">[Academy usage guide]</a>
+    </p>
   </section>
 
   <section class="chapter" id="identity">
     <div class="chap-num">Section 10 · ChatGPT</div>
     <h2>Identity &amp; Access - Login, Provisioning, and IP Control</h2>
-    <div class="path">Workspace settings → <b>Identity &amp; Access</b></div>
-    <p class="lede">Security-critical area for who can enter, how they authenticate, and from where they can connect.</p>
+    <div class="path">Workspace settings → <b>Identity &amp; Access</b> (formerly Identity &amp; provisioning + IP allowlists)</div>
+    <p class="lede">
+      Security-critical area for defining who can enter, how they authenticate, and from where they can connect.
+      Only owners can change it.
+    </p>
     <h3 class="menu"><span class="num">10.1</span>Domain verification</h3>
     <ul>
-      <li><strong>Domain verification</strong> is required before SSO, SCIM, or AAC.</li>
+      <li>At least <strong>one verified domain</strong> is required before enabling SSO, SCIM, or AAC.</li>
+      <li>Select Add Domain, then add the issued key to DNS as a TXT record.</li>
+      <li>If corporate policy blocks TXT-record changes, manual verification can be handled through the account director.</li>
+      <li>Verifying a parent domain does not automatically verify subdomains; each one must be verified separately.</li>
     </ul>
     <h3 class="menu"><span class="num">10.2</span>Login configuration / SSO / SAML</h3>
     <ul>
-      <li><strong>SSO/SAML</strong> can be enabled or enforced. Test before enforcement to avoid lockouts.</li>
+      <li><strong>Enable SSO</strong> allows SAML 2.0 authentication through the IdP while password and social sign-in can still remain available.</li>
+      <li><strong>Enforce SSO</strong> requires verified-domain users to sign in only through SSO and disables social sign-in.</li>
+      <li>Supported IdPs include Okta, Entra ID, Google Workspace, PingFederate, OneLogin, Rippling, and other WorkOS-integrated providers.</li>
+      <li>Each workspace can connect to only <strong>one</strong> IdP.</li>
+      <li>Incorrect SSO setup can lock users out, so keep SSO optional and test in a separate window before enforcing it.</li>
     </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://help.openai.com/en/articles/10468051-sso-overview" target="_blank">→ SSO overview</a> ·
+      <a href="https://help.openai.com/en/articles/9534785-configuring-sso" target="_blank">[Configuring SSO]</a>
+    </p>
     <h3 class="menu"><span class="num">10.3</span>Provisioning</h3>
     <table>
       <thead><tr><th>Method</th><th>Characteristic</th><th>Best fit</th></tr></thead>
@@ -2335,18 +2419,35 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </table>
     <div class="box">
       <div class="label">Important</div>
-      Do not enable <strong>SCIM</strong> and <strong>AAC</strong> at the same time.
+      Do not enable <strong>SCIM</strong> and <strong>AAC</strong> at the same time. Unmanaged users can be provisioned,
+      which prevents SCIM's automatic deprovisioning flow from behaving as intended.
     </div>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://help.openai.com/en/articles/9627404-openai-chatgpt-scim-integration-faq" target="_blank">→ SCIM integration FAQ</a>
+    </p>
     <h3 class="menu"><span class="num">10.4</span>External domain invites</h3>
-    <p>Controls whether users from unverified external domains can be invited.</p>
+    <p>
+      Controls whether users from unverified external domains, such as partners or contractors, can be invited.
+      SSO settings apply only to verified-domain users, so external guests can still enter without SSO.
+    </p>
     <h3 class="menu"><span class="num">10.5</span>SCIM group visibility</h3>
-    <p>Controls whether synchronized groups appear as share targets in GPT and project sharing flows.</p>
-    <h3 class="menu"><span class="num">10.6</span>IP allowlisting</h3>
+    <p>
+      Controls whether SCIM-synchronized groups appear in the recipient dropdown for GPT and project sharing.
+      Organizations that do not want internal department structure exposed can turn this off.
+    </p>
+    <h3 class="menu"><span class="num">10.6</span>IP allowlisting <span class="pill green">Enterprise / Edu only</span></h3>
     <ul>
-      <li><strong>Provisioning</strong> can be manual, SCIM-based, AAC-based, or API-based.</li>
-      <li><strong>SCIM and AAC</strong> should not be enabled together.</li>
-      <li><strong>IP Allowlisting</strong> applies to workspace traffic, and Compliance API allowlists are always enforced.</li>
+      <li>Register separate <strong>allowed IP lists</strong> for the workspace and the Compliance API.</li>
+      <li>After registration, turn on <em>Activate IP Allowlist</em>; enforcement begins after about 5-15 minutes.</li>
+      <li>Users outside the allowed IP range are blocked even with valid credentials.</li>
+      <li>It applies to <strong>all ChatGPT endpoints</strong>, including authenticated file downloads.</li>
+      <li>Compliance API keys are <strong>always enforced</strong> and cannot be disabled.</li>
+      <li>OpenAI internal system traffic is not affected.</li>
     </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://help.openai.com/en/articles/12111596-ip-allowlisting-for-chatgpt" target="_blank">→ Official IP Allowlisting guide</a> ·
+      <a href="https://help.openai.com/en/articles/9672121-getting-started-with-identity-and-provisioning-in-chatgpt-enterprise-edu-and-chatgpt-for-teachers" target="_blank">[Identity guide]</a>
+    </p>
   </section>
 
   <section class="chapter" id="billing">
@@ -2354,13 +2455,17 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h2>Billing</h2>
     <div class="path">Workspace settings → <b>Billing</b></div>
     <ul>
-      <li>Invoice downloads, payment methods, tax IDs, billing address, and seat counts.</li>
-      <li>ChatGPT workspace billing and API Platform billing are separate systems.</li>
-      <li>Workspace owners should monitor ChatGPT seats and shared credits separately from API usage.</li>
+      <li>Download invoices and manage payment methods.</li>
+      <li>Review purchased ChatGPT seats, Codex seats, and active / inactive status.</li>
+      <li>Manage workspace-level billing details such as tax ID and billing address.</li>
+      <li>Owners review ChatGPT workspace billing at <a href="https://chatgpt.com/admin/billing" target="_blank">chatgpt.com/admin/billing</a>.</li>
     </ul>
     <div class="box">
       <div class="label">Avoid overage confusion</div>
-      ChatGPT billing and API Platform billing are separate systems. Review both if a customer uses ChatGPT seats and API Platform usage in parallel.
+      ChatGPT billing and API Platform billing are <strong>separate systems</strong>. Review ChatGPT Enterprise seats,
+      Codex seats, and workspace billing in ChatGPT Billing, and review API usage and API billing in Platform Billing.
+      If duplicate subscriptions or separate Platform usage are involved, costs can be billed separately, so owners should inspect both surfaces together.
+      <a href="https://help.openai.com/en/articles/9039756-billing-settings-in-chatgpt-vs-platform" target="_blank">[Billing settings in ChatGPT vs Platform]</a>
     </div>
     <table>
       <thead><tr><th>Cost risk</th><th>Where to check</th><th>Operating action</th></tr></thead>
@@ -2628,16 +2733,17 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 
   <section class="chapter" id="codex-cloud-toggle">
     <div class="chap-num">Section 12B · Codex</div>
-    <h2>Codex Cloud Toggle</h2>
-    <p>
-      Codex Cloud is separate from local Codex access. It controls hosted environments, GitHub-based work,
-      code review, and integrations such as Slack and Linear.
-    </p>
+    <h2>Codex Cloud - Master Toggle and Sub-options</h2>
+    <div class="path">Workspace Settings → <b>Settings and Permissions</b> → Codex Cloud area</div>
     <h3 class="menu"><span class="num">12B.1</span>Allow members to use Codex Cloud</h3>
+    <p>
+      Cloud is browser-based, so it behaves the same across operating systems. Before enabling it, confirm:
+    </p>
     <ul>
-      <li>Requires GitHub Cloud repositories and the ChatGPT GitHub Connector.</li>
+      <li><strong>Prerequisite</strong>: the codebase must live in <strong>GitHub Cloud</strong>. For on-prem or non-GitHub setups, build through the Codex SDK instead.</li>
+      <li>The <strong>ChatGPT GitHub Connector</strong> must be installed first for the toggle to matter.</li>
       <li>The Codex navigation entry may take up to 10 minutes to appear after enablement.</li>
-      <li>Enterprise Managed Users may require the GitHub App to be installed by an org owner first.</li>
+      <li>For GitHub Enterprise Managed Users, the organization owner must pre-install the Codex GitHub App.</li>
     </ul>
     <figure>
       <img src="https://developers.openai.com/images/codex/enterprise/cloud-toggle-config.png"
@@ -2647,57 +2753,84 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </figure>
     <h3 class="menu"><span class="num">12B.2</span>Sub-options</h3>
     <ul>
-      <li>Whether Slack receives answer bodies or only task links.</li>
-      <li>Whether Codex Cloud agents may access the internet.</li>
-      <li>Whether mobile app access is available for viewing Cloud tasks.</li>
+      <li><strong>Post answer bodies to Slack</strong> - when off, Slack receives only task links.</li>
+      <li><strong>Codex agent internet access</strong> - <em>off by default</em> for prompt-injection defense; when enabled, admins can constrain domains and HTTP methods.</li>
+      <li><strong>iOS / Android mobile app access</strong> - lets users open and inspect Cloud tasks on mobile.</li>
     </ul>
   </section>
 
   <section class="chapter" id="codex-rbac">
     <div class="chap-num">Section 13 · Codex</div>
-    <h2>Codex RBAC and Admins</h2>
+    <h2>Codex RBAC and Codex Admin Groups</h2>
+    <div class="path">Workspace settings → <b>Permissions &amp; Roles</b> → Custom Roles → Codex permissions</div>
+    <p>
+      ChatGPT RBAC extends directly into Codex. The key control is <strong>Allow members to administer Codex</strong>:
+      any group that receives a custom role with this toggle becomes a Codex Admin group.
+    </p>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://help.openai.com/en/articles/11750701-rbac" target="_blank">→ ChatGPT RBAC guide</a> ·
+      <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">[Codex Admin Setup]</a>
+    </p>
     <figure>
       <img src="https://developers.openai.com/images/codex/enterprise/rbac_custom_roles.png"
            alt="Codex RBAC custom roles"
            onerror="this.parentElement.style.display='none'"/>
       <figcaption>Codex RBAC custom role · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
     </figure>
-    <p>
-      Create a distinct Codex Admin group instead of overloading workspace owners. Separate user access from
-      policy-administration access, and prefer SCIM-managed groups for repeatability.
-    </p>
     <h3 class="menu"><span class="num">13.1</span>What Codex Admins can do</h3>
     <ul>
-      <li>Review Codex workspace analytics.</li>
-      <li>Author and assign cloud-managed policy files.</li>
-      <li>Manage Codex Cloud environments.</li>
+      <li>View Codex workspace analytics at <a href="https://chatgpt.com/codex/settings/analytics" target="_blank">/codex/settings/analytics</a>.</li>
+      <li>Author and assign cloud-managed <code>requirements.toml</code> policies from the <strong>Codex Policies</strong> page.</li>
+      <li>Configure group-level policies and the default fallback policy.</li>
+      <li>Edit and delete Codex Cloud environments.</li>
     </ul>
     <h3 class="menu"><span class="num">13.2</span>Recommended group model</h3>
     <ul>
       <li><strong>Codex Users</strong> for all practitioners.</li>
       <li><strong>Codex Admins</strong> for the small operations group.</li>
+      <li>Manage the Codex Admin group through <strong>SCIM</strong> so membership changes remain auditable.</li>
     </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Users in multiple roles receive the <strong>least restrictive</strong> set of permissions.
+    </p>
   </section>
 
   <section class="chapter" id="codex-policies">
     <div class="chap-num">Section 14 · Codex</div>
-    <h2>Policies and Managed Configuration</h2>
+    <h2>Codex Policies - Cloud-managed requirements.toml</h2>
+    <div class="path"><a href="https://chatgpt.com/codex/settings/policies" target="_blank">chatgpt.com/codex/settings/policies</a></div>
+    <p class="lede">
+      This surface applies different Codex local restrictions by group without shipping device files directly to developer laptops.
+      Policies created here automatically sync to <strong>App / CLI / IDE</strong> when the user signs in to Codex with ChatGPT.
+    </p>
     <figure>
       <img src="https://developers.openai.com/images/codex/enterprise/policies_and_configurations_page.png"
            alt="Codex policies and configurations page"
            onerror="this.parentElement.style.display='none'"/>
       <figcaption>Codex Policies and Configurations · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
     </figure>
-    <ul>
-      <li><strong>requirements.toml</strong> can enforce sandbox, approvals, network, MCP, and command rules.</li>
-      <li>Cloud-managed requirements apply across App, CLI, and IDE after authentication.</li>
-      <li>macOS is strongest with MDM; Windows usually combines cloud-managed rules with Intune/GPO; Linux uses <code>/etc/codex/</code> plus automation.</li>
-    </ul>
     <h3 class="menu"><span class="num">14.1</span>Controls you can enforce</h3>
     <ul>
-      <li>Approval policy allowlists, sandbox mode allowlists, web-search mode allowlists, MCP allowlists, and command rules.</li>
+      <li><code>allowed_approval_policies</code> - approval-mode allowlists such as <em>untrusted</em> and <em>on-request</em>.</li>
+      <li><code>allowed_sandbox_modes</code> - allowed values among <em>read-only</em>, <em>workspace-write</em>, and <em>danger-full-access</em>.</li>
+      <li><code>allowed_web_search_modes</code> - <em>disabled</em>, <em>cached</em>, or <em>live</em>.</li>
+      <li><strong>MCP server allowlists</strong> - match allowed MCP servers by name or identity; an empty array blocks all MCP servers.</li>
+      <li><strong>Restrictive command rules</strong> - prompt or forbid risky commands such as <code>rm</code> or <code>git push</code>.</li>
+      <li>Disable specific surfaces such as Browser Use, in-app browser, or Computer Use.</li>
     </ul>
     <h3 class="menu"><span class="num">14.2</span>Example policy</h3>
+    <pre><code>allowed_web_search_modes = ["disabled", "cached"]
+allowed_sandbox_modes    = ["workspace-write"]
+allowed_approval_policies = ["on-request"]
+
+[rules]
+prefix_rules = [
+  { pattern = [{ token = "rm" }], decision = "forbidden",
+    justification = "Use git clean -fd instead." },
+  { pattern = [{ token = "git" }, { any_of = ["push", "commit"] }],
+    decision = "prompt",
+    justification = "Require review before mutating remote history." },
+]</code></pre>
     <figure>
       <img src="https://developers.openai.com/images/codex/enterprise/example_policy.png"
            alt="Example Codex policy"
@@ -2705,15 +2838,20 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <figcaption>Example managed requirements policy · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
     </figure>
     <h3 class="menu"><span class="num">14.3</span>Group assignment and fallback</h3>
-    <p>Policies can be assigned by group, and a default fallback policy can catch everyone else.</p>
+    <ul>
+      <li>Assign each policy to one or more user groups.</li>
+      <li>Define a separate <strong>default fallback policy</strong> for users that do not match any group.</li>
+      <li>If multiple group rules match, only the <strong>first matching rule</strong> applies; missing fields are not filled by later rules.</li>
+      <li>Write each policy as a complete profile for that group.</li>
+    </ul>
+    <h3 class="menu"><span class="num">14.4</span>Policy lookup - verify which policy applies</h3>
+    <p>Look up by email address or group to confirm which policy is effective for that user.</p>
     <figure>
       <img src="https://developers.openai.com/images/codex/enterprise/policy_lookup.png"
            alt="Codex policy lookup"
            onerror="this.parentElement.style.display='none'"/>
       <figcaption>Policy lookup view · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
     </figure>
-    <h3 class="menu"><span class="num">14.4</span>Policy lookup</h3>
-    <p>The policy lookup view makes it easier to inspect which policy is effective for a given user.</p>
   </section>
 
   <section class="chapter" id="codex-managed">
@@ -2722,6 +2860,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <p class="lede">
       Beyond cloud-managed requirements, admins can deploy policy files directly to user machines. The critical point
       is that the enforcement path, file location, and bypass risk differ by OS.
+    </p>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://developers.openai.com/codex/enterprise/managed-configuration" target="_blank">→ Official Codex Managed Configuration guide</a>
     </p>
 
     <h3 class="menu"><span class="num">15.1</span>Configuration priority</h3>
@@ -2780,8 +2921,17 @@ log_user_prompt  = false</code></pre>
     <h4 class="sub">MDM workflow</h4>
     <ol>
       <li>Write the TOML policy.</li>
-      <li>Base64-encode it as a single line.</li>
-      <li>Add the payload to the MDM profile.</li>
+      <li>Base64-encode it as a single line:
+        <pre class="lang-pre" data-lang="bash"><code>cat requirements.toml | base64 | tr -d '\n' &gt; requirements.b64</code></pre>
+      </li>
+      <li>Add the following payload to the MDM profile:
+        <pre class="lang-pre" data-lang="xml"><code>&lt;dict&gt;
+  &lt;key&gt;PayloadType&lt;/key&gt;
+  &lt;string&gt;com.openai.codex&lt;/string&gt;
+  &lt;key&gt;requirements_toml_base64&lt;/key&gt;
+  &lt;string&gt;[base64 encoded string]&lt;/string&gt;
+&lt;/dict&gt;</code></pre>
+      </li>
       <li>Push the profile to target devices and restart Codex.</li>
       <li>Confirm <code>(managed)</code> appears in the config summary.</li>
       <li>Update only the payload when the policy changes.</li>
@@ -2807,18 +2957,50 @@ codex --print-config | grep managed</code></pre>
       <li>Optional relocation: <code>CODEX_HOME=D:\codex-config</code></li>
     </ul>
     <h4 class="sub">Method 1 - Microsoft Intune</h4>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://learn.microsoft.com/en-us/mem/intune/apps/intune-management-extension" target="_blank">→ Microsoft Intune Management Extension</a>
+    </p>
     <ol>
-      <li>Create a Windows 10+ configuration profile in Intune.</li>
-      <li>Use Win32 app packaging or PowerShell scripts for file deployment.</li>
-      <li>Run the deployment in user context.</li>
-      <li>Write the requirements file and tighten ACLs.</li>
+      <li>In Intune Admin Center, go to Devices → <strong>Configuration profiles</strong> → Create profile.</li>
+      <li>Choose Platform: Windows 10 and later / Profile type: Templates → <strong>Custom</strong>.</li>
+      <li>Because OMA-URI is not ideal for direct file deployment, use a <strong>Win32 app</strong> or <strong>PowerShell scripts</strong> flow.</li>
+      <li>Deploy the script below in <strong>User context</strong>.</li>
     </ol>
+    <pre class="lang-pre" data-lang="powershell"><code>$codexDir = Join-Path $env:USERPROFILE ".codex"
+New-Item -ItemType Directory -Force -Path $codexDir | Out-Null
+
+$reqContent = @'
+approval_policy = "on-request"
+sandbox_mode    = "workspace-write"
+
+[sandbox_workspace_write]
+network_access = false
+
+[otel]
+environment      = "prod"
+exporter         = "otlp-http"
+log_user_prompt  = false
+'@
+
+$reqPath = Join-Path $codexDir "requirements.toml"
+Set-Content -Path $reqPath -Value $reqContent -Encoding UTF8 -Force
+
+icacls $reqPath /inheritance:r `
+  /grant:r "$env:USERNAME:(R)" `
+  /grant:r "Administrators:(F)" `
+  /grant:r "SYSTEM:(F)" | Out-Null
+
+Write-Host "Codex requirements deployed to $reqPath"</code></pre>
     <h4 class="sub">Method 2 - Group Policy</h4>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn789196(v=ws.11)" target="_blank">→ Windows Group Policy file preferences</a>
+    </p>
     <ol>
-      <li>Open User Configuration → Preferences → Windows Settings → Files.</li>
-      <li>Use an internal SMB source for <code>requirements.toml</code>.</li>
+      <li>Open User Configuration → Preferences → Windows Settings → <strong>Files</strong>.</li>
+      <li>Use an internal SMB source such as <code>\\fileserver\codex\requirements.toml</code>.</li>
       <li>Deploy to <code>%USERPROFILE%\.codex\requirements.toml</code>.</li>
-      <li>Use Replace on logon or a logon script for refresh.</li>
+      <li>Use Action: Replace so it refreshes on every logon.</li>
+      <li>Alternatively, execute the PowerShell flow above as a logon script.</li>
     </ol>
     <h4 class="sub">Method 3 - SCCM or logon script</h4>
     <pre class="lang-pre" data-lang="batch"><code>@echo off
@@ -2827,8 +3009,14 @@ copy /Y "\\fileserver\codex\requirements.toml" "%USERPROFILE%\.codex\requirement
     <h4 class="sub">User notice template</h4>
     <div class="box">
       <div class="label">Internal notice example</div>
-      The Codex policy file is deployed automatically to <code>C:\Users\&lt;user&gt;\.codex\requirements.toml</code>.
-      Users do not need to create or edit it manually, and it is redeployed on sign-in if removed.
+      <p style="margin:6px 0">
+        Hello. Your organization's Codex usage policy is applied automatically.<br>
+        Deployment path: <code>C:\Users\&lt;your-account&gt;\.codex\requirements.toml</code><br>
+        IT deploys this file automatically through Intune or GPO, so you do <strong>not</strong> need to create or edit it yourself.
+        If it is deleted, it is redeployed at the next logon and recorded in the security audit flow.<br>
+        On first launch, the following marker indicates a healthy setup:
+        <code>sandbox_mode: workspace-write (managed)</code>
+      </p>
     </div>
     <h4 class="sub">Verification commands</h4>
     <pre class="lang-pre" data-lang="powershell"><code>Test-Path "$env:USERPROFILE\.codex\requirements.toml"
@@ -2847,7 +3035,13 @@ codex --print-config</code></pre>
     </ul>
     <h4 class="sub">Manual deployment</h4>
     <pre class="lang-pre" data-lang="bash"><code>sudo mkdir -p /etc/codex
-sudo cp requirements.toml /etc/codex/requirements.toml
+sudo tee /etc/codex/requirements.toml &gt; /dev/null &lt;&lt; 'EOF'
+approval_policy = "on-request"
+sandbox_mode    = "workspace-write"
+
+[sandbox_workspace_write]
+network_access = false
+EOF
 sudo chown root:root /etc/codex/requirements.toml
 sudo chmod 644 /etc/codex/requirements.toml</code></pre>
     <h4 class="sub">Ansible example</h4>
@@ -2872,6 +3066,8 @@ sudo chmod 644 /etc/codex/requirements.toml</code></pre>
     <h4 class="sub">Verification commands</h4>
     <pre class="lang-pre" data-lang="bash"><code>ls -la /etc/codex/
 codex --print-config | grep -E "managed|requirements"</code></pre>
+
+    <hr class="div"/>
 
     <h3 class="menu"><span class="num">15.5</span>Common recommended guardrails</h3>
     <div class="box">
@@ -2933,7 +3129,12 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 
   <section class="chapter" id="codex-review">
     <div class="chap-num">Section 18 · Codex</div>
-    <h2>Code Review and Codex Security</h2>
+    <h2>Code Review - Automatic PR Review by Codex <span class="pill green">OS-neutral</span></h2>
+    <div class="path"><a href="https://chatgpt.com/codex/settings/code-review" target="_blank">Settings → Code review</a></div>
+    <p>
+      Codex Cloud can automatically review GitHub pull requests. Admins can enable it at the workspace or repository level,
+      and individual users can also enable automatic review for their own pull requests.
+    </p>
     <figure>
       <img src="https://developers.openai.com/images/codex/enterprise/code_review_settings_overview.png"
            alt="Code review settings overview"
