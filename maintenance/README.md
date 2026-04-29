@@ -11,11 +11,17 @@ This folder keeps the update process for `chatgpt-codex-enterprise-settings.html
 
 1. Review every `weekly` source in `sources.yml`, then review `monthly` sources when their month is due.
 2. Compare the current official source against what the guide currently says.
-3. Update the Korean body first. Korean is the baseline version of the page.
-4. Update the English version so the section order, heading depth, tables, figures, and internal links stay structurally identical to Korean.
-5. Keep official UI labels and product names in English where that is clearer or matches the product surface.
-6. Re-check internal anchors, external source links, image URLs, and KO/EN structural parity before committing.
-7. If no source-backed change is needed, do not churn the page. Record that the review found no material change.
+3. During the scheduled run, do **not** edit the guide and do **not** commit.
+4. Produce a short review report that states:
+   - whether there are material source-backed changes,
+   - which official sources changed,
+   - which guide sections would need updates,
+   - and the recommended edits.
+5. Send that report as a Codex notification for approval.
+6. Only after Jaewon explicitly approves the change should Codex update the Korean body first, then mirror the English version so the section order, heading depth, tables, figures, and internal links stay structurally identical to Korean.
+7. Keep official UI labels and product names in English where that is clearer or matches the product surface.
+8. Re-check internal anchors, external source links, image URLs, and KO/EN structural parity before committing.
+9. If no source-backed change is needed, leave the page untouched and report that briefly.
 
 ## Manual Codex update request
 
@@ -28,7 +34,7 @@ chatgpt-codex-enterprise-settings.html을 업데이트해줘.
 변경이 없으면 왜 없는지만 짧게 알려줘.
 ```
 
-That request is intentionally the same workflow used by the weekly automation, so scheduled and manual updates stay aligned.
+That request is the approval step after the weekly review. The weekly automation only checks and reports; manual Codex requests are what apply the approved changes.
 
 ## Definition of done
 
@@ -37,4 +43,5 @@ That request is intentionally the same workflow used by the weekly automation, s
 - English remains structurally identical to Korean.
 - The source list at the bottom of the page stays current.
 - Broken links, broken figures, and stale screenshot references are removed or replaced.
-- The final change is committed with a concise maintenance-oriented message.
+- Scheduled review jobs never edit or commit.
+- Approved manual update jobs commit the final change with a concise maintenance-oriented message.

@@ -2,16 +2,20 @@
 
 Review the official sources listed in `maintenance/sources.yml` against `chatgpt-codex-enterprise-settings.html`.
 
-Use Korean as the baseline version of the guide. If official sources have materially changed, update the Korean guide first, then update the English version so the section order, heading depth, tables, figures, internal anchors, and overall information architecture remain structurally identical to Korean.
+Use Korean as the baseline version of the guide when assessing impact.
 
-Keep the guide source-backed. Preserve product names and official UI labels in English when that is the product's own wording. Replace stale links, broken image references, or obsolete screenshots when the source set has changed.
+During the scheduled weekly run:
+
+1. Do not edit files.
+2. Do not commit changes.
+3. Produce a concise review report that says whether there are material source-backed changes, which official sources changed, which guide sections would need updates, and what the recommended edits are.
+4. If there is no material source-backed change, say that briefly.
+5. Open a Codex notification/inbox item with the review result for approval.
 
 Before finishing, verify:
 
 1. All relevant weekly sources in `maintenance/sources.yml` were checked.
 2. Any due monthly sources were checked.
-3. Korean and English sections still match structurally.
-4. Internal anchors, outbound links, and embedded figure URLs still resolve.
-5. The page footer source list still matches the guide body.
+3. The report clearly distinguishes "needs update" from "no material change".
 
-If there is no material source-backed change, leave the guide unchanged and summarize the review result briefly.
+After explicit user approval in a later manual run, update the Korean guide first, then update the English version so the section order, heading depth, tables, figures, internal anchors, and overall information architecture remain structurally identical to Korean. At that time, keep the guide source-backed, preserve official product and UI labels where appropriate, replace stale links or obsolete image references, verify KO/EN structural parity plus internal anchors and outbound links, and commit the approved change.
