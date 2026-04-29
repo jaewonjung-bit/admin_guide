@@ -2,7 +2,7 @@
 
 Review the official sources listed in `maintenance/sources.yml` against `chatgpt-codex-enterprise-settings.html`.
 
-Use Korean as the baseline version of the guide when assessing impact.
+Use Korean as the canonical source of truth for the guide when assessing impact.
 
 During the scheduled weekly run:
 
@@ -18,4 +18,16 @@ Before finishing, verify:
 2. Any due monthly sources were checked.
 3. The report clearly distinguishes "needs update" from "no material change".
 
-After explicit user approval in a later manual run, update the Korean guide first, then update the English version so the section order, heading depth, tables, figures, internal anchors, and overall information architecture remain structurally identical to Korean. At that time, keep the guide source-backed, preserve official product and UI labels where appropriate, replace stale links or obsolete image references, verify KO/EN structural parity plus internal anchors and outbound links, and commit the approved change.
+After explicit user approval in a later manual run:
+
+1. Update the Korean guide first.
+2. Treat Korean as the canonical source of truth for content, depth, and layout.
+3. Update the English version so it is the same page in English, not a shortened summary:
+   - same section order and heading hierarchy,
+   - same content depth and explanatory coverage,
+   - same tables, figures, callouts, examples, code blocks, links, and checklist rows,
+   - same visual grouping and layout structure.
+4. Mirror every material Korean-side addition, deletion, or reordering in English during the same approved update.
+5. Keep the guide source-backed, preserve official product and UI labels where appropriate, and replace stale links or obsolete image references.
+6. Run `python3 maintenance/verify-bilingual-parity.py`, then perform a section-by-section manual review to confirm that English matches Korean in semantic coverage and level of detail, not just element counts.
+7. Verify internal anchors and outbound links, then commit the approved change.

@@ -13,6 +13,7 @@
     font-display:swap;
   }
   :root{
+    --font-sans:"OpenAI Sans Hangul","Apple SD Gothic Neo","Noto Sans KR",sans-serif;
     --bg:#ffffff;
     --bg-2:#f7f7f5;
     --paper:#ffffff;
@@ -30,11 +31,11 @@
     --warn-bg:#fffdf6;
   }
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:"OpenAI Sans Hangul","Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans);font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased;}
   a{color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(16,16,16,.24);transition:all .15s;}
   a:hover{color:var(--accent-2);border-color:var(--accent-2);}
-  code{font-family:"SFMono-Regular","Menlo","Consolas",monospace;background:#f4f4f1;padding:1px 6px;border-radius:4px;font-size:.9em;overflow-wrap:anywhere;word-break:break-word;}
-  pre{font-family:"SFMono-Regular","Menlo","Consolas",monospace;background:var(--code-bg);color:var(--code-ink);padding:20px 22px;border-radius:12px;overflow-x:auto;font-size:.85em;line-height:1.6;border:1px solid var(--green-line);margin:16px 0;}
+  code{font-family:var(--font-sans);background:#f4f4f1;padding:1px 6px;border-radius:4px;font-size:.9em;overflow-wrap:anywhere;word-break:break-word;}
+  pre{font-family:var(--font-sans);background:var(--code-bg);color:var(--code-ink);padding:20px 22px;border-radius:12px;overflow-x:auto;font-size:.85em;line-height:1.6;border:1px solid var(--green-line);margin:16px 0;}
   pre code{background:transparent;padding:0;color:inherit;}
 
   /* ---------- HERO ---------- */
@@ -48,12 +49,12 @@
   }
   .hero-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;}
   .eyebrow{
-    font-family:"SFMono-Regular","Menlo","Consolas",monospace;
+    font-family:var(--font-sans);
     font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;
     color:var(--muted);margin-bottom:22px;display:flex;gap:14px;align-items:center;
   }
   h1.title{
-    font-family:"OpenAI Sans Hangul","Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    font-family:var(--font-sans);
     font-weight:800;font-size:clamp(2.15rem,4.8vw,4rem);
     line-height:1.04;margin:0 0 24px;letter-spacing:0;
   }
@@ -61,7 +62,7 @@
   .subtitle{font-size:1.05rem;color:#303030;max-width:980px;line-height:1.8;}
   .meta{
     margin-top:30px;display:flex;flex-wrap:wrap;gap:10px;
-    font-family:"SFMono-Regular","Menlo","Consolas",monospace;font-size:.8rem;color:var(--muted);
+    font-family:var(--font-sans);font-size:.8rem;color:var(--muted);
   }
   .meta span{padding:6px 12px;border:1px solid var(--line-light);border-radius:999px;background:#fff;}
 
@@ -79,7 +80,7 @@
     max-height:calc(100vh - 60px);overflow-y:auto;
   }
   aside.toc h4{
-    font-family:"SFMono-Regular","Menlo","Consolas",monospace;
+    font-family:var(--font-sans);
     font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
     color:var(--muted);margin:0 0 12px;
   }
@@ -87,7 +88,7 @@
   aside.toc ol li{counter-increment:tocnum;margin:7px 0;line-height:1.4;}
   aside.toc ol li::before{
     content:counter(tocnum,decimal-leading-zero) ".";
-    font-family:"SFMono-Regular","Menlo","Consolas",monospace;font-size:.72rem;
+    font-family:var(--font-sans);font-size:.72rem;
     color:var(--muted);margin-right:8px;
   }
   aside.toc a{color:var(--ink);border:0;}
@@ -113,11 +114,11 @@
     background:linear-gradient(90deg,var(--ink),var(--line-light) 22%,transparent 100%);
   }
   section.chapter > .chap-num{
-    font-family:"SFMono-Regular","Menlo","Consolas",monospace;font-size:.72rem;letter-spacing:.3em;
+    font-family:var(--font-sans);font-size:.72rem;letter-spacing:.3em;
     color:var(--muted);text-transform:uppercase;margin-bottom:8px;
   }
   section.chapter > h2{
-    font-family:"OpenAI Sans Hangul","Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-weight:800;
+    font-family:var(--font-sans);font-weight:800;
     font-size:clamp(1.65rem,3.3vw,2.3rem);
     line-height:1.15;margin:0 0 14px;letter-spacing:0;
   }
@@ -133,16 +134,16 @@
     background:var(--ink);
   }
   h3.menu{
-    font-family:"OpenAI Sans Hangul","Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-weight:700;
+    font-family:var(--font-sans);font-weight:700;
     font-size:1.4rem;margin:36px 0 8px;letter-spacing:0;
     display:flex;align-items:baseline;gap:14px;
   }
   h3.menu .num{
-    font-family:"SFMono-Regular","Menlo","Consolas",monospace;font-size:.78rem;
+    font-family:var(--font-sans);font-size:.78rem;
     color:var(--muted);font-weight:500;
   }
   h4.sub{
-    font-family:"OpenAI Sans Hangul","Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-weight:700;
+    font-family:var(--font-sans);font-weight:700;
     font-size:1.02rem;margin:22px 0 6px;color:var(--ink);
   }
   p{margin:8px 0 14px;}
@@ -153,7 +154,7 @@
 
   /* path crumb */
   .path{
-    display:inline-block;font-family:"SFMono-Regular","Menlo","Consolas",monospace;
+    display:inline-block;font-family:var(--font-sans);
     font-size:.78rem;background:#fff;color:#383838;
     padding:7px 12px;border-radius:999px;margin:6px 0 12px;
     border:1px solid var(--line-light);
@@ -169,7 +170,7 @@
   .box.dark{background:var(--bg-2);color:var(--ink);border-color:var(--line-light);}
   .box.dark code{background:#efefec;color:var(--ink);}
   .box .label{
-    font-family:"SFMono-Regular","Menlo","Consolas",monospace;font-size:.7rem;letter-spacing:.22em;
+    font-family:var(--font-sans);font-size:.7rem;letter-spacing:.22em;
     text-transform:uppercase;color:var(--muted);margin-bottom:6px;
   }
   .box.green .label{color:var(--accent-2);}
@@ -198,7 +199,7 @@
     border-bottom:1px solid var(--line-light);vertical-align:top;
   }
   th{
-    background:#fff;font-family:"SFMono-Regular","Menlo","Consolas",monospace;
+    background:#fff;font-family:var(--font-sans);
     font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;
     font-weight:600;color:var(--ink);
   }
@@ -212,7 +213,7 @@
   }
   .sources-inner{max-width:1440px;margin:0 auto;}
   .sources h2{
-    font-family:"OpenAI Sans Hangul","Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-weight:800;
+    font-family:var(--font-sans);font-weight:800;
     font-size:2rem;margin:0 0 28px;letter-spacing:0;
   }
   .sources ul{
@@ -225,19 +226,19 @@
   }
   .sources li::before{
     content:"→";position:absolute;left:0;color:var(--muted);
-    font-family:"SFMono-Regular","Menlo","Consolas",monospace;
+    font-family:var(--font-sans);
   }
   .sources a{color:var(--ink);border-color:rgba(16,16,16,.24);}
   .sources a:hover{color:var(--accent-2);}
 
   footer{
     background:var(--paper);color:var(--muted);text-align:center;border-top:1px solid var(--line-light);
-    padding:30px 8vw;font-size:.8rem;font-family:"SFMono-Regular","Menlo","Consolas",monospace;
+    padding:30px 8vw;font-size:.8rem;font-family:var(--font-sans);
   }
 
   /* highlight pill */
   .pill{
-    display:inline-block;font-family:"SFMono-Regular","Menlo","Consolas",monospace;
+    display:inline-block;font-family:var(--font-sans);
     font-size:.7rem;letter-spacing:.06em;padding:2px 8px;
     background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:999px;
     margin-left:8px;text-transform:uppercase;vertical-align:middle;
@@ -261,7 +262,7 @@
     font-size:.92rem;
   }
   .os-card h5{
-    margin:0 0 10px;font-family:"OpenAI Sans Hangul","Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-size:1.15rem;
+    margin:0 0 10px;font-family:var(--font-sans);font-size:1.15rem;
     display:flex;align-items:center;gap:10px;letter-spacing:0;
   }
   .os-card h5 .ico{font-size:1.3rem;}
@@ -273,11 +274,11 @@
   .os-banner{
     margin:36px 0 14px;padding:16px 22px;border-radius:12px;
     display:flex;align-items:center;gap:14px;
-    font-family:"OpenAI Sans Hangul","Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-size:1.4rem;font-weight:800;
+    font-family:var(--font-sans);font-size:1.4rem;font-weight:800;
     letter-spacing:0;border:1px solid var(--line-light);
   }
   .os-banner .ico{
-    font-family:"SFMono-Regular","Menlo","Consolas",monospace;
+    font-family:var(--font-sans);
     font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
     border:1px solid currentColor;border-radius:3px;padding:3px 7px;
   }
@@ -285,7 +286,7 @@
   .os-banner.windows,
   .os-banner.linux{background:#fff;color:var(--ink);}
   .os-banner .tagline{
-    margin-left:auto;font-family:"SFMono-Regular","Menlo","Consolas",monospace;
+    margin-left:auto;font-family:var(--font-sans);
     font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
     opacity:.7;font-weight:400;
   }
@@ -306,7 +307,7 @@
   }
   .flow-step:nth-child(4n)::after,.flow-step:last-child::after{display:none;}
   .flow-step .kicker{
-    font-family:"SFMono-Regular","Menlo","Consolas",monospace;font-size:.66rem;
+    font-family:var(--font-sans);font-size:.66rem;
     letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;
   }
   .flow-step h4{margin:0 0 7px;font-size:1rem;line-height:1.35;}
@@ -316,7 +317,7 @@
   }
   .flow-step .related a{
     border:1px solid var(--line-light);border-radius:999px;padding:3px 8px;
-    font-family:"SFMono-Regular","Menlo","Consolas",monospace;font-size:.64rem;
+    font-family:var(--font-sans);font-size:.64rem;
     letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:#fafafa;
   }
   .flow-step .related a:hover{color:var(--accent-2);border-color:var(--green-line);}
@@ -387,7 +388,7 @@
     background:var(--warn-bg);border:1px solid var(--warn-line);
     padding:16px 18px;border-radius:12px;margin:14px 0;font-size:.94rem;
   }
-  .warn .label{color:#8a6513;font-weight:600;font-family:"SFMono-Regular","Menlo","Consolas",monospace;
+  .warn .label{color:#8a6513;font-weight:600;font-family:var(--font-sans);
     font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;display:block;margin-bottom:5px;}
 
   /* lang label on pre */
@@ -396,7 +397,7 @@
     content:attr(data-lang);
     position:absolute;top:0;right:0;
     background:#fff;color:var(--muted);border-left:1px solid var(--green-line);border-bottom:1px solid var(--green-line);
-    font-family:"SFMono-Regular","Menlo","Consolas",monospace;font-size:.65rem;letter-spacing:.15em;
+    font-family:var(--font-sans);font-size:.65rem;letter-spacing:.15em;
     padding:3px 10px;border-radius:0 12px 0 8px;text-transform:uppercase;
   }
 
@@ -410,7 +411,7 @@
   }
   .language-toggle button{
     appearance:none;border:0;border-radius:999px;background:transparent;color:var(--muted);
-    padding:7px 11px;font-family:"SFMono-Regular","Menlo","Consolas",monospace;
+    padding:7px 11px;font-family:var(--font-sans);
     font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
   }
   .language-toggle button.active{
@@ -2040,7 +2041,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h2>ChatGPT Enterprise · Workspace Settings Entry Point</h2>
     <p class="lede">
       Workspace-wide controls for ChatGPT Enterprise and Edu live under the bottom-left profile menu:
-      <strong>Workspace settings</strong>. This is where admins manage members, seats, permissions, GPT governance,
+      Workspace settings. This is where admins manage members, seats, permissions, GPT governance,
       apps, analytics, identity, and billing.
     </p>
     <div class="box">
@@ -2049,6 +2050,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <p style="margin:6px 0 0">
         <strong>Owners</strong> and <strong>Admins</strong> can change workspace settings. Members may be able to open
         the page, but they cannot change core controls such as permissions, seats, spend limits, or feature toggles.
+        <a href="https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise" target="_blank">[OpenAI official]</a>
       </p>
     </div>
     <h4 class="sub">All menus at a glance</h4>
@@ -2067,6 +2069,12 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
         <tr><td>Billing</td><td>Invoices, seats, billing details</td><td>Owner</td></tr>
       </tbody>
     </table>
+    <p style="font-size:.85rem;color:var(--muted)">
+      As of the January 2026 update, the former <em>Settings &amp; permissions</em> tab became
+      <strong>Permissions &amp; Roles</strong>, while <em>Identity &amp; provisioning</em> and
+      <em>IP allowlists</em> were consolidated into <strong>Identity &amp; Access</strong>.
+      <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Release notes]</a>
+    </p>
   </section>
 
   <section class="chapter" id="general">
@@ -2078,17 +2086,18 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       workspace name and image, plus organization-wide AI policy content that applies to every user.
     </p>
     <h3 class="menu"><span class="num">02.1</span>Workspace name &amp; image</h3>
-    <p>Use the edit icon next to the name to change the workspace name and image. Saved changes appear immediately for every member.</p>
+    <p>Use the edit icon next to the name to change the workspace name and image. Saved changes appear <strong>immediately for every member</strong>.</p>
     <h3 class="menu"><span class="num">02.2</span>Workspace instructions</h3>
     <p>Organization-level guidance that tells ChatGPT how to answer, including tone, prohibited phrasing, and shared terminology.</p>
     <h3 class="menu"><span class="num">02.3</span>Workspace policy modal</h3>
-    <p>Displays a required acknowledgement modal when users first log in, and again whenever the policy is updated.</p>
+    <p>Displays a <strong>required acknowledgement modal</strong> when users first log in, and again whenever the policy is updated.</p>
     <h3 class="menu"><span class="num">02.4</span>Workspace &amp; organization identifiers</h3>
-    <p>Shows the workspace ID and OpenAI organization ID used when integrating governance tools such as Compliance API, Microsoft Purview, or Tenable.</p>
+    <p>Shows the workspace ID and OpenAI organization ID (<code>org-id</code>) used when integrating governance tools such as Compliance API, Microsoft Purview, or Tenable.</p>
     <div class="box green">
       <div class="label">Note</div>
-      ChatGPT workspace <code>org-id</code> and API Platform <code>org-id</code> are normally the same. If they differ,
+      <strong>ChatGPT workspace</strong> org-id and <strong>API Platform organization</strong> org-id are normally the same. If they differ,
       there may be separate organizations that need to be consolidated.
+      <a href="https://help.openai.com/en/articles/10468051-sso-overview" target="_blank">[SSO overview]</a>
     </div>
   </section>
 
@@ -2104,10 +2113,10 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <table>
       <thead><tr><th>Role</th><th>Summary</th></tr></thead>
       <tbody>
-        <tr><td>Owner</td><td>Billing, identity, and full workspace configuration.</td></tr>
-        <tr><td>Admin</td><td>Day-to-day user and group administration.</td></tr>
-        <tr><td>Analytics Viewer</td><td>Member privileges plus read-only analytics access.</td></tr>
-        <tr><td>Member</td><td>Standard ChatGPT/Codex usage without admin privileges.</td></tr>
+        <tr><td><strong>Owner</strong></td><td>Billing, identity, and full workspace configuration. Can appoint other owners.</td></tr>
+        <tr><td><strong>Admin</strong></td><td>Day-to-day user and group administration. Cannot appoint owners.</td></tr>
+        <tr><td><strong>Analytics Viewer</strong> <span class="pill green">new</span></td><td>Member privileges plus read-only Workspace Analytics access.</td></tr>
+        <tr><td><strong>Member</strong></td><td>Standard ChatGPT/Codex usage without admin privileges.</td></tr>
       </tbody>
     </table>
     <p style="font-size:.88rem;color:var(--muted)">
@@ -2121,7 +2130,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </ul>
     <div class="box">
       <div class="label">Seat-change warning</div>
-      Switching a user from a ChatGPT seat to a Codex seat hides chats, memory, and projects from view.
+      Switching a user from a ChatGPT seat to a Codex seat hides <strong>chats, memory, and projects, including shared projects</strong> from view.
       The data is not deleted and becomes visible again if the user is switched back.
     </div>
     <h3 class="menu"><span class="num">03.3</span>Key actions</h3>
@@ -2165,7 +2174,8 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h2>Permissions &amp; Roles - Core Governance Surface</h2>
     <div class="path">Workspace settings → <b>Permissions &amp; Roles</b></div>
     <p class="lede">
-      This is the core governance surface. Owners define the workspace baseline and create group-based custom roles.
+      This is the <strong>most important governance surface</strong> for Enterprise and Edu admins. Owners define the
+      workspace baseline and create group-based <strong>custom roles</strong>.
     </p>
     <h3 class="menu"><span class="num">05.1</span>Default permissions</h3>
     <p>
@@ -2236,7 +2246,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h3 class="menu"><span class="num">07.1</span>Create, edit, and share permissions</h3>
     <ul>
       <li>Control who can create, edit, and share GPTs.</li>
-      <li>Set the maximum sharing scope - <em>invite only</em>, <em>workspace only</em>, or broader sharing.
+      <li>Set the maximum sharing scope - <em>invite only</em>, <em>workspace only</em>, or <em>broader sharing</em>.
         <ul>
           <li>Enterprise can <strong>fully block sharing outside the workspace</strong>.</li>
           <li>Business users may share without admin approval.</li>
@@ -2252,7 +2262,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h3 class="menu"><span class="num">07.3</span>GPT ownership management</h3>
     <ul>
       <li>View every GPT in the workspace.</li>
-      <li>If an owner leaves, the GPT transfers to a workspace owner and is marked unassigned.</li>
+      <li>If an owner leaves, the GPT transfers to a <strong>workspace owner</strong> and is marked unassigned.</li>
       <li>If the original creator returns, ownership is restored automatically; owners can also reassign manually at any time.</li>
       <li>GPT deletion is also handled from this screen.</li>
     </ul>
@@ -2264,7 +2274,10 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <a href="https://help.openai.com/en/articles/9442513-gpt-actions-domain-settings-chatgpt-enterprise" target="_blank">[Action domain settings]</a>
     </p>
     <h3 class="menu"><span class="num">07.5</span>Allow Apps inside GPTs</h3>
-    <p>Workspace-wide toggle for whether workspace-created GPTs may call Apps. It does not apply to third-party GPTs.</p>
+    <p>
+      Workspace-wide toggle for whether workspace-created GPTs may call Apps. This is a
+      <strong>single workspace-level setting</strong>, and it does not apply to third-party GPTs.
+    </p>
   </section>
 
   <section class="chapter" id="apps">
@@ -2280,14 +2293,14 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </p>
     <h3 class="menu"><span class="num">08.1</span>Workspace-level controls</h3>
     <ul>
-      <li>Enterprise/Edu apps start OFF by default and must be enabled by an owner.</li>
+      <li>Enterprise/Edu apps start <strong>OFF by default</strong> and must be enabled by an owner.</li>
       <li>Admins can toggle each app on or off individually.</li>
       <li>When an app is enabled, admins can immediately decide which custom roles should see it.</li>
-      <li>If an app supports action-level control, admins can review or block actions individually.</li>
+      <li>If an app supports <strong>action-level control</strong>, admins can review or block actions individually.</li>
     </ul>
     <h3 class="menu"><span class="num">08.2</span>Sync / indexing controls</h3>
     <ul>
-      <li>Synced connectors can improve answer quality through pre-indexing.</li>
+      <li>Synced connectors such as Google Drive, SharePoint, and GitHub support <strong>pre-indexing</strong>, which improves answer quality and speed.</li>
       <li>Admins can scope specific shared drives or folders and exclude selected file types.</li>
       <li>Two setup modes are available:
         <ul>
@@ -2305,13 +2318,16 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </p>
     <h3 class="menu"><span class="num">08.4</span>Custom MCP Apps / developer mode</h3>
     <ul>
-      <li>Only trusted internal apps should be registered.</li>
+      <li>Only <strong>trusted internal apps</strong> should be registered.</li>
       <li>Owners or users with developer-mode permission can register and publish them.</li>
       <li>Members cannot self-register them.</li>
       <li>RBAC should separate who can develop, test, and use them.</li>
     </ul>
     <h3 class="menu"><span class="num">08.5</span>Microsoft integration notes</h3>
-    <p>Outlook, Teams, and SharePoint often require prior permissions in Microsoft Entra ID, and some Google Workspace integrations may require re-consent for scopes.</p>
+    <p>
+      Outlook, Teams, and SharePoint often require prior permissions in <strong>Microsoft Entra ID</strong>, and some Google Workspace
+      integrations may require re-consent for Drive, Docs, Sheets, or Slides scopes.
+    </p>
   </section>
 
   <section class="chapter" id="analytics">
@@ -2337,7 +2353,10 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><strong>CSV export</strong> for on-demand reports that open directly in Excel.</li>
     </ul>
     <h3 class="menu"><span class="num">09.3</span>Export data - CSV for Excel</h3>
-    <p>Exports are currently CSV only, but they can be opened directly in Excel or Sheets for analysis.</p>
+    <p>
+      Workspace Analytics exports currently support <strong>CSV only</strong>. They are not direct .xlsx downloads, but the CSVs can
+      be opened in Excel or Sheets for user, GPT, project, and impact-survey analysis.
+    </p>
     <table>
       <thead><tr><th>Export target</th><th>Use</th><th>Range</th></tr></thead>
       <tbody>
@@ -2363,16 +2382,19 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </ul>
     <h3 class="menu"><span class="num">09.5</span>Impact Surveys</h3>
     <ul>
-      <li>Owners can create an <strong>Admin-created survey</strong>.</li>
-      <li>Question and answer sets are currently fixed to the OpenAI default set; customization is planned for later.</li>
+      <li>Owners can create an Admin-created survey.</li>
+      <li><strong>Question and answer sets</strong> are currently fixed to the OpenAI default set; customization is planned for later.</li>
       <li>OpenAI-created surveys can be opted out of.</li>
     </ul>
     <h3 class="menu"><span class="num">09.6</span>Analytics Viewer role</h3>
-    <p>A read-only analytics role for AI champions, team leads, and program managers who should not receive broader admin privileges.</p>
+    <p>
+      A read-only analytics role for AI champions, team leads, and program managers who should be able to read analytics
+      <strong>without receiving broader admin privileges</strong>.
+    </p>
     <div class="box">
       <div class="label">Scope boundary</div>
-      Workspace Analytics is an aggregated reporting surface. It is not a raw-log, legal, or investigation system.
-      Use the Compliance API for those needs.
+      Workspace Analytics is an <strong>aggregated reporting surface</strong>. It does not provide message bodies, file contents,
+      or item-level compliance records. Use the <strong>Compliance API</strong> for raw logs, legal, and security audit workflows.
     </div>
     <p style="font-size:.88rem;color:var(--muted)">
       <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">→ Official Workspace analytics guide</a> ·
@@ -2393,12 +2415,12 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li>At least <strong>one verified domain</strong> is required before enabling SSO, SCIM, or AAC.</li>
       <li>Select Add Domain, then add the issued key to DNS as a TXT record.</li>
       <li>If corporate policy blocks TXT-record changes, manual verification can be handled through the account director.</li>
-      <li>Verifying a parent domain does not automatically verify subdomains; each one must be verified separately.</li>
+      <li>Verifying a parent domain does not automatically verify subdomains; each one must be <strong>verified separately</strong>.</li>
     </ul>
     <h3 class="menu"><span class="num">10.2</span>Login configuration / SSO / SAML</h3>
     <ul>
       <li><strong>Enable SSO</strong> allows SAML 2.0 authentication through the IdP while password and social sign-in can still remain available.</li>
-      <li><strong>Enforce SSO</strong> requires verified-domain users to sign in only through SSO and disables social sign-in.</li>
+      <li><strong>Enforce SSO</strong> requires verified-domain users to sign in <strong>only</strong> through SSO and disables social sign-in.</li>
       <li>Supported IdPs include Okta, Entra ID, Google Workspace, PingFederate, OneLogin, Rippling, and other WorkOS-integrated providers.</li>
       <li>Each workspace can connect to only <strong>one</strong> IdP.</li>
       <li>Incorrect SSO setup can lock users out, so keep SSO optional and test in a separate window before enforcing it.</li>
@@ -2419,7 +2441,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </table>
     <div class="box">
       <div class="label">Important</div>
-      Do not enable <strong>SCIM</strong> and <strong>AAC</strong> at the same time. Unmanaged users can be provisioned,
+      <strong>Do not enable SCIM and AAC at the same time.</strong> Unmanaged users can be provisioned,
       which prevents SCIM's automatic deprovisioning flow from behaving as intended.
     </div>
     <p style="font-size:.88rem;color:var(--muted)">
@@ -2428,7 +2450,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h3 class="menu"><span class="num">10.4</span>External domain invites</h3>
     <p>
       Controls whether users from unverified external domains, such as partners or contractors, can be invited.
-      SSO settings apply only to verified-domain users, so external guests can still enter without SSO.
+      SSO settings apply only to <strong>verified-domain users</strong>, so external guests can still enter without SSO.
     </p>
     <h3 class="menu"><span class="num">10.5</span>SCIM group visibility</h3>
     <p>
@@ -2481,8 +2503,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <div class="chap-num">Part 02 · Codex Enterprise</div>
     <h2>Codex Enterprise Overview</h2>
     <p class="lede">
-      Codex Enterprise is configured inside the same Workspace Settings area, but it has its own local, cloud,
-      policy, review, and governance controls.
+      Codex Enterprise is configured inside the same <strong>Workspace Settings</strong> area. It splits into
+      <strong>Local</strong> surfaces such as App, CLI, and IDE extension, and <strong>Cloud</strong> surfaces such as
+      web, iOS, Code Review, Slack, and Linear. These two environments can be enabled independently.
     </p>
     <figure>
       <img src="https://developers.openai.com/images/codex/codex_enterprise_admin.png"
@@ -2503,10 +2526,18 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
         <li><strong>Compliance API</strong> supports full auditability.</li>
       </ul>
     </div>
+    <h3 class="menu"><span class="num">11.1</span>Codex setup flow</h3>
+    <p>
+      The OpenAI Developers admin setup flow starts by deciding which surfaces to use, then layers in RBAC, policy,
+      GitHub / Cloud environments, and monitoring. The rollout sequence below follows the same order to reduce lockout
+      risk and over-permissioning.
+    </p>
     <p class="setup-flow-note">
       The cards below show the rollout order; each chip jumps to the detailed section that explains that step.
     </p>
-    <h3 class="menu"><span class="num">11.1</span>Codex setup flow</h3>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">→ Codex Enterprise Admin Setup</a>
+    </p>
     <div class="setup-flow">
       <div class="flow-step"><div class="kicker">Step 01</div><h4>Confirm owners</h4><p>Assign workspace, security, and analytics owners.</p><div class="related"><a href="#codex-intro">11 Overview</a><a href="#rollout-checklist">Checklist</a></div></div>
       <div class="flow-step"><div class="kicker">Step 02</div><h4>Choose surfaces</h4><p>Decide whether to launch Local, Cloud, or both.</p><div class="related"><a href="#codex-toggle">12 Surfaces</a></div></div>
@@ -2518,6 +2549,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <div class="flow-step"><div class="kicker">Step 08</div><h4>Observe</h4><p>Use analytics and compliance tooling together.</p><div class="related"><a href="#codex-gov">21 Governance</a></div></div>
     </div>
     <h3 class="menu"><span class="num">11.2</span>How this guide is organized</h3>
+    <p>
+      Because Codex mixes <strong>user surfaces</strong> and <strong>operating systems</strong>, read it along both axes.
+    </p>
     <ul>
       <li><strong>App / CLI / IDE / Cloud</strong> tabs separate the user surface.</li>
       <li><strong>macOS / Windows / Linux</strong> sections separate OS-specific deployment differences.</li>
@@ -2545,9 +2579,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 
     <h4 class="sub">Device code authentication for CLI</h4>
     <p>
-      Enables CLI sign-in in non-interactive environments such as remote boxes, SSH servers, and containers.
+      Enables <code>codex</code> CLI sign-in in non-interactive environments such as remote boxes, SSH servers, and containers.
       Teams working on remote or Linux systems should keep this ON. The command is OS-neutral:
-      <code>codex login --device-code</code>.
+      <code>codex login --device-code</code>
     </p>
 
     <h3 class="menu"><span class="num">12.2</span>Surface tabs - App / CLI / IDE / Cloud</h3>
@@ -2594,8 +2628,8 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
               <h4>Codex CLI - terminal, remote, and automation first</h4>
               <p>Use <code>codex</code> directly inside local repos, remote boxes, SSH sessions, containers, and automation.</p>
               <ul>
-                <li><strong>Admin toggle</strong>: Codex Local plus device code when needed</li>
-                <li><strong>Auth</strong>: browser OAuth, device code, or API key</li>
+                <li><strong>Admin toggle</strong>: Allow members to use Codex Local plus device code when needed</li>
+                <li><strong>Auth</strong>: browser OAuth, <code>codex login --device-code</code>, or API key</li>
                 <li><strong>Main config</strong>: <code>~/.codex/config.toml</code>, <code>requirements.toml</code>, command rules</li>
               </ul>
             </div>
@@ -2726,7 +2760,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <ul>
       <li><strong>OAuth browser flow</strong> is the default local sign-in path.</li>
       <li><strong>Device code</strong> covers headless and remote environments.</li>
-      <li><strong>API key</strong> supports automation or service-style access.</li>
+      <li><strong>API key</strong> supports automation through the <code>OPENAI_API_KEY</code> environment variable or <code>codex login --with-api-key</code>.</li>
       <li>Tokens are then stored by OS: macOS Keychain, Windows Credential Manager, or Linux <code>~/.codex/auth.json</code>.</li>
     </ul>
   </section>
@@ -2742,7 +2776,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <ul>
       <li><strong>Prerequisite</strong>: the codebase must live in <strong>GitHub Cloud</strong>. For on-prem or non-GitHub setups, build through the Codex SDK instead.</li>
       <li>The <strong>ChatGPT GitHub Connector</strong> must be installed first for the toggle to matter.</li>
-      <li>The Codex navigation entry may take up to 10 minutes to appear after enablement.</li>
+      <li>The Codex navigation entry may take <strong>up to 10 minutes</strong> to appear after enablement.</li>
       <li>For GitHub Enterprise Managed Users, the organization owner must pre-install the Codex GitHub App.</li>
     </ul>
     <figure>
@@ -2780,7 +2814,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h3 class="menu"><span class="num">13.1</span>What Codex Admins can do</h3>
     <ul>
       <li>View Codex workspace analytics at <a href="https://chatgpt.com/codex/settings/analytics" target="_blank">/codex/settings/analytics</a>.</li>
-      <li>Author and assign cloud-managed <code>requirements.toml</code> policies from the <strong>Codex Policies</strong> page.</li>
+      <li>Author and assign cloud-managed <strong>Codex Policies</strong> <code>requirements.toml</code> policies.</li>
       <li>Configure group-level policies and the default fallback policy.</li>
       <li>Edit and delete Codex Cloud environments.</li>
     </ul>
@@ -2814,9 +2848,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><code>allowed_approval_policies</code> - approval-mode allowlists such as <em>untrusted</em> and <em>on-request</em>.</li>
       <li><code>allowed_sandbox_modes</code> - allowed values among <em>read-only</em>, <em>workspace-write</em>, and <em>danger-full-access</em>.</li>
       <li><code>allowed_web_search_modes</code> - <em>disabled</em>, <em>cached</em>, or <em>live</em>.</li>
-      <li><strong>MCP server allowlists</strong> - match allowed MCP servers by name or identity; an empty array blocks all MCP servers.</li>
+      <li><strong>MCP server allowlists</strong> - match allowed MCP servers by name or identity; an empty array <strong>blocks all MCP servers</strong>.</li>
       <li><strong>Restrictive command rules</strong> - prompt or forbid risky commands such as <code>rm</code> or <code>git push</code>.</li>
-      <li>Disable specific surfaces such as Browser Use, in-app browser, or Computer Use.</li>
+      <li><strong>Disable specific surfaces</strong> such as Browser Use, in-app browser, or Computer Use.</li>
     </ul>
     <h3 class="menu"><span class="num">14.2</span>Example policy</h3>
     <pre><code>allowed_web_search_modes = ["disabled", "cached"]
@@ -2859,7 +2893,7 @@ prefix_rules = [
     <h2>Managed Configuration - Complete Guide by OS</h2>
     <p class="lede">
       Beyond cloud-managed requirements, admins can deploy policy files directly to user machines. The critical point
-      is that the enforcement path, file location, and bypass risk differ by OS.
+      is that <strong>the enforcement path, file location, and bypass risk all differ by OS</strong>.
     </p>
     <p style="font-size:.88rem;color:var(--muted)">
       <a href="https://developers.openai.com/codex/enterprise/managed-configuration" target="_blank">→ Official Codex Managed Configuration guide</a>
@@ -2868,8 +2902,8 @@ prefix_rules = [
     <h3 class="menu"><span class="num">15.1</span>Configuration priority</h3>
     <p>If the same key appears in multiple places, the higher layer wins.</p>
     <ol>
-      <li><strong>Cloud-managed requirements</strong>: synced from ChatGPT after sign-in and not bypassable by users.</li>
-      <li><strong>OS-managed configuration</strong>: MDM on macOS or <code>/etc/codex/</code> on Linux.</li>
+      <li><strong>Cloud-managed requirements</strong>: synced from ChatGPT after sign-in, <strong>applied across operating systems and not bypassable by users</strong>. Recommended first choice.</li>
+      <li><strong>OS-managed configuration</strong>: MDM on macOS or <code>/etc/codex/</code> on Linux. <span class="pill gray">No equivalent path on Windows</span></li>
       <li><strong>User-local configuration</strong>: <code>~/.codex/config.toml</code>, editable by the user.</li>
     </ol>
 
@@ -2878,7 +2912,7 @@ prefix_rules = [
       <thead><tr><th>Type</th><th>File</th><th>Meaning</th><th>User changes</th></tr></thead>
       <tbody>
         <tr><td><strong>Requirements</strong></td><td><code>requirements.toml</code></td><td>Hard lock; violations block the action</td><td>No</td></tr>
-        <tr><td><strong>Managed defaults</strong></td><td><code>managed_config.toml</code></td><td>Starting defaults for a safer baseline</td><td>Can change during the session</td></tr>
+        <tr><td><strong>Managed defaults</strong></td><td><code>managed_config.toml</code></td><td>Starting defaults for a safer baseline</td><td>Can change during the session, then reset on next launch</td></tr>
       </tbody>
     </table>
 
@@ -2886,9 +2920,9 @@ prefix_rules = [
     <table>
       <thead><tr><th>Item</th><th>macOS</th><th>Windows</th><th>Linux</th></tr></thead>
       <tbody>
-        <tr><td>System-wide path</td><td><code>/etc/codex/</code></td><td>None</td><td><code>/etc/codex/</code></td></tr>
+        <tr><td>System-wide path</td><td><code>/etc/codex/</code></td><td><strong>None</strong></td><td><code>/etc/codex/</code></td></tr>
         <tr><td>User config path</td><td><code>~/.codex/</code></td><td><code>%USERPROFILE%\.codex\</code></td><td><code>~/.codex/</code></td></tr>
-        <tr><td>OS-level enforcement</td><td>MDM</td><td>Partial through Intune / GPO</td><td><code>/etc</code> permissions + automation</td></tr>
+        <tr><td>OS-level enforcement</td><td>MDM</td><td>Partial through Intune / GPO</td><td>/etc permissions + automation</td></tr>
         <tr><td>Official MDM key</td><td><code>com.openai.codex</code></td><td>No</td><td>No</td></tr>
         <tr><td>Practical enforcement</td><td>MDM profile</td><td><strong>Cloud-managed requirements required</strong></td><td>Root-owned files + automation</td></tr>
       </tbody>
@@ -2921,7 +2955,7 @@ log_user_prompt  = false</code></pre>
     <h4 class="sub">MDM workflow</h4>
     <ol>
       <li>Write the TOML policy.</li>
-      <li>Base64-encode it as a single line:
+      <li><code>base64</code>-encode it as a single line:
         <pre class="lang-pre" data-lang="bash"><code>cat requirements.toml | base64 | tr -d '\n' &gt; requirements.b64</code></pre>
       </li>
       <li>Add the following payload to the MDM profile:
@@ -2946,9 +2980,9 @@ codex --print-config | grep managed</code></pre>
     </div>
     <div class="warn">
       <span class="label">Windows limitation</span>
-      OpenAI does not currently provide a Windows equivalent of <code>/etc/codex</code> or a dedicated MDM domain.
+      OpenAI does not provide a Windows equivalent of <code>/etc/codex</code> or a dedicated MDM domain <strong>at present</strong>.
       Files under <code>%USERPROFILE%\.codex\</code> can still be changed by privileged users, so enforce real policy
-      through cloud-managed requirements and use local deployment for standardization.
+      through <strong>cloud-managed requirements</strong> and use local deployment for standardization.
     </div>
     <h4 class="sub">File locations</h4>
     <ul>
@@ -2963,8 +2997,8 @@ codex --print-config | grep managed</code></pre>
     <ol>
       <li>In Intune Admin Center, go to Devices → <strong>Configuration profiles</strong> → Create profile.</li>
       <li>Choose Platform: Windows 10 and later / Profile type: Templates → <strong>Custom</strong>.</li>
-      <li>Because OMA-URI is not ideal for direct file deployment, use a <strong>Win32 app</strong> or <strong>PowerShell scripts</strong> flow.</li>
-      <li>Deploy the script below in <strong>User context</strong>.</li>
+      <li>Because OMA-URI is not ideal for direct file deployment, use a <strong>Win32 app or PowerShell scripts</strong> flow.</li>
+      <li>Deploy the script below in User context.</li>
     </ol>
     <pre class="lang-pre" data-lang="powershell"><code>$codexDir = Join-Path $env:USERPROFILE ".codex"
 New-Item -ItemType Directory -Force -Path $codexDir | Out-Null
@@ -3073,28 +3107,31 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <div class="box">
       <div class="label">Recommended defaults</div>
       <ul style="margin:6px 0 0">
-        <li>Use <strong>workspace-write</strong> plus <strong>on-request</strong> for most users.</li>
+        <li>Use <strong>workspace-write plus on-request</strong> for most users.</li>
         <li>Reserve <code>danger-full-access</code> for tightly controlled containers only.</li>
         <li>Keep <code>network_access = false</code> unless explicit allowlists are needed.</li>
         <li>Keep <code>log_user_prompt = false</code> unless policy requires otherwise.</li>
-        <li>Review diffs between local config and managed policy regularly.</li>
-        <li>Pair Windows with cloud-managed requirements by default.</li>
+        <li>Review diffs between local <code>config.toml</code> and managed policy regularly.</li>
+        <li><strong>Pair Windows with cloud-managed requirements by default.</strong></li>
       </ul>
     </div>
 
     <h3 class="menu"><span class="num">15.6</span>Reading the config summary</h3>
     <p>
       When Codex starts, the config summary shows whether a value came from managed configuration or a hard requirement.
-      Look for <code>(managed)</code> and <code>(requirement)</code>; values without those markers come from user-local config.
+      Look for <code>(managed)</code> and <code>(requirement)</code>; values without those markers come from user-local
+      config at <code>~/.codex/config.toml</code>.
     </p>
   </section>
 
   <section class="chapter" id="codex-team">
     <div class="chap-num">Section 16 · Codex</div>
-    <h2>Team Config</h2>
+    <h2>Team Config - Repository-level Standardization <span class="pill green">OS-neutral</span></h2>
     <p>
-      Repository-level <code>.codex/</code> files provide shared configuration, rules, and skills for everyone who works
-      in a specific repo.
+      Use this when you want everyone entering a <strong>specific repository</strong>, rather than the whole organization,
+      to inherit the same Codex behavior. If you commit a <code>.codex/</code> folder into the repository, Codex reads it
+      automatically for everyone who opens that repo. Because it lives inside Git, it behaves the same across
+      <strong>macOS, Windows, and Linux</strong>.
     </p>
     <table>
       <thead><tr><th>Type</th><th>Path</th><th>Purpose</th></tr></thead>
@@ -3104,27 +3141,43 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
         <tr><td>Skills</td><td><code>.codex/skills/</code></td><td>Shared team skills</td></tr>
       </tbody>
     </table>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Start with the repositories that receive the most traffic.
+      <a href="https://developers.openai.com/codex/config-basic" target="_blank">[Config basics docs]</a>
+    </p>
   </section>
 
   <section class="chapter" id="codex-cloud">
     <div class="chap-num">Section 17 · Codex</div>
-    <h2>Cloud Environments and GitHub</h2>
+    <h2>Codex Cloud Environments and GitHub <span class="pill green">OS-neutral · browser</span></h2>
+    <p>
+      After enabling the Cloud toggle, decide which repositories Codex can access and which environments (containers)
+      it should run in. Because Cloud runs in the browser, the experience is the same on macOS, Windows, and Linux.
+    </p>
     <ol>
       <li>Open <a href="https://chatgpt.com/codex" target="_blank">chatgpt.com/codex</a> and select <em>Get started</em>.</li>
-      <li>Install the ChatGPT GitHub Connector.</li>
+      <li><strong>Connect to GitHub</strong> by installing the ChatGPT GitHub Connector.</li>
       <li>Select the target GitHub organization.</li>
       <li>Choose whether Codex can access all repositories or only selected ones.</li>
     </ol>
     <h3 class="menu"><span class="num">17.1</span>Security model</h3>
     <ul>
-      <li>Codex issues short-lived, least-privilege GitHub App installation tokens per task.</li>
+      <li>Codex issues <strong>short-lived, least-privilege GitHub App installation tokens</strong> per task.</li>
       <li>Existing GitHub permissions and branch-protection rules remain in force.</li>
       <li>GitHub Enterprise Managed Users require the org owner to pre-install the Codex GitHub App.</li>
     </ul>
     <h3 class="menu"><span class="num">17.2</span>IP allowlist / egress</h3>
-    <p>Organizations with GitHub allowlists need to include Codex egress IPs.</p>
+    <p>
+      If the GitHub organization is controlled by an IP allowlist, add the Codex egress ranges from
+      <a href="https://openai.com/chatgpt-agents.json" target="_blank">openai.com/chatgpt-agents.json</a>.
+      <strong>Those ranges can change, so an automated refresh script is recommended.</strong>
+    </p>
     <h3 class="menu"><span class="num">17.3</span>Environments</h3>
-    <p>Define build containers, packages, secrets, setup commands, and internet access per repository.</p>
+    <p>
+      Define build and test containers per repository, including packages, environment variables, secrets, and setup commands.
+      Cloud-agent internet access (<em>Internet Access</em>) is also controlled per environment.
+      <a href="https://developers.openai.com/codex/cloud/environments" target="_blank">[Cloud environments]</a>
+    </p>
   </section>
 
   <section class="chapter" id="codex-review">
@@ -3168,9 +3221,14 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <ul>
       <li>Scan connected repositories commit by commit.</li>
       <li>Prioritize likely findings and validate them where possible.</li>
-      <li>Return evidence, risk level, and recommended remediation.</li>
-      <li>Improve review quality through repository-specific threat models.</li>
+      <li>Return <strong>evidence, risk level, and recommended remediation</strong>.</li>
+      <li>Improve prioritization and review quality through repository-specific <strong>threat models</strong>.</li>
     </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://developers.openai.com/codex/security" target="_blank">→ Codex Security overview</a> ·
+      <a href="https://developers.openai.com/codex/security/setup" target="_blank">[Setup]</a> ·
+      <a href="https://developers.openai.com/codex/security/threat-model" target="_blank">[Threat model]</a>
+    </p>
   </section>
 
   <section class="chapter" id="codex-gov">
@@ -3198,7 +3256,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h3 class="menu"><span class="num">20.2</span>Codex Data Export <span class="pill">CSV / JSON</span></h3>
     <p>
       Codex Governance supports CSV or JSON exports for surface-level usage. If Workspace Analytics is mainly for
-      ChatGPT adoption, these exports are for Codex usage and Code Review operations.
+      ChatGPT adoption, these exports are for <strong>surface-specific Codex usage</strong> and Code Review operations.
     </p>
     <table>
       <thead><tr><th>Export</th><th>Included data</th><th>Typical Excel use</th></tr></thead>
@@ -3218,7 +3276,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </p>
     <ol>
       <li>Create a new read-only API key in the Platform Portal.</li>
-      <li>Email <code>support@openai.com</code> to request the limited analytics scope.</li>
+      <li>Email <code>support@openai.com</code> to request the <strong>limited analytics scope</strong>.</li>
       <li>After approval, call endpoints under <code>https://api.chatgpt.com/v1/analytics/codex/workspaces/{workspace_id}/...</code>.</li>
     </ol>
     <pre><code>curl -H "Authorization: Bearer YOUR_PLATFORM_API_KEY" \
@@ -3230,6 +3288,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       Compliance API is the channel for bringing workspace audit and compliance data into SIEM, data lakes,
       eDiscovery, or DLP tooling. Compliance Logs Platform retention is <strong>30 days</strong>, so longer retention
       requires continuous export into customer-managed storage.
+    </p>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers" target="_blank">→ Official OpenAI Compliance Platform guide</a>
     </p>
     <pre><code>curl -L -H "Authorization: Bearer YOUR_COMPLIANCE_API_KEY" \
   "https://api.chatgpt.com/v1/compliance/workspaces/WORKSPACE_ID/logs?event_type=CODEX_LOG&amp;after=2026-03-01T00:00:00Z"</code></pre>
@@ -3263,12 +3324,14 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <div class="label">Recommended pattern</div>
       Combine <strong>Workspace Analytics CSV</strong>, <strong>Codex CSV/JSON exports</strong>,
       <strong>Analytics API</strong>, and <strong>Compliance API</strong> rather than forcing one system to do every job.
+      <a href="https://developers.openai.com/codex/enterprise/governance" target="_blank">[Codex Governance]</a> ·
+      <a href="https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers" target="_blank">[Compliance Platform]</a>
     </div>
     <h3 class="menu"><span class="num">20.7</span>Metrics that are intentionally not provided</h3>
     <p style="font-size:.92rem">
-      OpenAI intentionally does not provide generated lines of code, suggestion acceptance rate, or generic code-quality
-      KPIs because those measures create poor incentives or depend too heavily on context. Build custom KPIs from pull
-      request review data and repository metadata instead.
+      OpenAI intentionally does not provide <em>generated lines of code</em>, <em>suggestion acceptance rate</em>, or
+      generic <em>code-quality KPIs</em> because those measures create poor incentives or depend too heavily on context.
+      Build custom KPIs from pull request review data and repository metadata instead.
     </p>
   </section>
 
@@ -3288,11 +3351,11 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
         <tr><td>06</td><td><a href="#apps">Apps</a></td><td>Enable or disable apps at workspace level and expose them by group.</td><td>Restrict sensitive apps by role.</td></tr>
         <tr><td>07</td><td><a href="#analytics">Analytics</a></td><td>Assign <strong>Analytics Viewer</strong> and define impact measurement.</td><td>Prepare adoption reporting.</td></tr>
         <tr><td>08</td><td><a href="#identity">Network</a></td><td>Apply IP allowlisting where needed.</td><td>Use only where the organization requires it.</td></tr>
-        <tr><td>09</td><td><a href="#codex-toggle">Codex basics</a></td><td>Define Codex Local / Cloud toggles, Codex Admin groups, and policy requirements.</td><td>Separate user surfaces from admin groups.</td></tr>
-        <tr><td>10</td><td><a href="#codex-managed">Codex clients</a></td><td>Set the deployment strategy by OS.</td><td>macOS MDM, Windows Intune/GPO + cloud requirements, Linux <code>/etc/codex/</code> + Ansible.</td></tr>
+        <tr><td>09</td><td><a href="#codex-toggle">Codex basics</a></td><td>Define Codex Local / Cloud toggles, Codex Admin groups, and policies (<code>requirements.toml</code>).</td><td>Separate user surfaces from admin groups.</td></tr>
+        <tr><td>10</td><td><a href="#codex-managed">Codex clients</a></td><td><strong>Set the deployment strategy by OS.</strong></td><td>macOS MDM, Windows Intune/GPO + cloud requirements, Linux <code>/etc/codex/</code> + Ansible.</td></tr>
         <tr><td>11</td><td><a href="#codex-review">Codex extensions</a></td><td>Enable Code Review and Codex Security.</td><td>Operate review and security at repository level.</td></tr>
         <tr><td>12</td><td><a href="#codex-gov">Audit and reporting</a></td><td>Issue Compliance API keys and build Analytics API reporting.</td><td>Cover audit logs and usage reporting together.</td></tr>
-        <tr><td>13</td><td><a href="#codex-intro">Final validation</a></td><td>Validate with sample users.</td><td>Check login, MFA, RBAC, managed policy, and analytics visibility.</td></tr>
+        <tr><td>13</td><td><a href="#codex-intro">Final validation</a></td><td><strong>Validate with sample users.</strong></td><td>Check login, MFA, RBAC, managed policy, and analytics visibility.</td></tr>
       </tbody>
     </table>
   </section>
