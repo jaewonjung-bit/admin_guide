@@ -75,6 +75,13 @@ sources:
     priority: high
     sections: [analytics]
 
+  - id: workspace-impact-surveys
+    url: https://help.openai.com/en/articles/20001149-managing-impact-surveys-in-workspace-analytics
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [analytics]
+
   - id: sso-overview
     url: https://help.openai.com/en/articles/10468051-sso-overview
     owner: openai_help
