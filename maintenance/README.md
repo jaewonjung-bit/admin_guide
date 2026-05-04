@@ -6,6 +6,7 @@ This folder keeps the update process for `chatgpt-codex-enterprise-settings.html
 
 - `sources.yml` is the source registry. It defines the official documents that should be checked, the sections they affect, and how often they matter.
 - `weekly-refresh-prompt.md` is the shared instruction block for scheduled refreshes and manual Codex requests.
+- `deploy-fixed-vercel.sh` deploys this repo to the existing Vercel project that owns `https://chatgpt-codex-enterprise-settings-g.vercel.app/`. Use it instead of ad-hoc `vercel deploy` so new worktrees do not accidentally create a new Vercel project.
 
 ## Weekly operating model
 
@@ -58,3 +59,9 @@ That request is the approval step after the weekly review. The weekly automation
 - Broken links, broken figures, and stale screenshot references are removed or replaced.
 - Scheduled review jobs never edit or commit.
 - Approved manual update jobs commit the final change with a concise maintenance-oriented message.
+
+## Deployment rule
+
+- This guide must deploy only to `https://chatgpt-codex-enterprise-settings-g.vercel.app/`.
+- Do not create or rely on a new Vercel project name derived from the local folder name.
+- Use `bash maintenance/deploy-fixed-vercel.sh` for manual deployment so the repo is always staged into a lowercase temp directory and linked to the fixed Vercel project ID before deployment.
