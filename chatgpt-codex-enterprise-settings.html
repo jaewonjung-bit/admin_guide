@@ -445,7 +445,7 @@
       각 메뉴의 위치, 역할, 권장 설정값, 그리고 OpenAI 공식 화면 캡처와 출처 링크를 함께 제공합니다.
     </p>
     <div class="meta">
-      <span data-i18n="meta-updated">최종 업데이트: 2026-04-29</span>
+      <span data-i18n="meta-updated">최종 업데이트: 2026-05-12</span>
       <span data-i18n="meta-sources">출처: OpenAI Help Center · OpenAI Academy · developers.openai.com</span>
       <span data-i18n="meta-language">지원 언어: 한국어 / English</span>
     </div>
@@ -720,19 +720,25 @@
 
   <h3 class="menu"><span class="num">05.5</span>Workspace Agents <span class="pill green">점진 배포</span></h3>
   <p>
-    2026년 4월 릴리스 노트 기준, 일부 Enterprise/Business 워크스페이스에는 <strong>Workspace Agents</strong>
-    관리 제어가 순차적으로 제공됩니다. 에이전트는 ChatGPT와 Slack에서 반복 업무를 자동화할 수 있으며,
+    2026년 5월 7일 릴리스 노트 기준, <strong>Workspace Agents</strong>는 eligible Enterprise/Business 워크스페이스뿐 아니라
+    <strong>EKM이 적용된 eligible Enterprise 워크스페이스</strong>까지 지원합니다. 에이전트는 ChatGPT와 Slack에서 반복 업무를 자동화할 수 있으며,
     앱·파일·스킬·커스텀 MCP 서버를 연결하고 예약 실행도 가능합니다.
   </p>
   <ul>
     <li><strong>기본값</strong>: 출시 시점에는 <strong>OFF</strong></li>
     <li><strong>관리 포인트</strong>: agent 생성, 게시, Slack 사용 권한 제어</li>
     <li><strong>공유 방식</strong>: 비공개, 링크 공유, 워크스페이스 디렉터리</li>
-    <li><strong>예외</strong>: EKM 적용 Enterprise 워크스페이스는 출시 초기 미지원</li>
+    <li><strong>주요 기능</strong>: 템플릿/직접 생성, 미리보기, 예약 실행, 버전 히스토리, usage analytics</li>
+    <li><strong>EKM 상태</strong>: 출시 초기 제한은 해제되었고, 이제 eligible EKM Enterprise도 사용 가능</li>
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
     이 기능은 현재 개별 Help 문서보다 <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a>가
     더 최신 설명을 제공합니다.
+  </p>
+  <p style="font-size:.88rem;color:var(--muted)">
+    별도로 2026년 5월 6일부터 <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>의
+    <strong>Agents</strong> 영역에서도 조직 전체 agent inventory, schedules, recent activity, analytics를 볼 수 있습니다. 이 문서의 중심은
+    Workspace Settings이므로 여기서는 운영 surface 차이만 짚습니다.
   </p>
 </section>
 
@@ -878,6 +884,18 @@
     최근 Box / Notion / Linear / Dropbox와 Google / Microsoft 계열 앱에도 새 write action이 추가되고 있어,
     앱을 켤 때는 <strong>scope 승인 + Manage actions 검토 + 필요 시 사용자 재연결</strong>을 함께 운영 절차로 잡는 편이 좋습니다.
   </p>
+
+  <h3 class="menu"><span class="num">08.6</span>ChatGPT for Excel and Google Sheets</h3>
+  <ul>
+    <li>Excel과 Google Sheets 안에서 동작하는 <strong>spreadsheet-native sidebar</strong> 경험입니다.</li>
+    <li>RBAC를 쓰는 조직은 <strong>Workspace settings → Permissions &amp; roles → ChatGPT for Excel and Google Sheets</strong>에서
+      <strong>Enable ChatGPT for Excel and Sheets</strong>를 켜야 할 수 있습니다.</li>
+    <li>이 토글은 <strong>Excel과 Google Sheets 둘 다</strong>에 적용됩니다.</li>
+    <li>Skills와 Apps를 함께 쓸 수 있고, Enterprise 제어 기준으로는 <strong>RBAC, EKM, 데이터/추론 레지던시(지원되는 경우), Compliance API</strong> 범위를 따릅니다.</li>
+  </ul>
+  <p style="font-size:.88rem;color:var(--muted)">
+    <a href="https://help.openai.com/en/articles/20001063-chatgpt-for-excel-and-google-sheets" target="_blank">→ ChatGPT for Excel and Google Sheets 공식 가이드</a>
+  </p>
 </section>
 
 <!-- ============ ANALYTICS ============ -->
@@ -890,6 +908,12 @@
     <strong>Overview / Benchmarks / Impact / Task insights / Users / GPTs / Projects / Skills</strong>이며,
     <strong>analytics viewer</strong> 역할이 읽기 전용 접근을 제공합니다.
   </p>
+  <div class="box">
+    <div class="label">별도 관리 surface</div>
+    2026년 5월 6일부터 <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>에는
+    <strong>Analytics</strong>와 <strong>Agents</strong> 영역이 추가되었습니다. Workspace analytics가 <strong>개별 워크스페이스 운영 화면</strong>이라면,
+    Global Admin Console은 여러 workspace와 조직을 아우르는 <strong>tenant 단위 상위 운영 화면</strong>입니다.
+  </div>
 
   <h3 class="menu"><span class="num">09.1</span>Overview</h3>
   <ul>
@@ -2288,19 +2312,26 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <p>Owner-only area for enabling or disabling pre-GA features at the workspace level.</p>
     <h3 class="menu"><span class="num">05.5</span>Workspace Agents <span class="pill green">gradual rollout</span></h3>
     <p>
-      As of the April 2026 release notes, eligible Enterprise and Business workspaces may also receive
-      <strong>Workspace Agents</strong> admin controls. Agents can automate repeatable work across ChatGPT and Slack,
-      connect to apps, files, skills, and custom MCP servers, and run on schedules.
+      As of the May 7, 2026 release notes, <strong>Workspace Agents</strong> are available not only to eligible
+      Enterprise and Business workspaces, but also to <strong>eligible Enterprise workspaces with EKM</strong>.
+      Agents can automate repeatable work across ChatGPT and Slack, connect to apps, files, skills, and custom MCP servers,
+      and run on schedules.
     </p>
     <ul>
       <li><strong>Default at launch</strong>: <strong>off</strong></li>
       <li><strong>Admin controls</strong>: agent building, publishing, and Slack usage</li>
       <li><strong>Sharing modes</strong>: private, link-based, or workspace directory</li>
-      <li><strong>Launch limitation</strong>: not available at launch for Enterprise workspaces with EKM</li>
+      <li><strong>Core capabilities</strong>: template or scratch creation, preview, scheduled runs, version history, and usage analytics</li>
+      <li><strong>EKM status</strong>: the launch-stage limitation has been removed for eligible Enterprise workspaces with EKM</li>
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
       Right now the <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">release notes</a>
       are more current than the broader workspace-settings article for this feature.
+    </p>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Starting May 6, 2026, the <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>
+      also includes an <strong>Agents</strong> area for organization-wide agent inventory, schedules, recent activity, and analytics.
+      This guide remains centered on Workspace Settings, so it only notes the operating-surface split here.
     </p>
   </section>
 
@@ -2427,6 +2458,16 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <p style="font-size:.88rem;color:var(--muted)">
       Recent updates to Box, Notion, Linear, Dropbox, and Google / Microsoft apps also add new write actions, so app enablement should usually include <strong>scope review, Manage actions review, and possible end-user reconnect guidance</strong>.
     </p>
+    <h3 class="menu"><span class="num">08.6</span>ChatGPT for Excel and Google Sheets</h3>
+    <ul>
+      <li>A <strong>spreadsheet-native sidebar</strong> experience that runs inside Excel and Google Sheets.</li>
+      <li>Organizations using RBAC may need to enable it from <strong>Workspace settings → Permissions &amp; roles → ChatGPT for Excel and Google Sheets</strong> by turning on <strong>Enable ChatGPT for Excel and Sheets</strong>.</li>
+      <li>The same toggle applies to <strong>both Excel and Google Sheets</strong>.</li>
+      <li>It supports Skills and Apps and follows Enterprise controls such as <strong>RBAC, EKM, data and inference residency where supported, and Compliance API coverage</strong>.</li>
+    </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://help.openai.com/en/articles/20001063-chatgpt-for-excel-and-google-sheets" target="_blank">→ Official ChatGPT for Excel and Google Sheets guide</a>
+    </p>
   </section>
 
   <section class="chapter" id="analytics">
@@ -2438,6 +2479,13 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       structure is <strong>Overview / Benchmarks / Impact / Task insights / Users / GPTs / Projects / Skills</strong>,
       with the <strong>analytics viewer</strong> role providing read-only access.
     </p>
+    <div class="box">
+      <div class="label">Separate admin surface</div>
+      As of May 6, 2026, the <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>
+      includes dedicated <strong>Analytics</strong> and <strong>Agents</strong> areas. If Workspace analytics is the
+      <strong>per-workspace operating view</strong>, the Global Admin Console is the higher-level <strong>tenant-wide operating surface</strong>
+      across multiple workspaces and organizations.
+    </div>
     <h3 class="menu"><span class="num">09.1</span>Overview</h3>
     <ul>
       <li>Unique active users, total messages, GPT messages, and tool messages.</li>
@@ -3502,11 +3550,13 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><a href="https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers" target="_blank">OpenAI Compliance Platform for Enterprise and Edu Customers</a></li>
       <li><a href="https://help.openai.com/en/articles/9039756-billing-settings-in-chatgpt-vs-platform" target="_blank">Billing settings in ChatGPT vs Platform</a></li>
       <li><a href="https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-in-apps-enterprise-edu-and-business" target="_blank">Admin Controls, Security &amp; Compliance in Apps</a></li>
+      <li><a href="https://help.openai.com/en/articles/20001063-chatgpt-for-excel-and-google-sheets" target="_blank">ChatGPT for Excel and Google Sheets</a></li>
       <li><a href="https://help.openai.com/en/articles/8555535-gpts-chatgpt-enterprise-version" target="_blank">Managing GPT access in Enterprise &amp; Edu</a></li>
       <li><a href="https://help.openai.com/en/articles/9442513-gpt-actions-domain-settings-chatgpt-enterprise" target="_blank">GPT Actions — Domain Settings</a></li>
       <li><a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics for Enterprise &amp; Edu</a></li>
       <li><a href="https://help.openai.com/en/articles/20001149-managing-impact-surveys-in-workspace-analytics" target="_blank">Managing impact surveys in workspace analytics</a></li>
       <li><a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">ChatGPT Enterprise &amp; Edu — Release Notes</a></li>
+      <li><a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a></li>
       <li><a href="https://academy.openai.com/public/clubs/admins-6o6xf/resources/feature-controls-and-integrations-with-your-tools" target="_blank">OpenAI Academy — Feature controls &amp; integrations</a></li>
       <li><a href="https://academy.openai.com/public/clubs/admins-6o6xf/resources/chatgpt-enterprise-user-analytics-guide" target="_blank">OpenAI Academy — Workspace analytics guide</a></li>
       <li><a href="https://academy.openai.com/public/clubs/builders-etkn1/resources/codex-for-builders" target="_blank">OpenAI Academy — Codex for Builders</a></li>
@@ -3530,7 +3580,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 </section>
 
 <footer data-i18n="footer-note">
-  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-04-29
+  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-05-12
 </footer>
 
 <script>
@@ -3539,7 +3589,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "hero-eyebrow": "OpenAI · Admin Guide · 2026",
       "hero-title": "ChatGPT Enterprise &amp;<br/>Codex Enterprise<br/><em>Workspace Settings Complete Guide</em>",
       "hero-subtitle": "A consolidated guide to every menu in the ChatGPT Enterprise/Edu workspace admin console and the Codex Enterprise admin surface, including where each setting lives, what it controls, recommended defaults, official screenshots, and source links.",
-      "meta-updated": "Last updated: 2026-04-29",
+      "meta-updated": "Last updated: 2026-05-12",
       "meta-sources": "Sources: OpenAI Help Center · OpenAI Academy · developers.openai.com",
       "meta-language": "Available languages: Korean / English",
       "toc-part1": "Contents — Part 1 · ChatGPT Enterprise",
@@ -3722,7 +3772,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "check-13-action": "Run <strong>final validation</strong> with sample users",
       "check-13-note": "Verify login, MFA, RBAC, managed policies, and analytics visibility",
       "sources-title": "Sources / Reference Links — All Sources",
-      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-04-29"
+      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-05-12"
     };
 
 
