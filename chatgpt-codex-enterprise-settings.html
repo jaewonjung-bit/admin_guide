@@ -353,6 +353,26 @@
     padding:14px 16px;border-radius:12px;font-size:.92rem;
   }
   .surface-card.green{border-color:var(--green-line);}
+  .login-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0 22px;
+  }
+  @media (max-width:920px){.login-grid{grid-template-columns:1fr;}}
+  .login-card{
+    background:#fff;border:1px solid var(--line-light);border-radius:12px;
+    padding:16px 18px;font-size:.92rem;
+  }
+  .login-card.green{border-color:var(--green-line);}
+  .login-card .badge{
+    display:inline-block;border:1px solid var(--line-light);border-radius:999px;
+    padding:2px 8px;margin-bottom:8px;font-size:.66rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);font-weight:800;
+  }
+  .login-card h4{margin:0 0 8px;font-size:1.05rem;}
+  .login-card ol{padding-left:18px;margin:8px 0 0;}
+  .login-card li{margin:4px 0;}
+  .login-card figure{margin:14px 0 0;padding:10px;border-radius:10px;}
+  .login-card figure img{max-height:170px;object-fit:contain;background:#f7f7f5;}
+  .login-card figcaption{font-size:.76rem;margin-top:8px;}
   #surface-app:checked ~ .tab-list label[for="surface-app"],
   #surface-cli:checked ~ .tab-list label[for="surface-cli"],
   #surface-ide:checked ~ .tab-list label[for="surface-ide"],
@@ -445,7 +465,7 @@
       각 메뉴의 위치, 역할, 권장 설정값, 그리고 OpenAI 공식 화면 캡처와 출처 링크를 함께 제공합니다.
     </p>
     <div class="meta">
-      <span data-i18n="meta-updated">최종 업데이트: 2026-05-12</span>
+      <span data-i18n="meta-updated">최종 업데이트: 2026-05-15</span>
       <span data-i18n="meta-sources">출처: OpenAI Help Center · OpenAI Academy · developers.openai.com</span>
       <span data-i18n="meta-language">지원 언어: 한국어 / English</span>
     </div>
@@ -475,7 +495,7 @@
     <li><a href="#codex-intro" data-i18n="toc-codex-intro">Codex Enterprise 개요 &amp; 설정 순서도</a></li>
     <li><a href="#codex-toggle" data-i18n="toc-codex-tabs">Codex 사용 환경·OS 탭</a></li>
     <li><a href="#codex-cloud-toggle" data-i18n="toc-codex-cloud-toggle">Codex Cloud 토글</a></li>
-    <li><a href="#codex-rbac">Codex RBAC &amp; Codex Admin</a></li>
+    <li><a href="#codex-rbac" data-i18n="toc-codex-rbac">Codex RBAC · 사용자 로그인</a></li>
     <li><a href="#codex-policies" data-i18n="toc-codex-policies">Policies (requirements.toml)</a></li>
     <li><a href="#codex-managed" data-i18n="toc-codex-managed">Managed Configuration (OS별 가이드)</a></li>
     <li><a href="#codex-team">Team Config (.codex)</a></li>
@@ -1178,8 +1198,8 @@
     <div class="flow-step">
       <div class="kicker">Step 04</div>
       <h4 data-i18n="flow-4-title">RBAC 그룹</h4>
-      <p data-i18n="flow-4-body">Codex Users와 Codex Admin을 분리하고, 가능하면 SCIM 그룹으로 관리합니다.</p>
-      <div class="related"><a href="#codex-rbac">14 RBAC</a></div>
+      <p data-i18n="flow-4-body">Codex Users와 Codex Admin을 분리하고, 사용자가 App/IDE/CLI에서 어떻게 접속·로그인하는지도 여기서 확인합니다.</p>
+      <div class="related"><a href="#codex-rbac">13 RBAC</a><a href="#codex-user-login">로그인 방법</a></div>
     </div>
     <div class="flow-step">
       <div class="kicker">Step 05</div>
@@ -1243,7 +1263,7 @@
   <p data-i18n="device-code-body">
     원격 개발 박스, SSH 서버, 컨테이너 등 비대화형 환경에서 <code>codex</code> CLI에 device code 로그인을 허용할지 토글.
     원격/Linux 서버에서 작업하는 팀은 반드시 ON으로 두어야 합니다.
-    명령어는 OS 무관: <code>codex login --device-code</code>
+    명령어는 OS 무관: <code>codex login --device-auth</code>
   </p>
 
   <h3 class="menu" data-i18n="surface-tabs-title"><span class="num">12.2</span>사용 환경별 탭 — App / CLI / IDE / Cloud</h3>
@@ -1291,7 +1311,7 @@
             <p data-i18n="surface-cli-body"><code>codex</code> 명령으로 로컬 리포지토리에서 작업합니다. 원격 개발 박스, SSH 서버, 컨테이너, CI/CD 자동화에는 CLI가 가장 잘 맞습니다.</p>
             <ul>
               <li><strong>관리 토글</strong>: Allow members to use Codex Local + 필요 시 device code authentication</li>
-              <li><strong>인증</strong>: OAuth 브라우저 흐름, <code>codex login --device-code</code>, 또는 API key</li>
+              <li><strong>인증</strong>: OAuth 브라우저 흐름, <code>codex login --device-auth</code>, 또는 API key</li>
               <li><strong>주요 설정</strong>: <code>~/.codex/config.toml</code>, <code>requirements.toml</code>, command rules</li>
             </ul>
           </div>
@@ -1485,7 +1505,83 @@
     <figcaption>Codex RBAC Custom Role · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">출처</a></figcaption>
   </figure>
 
-  <h3 class="menu"><span class="num">13.1</span>Codex Admin이 할 수 있는 일</h3>
+  <h3 class="menu" id="codex-user-login"><span class="num">13.1</span>사용자 접속·로그인 방법 — App / IDE / CLI</h3>
+  <p>
+    Step 04에서 RBAC 그룹을 만든 뒤에는, 실제 사용자가 어느 클라이언트에서 어떻게 들어가는지까지
+    온보딩 안내에 포함해야 합니다. 전제는 사용자가 <strong>Codex Users</strong> 범위에 있고
+    <strong>Allow members to use Codex Local</strong>이 켜져 있는 것입니다. 이 권한이 없으면 App, CLI, IDE 모두
+    <code>403 - Unauthorized. Contact your ChatGPT administrator for access.</code> 오류를 봅니다.
+  </p>
+  <p style="font-size:.88rem;color:var(--muted)">
+    공식 기준:
+    <a href="https://developers.openai.com/codex/app" target="_blank">Codex App</a> ·
+    <a href="https://developers.openai.com/codex/ide" target="_blank">Codex IDE Extension</a> ·
+    <a href="https://developers.openai.com/codex/cli" target="_blank">Codex CLI</a> ·
+    <a href="https://developers.openai.com/codex/auth" target="_blank">Codex Authentication</a>
+  </p>
+  <div class="login-grid" aria-label="Codex user login paths">
+    <div class="login-card">
+      <span class="badge">App</span>
+      <h4>Codex App</h4>
+      <ol>
+        <li>macOS 또는 Windows용 Codex App을 설치합니다. Linux는 데스크톱 App이 없으므로 CLI/IDE를 안내합니다.</li>
+        <li>앱을 열고 <strong>ChatGPT 계정</strong> 또는 <strong>OpenAI API key</strong>로 로그인합니다.</li>
+        <li>작업할 프로젝트 폴더를 선택하고, Local이 선택된 상태에서 첫 메시지를 보냅니다.</li>
+      </ol>
+      <figure>
+        <img src="https://developers.openai.com/images/codex/windows/codex-windows-light.webp"
+             alt="Codex App 공식 화면"
+             onerror="this.parentElement.style.display='none'"/>
+        <figcaption>Codex App 화면 · <a href="https://developers.openai.com/codex/app" target="_blank">출처</a></figcaption>
+      </figure>
+    </div>
+    <div class="login-card">
+      <span class="badge">IDE</span>
+      <h4>IDE Extension</h4>
+      <ol>
+        <li>VS Code Marketplace 또는 IDE별 다운로드 링크에서 Codex 확장을 설치합니다.</li>
+        <li>설치 후 에디터 사이드바의 Codex 아이콘을 열면 로그인 프롬프트가 표시됩니다.</li>
+        <li><strong>ChatGPT 계정</strong> 또는 <strong>API key</strong>로 로그인합니다. JetBrains 통합은 JetBrains AI 구독 로그인도 지원합니다.</li>
+      </ol>
+      <figure>
+        <img src="https://cdn.openai.com/devhub/docs/codex-extension.webp"
+             alt="Codex IDE Extension 공식 화면"
+             onerror="this.parentElement.style.display='none'"/>
+        <figcaption>Codex IDE Extension 화면 · <a href="https://developers.openai.com/codex/ide" target="_blank">출처</a></figcaption>
+      </figure>
+    </div>
+    <div class="login-card green">
+      <span class="badge">CLI</span>
+      <h4>Codex CLI</h4>
+      <ol>
+        <li><code>npm i -g @openai/codex</code> 또는 Homebrew로 설치한 뒤 터미널에서 <code>codex</code>를 실행합니다.</li>
+        <li>첫 실행 시 브라우저 기반 ChatGPT OAuth 또는 API key 로그인을 선택합니다.</li>
+        <li>원격·헤드리스 환경은 device auth를 켜고 <code>codex login --device-auth</code>를 사용합니다.</li>
+      </ol>
+      <figure>
+        <img src="https://developers.openai.com/images/codex/enterprise/local-toggle-config.png"
+             alt="Codex Local 및 device auth 관리자 토글"
+             onerror="this.parentElement.style.display='none'"/>
+        <figcaption>Codex Local 및 device auth 토글 · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">출처</a></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="box green">
+    <div class="label">Linux 사용자 접속 안내</div>
+    <ul>
+      <li><strong>데스크톱 App은 없음</strong> — Linux 사용자는 Codex App 대신 <strong>CLI</strong> 또는 <strong>IDE Extension</strong>으로 접속합니다.</li>
+      <li><strong>CLI 접속</strong> — Linux 터미널에서 <code>npm i -g @openai/codex</code>로 설치하고 <code>codex</code>를 실행합니다. 첫 실행 시 ChatGPT 계정 OAuth 또는 API key로 로그인합니다.</li>
+      <li><strong>원격/SSH/headless 서버</strong> — 브라우저 로그인이 어렵다면 device auth를 켜고 <code>codex login --device-auth</code>를 사용합니다.</li>
+      <li><strong>IDE 접속</strong> — VS Code, Cursor, Windsurf, JetBrains IDE에 Codex Extension을 설치하고 사이드바에서 ChatGPT 계정 또는 API key로 로그인합니다.</li>
+      <li><strong>권장 안내</strong> — Linux 데스크톱 사용자는 IDE Extension이 App에 가장 가까운 경험이고, 원격 개발 서버·컨테이너·자동화 환경은 CLI가 가장 적합합니다.</li>
+    </ul>
+  </div>
+  <div class="warn">
+    <span class="label">사용자 안내 포인트</span>
+    “어느 클라이언트를 설치할지”와 “어떤 계정으로 로그인할지”를 함께 안내하세요. Enterprise 사용자는 회사 ChatGPT 워크스페이스 계정으로
+    로그인해야 RBAC, 관리형 정책, 사용량/감사 로그가 같은 워크스페이스에 연결됩니다.
+  </div>
+  <h3 class="menu"><span class="num">13.2</span>Codex Admin이 할 수 있는 일</h3>
   <ul>
     <li>Codex 워크스페이스 분석 보기 (<a href="https://chatgpt.com/codex/settings/analytics" target="_blank">/codex/settings/analytics</a>)</li>
     <li><strong>Codex Policies</strong> 페이지에서 클라우드 관리형 <code>requirements.toml</code> 정책 작성·할당</li>
@@ -1493,7 +1589,7 @@
     <li>Codex cloud 환경(environments) 편집·삭제</li>
   </ul>
 
-  <h3 class="menu"><span class="num">13.2</span>권장 그룹 구조</h3>
+  <h3 class="menu"><span class="num">13.3</span>권장 그룹 구조</h3>
   <ul>
     <li><strong>Codex Users</strong> 그룹 — Codex를 쓰는 모든 개발자</li>
     <li><strong>Codex Admin</strong> 그룹 — 정책/환경/거버넌스 운영자(소수)</li>
@@ -2705,7 +2801,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <div class="flow-step"><div class="kicker">Step 01</div><h4>Confirm owners</h4><p>Assign workspace, security, and analytics owners.</p><div class="related"><a href="#codex-intro">11 Overview</a><a href="#rollout-checklist">Checklist</a></div></div>
       <div class="flow-step"><div class="kicker">Step 02</div><h4>Choose surfaces</h4><p>Decide whether to launch Local, Cloud, or both.</p><div class="related"><a href="#codex-toggle">12 Surfaces</a></div></div>
       <div class="flow-step"><div class="kicker">Step 03</div><h4>Enable toggles</h4><p>Turn on only the required local and cloud controls.</p><div class="related"><a href="#codex-toggle">12 Local</a><a href="#codex-cloud-toggle">13 Cloud</a></div></div>
-      <div class="flow-step"><div class="kicker">Step 04</div><h4>Define RBAC</h4><p>Separate Codex users from Codex admins.</p><div class="related"><a href="#codex-rbac">14 RBAC</a></div></div>
+      <div class="flow-step"><div class="kicker">Step 04</div><h4>Define RBAC</h4><p>Separate Codex users from Codex admins, and point admins to the user-facing App / IDE / CLI sign-in paths.</p><div class="related"><a href="#codex-rbac">13 RBAC</a><a href="#codex-user-login">Login paths</a></div></div>
       <div class="flow-step"><div class="kicker">Step 05</div><h4>Set policies</h4><p>Use cloud-managed requirements for sandbox and approval rules.</p><div class="related"><a href="#codex-policies">15 Policies</a></div></div>
       <div class="flow-step"><div class="kicker">Step 06</div><h4>Deploy by OS</h4><p>Use MDM, Intune/GPO, or Linux system policy as appropriate.</p><div class="related"><a href="#codex-managed">16 Managed Config</a></div></div>
       <div class="flow-step"><div class="kicker">Step 07</div><h4>Extend operations</h4><p>Configure team standards, cloud integration, review, and security.</p><div class="related"><a href="#codex-team">17 Team</a><a href="#codex-cloud">18 Cloud</a><a href="#codex-review">19 Review</a><a href="#codex-security">20 Security</a></div></div>
@@ -2744,7 +2840,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <p>
       Enables <code>codex</code> CLI sign-in in non-interactive environments such as remote boxes, SSH servers, and containers.
       Teams working on remote or Linux systems should keep this ON. The command is OS-neutral:
-      <code>codex login --device-code</code>
+      <code>codex login --device-auth</code>
     </p>
 
     <h3 class="menu"><span class="num">12.2</span>Surface tabs - App / CLI / IDE / Cloud</h3>
@@ -2792,7 +2888,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
               <p>Use <code>codex</code> directly inside local repos, remote boxes, SSH sessions, containers, and automation.</p>
               <ul>
                 <li><strong>Admin toggle</strong>: Allow members to use Codex Local plus device code when needed</li>
-                <li><strong>Auth</strong>: browser OAuth, <code>codex login --device-code</code>, or API key</li>
+                <li><strong>Auth</strong>: browser OAuth, <code>codex login --device-auth</code>, or API key</li>
                 <li><strong>Main config</strong>: <code>~/.codex/config.toml</code>, <code>requirements.toml</code>, command rules</li>
               </ul>
             </div>
@@ -2974,14 +3070,89 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
            onerror="this.parentElement.style.display='none'"/>
       <figcaption>Codex RBAC custom role · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
     </figure>
-    <h3 class="menu"><span class="num">13.1</span>What Codex Admins can do</h3>
+    <h3 class="menu" id="codex-user-login"><span class="num">13.1</span>User Access and Sign-In Paths — App / IDE / CLI</h3>
+    <p>
+      After Step 04 defines the RBAC groups, the rollout guide should also explain how end users actually enter Codex from each client.
+      The baseline is that the user is in the <strong>Codex Users</strong> audience and <strong>Allow members to use Codex Local</strong> is enabled.
+      Without that permission, App, CLI, and IDE users see <code>403 - Unauthorized. Contact your ChatGPT administrator for access.</code>
+    </p>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Official basis:
+      <a href="https://developers.openai.com/codex/app" target="_blank">Codex App</a> ·
+      <a href="https://developers.openai.com/codex/ide" target="_blank">Codex IDE Extension</a> ·
+      <a href="https://developers.openai.com/codex/cli" target="_blank">Codex CLI</a> ·
+      <a href="https://developers.openai.com/codex/auth" target="_blank">Codex Authentication</a>
+    </p>
+    <div class="login-grid" aria-label="Codex user login paths">
+      <div class="login-card">
+        <span class="badge">App</span>
+        <h4>Codex App</h4>
+        <ol>
+          <li>Install the Codex App for macOS or Windows. Linux users should use CLI or IDE because there is no desktop App.</li>
+          <li>Open the app and sign in with a <strong>ChatGPT account</strong> or an <strong>OpenAI API key</strong>.</li>
+          <li>Select the project folder, keep Local selected, and send the first message.</li>
+        </ol>
+        <figure>
+          <img src="https://developers.openai.com/images/codex/windows/codex-windows-light.webp"
+               alt="Official Codex App screenshot"
+               onerror="this.parentElement.style.display='none'"/>
+          <figcaption>Codex App screenshot · <a href="https://developers.openai.com/codex/app" target="_blank">Source</a></figcaption>
+        </figure>
+      </div>
+      <div class="login-card">
+        <span class="badge">IDE</span>
+        <h4>IDE Extension</h4>
+        <ol>
+          <li>Install the Codex extension from the VS Code Marketplace or the download link for the target IDE.</li>
+          <li>Open the Codex icon in the editor sidebar after installation.</li>
+          <li>Sign in with a <strong>ChatGPT account</strong> or <strong>API key</strong>. JetBrains also supports JetBrains AI subscription sign-in.</li>
+        </ol>
+        <figure>
+          <img src="https://cdn.openai.com/devhub/docs/codex-extension.webp"
+               alt="Official Codex IDE Extension screenshot"
+               onerror="this.parentElement.style.display='none'"/>
+          <figcaption>Codex IDE Extension screenshot · <a href="https://developers.openai.com/codex/ide" target="_blank">Source</a></figcaption>
+        </figure>
+      </div>
+      <div class="login-card green">
+        <span class="badge">CLI</span>
+        <h4>Codex CLI</h4>
+        <ol>
+          <li>Install with <code>npm i -g @openai/codex</code> or Homebrew, then run <code>codex</code> in a terminal.</li>
+          <li>On first run, choose browser-based ChatGPT OAuth or API key sign-in.</li>
+          <li>For remote or headless environments, enable device auth and run <code>codex login --device-auth</code>.</li>
+        </ol>
+        <figure>
+          <img src="https://developers.openai.com/images/codex/enterprise/local-toggle-config.png"
+               alt="Codex Local and device auth admin toggles"
+               onerror="this.parentElement.style.display='none'"/>
+          <figcaption>Codex Local and device auth toggles · <a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Source</a></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="box green">
+      <div class="label">Linux user access guide</div>
+      <ul>
+        <li><strong>No desktop App</strong> - Linux users access Codex through the <strong>CLI</strong> or <strong>IDE Extension</strong>, not the Codex App.</li>
+        <li><strong>CLI access</strong> - install from the Linux terminal with <code>npm i -g @openai/codex</code>, then run <code>codex</code>. On first run, sign in with ChatGPT OAuth or an API key.</li>
+        <li><strong>Remote / SSH / headless servers</strong> - when browser login is difficult, enable device auth and use <code>codex login --device-auth</code>.</li>
+        <li><strong>IDE access</strong> - install the Codex Extension in VS Code, Cursor, Windsurf, or JetBrains IDEs, then sign in from the sidebar with a ChatGPT account or API key.</li>
+        <li><strong>Recommended guidance</strong> - IDE Extension is the closest App-like experience on Linux desktops; CLI is best for remote development servers, containers, and automation.</li>
+      </ul>
+    </div>
+    <div class="warn">
+      <span class="label">User rollout point</span>
+      Tell users both which client to install and which account to use. Enterprise users should sign in with their company ChatGPT workspace account so RBAC,
+      managed policies, usage analytics, and audit logs attach to the right workspace.
+    </div>
+    <h3 class="menu"><span class="num">13.2</span>What Codex Admins can do</h3>
     <ul>
       <li>View Codex workspace analytics at <a href="https://chatgpt.com/codex/settings/analytics" target="_blank">/codex/settings/analytics</a>.</li>
       <li>Author and assign cloud-managed <strong>Codex Policies</strong> <code>requirements.toml</code> policies.</li>
       <li>Configure group-level policies and the default fallback policy.</li>
       <li>Edit and delete Codex cloud environments.</li>
     </ul>
-    <h3 class="menu"><span class="num">13.2</span>Recommended group model</h3>
+    <h3 class="menu"><span class="num">13.3</span>Recommended group model</h3>
     <ul>
       <li><strong>Codex Users</strong> for all practitioners.</li>
       <li><strong>Codex Admins</strong> for the small operations group.</li>
@@ -3567,6 +3738,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><a href="https://developers.openai.com/codex/enterprise/managed-configuration" target="_blank">Codex Enterprise — Managed Configuration</a></li>
       <li><a href="https://learn.microsoft.com/en-us/mem/intune/apps/intune-management-extension" target="_blank">Microsoft Intune — PowerShell scripts (Management Extension)</a></li>
       <li><a href="https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn789196(v=ws.11)" target="_blank">Windows Group Policy — File Preferences</a></li>
+      <li><a href="https://developers.openai.com/codex/app" target="_blank">Codex — App</a></li>
+      <li><a href="https://developers.openai.com/codex/ide" target="_blank">Codex — IDE extension</a></li>
+      <li><a href="https://developers.openai.com/codex/cli" target="_blank">Codex — CLI</a></li>
       <li><a href="https://developers.openai.com/codex/auth" target="_blank">Codex — Authentication</a></li>
       <li><a href="https://developers.openai.com/codex/agent-approvals-security" target="_blank">Codex — Agent approvals &amp; security</a></li>
       <li><a href="https://developers.openai.com/codex/security" target="_blank">Codex — Security overview</a></li>
@@ -3580,7 +3754,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 </section>
 
 <footer data-i18n="footer-note">
-  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-05-12
+  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-05-15
 </footer>
 
 <script>
@@ -3589,7 +3763,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "hero-eyebrow": "OpenAI · Admin Guide · 2026",
       "hero-title": "ChatGPT Enterprise &amp;<br/>Codex Enterprise<br/><em>Workspace Settings Complete Guide</em>",
       "hero-subtitle": "A consolidated guide to every menu in the ChatGPT Enterprise/Edu workspace admin console and the Codex Enterprise admin surface, including where each setting lives, what it controls, recommended defaults, official screenshots, and source links.",
-      "meta-updated": "Last updated: 2026-05-12",
+      "meta-updated": "Last updated: 2026-05-15",
       "meta-sources": "Sources: OpenAI Help Center · OpenAI Academy · developers.openai.com",
       "meta-language": "Available languages: Korean / English",
       "toc-part1": "Contents — Part 1 · ChatGPT Enterprise",
@@ -3601,6 +3775,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "toc-codex-intro": "Codex Enterprise overview & setup flow",
       "toc-codex-tabs": "Codex surface and OS tabs",
       "toc-codex-cloud-toggle": "Codex cloud toggle",
+      "toc-codex-rbac": "Codex RBAC · User login",
       "toc-codex-policies": "Policies (requirements.toml)",
       "toc-codex-managed": "Managed Configuration (OS guide)",
       "toc-codex-cloud": "Cloud environments & GitHub",
@@ -3622,7 +3797,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "flow-3-title": "Enable toggles",
       "flow-3-body": "In Workspace Settings, enable only the required Codex Local, device code, and Codex cloud toggles.",
       "flow-4-title": "RBAC groups",
-      "flow-4-body": "Separate Codex Users and Codex Admins, ideally managed through SCIM groups.",
+      "flow-4-body": "Separate Codex Users and Codex Admins, and make this the place admins find App / IDE / CLI user sign-in paths.",
       "flow-5-body": "Use cloud-managed requirements to enforce sandbox, approval, web search, MCP, and command rules.",
       "flow-6-title": "Deploy by OS",
       "flow-6-body": "Define the macOS MDM, Windows Intune/GPO, and Linux /etc or Ansible baseline.",
@@ -3639,7 +3814,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "local-toggle-title": "<span class=\"num\">12.1</span>Allow members to use Codex Local",
       "local-toggle-body": "Allows members to use the Codex App, CLI, and IDE extension. New Enterprise workspaces have this <strong>ON by default</strong>. If it is OFF, users see <code>403 - Unauthorized. Contact your ChatGPT administrator for access.</code>",
       "device-code-title": "Device code authentication for CLI",
-      "device-code-body": "Controls whether developers can sign in to <code>codex</code> CLI using device code in non-interactive environments such as remote development boxes, SSH servers, and containers. Teams using remote or Linux servers should keep this ON. Command: <code>codex login --device-code</code>",
+      "device-code-body": "Controls whether developers can sign in to <code>codex</code> CLI using device code in non-interactive environments such as remote development boxes, SSH servers, and containers. Teams using remote or Linux servers should keep this ON. Command: <code>codex login --device-auth</code>",
       "surface-tabs-title": "<span class=\"num\">12.2</span>Surface Tabs — App / CLI / IDE / Cloud",
       "surface-tabs-lede": "OpenAI Academy describes Codex as one product that meets developers where they work. For admins, the cleanest starting point is deciding which surface to enable first.",
       "surface-app-title": "Codex App — the easiest local starting point",
@@ -3772,7 +3947,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "check-13-action": "Run <strong>final validation</strong> with sample users",
       "check-13-note": "Verify login, MFA, RBAC, managed policies, and analytics visibility",
       "sources-title": "Sources / Reference Links — All Sources",
-      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-05-12"
+      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-05-15"
     };
 
 
