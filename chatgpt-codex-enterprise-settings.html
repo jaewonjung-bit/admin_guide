@@ -2396,7 +2396,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       Users in multiple custom roles receive the <strong>union, or least restrictive set,</strong> of those permissions.
     </p>
     <p style="font-size:.88rem;color:var(--muted)">
-      For apps, RBAC controls per-app access, but it does not independently hide the app UI itself.
+      For apps, RBAC controls per-app access, but it does not independently <strong>hide the app UI itself</strong>.
     </p>
     <h3 class="menu"><span class="num">05.3</span>Spend controls / usage limits</h3>
     <p>
@@ -2513,15 +2513,15 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li>Admins can toggle each app on or off individually.</li>
       <li>When an app is enabled, admins can immediately decide which custom roles should see it.</li>
       <li>If an app supports <strong>action-level control</strong>, admins can review or block actions individually.</li>
-      <li>Action control supports <strong>allow all / read-only / custom</strong>, plus a policy for future actions: enable all new actions, enable only new read actions, or disable new actions.</li>
+      <li>Action control supports <strong>allow all / read-only / custom</strong>, plus a policy for future actions: <em>enable all new actions, enable only new read actions, or disable new actions</em>.</li>
     </ul>
     <h3 class="menu"><span class="num">08.2</span>Sync / indexing controls</h3>
     <ul>
       <li>Synced connectors such as Google Drive, SharePoint, and GitHub support <strong>pre-indexing</strong>, which improves answer quality and speed.</li>
       <li>Admins can scope specific shared drives or folders and exclude selected file types.</li>
       <li>Google Docs, Sheets, and Slides actions are now unified under the <strong>Google Drive</strong> app, and those new actions are <strong>off by default</strong> for Enterprise and Edu.</li>
-      <li>Google Workspace admins may need to re-authorize updated Drive / Docs / Sheets / Slides scopes before users can connect successfully.</li>
-      <li>Google Drive synced and non-synced access cannot currently be split into separate permission sets.</li>
+      <li>Google Workspace admins may need to <strong>re-authorize updated Drive / Docs / Sheets / Slides scopes</strong> before users can connect successfully.</li>
+      <li>Google Drive synced and non-synced access <strong>cannot currently be split into separate permission sets</strong>.</li>
       <li>Two setup modes are available:
         <ul>
           <li><strong>Quick setup</strong>: the user authenticates with their own account.</li>
@@ -2546,7 +2546,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h3 class="menu"><span class="num">08.5</span>Microsoft integration notes</h3>
     <p>
       Outlook, Teams, and SharePoint often require prior permissions in <strong>Microsoft Entra ID</strong>, and some Google Workspace
-      integrations may require re-consent for Drive, Docs, Sheets, or Slides scopes. As of April 2026, the admin-managed SharePoint sync flow is migrating
+      integrations may require re-consent for Drive, Docs, Sheets, or Slides scopes. As of April 2026, the <strong>admin-managed SharePoint sync</strong> flow is migrating
       from delegated scopes to <strong>Microsoft application scopes</strong>, so admins may need to use the
       <em>Reconnect SharePoint for better syncing</em> or <em>Re-auth required</em> prompt to activate the updated feature set.
       App settings can also expose <strong>Microsoft Purview sensitivity labels</strong>.
@@ -2714,7 +2714,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <p>
       This is the <strong>Discoverable by workspace users</strong> setting for SCIM-managed groups in sharing flows.
       It is on by default. Organizations that do not want internal department structure exposed or want to reduce accidental oversharing often disable it.
-      When disabled, SCIM-managed groups are removed from sharing flows, and previously shared GPTs or projects may drop those groups the next time they are updated.
+      When disabled, SCIM-managed groups are removed from sharing flows, and previously shared GPTs or projects may <strong>drop those groups the next time they are updated</strong>.
     </p>
     <h3 class="menu"><span class="num">10.6</span>IP allowlisting <span class="pill green">Enterprise / Edu only</span></h3>
     <ul>
