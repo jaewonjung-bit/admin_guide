@@ -2,7 +2,7 @@ guide:
   file: chatgpt-codex-enterprise-settings.html
   baseline_language: ko
   secondary_language: en
-  last_reviewed: 2026-04-29
+  last_reviewed: 2026-05-19
 
 sources:
   - id: workspace-settings
@@ -151,6 +151,20 @@ sources:
     cadence: weekly
     priority: high
     sections: [codex-gov]
+
+  - id: codex-access-tokens
+    url: https://developers.openai.com/codex/enterprise/access-tokens
+    owner: openai_developers
+    cadence: weekly
+    priority: high
+    sections: [codex-toggle, codex-rbac, codex-gov]
+
+  - id: codex-remote-connections
+    url: https://developers.openai.com/codex/remote-connections
+    owner: openai_developers
+    cadence: weekly
+    priority: high
+    sections: [codex-cloud-toggle, codex-team]
 
   - id: codex-auth
     url: https://developers.openai.com/codex/auth

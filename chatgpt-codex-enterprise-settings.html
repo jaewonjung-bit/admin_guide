@@ -465,7 +465,7 @@
       각 메뉴의 위치, 역할, 권장 설정값, 그리고 OpenAI 공식 화면 캡처와 출처 링크를 함께 제공합니다.
     </p>
     <div class="meta">
-      <span data-i18n="meta-updated">최종 업데이트: 2026-05-15</span>
+      <span data-i18n="meta-updated">최종 업데이트: 2026-05-19</span>
       <span data-i18n="meta-sources">출처: OpenAI Help Center · OpenAI Academy · developers.openai.com</span>
       <span data-i18n="meta-language">지원 언어: 한국어 / English</span>
     </div>
@@ -900,9 +900,17 @@
     앱 상단의 <em>Reconnect SharePoint for better syncing</em> 또는 <em>Re-auth required</em> 경로로 재인증이 필요할 수 있습니다.
     또한 앱 설정에서 <strong>Microsoft Purview sensitivity labels</strong>를 구성할 수 있습니다.
   </p>
+  <ul>
+    <li><strong>Microsoft Teams app with admin-managed sync</strong>는 eligible Enterprise/Edu 워크스페이스에서 사용할 수 있습니다.</li>
+    <li>Owner/Admin이 Workspace settings → Apps에서 Teams를 한 번 연결하고, scope picker로 포함할 Teams 콘텐츠를 선택합니다.</li>
+    <li>필요하면 <strong>Microsoft Purview sensitivity label filter</strong>로 동기화 범위를 더 좁힐 수 있습니다.</li>
+    <li>이 경험은 <strong>read-only</strong>이며, 설정 후 인덱스가 완전히 채워지는 데 시간이 걸릴 수 있습니다.</li>
+    <li>정기 self-service Microsoft Teams 앱과는 별도이므로, 사용자별 앱 연결 안내와 관리자 관리형 sync 안내를 구분해야 합니다.</li>
+  </ul>
   <p style="font-size:.88rem;color:var(--muted)">
     최근 Box / Notion / Linear / Dropbox와 Google / Microsoft 계열 앱에도 새 write action이 추가되고 있어,
     앱을 켤 때는 <strong>scope 승인 + Manage actions 검토 + 필요 시 사용자 재연결</strong>을 함께 운영 절차로 잡는 편이 좋습니다.
+    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Release Notes]</a>
   </p>
 
   <h3 class="menu"><span class="num">08.6</span>ChatGPT for Excel and Google Sheets</h3>
@@ -1266,6 +1274,19 @@
     명령어는 OS 무관: <code>codex login --device-auth</code>
   </p>
 
+  <h4 class="sub">Codex access tokens for automation</h4>
+  <p>
+    브라우저 로그인 없이 신뢰된 자동화가 <strong>ChatGPT 워크스페이스 ID</strong>로 Codex Local을 실행해야 할 때 쓰는 토큰입니다.
+    일반 OpenAI API 호출이면 Platform API key를 계속 쓰고, Codex 실행이 워크스페이스 권한·감사·사용량에 연결되어야 할 때만 access token을 사용합니다.
+  </p>
+  <ul>
+    <li><strong>관리 토글</strong>: Codex Local을 켠 뒤 <em>Allow members to use Codex access tokens</em>를 켭니다.</li>
+    <li><strong>좁은 배포</strong>: Custom Role을 쓰는 조직은 access token 권한을 필요한 그룹에만 부여합니다.</li>
+    <li><strong>일회성/비영구 자동화</strong>: <code>CODEX_ACCESS_TOKEN</code> 환경변수에 저장하고 <code>codex exec</code>를 실행합니다.</li>
+    <li><strong>영구 로컬 로그인</strong>: <code>printf '%s' "$CODEX_ACCESS_TOKEN" | codex login --with-access-token</code>을 사용합니다.</li>
+    <li><strong>운영 원칙</strong>: secret manager에 저장하고, 로그·티켓·채팅에 노출하지 않으며, 만료일을 두고 정기 회전·폐기합니다.</li>
+  </ul>
+
   <h3 class="menu" data-i18n="surface-tabs-title"><span class="num">12.2</span>사용 환경별 탭 — App / CLI / IDE / Cloud</h3>
   <p data-i18n="surface-tabs-lede">
     OpenAI Academy는 Codex를 개발자가 일하는 위치에 맞춘 하나의 제품으로 설명합니다. 따라서 관리자 가이드는
@@ -1310,8 +1331,8 @@
             <h4 data-i18n="surface-cli-title">Codex CLI — 터미널·원격·자동화 중심</h4>
             <p data-i18n="surface-cli-body"><code>codex</code> 명령으로 로컬 리포지토리에서 작업합니다. 원격 개발 박스, SSH 서버, 컨테이너, CI/CD 자동화에는 CLI가 가장 잘 맞습니다.</p>
             <ul>
-              <li><strong>관리 토글</strong>: Allow members to use Codex Local + 필요 시 device code authentication</li>
-              <li><strong>인증</strong>: OAuth 브라우저 흐름, <code>codex login --device-auth</code>, 또는 API key</li>
+              <li><strong>관리 토글</strong>: Allow members to use Codex Local + 필요 시 device code authentication / Codex access tokens</li>
+              <li><strong>인증</strong>: OAuth 브라우저 흐름, <code>codex login --device-auth</code>, API key, 또는 <code>CODEX_ACCESS_TOKEN</code></li>
               <li><strong>주요 설정</strong>: <code>~/.codex/config.toml</code>, <code>requirements.toml</code>, command rules</li>
             </ul>
           </div>
@@ -1444,7 +1465,8 @@
   <ul>
     <li><strong>OAuth 브라우저 흐름</strong> (기본) — Codex가 로컬 OAuth callback 서버를 띄우고 PKCE로 ChatGPT 인증</li>
     <li><strong>Device code</strong> — 헤드리스/원격 환경. 위 12.1 토글이 ON이어야 함</li>
-    <li><strong>API key</strong> — <code>OPENAI_API_KEY</code> 환경변수 또는 <code>codex login --with-api-key</code></li>
+    <li><strong>API key</strong> — Codex App/CLI/IDE의 API key 로그인 또는 자동화 환경의 Platform API key. 이 경우 ChatGPT 워크스페이스 RBAC·보존·레지던시가 아니라 API organization 정책을 따름</li>
+    <li><strong>Codex access token</strong> — 신뢰된 자동화에서 ChatGPT 워크스페이스 ID와 Enterprise 제어가 필요할 때 <code>CODEX_ACCESS_TOKEN</code> 또는 <code>codex login --with-access-token</code> 사용</li>
     <li>인증 후 토큰은 OS별로 다른 위치에 저장: macOS Keychain / Windows Credential Manager / Linux <code>~/.codex/auth.json</code></li>
   </ul>
 </section>
@@ -1480,6 +1502,22 @@
       <em>기본은 OFF</em>(prompt injection 방어). 켤 경우 도메인 허용 목록 + HTTP 메서드 제한 가능</li>
     <li><strong>iOS 앱 접근</strong> — Cloud 작업을 모바일에서 열고 결과 확인 가능</li>
   </ul>
+
+  <h3 class="menu"><span class="num">12B.3</span>Remote connections / Remote Control access</h3>
+  <p>
+    공식 Codex 문서의 페이지명은 <strong>Remote connections</strong>이고, 일부 관리자·릴리즈 노트 표면에서는
+    <strong>Remote Control access</strong>라고 표현됩니다. 같은 계열의 원격 제어 기능이므로 운영 문서에서는 두 용어를 함께 안내하세요.
+  </p>
+  <ul>
+    <li>ChatGPT 모바일 앱에서 연결된 Mac의 Codex App host를 제어하거나, 다른 Codex App 기기에서 작업을 이어갈 수 있습니다.</li>
+    <li>원격 연결은 host의 프로젝트, 스레드, 파일, credentials, 권한, 플러그인, 브라우저 설정, 로컬 도구를 그대로 사용합니다.</li>
+    <li>사용자는 모바일에서 후속 지시, 질문 응답, 실행 방향 전환, command/action 승인, diff·테스트·터미널·스크린샷 확인을 할 수 있습니다.</li>
+    <li>모바일 설정은 Codex App에서 시작하며, CLI나 IDE Extension만으로는 설정할 수 없습니다.</li>
+    <li>워크스페이스 환경에서는 admin이 Remote Control access를 켜야 할 수 있고, SSO/MFA/passkey 절차가 추가될 수 있습니다.</li>
+  </ul>
+  <p style="font-size:.88rem;color:var(--muted)">
+    <a href="https://developers.openai.com/codex/remote-connections" target="_blank">→ Codex Remote connections 공식 가이드</a>
+  </p>
 </section>
 
 <!-- ============ CODEX RBAC ============ -->
@@ -1517,7 +1555,8 @@
     <a href="https://developers.openai.com/codex/app" target="_blank">Codex App</a> ·
     <a href="https://developers.openai.com/codex/ide" target="_blank">Codex IDE Extension</a> ·
     <a href="https://developers.openai.com/codex/cli" target="_blank">Codex CLI</a> ·
-    <a href="https://developers.openai.com/codex/auth" target="_blank">Codex Authentication</a>
+    <a href="https://developers.openai.com/codex/auth" target="_blank">Codex Authentication</a> ·
+    <a href="https://developers.openai.com/codex/enterprise/access-tokens" target="_blank">Codex Access Tokens</a>
   </p>
   <div class="login-grid" aria-label="Codex user login paths">
     <div class="login-card">
@@ -1557,6 +1596,7 @@
         <li><code>npm i -g @openai/codex</code> 또는 Homebrew로 설치한 뒤 터미널에서 <code>codex</code>를 실행합니다.</li>
         <li>첫 실행 시 브라우저 기반 ChatGPT OAuth 또는 API key 로그인을 선택합니다.</li>
         <li>원격·헤드리스 환경은 device auth를 켜고 <code>codex login --device-auth</code>를 사용합니다.</li>
+        <li>신뢰된 CI/CD·스케줄러·로컬 스크립트는 access token 권한을 받은 뒤 <code>CODEX_ACCESS_TOKEN</code> 또는 <code>codex login --with-access-token</code>을 사용합니다.</li>
       </ol>
       <figure>
         <img src="https://developers.openai.com/images/codex/enterprise/local-toggle-config.png"
@@ -1572,6 +1612,7 @@
       <li><strong>데스크톱 App은 없음</strong> — Linux 사용자는 Codex App 대신 <strong>CLI</strong> 또는 <strong>IDE Extension</strong>으로 접속합니다.</li>
       <li><strong>CLI 접속</strong> — Linux 터미널에서 <code>npm i -g @openai/codex</code>로 설치하고 <code>codex</code>를 실행합니다. 첫 실행 시 ChatGPT 계정 OAuth 또는 API key로 로그인합니다.</li>
       <li><strong>원격/SSH/headless 서버</strong> — 브라우저 로그인이 어렵다면 device auth를 켜고 <code>codex login --device-auth</code>를 사용합니다.</li>
+      <li><strong>자동화</strong> — 사용자 브라우저 로그인 없이 워크스페이스 ID가 필요한 신뢰된 runner는 Codex access token을 사용합니다.</li>
       <li><strong>IDE 접속</strong> — VS Code, Cursor, Windsurf, JetBrains IDE에 Codex Extension을 설치하고 사이드바에서 ChatGPT 계정 또는 API key로 로그인합니다.</li>
       <li><strong>권장 안내</strong> — Linux 데스크톱 사용자는 IDE Extension이 App에 가장 가까운 경험이고, 원격 개발 서버·컨테이너·자동화 환경은 CLI가 가장 적합합니다.</li>
     </ul>
@@ -2551,8 +2592,16 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <em>Reconnect SharePoint for better syncing</em> or <em>Re-auth required</em> prompt to activate the updated feature set.
       App settings can also expose <strong>Microsoft Purview sensitivity labels</strong>.
     </p>
+    <ul>
+      <li>The <strong>Microsoft Teams app with admin-managed sync</strong> is available for eligible Enterprise/Edu workspaces.</li>
+      <li>Owners or admins connect Teams once from Workspace settings → Apps, then use the scope picker to choose the Teams content to include.</li>
+      <li>Admins can narrow sync further with a <strong>Microsoft Purview sensitivity label filter</strong> where needed.</li>
+      <li>The synced experience is <strong>read-only</strong>, and the index may take time to fully populate after setup.</li>
+      <li>This flow is separate from the regular self-service Microsoft Teams app, so user connection guidance and admin-managed sync guidance should stay distinct.</li>
+    </ul>
     <p style="font-size:.88rem;color:var(--muted)">
       Recent updates to Box, Notion, Linear, Dropbox, and Google / Microsoft apps also add new write actions, so app enablement should usually include <strong>scope review, Manage actions review, and possible end-user reconnect guidance</strong>.
+      <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Release Notes]</a>
     </p>
     <h3 class="menu"><span class="num">08.6</span>ChatGPT for Excel and Google Sheets</h3>
     <ul>
@@ -2843,6 +2892,20 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <code>codex login --device-auth</code>
     </p>
 
+    <h4 class="sub">Codex access tokens for automation</h4>
+    <p>
+      Codex access tokens let trusted automation run Codex Local with a <strong>ChatGPT workspace identity</strong> without browser sign-in.
+      Keep using Platform API keys for ordinary OpenAI API calls; use access tokens only when the Codex run needs workspace entitlements, auditability, and enterprise controls.
+    </p>
+    <ul>
+      <li><strong>Admin toggle</strong>: enable Codex Local, then turn on <em>Allow members to use Codex access tokens</em>.</li>
+      <li><strong>Narrow rollout</strong>: if you use custom roles, grant access token permission only to the groups that need it.</li>
+      <li><strong>Ephemeral automation</strong>: store the token in <code>CODEX_ACCESS_TOKEN</code> and run <code>codex exec</code>.</li>
+      <li><strong>Persistent local login</strong>: pipe the token with <code>printf '%s' "$CODEX_ACCESS_TOKEN" | codex login --with-access-token</code>.</li>
+      <li><strong>Operating rule</strong>: store tokens in a secret manager, keep them out of logs, tickets, and chats, set expirations, and rotate or revoke them regularly.</li>
+    </ul>
+
+
     <h3 class="menu"><span class="num">12.2</span>Surface tabs - App / CLI / IDE / Cloud</h3>
     <p>
       Treat Codex as one product with multiple working surfaces. The fastest way to read the admin model is to decide
@@ -2887,8 +2950,8 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
               <h4>Codex CLI - terminal, remote, and automation first</h4>
               <p>Use <code>codex</code> directly inside local repos, remote boxes, SSH sessions, containers, and automation.</p>
               <ul>
-                <li><strong>Admin toggle</strong>: Allow members to use Codex Local plus device code when needed</li>
-                <li><strong>Auth</strong>: browser OAuth, <code>codex login --device-auth</code>, or API key</li>
+                <li><strong>Admin toggle</strong>: Allow members to use Codex Local plus device code / Codex access tokens when needed</li>
+                <li><strong>Auth</strong>: browser OAuth, <code>codex login --device-auth</code>, API key, or <code>CODEX_ACCESS_TOKEN</code></li>
                 <li><strong>Main config</strong>: <code>~/.codex/config.toml</code>, <code>requirements.toml</code>, command rules</li>
               </ul>
             </div>
@@ -3019,7 +3082,8 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <ul>
       <li><strong>OAuth browser flow</strong> is the default local sign-in path.</li>
       <li><strong>Device code</strong> covers headless and remote environments.</li>
-      <li><strong>API key</strong> supports automation through the <code>OPENAI_API_KEY</code> environment variable or <code>codex login --with-api-key</code>.</li>
+      <li><strong>API key</strong> supports API-key sign-in in the Codex App/CLI/IDE or Platform API keys in automation. In this mode, usage follows API organization policies rather than ChatGPT workspace RBAC, retention, and residency.</li>
+      <li><strong>Codex access token</strong> supports trusted automation that needs ChatGPT workspace identity and Enterprise controls through <code>CODEX_ACCESS_TOKEN</code> or <code>codex login --with-access-token</code>.</li>
       <li>Tokens are then stored by OS: macOS Keychain, Windows Credential Manager, or Linux <code>~/.codex/auth.json</code>.</li>
     </ul>
   </section>
@@ -3050,6 +3114,21 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><strong>Codex agent internet access</strong> - <em>off by default</em> for prompt-injection defense; when enabled, admins can constrain domains and HTTP methods.</li>
       <li><strong>iOS app access</strong> - lets users open and inspect cloud tasks on mobile.</li>
     </ul>
+    <h3 class="menu"><span class="num">12B.3</span>Remote connections / Remote Control access</h3>
+    <p>
+      The official Codex docs page is named <strong>Remote connections</strong>, while some admin and release-note surfaces use
+      <strong>Remote Control access</strong>. Treat them as the same remote-control capability family in operating guidance.
+    </p>
+    <ul>
+      <li>Users can control a connected Mac Codex App host from the ChatGPT mobile app, or continue work from another Codex App device.</li>
+      <li>Remote access uses the host's projects, threads, files, credentials, permissions, plugins, browser setup, and local tools.</li>
+      <li>Users can send follow-up instructions, answer questions, redirect execution, approve commands/actions, and review diffs, tests, terminal output, and screenshots from mobile.</li>
+      <li>Mobile setup starts from the Codex App; it cannot be set up from CLI or IDE Extension alone.</li>
+      <li>In workspace environments, an admin may need to enable Remote Control access, and SSO/MFA/passkey steps may apply.</li>
+    </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      <a href="https://developers.openai.com/codex/remote-connections" target="_blank">→ Official Codex Remote connections guide</a>
+    </p>
   </section>
 
   <section class="chapter" id="codex-rbac">
@@ -3081,7 +3160,8 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <a href="https://developers.openai.com/codex/app" target="_blank">Codex App</a> ·
       <a href="https://developers.openai.com/codex/ide" target="_blank">Codex IDE Extension</a> ·
       <a href="https://developers.openai.com/codex/cli" target="_blank">Codex CLI</a> ·
-      <a href="https://developers.openai.com/codex/auth" target="_blank">Codex Authentication</a>
+      <a href="https://developers.openai.com/codex/auth" target="_blank">Codex Authentication</a> ·
+      <a href="https://developers.openai.com/codex/enterprise/access-tokens" target="_blank">Codex Access Tokens</a>
     </p>
     <div class="login-grid" aria-label="Codex user login paths">
       <div class="login-card">
@@ -3121,6 +3201,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
           <li>Install with <code>npm i -g @openai/codex</code> or Homebrew, then run <code>codex</code> in a terminal.</li>
           <li>On first run, choose browser-based ChatGPT OAuth or API key sign-in.</li>
           <li>For remote or headless environments, enable device auth and run <code>codex login --device-auth</code>.</li>
+          <li>For trusted CI/CD, schedulers, or local scripts, grant access token permission and use <code>CODEX_ACCESS_TOKEN</code> or <code>codex login --with-access-token</code>.</li>
         </ol>
         <figure>
           <img src="https://developers.openai.com/images/codex/enterprise/local-toggle-config.png"
@@ -3136,6 +3217,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
         <li><strong>No desktop App</strong> - Linux users access Codex through the <strong>CLI</strong> or <strong>IDE Extension</strong>, not the Codex App.</li>
         <li><strong>CLI access</strong> - install from the Linux terminal with <code>npm i -g @openai/codex</code>, then run <code>codex</code>. On first run, sign in with ChatGPT OAuth or an API key.</li>
         <li><strong>Remote / SSH / headless servers</strong> - when browser login is difficult, enable device auth and use <code>codex login --device-auth</code>.</li>
+        <li><strong>Automation</strong> - use Codex access tokens for trusted runners that need workspace identity without user browser sign-in.</li>
         <li><strong>IDE access</strong> - install the Codex Extension in VS Code, Cursor, Windsurf, or JetBrains IDEs, then sign in from the sidebar with a ChatGPT account or API key.</li>
         <li><strong>Recommended guidance</strong> - IDE Extension is the closest App-like experience on Linux desktops; CLI is best for remote development servers, containers, and automation.</li>
       </ul>
@@ -3742,6 +3824,8 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><a href="https://developers.openai.com/codex/ide" target="_blank">Codex — IDE extension</a></li>
       <li><a href="https://developers.openai.com/codex/cli" target="_blank">Codex — CLI</a></li>
       <li><a href="https://developers.openai.com/codex/auth" target="_blank">Codex — Authentication</a></li>
+      <li><a href="https://developers.openai.com/codex/enterprise/access-tokens" target="_blank">Codex — Access tokens</a></li>
+      <li><a href="https://developers.openai.com/codex/remote-connections" target="_blank">Codex — Remote connections</a></li>
       <li><a href="https://developers.openai.com/codex/agent-approvals-security" target="_blank">Codex — Agent approvals &amp; security</a></li>
       <li><a href="https://developers.openai.com/codex/security" target="_blank">Codex — Security overview</a></li>
       <li><a href="https://developers.openai.com/codex/cloud/environments" target="_blank">Codex cloud — Environments</a></li>
@@ -3754,7 +3838,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 </section>
 
 <footer data-i18n="footer-note">
-  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-05-15
+  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-05-19
 </footer>
 
 <script>
@@ -3763,7 +3847,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "hero-eyebrow": "OpenAI · Admin Guide · 2026",
       "hero-title": "ChatGPT Enterprise &amp;<br/>Codex Enterprise<br/><em>Workspace Settings Complete Guide</em>",
       "hero-subtitle": "A consolidated guide to every menu in the ChatGPT Enterprise/Edu workspace admin console and the Codex Enterprise admin surface, including where each setting lives, what it controls, recommended defaults, official screenshots, and source links.",
-      "meta-updated": "Last updated: 2026-05-15",
+      "meta-updated": "Last updated: 2026-05-19",
       "meta-sources": "Sources: OpenAI Help Center · OpenAI Academy · developers.openai.com",
       "meta-language": "Available languages: Korean / English",
       "toc-part1": "Contents — Part 1 · ChatGPT Enterprise",
@@ -3947,7 +4031,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "check-13-action": "Run <strong>final validation</strong> with sample users",
       "check-13-note": "Verify login, MFA, RBAC, managed policies, and analytics visibility",
       "sources-title": "Sources / Reference Links — All Sources",
-      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-05-15"
+      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-05-19"
     };
 
 
