@@ -2,7 +2,7 @@ guide:
   file: chatgpt-codex-enterprise-settings.html
   baseline_language: ko
   secondary_language: en
-  last_reviewed: 2026-05-19
+  last_reviewed: 2026-05-20
 
 sources:
   - id: workspace-settings
@@ -46,6 +46,13 @@ sources:
     cadence: weekly
     priority: high
     sections: [permissions, codex-rbac]
+
+  - id: flexible-pricing
+    url: https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [permissions, analytics, billing, codex-gov]
 
   - id: apps-admin-controls
     url: https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-in-apps-enterprise-edu-and-business
