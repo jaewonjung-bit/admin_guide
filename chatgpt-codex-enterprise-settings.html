@@ -465,7 +465,7 @@
       각 메뉴의 위치, 역할, 권장 설정값, 그리고 OpenAI 공식 화면 캡처와 출처 링크를 함께 제공합니다.
     </p>
     <div class="meta">
-      <span data-i18n="meta-updated">최종 업데이트: 2026-05-20</span>
+      <span data-i18n="meta-updated">최종 업데이트: 2026-05-22</span>
       <span data-i18n="meta-sources">출처: OpenAI Help Center · OpenAI Academy · developers.openai.com</span>
       <span data-i18n="meta-language">지원 언어: 한국어 / English</span>
     </div>
@@ -947,10 +947,11 @@
     <strong>analytics viewer</strong> 역할이 읽기 전용 접근을 제공합니다.
   </p>
   <div class="box">
-    <div class="label">별도 관리 surface</div>
-    2026년 5월 6일부터 <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>에는
-    <strong>Analytics</strong>와 <strong>Agents</strong> 영역이 추가되었습니다. Workspace analytics가 <strong>개별 워크스페이스 운영 화면</strong>이라면,
-    Global Admin Console은 여러 workspace와 조직을 아우르는 <strong>tenant 단위 상위 운영 화면</strong>입니다.
+    <div class="label">별도 관리 화면</div>
+    <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>은
+    여러 ChatGPT 워크스페이스, API Platform 조직, 검증 도메인, 단일 SSO 연결을 테넌트 단위로 묶어 보는 상위 운영 화면입니다.
+    Workspace analytics가 <strong>개별 워크스페이스 운영 화면</strong>이라면, Global Admin Console은
+    <strong>테넌트 전체 Analytics / Dashboard / Leaderboard / Codex / Agents</strong>를 한 곳에서 확인하는 화면입니다.
   </div>
 
   <h3 class="menu"><span class="num">09.1</span>Overview</h3>
@@ -975,7 +976,7 @@
     <li>질문별 응답 분포와 설문 참여율까지 함께 확인</li>
     <li>Owner는 Impact 탭에서 관리자 생성 설문을 시작할 수 있고, OpenAI 생성 설문은 워크스페이스 생성 후 120일·240일 시점에 기본 예약됨</li>
     <li>질문·응답 선택지는 사전 정의되어 있으며 커스텀 질문은 지원하지 않고, 응답 집계는 보통 1–2일 뒤 표시</li>
-    <li>방향성 분석용 지표이며, 인과적 ROI 측정이나 컴플라이언스 로그가 아님</li>
+    <li>방향성 분석용 지표이며, 인과적 ROI 측정이나 컴플라이언스 로그 용도로 사용하지 않습니다.</li>
   </ul>
 
   <h3 class="menu"><span class="num">09.4</span>Task insights <span class="pill green">기본 ON</span></h3>
@@ -991,6 +992,7 @@
   <h3 class="menu"><span class="num">09.5</span>Users / GPTs / Projects / Skills</h3>
   <ul>
     <li><strong>Users</strong>: 구매 seat, 활성화 seat, 활성 사용자, 대기 중 초대, 사용자별 사용량, power users</li>
+    <li><strong>Power users</strong>: 상위 20% 메시지 발신자 중 주 75개 이상 메시지와 월 3개 이상 도구 사용 조건을 충족하는 사용자</li>
     <li><strong>GPTs</strong>: 전체 GPT, 기간 내 생성 GPT, 활성 GPT, GPT별 사용·도달 지표</li>
     <li><strong>Projects</strong>: 전체 프로젝트, 기간 내 생성 프로젝트, 활성 프로젝트, 프로젝트별 사용·도달 지표</li>
     <li><strong>Skills</strong>: 스킬 사용 추세, 메시지 활동 기준 상위 스킬</li>
@@ -1014,7 +1016,7 @@
     <div class="label">개인별 credit 추적 범위</div>
     <strong>ChatGPT Enterprise</strong>에서 개인별 사용량은 Workspace Analytics의 <strong>Users export</strong>가 기준입니다.
     이 export는 사용자 identity/status와 메시지, GPT, tool, project 활동 같은 집계 지표를 포함합니다.
-    eligible workspace에서는 <code>credits_used</code> optional field가 포함될 수 있지만, 모든 workspace에 항상 제공되는 실시간 개인별 과금 ledger로 설명하면 안 됩니다.
+    일부 대상 워크스페이스에서는 <code>credits_used</code> 선택 필드가 포함될 수 있지만, 모든 워크스페이스에 항상 제공되는 실시간 개인별 과금 원장으로 보기는 어렵습니다.
   </div>
   <p style="font-size:.88rem;color:var(--muted)">
     출처: <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics</a>
@@ -1046,14 +1048,32 @@
     <tbody>
       <tr><td>누가 많이 쓰는가?</td><td>Workspace Analytics → Users / Users CSV</td><td>집계 지표이며 원문·파일 내용은 없음</td></tr>
       <tr><td>어떤 기능이 credit을 많이 쓰는가?</td><td>Billing usage report + Workspace Analytics CSV</td><td>ChatGPT 쪽은 workspace별 제공 필드가 다를 수 있음</td></tr>
-      <tr><td>팀별 chargeback을 하고 싶은가?</td><td>Users CSV + SCIM group / 내부 HR 데이터 조인</td><td>UI만으로는 정교한 비용 배부가 어려움</td></tr>
-      <tr><td>감사·조사 목적인가?</td><td>Compliance API</td><td>비용/credit 운영 리포팅의 primary source가 아님</td></tr>
+      <tr><td>팀별 비용 배부가 필요한가?</td><td>Users CSV + SCIM group / 내부 HR 데이터 조인</td><td>UI만으로는 정교한 비용 배부가 어려움</td></tr>
+      <tr><td>감사·조사 목적인가?</td><td>Compliance API</td><td>비용/credit 운영 리포팅의 기준 화면으로 사용하지 않습니다.</td></tr>
     </tbody>
   </table>
   <p style="font-size:.88rem;color:var(--muted)">
     출처: <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics</a> ·
     <a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">Flexible pricing</a> ·
     <a href="https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers" target="_blank">Compliance Platform</a>
+  </p>
+
+  <h3 class="menu"><span class="num">09.9</span>Global Admin Console Analytics</h3>
+  <p>
+    진입 링크: <a href="https://admin.openai.com/" target="_blank">https://admin.openai.com/</a>
+  </p>
+  <table>
+    <thead><tr><th>영역</th><th>관리자가 보는 내용</th><th>운영 포인트</th></tr></thead>
+    <tbody>
+      <tr><td>Analytics</td><td>활성 사용자, 메시지 활동, GPTs, projects, skills, users, 도구/커넥터 상호작용, 워크스페이스 상태</td><td>여러 워크스페이스의 도입률·사용 패턴을 상위 레벨에서 비교</td></tr>
+      <tr><td>Dashboard</td><td>Workspace Agents와 Codex의 도입·사용 현황 요약</td><td>Agents와 Codex 운영 상태를 한 화면에서 빠르게 확인</td></tr>
+      <tr><td>Leaderboard</td><td>Workspace Agents와 Codex의 사용자별 활동, token 사용량, credit 사용량, 작성된 코드 라인 수</td><td>권한이 있는 관리자가 주요 사용자와 사용 집중 구간을 확인하는 용도</td></tr>
+      <tr><td>Codex</td><td>활성 사용자, 완료된 실행, token/credit 사용량, 생성된 코드 라인 수, plugin 호출, access token, code review 활동</td><td>Global Admin Console 안의 Codex 요약 화면이며, 내보내기는 Codex settings의 Analytics 탭에서 확인</td></tr>
+      <tr><td>Agents</td><td>에이전트 상세, Builder 이동, 최근 활동, 연결된 앱, memory 파일, schedule, 고유 사용자, 실행 수</td><td>워크스페이스 agents 목록과 운영 상태를 테넌트 관점에서 확인</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:.88rem;color:var(--muted)">
+    출처: <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>
   </p>
 
   <p style="font-size:.88rem;color:var(--muted)">
@@ -1174,9 +1194,9 @@
     <thead><tr><th>관리 질문</th><th>주요 화면</th><th>개인별 추적</th><th>운영 한계</th></tr></thead>
     <tbody>
       <tr><td>일반 ChatGPT 사용량</td><td>Workspace Analytics → Users / GPTs / Projects / Skills</td><td>Users CSV에서 메시지·tool·project 등 집계 지표 확인</td><td>원문, 파일 내용, item-level compliance record는 없음</td></tr>
-      <tr><td>Codex 사용량</td><td>Codex Analytics Dashboard / CSV / JSON / Analytics API</td><td>사용자별 surface, sessions, messages, credits, tokens 추적 가능</td><td>운영 리포팅용이며 감사 원문 로그는 Compliance API로 분리</td></tr>
-      <tr><td>Credit consumption</td><td>Billing credit balance / usage report / usage alerts</td><td>ChatGPT는 eligible workspace의 Users export에 <code>credits_used</code>가 포함될 수 있고, Codex는 credit/token 지표가 더 직접적</td><td>실시간 개인별 과금 ledger가 아니라 Billing + Analytics export를 조합해야 함</td></tr>
-      <tr><td>감사·조사</td><td>Compliance API</td><td>사용자 활동 감사 가능</td><td>credit 운영 리포팅의 primary source가 아님</td></tr>
+      <tr><td>Codex 사용량</td><td>Codex Analytics Dashboard / CSV / JSON / Analytics API</td><td>사용 환경, 세션, 메시지, credit, token을 사용자 단위로 확인</td><td>운영 리포팅용이며 감사 원문 로그는 Compliance API로 분리</td></tr>
+      <tr><td>Credit 사용량</td><td>Billing credit balance / usage report / usage alerts</td><td>일부 대상 워크스페이스의 Users export에는 <code>credits_used</code>가 포함될 수 있고, Codex는 credit/token 지표를 더 직접적으로 제공</td><td>실시간 개인별 과금 원장이 아니므로 Billing과 Analytics export를 함께 확인</td></tr>
+      <tr><td>감사·조사</td><td>Compliance API</td><td>사용자 활동 감사 가능</td><td>credit 운영 리포팅의 기준 화면으로 사용하지 않습니다.</td></tr>
     </tbody>
   </table>
   <p style="font-size:.88rem;color:var(--muted)">
@@ -2208,8 +2228,16 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <li data-i18n="codex-gov-dashboard-1">제품(CLI / IDE / Cloud / Code Review)별 일일 사용자</li>
     <li data-i18n="codex-gov-dashboard-2">일일 코드 리뷰 수 · 우선순위별 분포 · 피드백 성향(긍정/부정)</li>
     <li data-i18n="codex-gov-dashboard-3">일일 Cloud 작업 · VS Code 사용자 · CLI 사용자</li>
-    <li data-i18n="codex-gov-dashboard-4">워크스페이스가 해당 지표에 접근 가능한 경우 개인별 credit/token 사용량 breakdown</li>
+    <li data-i18n="codex-gov-dashboard-4">워크스페이스에서 제공되는 경우 개인별 credit/token 사용량 breakdown 확인</li>
+    <li data-i18n="codex-gov-dashboard-5">Global Admin Console의 Codex 영역에서는 권한이 있는 관리자가 활성 사용자, 완료된 실행, token/credit 사용량, 생성된 코드 라인 수, plugin 호출, access token, code review 활동을 요약 확인</li>
   </ul>
+  <div class="box" data-i18n="codex-gov-global-console">
+    <div class="label">Global Admin Console vs Codex settings</div>
+    Global Admin Console의 Codex 화면은 테넌트 관점의 요약 화면입니다.
+    CSV/JSON 내보내기가 필요하면 <a href="https://chatgpt.com/codex/settings/analytics" target="_blank">Codex settings → Analytics</a> 탭을 사용합니다.
+    워크스페이스 구성원은 web의 Codex settings에서 본인의 개인 Codex 사용량을 확인할 수 있습니다.
+    <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">[Global Admin Console]</a>
+  </div>
 
   <h3 class="menu" data-i18n="codex-gov-export-title"><span class="num">20.2</span>② Codex Data Export <span class="pill">CSV / JSON</span></h3>
   <p data-i18n="codex-gov-export-body">
@@ -2252,12 +2280,12 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   "https://api.chatgpt.com/v1/compliance/workspaces/WORKSPACE_ID/logs?event_type=CODEX_LOG&amp;after=2026-03-01T00:00:00Z"</code></pre>
   <p data-i18n="codex-gov-compliance-endpoints">주요 엔드포인트: <code>/logs</code> · <code>/codex_tasks</code> · <code>/codex_environments</code></p>
 
-  <h3 class="menu" data-i18n="codex-gov-audit-title"><span class="num">20.5</span>Compliance API와 Platform Audit Log API를 구분하세요</h3>
+  <h3 class="menu" data-i18n="codex-gov-audit-title"><span class="num">20.5</span>Compliance API와 Platform Audit Log API 구분</h3>
   <div class="warn" data-i18n="codex-gov-audit-body">
-    <span class="label">헷갈리기 쉬운 지점</span>
+    <span class="label">운영 구분</span>
     <strong>Compliance API</strong>는 ChatGPT 워크스페이스의 사용자 활동, Codex, 인증, 감사 로그를 다루고,
     <strong>Admin/Audit Log API</strong>는 API Platform 조직의 API 키 생성, 프로젝트 관리, 멤버 변경 같은 관리 이벤트를 다룹니다.
-    둘은 별도 시스템이므로 ChatGPT Enterprise와 API Platform을 함께 쓰면 둘 다 모니터링해야 합니다.
+    ChatGPT Enterprise와 API Platform을 함께 운영하는 조직은 두 로그 체계를 각각의 목적에 맞게 관리합니다.
   </div>
 
   <h3 class="menu" data-i18n="codex-gov-compare-title"><span class="num">20.6</span>Workspace Analytics vs Codex Analytics vs Compliance API</h3>
@@ -2272,13 +2300,13 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </thead>
     <tbody>
       <tr><td data-i18n="compare-target">대상 데이터</td><td data-i18n="compare-chatgpt-target">ChatGPT 사용 및 optional credit 필드</td><td data-i18n="compare-codex-target">Codex 사용, credits, tokens</td><td data-i18n="compare-compliance-target">ChatGPT 대화 + Codex + 인증 + 관리자 감사</td></tr>
-      <tr><td data-i18n="compare-format">형태</td><td data-i18n="compare-chatgpt-format">집계 대시보드 + CSV</td><td data-i18n="compare-codex-format">대시보드 + CSV/JSON + REST API</td><td data-i18n="compare-compliance-format">raw JSONL 로그 파일</td></tr>
-      <tr><td data-i18n="compare-content">메시지 본문</td><td data-i18n="compare-chatgpt-content">없음</td><td data-i18n="compare-codex-content">없음</td><td data-i18n="compare-compliance-content">가능</td></tr>
+      <tr><td data-i18n="compare-format">형태</td><td data-i18n="compare-chatgpt-format">집계 대시보드 + CSV</td><td data-i18n="compare-codex-format">대시보드 + CSV/JSON + REST API</td><td data-i18n="compare-compliance-format">원시 JSONL 로그 파일</td></tr>
+      <tr><td data-i18n="compare-content">메시지 본문</td><td data-i18n="compare-chatgpt-content">제공하지 않음</td><td data-i18n="compare-codex-content">제공하지 않음</td><td data-i18n="compare-compliance-content">제공 가능</td></tr>
       <tr><td data-i18n="compare-latency">실시간성</td><td data-i18n="compare-chatgpt-latency">6~24시간 지연</td><td data-i18n="compare-codex-latency">일일(daily)</td><td data-i18n="compare-compliance-latency">분 단위 지연</td></tr>
       <tr><td data-i18n="compare-access">접근 방식</td><td data-i18n="compare-chatgpt-access">웹 UI / CSV 다운로드</td><td data-i18n="compare-codex-access">웹 UI + Bearer 토큰 API</td><td data-i18n="compare-compliance-access">전용 Compliance Key + REST</td></tr>
       <tr><td data-i18n="compare-retention">보존</td><td data-i18n="compare-chatgpt-retention">워크스페이스와 동일</td><td data-i18n="compare-codex-retention">워크스페이스와 동일</td><td data-i18n="compare-compliance-retention">30일, 이후 자체 보관 필요</td></tr>
       <tr><td data-i18n="compare-users">주 사용자</td><td data-i18n="compare-chatgpt-users">Owner / Admin / Analytics Viewer</td><td data-i18n="compare-codex-users">Owner / Admin / 데이터팀</td><td data-i18n="compare-compliance-users">보안 / 법무 / 컴플라이언스팀</td></tr>
-      <tr><td data-i18n="compare-purpose">주 용도</td><td data-i18n="compare-chatgpt-purpose">도입률·효과 측정 및 가벼운 consumption 추적</td><td data-i18n="compare-codex-purpose">Codex 생산성 및 credit/token 리포팅</td><td data-i18n="compare-compliance-purpose">감사·증거·DLP·SIEM</td></tr>
+      <tr><td data-i18n="compare-purpose">주 용도</td><td data-i18n="compare-chatgpt-purpose">도입률·효과 측정 및 기본 사용량 추적</td><td data-i18n="compare-codex-purpose">Codex 사용량 및 credit/token 리포팅</td><td data-i18n="compare-compliance-purpose">감사·증적·DLP·SIEM</td></tr>
       <tr><td data-i18n="compare-ip">IP Allowlist</td><td data-i18n="compare-chatgpt-ip">워크스페이스 설정 따름</td><td data-i18n="compare-codex-ip">워크스페이스 설정 따름</td><td data-i18n="compare-compliance-ip">항상 강제, OFF 불가</td></tr>
     </tbody>
   </table>
@@ -2289,16 +2317,20 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <strong>Analytics API</strong>(자동화 보고) + <strong>Compliance API</strong>(감사·조사)를
     동시에 운영하는 것이 표준 패턴입니다.
     Enterprise credit 운영에서는 <strong>Billing</strong>을 credit balance, usage alerts, hard overage limits의 기준으로 두고,
-    개인별·팀별·surface별 진단은 analytics export로 보완하세요.
+    개인별·팀별·사용 환경별 진단은 analytics export로 보완하세요.
     <a href="https://developers.openai.com/codex/enterprise/governance" target="_blank">[Codex Governance]</a> ·
     <a href="https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers" target="_blank">[Compliance Platform]</a>
   </div>
 
-  <h3 class="menu" data-i18n="codex-gov-missing-title"><span class="num">20.7</span>제공되지 않는 지표</h3>
+  <h3 class="menu" data-i18n="codex-gov-missing-title"><span class="num">20.7</span>지표별 확인 위치</h3>
   <p style="font-size:.92rem" data-i18n="codex-gov-missing-body">
-    OpenAI는 의도적으로 다음을 제공하지 않습니다:
-    <em>“생성된 코드 라인 수”</em>(잘못된 인센티브 야기), <em>“제안 수락률”</em>(거의 100%라 의미 없음),
-    <em>“코드 품질/성능 KPI”</em>(맥락에 너무 의존). 자체 KPI는 PR 리뷰 데이터·메타데이터로 직접 계산하라는 입장입니다.
+    생성된 코드 라인 수나 credit/token 사용량 같은 운영 지표는 <strong>Global Admin Console</strong>의 Leaderboard/Codex 요약 화면에서 확인할 수 있습니다.
+    감사·조사 목적의 원시 로그가 필요하면 <strong>Compliance API</strong>를 사용합니다. Compliance API의 목적은 생산성 리포팅이 아니라 감사 증적 확보입니다.
+    운영 리포팅은 Global Admin Console과 Codex Analytics를, 감사 증적은 Compliance API를 기준으로 분리해 운영하세요.
+  </p>
+  <p style="font-size:.88rem;color:var(--muted)">
+    출처: <a href="https://developers.openai.com/codex/enterprise/governance" target="_blank">Codex Governance</a> ·
+    <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>
   </p>
 </section>
 
@@ -2706,10 +2738,10 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </p>
     <div class="box">
       <div class="label">Separate admin surface</div>
-      As of May 6, 2026, the <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>
-      includes dedicated <strong>Analytics</strong> and <strong>Agents</strong> areas. If Workspace analytics is the
-      <strong>per-workspace operating view</strong>, the Global Admin Console is the higher-level <strong>tenant-wide operating surface</strong>
-      across multiple workspaces and organizations.
+      The <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>
+      is a tenant-level operating surface across multiple ChatGPT workspaces, API Platform organizations, verified domains, and a single SSO connection.
+      If Workspace analytics is the <strong>per-workspace operating view</strong>, the Global Admin Console is the place to review
+      <strong>tenant-wide Analytics / Dashboard / Leaderboard / Codex / Agents</strong> from one surface.
     </div>
     <h3 class="menu"><span class="num">09.1</span>Overview</h3>
     <ul>
@@ -2731,7 +2763,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li>Per-question response distributions and survey participation rate.</li>
       <li>Owners can launch admin-created surveys from the Impact tab, while OpenAI-created surveys are scheduled by default at day 120 and day 240 after workspace creation.</li>
       <li>Questions and answer choices are predefined rather than customizable, and responses typically begin appearing in reporting within 1-2 days.</li>
-      <li>Directional analysis only; not a causal ROI measurement or a compliance log.</li>
+      <li>Use these metrics for directional analysis; they are not designed for causal ROI measurement or compliance logging.</li>
     </ul>
     <h3 class="menu"><span class="num">09.4</span>Task insights <span class="pill green">ON by default</span></h3>
     <ul>
@@ -2745,6 +2777,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h3 class="menu"><span class="num">09.5</span>Users / GPTs / Projects / Skills</h3>
     <ul>
       <li><strong>Users</strong>: seats purchased, seats enabled, active users, pending invites, per-user metrics, and power users.</li>
+      <li><strong>Power users</strong>: users in the top 20% of message senders who also send 75+ messages per week and use 3+ different tools per month.</li>
       <li><strong>GPTs</strong>: total GPTs, GPTs created in period, active GPTs, and GPT-level usage and reach metrics.</li>
       <li><strong>Projects</strong>: total projects, projects created in period, active projects, and project-level usage and reach metrics.</li>
       <li><strong>Skills</strong>: skill usage trends and top skills by message activity.</li>
@@ -2767,7 +2800,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <div class="label">Per-user credit tracking boundary</div>
       For <strong>ChatGPT Enterprise</strong>, per-user usage tracking primarily comes from the Workspace Analytics <strong>Users export</strong>.
       That export combines user identity/status with aggregate message, GPT, tool, and project metrics.
-      Eligible workspaces may also include an optional <code>credits_used</code> field, but this should not be described as a universal real-time per-user billing ledger.
+      Some workspaces may also include an optional <code>credits_used</code> field, but this is best treated as an analytics export field rather than a universal real-time per-user billing ledger.
     </div>
     <p style="font-size:.88rem;color:var(--muted)">
       Source: <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics</a>
@@ -2796,14 +2829,31 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <tbody>
         <tr><td>Who is using ChatGPT the most?</td><td>Workspace Analytics → Users / Users CSV</td><td>Aggregate metrics only; no message text or file contents</td></tr>
         <tr><td>Which features are consuming credits?</td><td>Billing usage report + Workspace Analytics CSV</td><td>ChatGPT fields can vary by workspace eligibility</td></tr>
-        <tr><td>Do we need team chargeback?</td><td>Users CSV joined with SCIM group / internal HR data</td><td>The UI alone is not enough for detailed allocation</td></tr>
-        <tr><td>Is this for audit or investigation?</td><td>Compliance API</td><td>Not the primary source for cost or credit operations reporting</td></tr>
+        <tr><td>Do we need team cost allocation?</td><td>Users CSV joined with SCIM group / internal HR data</td><td>The UI alone is not enough for detailed allocation</td></tr>
+        <tr><td>Is this for audit or investigation?</td><td>Compliance API</td><td>Not the operating surface for cost or credit reporting</td></tr>
       </tbody>
     </table>
     <p style="font-size:.88rem;color:var(--muted)">
       Sources: <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics</a> ·
       <a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">Flexible pricing</a> ·
       <a href="https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers" target="_blank">Compliance Platform</a>
+    </p>
+    <h3 class="menu"><span class="num">09.9</span>Global Admin Console Analytics</h3>
+    <p>
+      Entry link: <a href="https://admin.openai.com/" target="_blank">https://admin.openai.com/</a>
+    </p>
+    <table>
+      <thead><tr><th>Area</th><th>What admins see</th><th>Operating use</th></tr></thead>
+      <tbody>
+        <tr><td>Analytics</td><td>Active users, message activity, GPTs, projects, skills, users, tool/connector interactions, and workspace health</td><td>Compare adoption and usage trends across workspaces</td></tr>
+        <tr><td>Dashboard</td><td>Workspace Agents and Codex adoption/usage overview</td><td>Quickly review Agents and Codex operating status from one place</td></tr>
+        <tr><td>Leaderboard</td><td>User-level activity across Workspace Agents and Codex, tokens used, credits consumed, and lines of code written</td><td>Helps authorized admins identify top users and concentrated usage</td></tr>
+        <tr><td>Codex</td><td>Active users, completed runs, token/credit usage, lines of code generated, plugin calls, access tokens, and code review activity</td><td>Codex summary inside Global Admin Console; use Codex settings Analytics for exports</td></tr>
+        <tr><td>Agents</td><td>Agent details, Builder entry, recent activity, connected apps, memory files, schedules, unique users, and runs</td><td>Review workspace agents and operations from the tenant view</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Source: <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>
     </p>
     <p style="font-size:.88rem;color:var(--muted)">
       <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">→ Official Workspace analytics guide</a> ·
@@ -2914,9 +2964,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <thead><tr><th>Admin question</th><th>Primary surface</th><th>Per-user tracking</th><th>Operating limit</th></tr></thead>
       <tbody>
         <tr><td>General ChatGPT usage</td><td>Workspace Analytics → Users / GPTs / Projects / Skills</td><td>Users CSV shows aggregate message, tool, project, and related metrics</td><td>No message text, file contents, or item-level compliance record</td></tr>
-        <tr><td>Codex usage</td><td>Codex Analytics Dashboard / CSV / JSON / Analytics API</td><td>Track user-level surface, sessions, messages, credits, and tokens</td><td>Operational reporting; raw audit logs remain separate in Compliance API</td></tr>
-        <tr><td>Credit consumption</td><td>Billing credit balance / usage report / usage alerts</td><td>ChatGPT may include <code>credits_used</code> in eligible Users exports; Codex exposes credit/token metrics more directly</td><td>Not a real-time per-user billing ledger; combine Billing with analytics exports</td></tr>
-        <tr><td>Audit / investigation</td><td>Compliance API</td><td>User activity can be audited</td><td>Not the primary source for credit operations reporting</td></tr>
+        <tr><td>Codex usage</td><td>Codex Analytics Dashboard / CSV / JSON / Analytics API</td><td>Review user-level surface, session, message, credit, and token metrics</td><td>Operational reporting; audit-level source logs remain separate in Compliance API</td></tr>
+        <tr><td>Credit consumption</td><td>Billing credit balance / usage report / usage alerts</td><td>Some eligible Users exports may include <code>credits_used</code>; Codex exposes credit/token metrics more directly</td><td>Use Billing together with analytics exports rather than treating this as a real-time per-user billing ledger</td></tr>
+        <tr><td>Audit / investigation</td><td>Compliance API</td><td>User activity can be audited</td><td>Not the operating surface for credit reporting</td></tr>
       </tbody>
     </table>
     <p style="font-size:.88rem;color:var(--muted)">
@@ -3809,8 +3859,16 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li>Daily users by product surface: CLI, IDE, Cloud, and Code Review.</li>
       <li>Daily code-review volume, priority mix, and positive or negative feedback signals.</li>
       <li>Daily cloud tasks, VS Code users, and CLI users.</li>
-      <li>Personal usage breakdowns, including credit and token usage where the workspace has access to those metrics.</li>
+      <li>Personal usage breakdowns, including credit and token usage where those metrics are available to the workspace.</li>
+      <li>Global Admin Console's Codex area gives authorized admins a summary of active users, completed runs, token/credit usage, lines of code generated, plugin calls, access tokens, and code review activity.</li>
     </ul>
+    <div class="box">
+      <div class="label">Global Admin Console vs Codex settings</div>
+      The Global Admin Console Codex view is a tenant-level summary.
+      Use <a href="https://chatgpt.com/codex/settings/analytics" target="_blank">Codex settings → Analytics</a> for CSV/JSON exports.
+      Workspace members can view their own personal Codex usage from Codex settings on web.
+      <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">[Global Admin Console]</a>
+    </div>
 
     <h3 class="menu"><span class="num">20.2</span>Codex Data Export <span class="pill">CSV / JSON</span></h3>
     <p>
@@ -3855,13 +3913,13 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   "https://api.chatgpt.com/v1/compliance/workspaces/WORKSPACE_ID/logs?event_type=CODEX_LOG&amp;after=2026-03-01T00:00:00Z"</code></pre>
     <p>Main endpoints: <code>/logs</code>, <code>/codex_tasks</code>, and <code>/codex_environments</code>.</p>
 
-    <h3 class="menu"><span class="num">20.5</span>Separate Compliance API from Platform Audit Log API</h3>
+    <h3 class="menu"><span class="num">20.5</span>Compliance API and Platform Audit Log API</h3>
     <div class="warn">
-      <span class="label">Common point of confusion</span>
+      <span class="label">Operating boundary</span>
       <strong>Compliance API</strong> covers ChatGPT workspace activity, Codex activity, authentication, and audit logs.
       <strong>Admin / Audit Log API</strong> covers API Platform organization events such as API key creation, project
-      management, and membership changes. They are separate systems, so organizations using both ChatGPT Enterprise
-      and the API Platform should monitor both.
+      management, and membership changes. Organizations that operate both ChatGPT Enterprise and the API Platform should manage
+      each log stream for its own purpose.
     </div>
 
     <h3 class="menu"><span class="num">20.6</span>Workspace analytics vs Codex Analytics vs Compliance API</h3>
@@ -3869,13 +3927,13 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <thead><tr><th>Dimension</th><th>Workspace analytics</th><th>Codex Analytics</th><th>Compliance API</th></tr></thead>
       <tbody>
         <tr><td>Target data</td><td>ChatGPT usage and optional credits fields</td><td>Codex usage, credits, and tokens</td><td>Conversations, Codex, auth, admin audit</td></tr>
-        <tr><td>Format</td><td>Dashboard + CSV</td><td>Dashboard + CSV/JSON + REST</td><td>Raw JSONL logs</td></tr>
-        <tr><td>Message body</td><td>No</td><td>No</td><td>Yes</td></tr>
+        <tr><td>Format</td><td>Dashboard + CSV</td><td>Dashboard + CSV/JSON + REST</td><td>Raw JSONL log files</td></tr>
+        <tr><td>Message body</td><td>Not provided</td><td>Not provided</td><td>Available where covered by the log</td></tr>
         <tr><td>Latency</td><td>6-24 hours</td><td>Daily</td><td>Minute-level</td></tr>
         <tr><td>Access</td><td>Web UI / CSV download</td><td>Web UI + Bearer-token API</td><td>Dedicated compliance key + REST</td></tr>
         <tr><td>Retention</td><td>Workspace retention</td><td>Workspace retention</td><td>30 days</td></tr>
         <tr><td>Primary users</td><td>Owner / Admin / Analytics Viewer</td><td>Owner / Admin / data team</td><td>Security / legal / compliance</td></tr>
-        <tr><td>Main use</td><td>Adoption measurement and lightweight consumption tracking</td><td>Productivity and credit/token reporting</td><td>Audit, evidence, DLP, SIEM</td></tr>
+        <tr><td>Main use</td><td>Adoption measurement and basic usage tracking</td><td>Codex usage and credit/token reporting</td><td>Audit evidence, DLP, and SIEM</td></tr>
         <tr><td>IP allowlist</td><td>Follows workspace policy</td><td>Follows workspace policy</td><td>Always enforced</td></tr>
       </tbody>
     </table>
@@ -3884,15 +3942,20 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       Combine <strong>Workspace analytics CSV</strong>, <strong>Codex CSV/JSON exports</strong>,
       <strong>Analytics API</strong>, and <strong>Compliance API</strong> rather than forcing one system to do every job.
       For Enterprise credit operations, use <strong>Billing</strong> as the source for credit balance, usage alerts, and hard overage limits;
-      use analytics exports for per-user, team, and surface-level diagnosis.
+      use analytics exports for per-user, team, and usage-surface diagnosis.
       <a href="https://developers.openai.com/codex/enterprise/governance" target="_blank">[Codex Governance]</a> ·
       <a href="https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers" target="_blank">[Compliance Platform]</a>
     </div>
-    <h3 class="menu"><span class="num">20.7</span>Metrics that are intentionally not provided</h3>
+    <h3 class="menu"><span class="num">20.7</span>Where to Check Each Metric</h3>
     <p style="font-size:.92rem">
-      OpenAI intentionally does not provide <em>generated lines of code</em>, <em>suggestion acceptance rate</em>, or
-      generic <em>code-quality KPIs</em> because those measures create poor incentives or depend too heavily on context.
-      Build custom KPIs from pull request review data and repository metadata instead.
+      Operational metrics such as generated lines of code and credit/token usage are available in the <strong>Global Admin Console</strong>
+      Leaderboard and Codex summary views. Use the <strong>Compliance API</strong> when you need raw audit and investigation logs;
+      the Compliance API is designed for audit evidence rather than productivity reporting such as code-quality KPIs or suggestion acceptance rates.
+      Keep operational reporting in Global Admin Console and Codex Analytics, and use Compliance API for audit evidence.
+    </p>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Sources: <a href="https://developers.openai.com/codex/enterprise/governance" target="_blank">Codex Governance</a> ·
+      <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>
     </p>
   </section>
 
@@ -3978,7 +4041,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 </section>
 
 <footer data-i18n="footer-note">
-  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-05-20
+  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-05-22
 </footer>
 
 <script>
@@ -3987,7 +4050,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "hero-eyebrow": "OpenAI · Admin Guide · 2026",
       "hero-title": "ChatGPT Enterprise &amp;<br/>Codex Enterprise<br/><em>Workspace Settings Complete Guide</em>",
       "hero-subtitle": "A consolidated guide to every menu in the ChatGPT Enterprise/Edu workspace admin console and the Codex Enterprise admin surface, including where each setting lives, what it controls, recommended defaults, official screenshots, and source links.",
-      "meta-updated": "Last updated: 2026-05-20",
+      "meta-updated": "Last updated: 2026-05-22",
       "meta-sources": "Sources: OpenAI Help Center · OpenAI Academy · developers.openai.com",
       "meta-language": "Available languages: Korean / English",
       "toc-part1": "Contents — Part 1 · ChatGPT Enterprise",
@@ -4065,7 +4128,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "codex-gov-dashboard-1": "Daily users by product surface: CLI, IDE, cloud, and Code Review",
       "codex-gov-dashboard-2": "Daily code review count, priority distribution, and feedback sentiment: positive or negative",
       "codex-gov-dashboard-3": "Daily cloud tasks, VS Code users, and CLI users",
-      "codex-gov-dashboard-4": "Personal usage breakdowns, including credit and token usage where the workspace has access to those metrics",
+      "codex-gov-dashboard-4": "Personal usage breakdowns, including credit and token usage where those metrics are available to the workspace",
+      "codex-gov-dashboard-5": "Global Admin Console's Codex area gives authorized admins a summary of active users, completed runs, token/credit usage, lines of code generated, plugin calls, access tokens, and code review activity",
+      "codex-gov-global-console": "<div class=\"label\">Global Admin Console vs Codex settings</div>The Global Admin Console Codex view is a tenant-level summary. Use <a href=\"https://chatgpt.com/codex/settings/analytics\" target=\"_blank\">Codex settings → Analytics</a> for CSV/JSON exports. Workspace members can view their own personal Codex usage from Codex settings on web. <a href=\"https://help.openai.com/en/articles/12289294-global-admin-console\" target=\"_blank\">[Global Admin Console]</a>",
       "codex-gov-export-title": "<span class=\"num\">20.2</span>② Codex Data Export <span class=\"pill\">CSV / JSON</span>",
       "codex-gov-export-body": "According to the Codex Governance documentation, Codex analytics data can be exported as CSV or JSON. While Workspace analytics CSV is centered on ChatGPT adoption, this export is for tracking <strong>Codex usage by surface</strong> and Code Review operations.",
       "codex-gov-export-th-included": "Included fields",
@@ -4089,8 +4154,8 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "codex-gov-compliance-title": "<span class=\"num\">20.4</span>④ Compliance API <span class=\"pill\">audit</span>",
       "codex-gov-compliance-body": "The Compliance API is the channel for bringing workspace audit and compliance data into SIEM, data lake, eDiscovery, and DLP tools. OpenAI Help states that the Compliance Logs Platform retention period is <strong>30 days</strong>, so customers that need longer retention should continuously download all logs and store them according to their own retention policy.",
       "codex-gov-compliance-endpoints": "Key endpoints: <code>/logs</code> · <code>/codex_tasks</code> · <code>/codex_environments</code>",
-      "codex-gov-audit-title": "<span class=\"num\">20.5</span>Do Not Confuse the Compliance API with the Platform Audit Log API",
-      "codex-gov-audit-body": "<span class=\"label\">Easy to mix up</span><strong>Compliance API</strong> covers ChatGPT workspace user activity, Codex, authentication, and audit logs, while the <strong>Admin/Audit Log API</strong> covers API Platform admin events such as API key creation, project management, and member changes. They are separate systems, so organizations using both ChatGPT Enterprise and API Platform should monitor both.",
+      "codex-gov-audit-title": "<span class=\"num\">20.5</span>Compliance API and Platform Audit Log API",
+      "codex-gov-audit-body": "<span class=\"label\">Operating boundary</span><strong>Compliance API</strong> covers ChatGPT workspace user activity, Codex, authentication, and audit logs, while the <strong>Admin/Audit Log API</strong> covers API Platform admin events such as API key creation, project management, and member changes. Organizations that operate both ChatGPT Enterprise and API Platform should manage each log stream for its own purpose.",
       "codex-gov-compare-title": "<span class=\"num\">20.6</span>Workspace analytics vs Codex Analytics vs Compliance API",
       "compare-dimension": "Dimension",
       "compare-target": "Target data",
@@ -4102,9 +4167,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "compare-codex-format": "Dashboard + CSV/JSON + REST API",
       "compare-compliance-format": "Raw JSONL log files",
       "compare-content": "Message body",
-      "compare-chatgpt-content": "No",
-      "compare-codex-content": "No",
-      "compare-compliance-content": "Yes",
+      "compare-chatgpt-content": "Not provided",
+      "compare-codex-content": "Not provided",
+      "compare-compliance-content": "Available where covered by the log",
       "compare-latency": "Latency",
       "compare-chatgpt-latency": "6-24 hour delay",
       "compare-codex-latency": "Daily",
@@ -4122,16 +4187,16 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "compare-codex-users": "Owner / Admin / data team",
       "compare-compliance-users": "Security / legal / compliance teams",
       "compare-purpose": "Primary use",
-      "compare-chatgpt-purpose": "Adoption measurement and lightweight consumption tracking",
-      "compare-codex-purpose": "Codex productivity and credit/token reporting",
-      "compare-compliance-purpose": "Audit, evidence, DLP, and SIEM",
+      "compare-chatgpt-purpose": "Adoption measurement and basic usage tracking",
+      "compare-codex-purpose": "Codex usage and credit/token reporting",
+      "compare-compliance-purpose": "Audit evidence, DLP, and SIEM",
       "compare-ip": "IP Allowlist",
       "compare-chatgpt-ip": "Follows workspace setting",
       "compare-codex-ip": "Follows workspace setting",
       "compare-compliance-ip": "Always enforced; cannot be turned off",
-      "codex-gov-pattern": "<div class=\"label\">Recommended pattern</div><strong>Workspace analytics CSV</strong> (ChatGPT adoption) + <strong>Codex CSV/JSON Export</strong> (Codex usage) + <strong>Analytics API</strong> (automated reporting) + <strong>Compliance API</strong> (audit and investigation) is the standard operating pattern. For Enterprise credit operations, use <strong>Billing</strong> as the source for credit balance, usage alerts, and hard overage limits; use analytics exports for per-user, team, and surface-level diagnosis. <a href=\"https://developers.openai.com/codex/enterprise/governance\" target=\"_blank\">[Codex Governance]</a> · <a href=\"https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers\" target=\"_blank\">[Compliance Platform]</a>",
-      "codex-gov-missing-title": "<span class=\"num\">20.7</span>Metrics Not Provided",
-      "codex-gov-missing-body": "OpenAI intentionally does not provide: <em>“lines of code generated”</em> because it creates the wrong incentives, <em>“suggestion acceptance rate”</em> because it is often near 100% and not meaningful, or <em>“code quality/performance KPI”</em> because those depend too heavily on context. The expected approach is to calculate custom KPIs from PR review data and metadata.",
+      "codex-gov-pattern": "<div class=\"label\">Recommended pattern</div><strong>Workspace analytics CSV</strong> (ChatGPT adoption) + <strong>Codex CSV/JSON Export</strong> (Codex usage) + <strong>Analytics API</strong> (automated reporting) + <strong>Compliance API</strong> (audit and investigation) is the standard operating pattern. For Enterprise credit operations, use <strong>Billing</strong> as the source for credit balance, usage alerts, and hard overage limits; use analytics exports for per-user, team, and usage-surface diagnosis. <a href=\"https://developers.openai.com/codex/enterprise/governance\" target=\"_blank\">[Codex Governance]</a> · <a href=\"https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers\" target=\"_blank\">[Compliance Platform]</a>",
+      "codex-gov-missing-title": "<span class=\"num\">20.7</span>Where to Check Each Metric",
+      "codex-gov-missing-body": "Operational metrics such as generated lines of code and credit/token usage are available in the <strong>Global Admin Console</strong> Leaderboard and Codex summary views. Use the <strong>Compliance API</strong> when you need raw audit and investigation logs; the Compliance API is designed for audit evidence rather than productivity reporting such as code-quality KPIs or suggestion acceptance rates. Keep operational reporting in Global Admin Console and Codex Analytics, and use Compliance API for audit evidence.",
       "checklist-title": "Rollout Checklist — One-Page Summary",
       "table-step": "Step",
       "table-area": "Area",
@@ -4172,7 +4237,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "check-13-action": "Run <strong>final validation</strong> with sample users",
       "check-13-note": "Verify login, MFA, RBAC, managed policies, and analytics visibility",
       "sources-title": "Sources / Reference Links — All Sources",
-      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-05-20"
+      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-05-22"
     };
 
 

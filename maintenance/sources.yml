@@ -2,7 +2,7 @@ guide:
   file: chatgpt-codex-enterprise-settings.html
   baseline_language: ko
   secondary_language: en
-  last_reviewed: 2026-05-20
+  last_reviewed: 2026-05-22
 
 sources:
   - id: workspace-settings
@@ -81,6 +81,13 @@ sources:
     cadence: weekly
     priority: high
     sections: [analytics]
+
+  - id: global-admin-console
+    url: https://help.openai.com/en/articles/12289294-global-admin-console
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [general, identity, analytics, codex-gov]
 
   - id: workspace-impact-surveys
     url: https://help.openai.com/en/articles/20001149-managing-impact-surveys-in-workspace-analytics
