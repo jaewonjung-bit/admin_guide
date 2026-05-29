@@ -2,7 +2,7 @@ guide:
   file: chatgpt-codex-enterprise-settings.html
   baseline_language: ko
   secondary_language: en
-  last_reviewed: 2026-05-22
+  last_reviewed: 2026-05-29
 
 sources:
   - id: workspace-settings
@@ -111,7 +111,7 @@ sources:
     sections: [identity]
 
   - id: scim-faq
-    url: https://help.openai.com/en/articles/9627404-openai-chatgpt-scim-integration-faq
+    url: https://help.openai.com/en/articles/10011769
     owner: openai_help
     cadence: weekly
     priority: high

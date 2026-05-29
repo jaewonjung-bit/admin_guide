@@ -465,7 +465,7 @@
       각 메뉴의 위치, 역할, 권장 설정값, 그리고 OpenAI 공식 화면 캡처와 출처 링크를 함께 제공합니다.
     </p>
     <div class="meta">
-      <span data-i18n="meta-updated">최종 업데이트: 2026-05-22</span>
+      <span data-i18n="meta-updated">최종 업데이트: 2026-05-29</span>
       <span data-i18n="meta-sources">출처: OpenAI Help Center · OpenAI Academy · developers.openai.com</span>
       <span data-i18n="meta-language">지원 언어: 한국어 / English</span>
     </div>
@@ -669,13 +669,13 @@
     <li>그룹 생성·삭제, 멤버 추가/제거</li>
     <li>그룹 멤버십 검토</li>
     <li>SCIM 동기화 그룹은 이름 옆에 <strong>SCIM 배지</strong>가 표시되어 직접 관리 그룹과 구분</li>
-    <li>같은 이름의 그룹이 이미 있으면 SCIM이 덮어쓰지 않고 별개 그룹으로 생성됨</li>
+    <li>같은 이름의 ChatGPT 그룹이 이미 있으면 별도 중복 그룹을 만들기보다, 그 기존 그룹이 <strong>SCIM 관리 그룹으로 전환</strong>될 수 있으므로 IdP 쪽 멤버십을 먼저 점검하는 편이 안전합니다.</li>
   </ul>
   <div class="box green">
     <div class="label">RBAC 사용 시 필수</div>
     역할(권한)은 <strong>그룹</strong>에 부여합니다. 따라서 RBAC를 쓰려면 그룹이 반드시 필요합니다.
     개인 사용자에게 직접 역할을 붙일 수는 없습니다.
-    <a href="https://help.openai.com/en/articles/9627404-openai-chatgpt-scim-integration-faq" target="_blank">[SCIM FAQ]</a>
+    <a href="https://help.openai.com/en/articles/10011769" target="_blank">[SCIM FAQ]</a>
   </div>
 </section>
 
@@ -750,16 +750,19 @@
 
   <h3 class="menu"><span class="num">05.5</span>Workspace Agents <span class="pill green">점진 배포</span></h3>
   <p>
-    2026년 5월 7일 릴리스 노트 기준, <strong>Workspace Agents</strong>는 eligible Enterprise/Business 워크스페이스뿐 아니라
+    2026년 5월 28일 릴리스 노트 기준, <strong>Workspace Agents</strong>는 eligible Enterprise/Business 워크스페이스뿐 아니라
     <strong>EKM이 적용된 eligible Enterprise 워크스페이스</strong>까지 지원합니다. 에이전트는 ChatGPT와 Slack에서 반복 업무를 자동화할 수 있으며,
     앱·파일·스킬·커스텀 MCP 서버를 연결하고 예약 실행도 가능합니다.
   </p>
   <ul>
     <li><strong>기본값</strong>: 출시 시점에는 <strong>OFF</strong></li>
     <li><strong>관리 포인트</strong>: agent 생성, 게시, Slack 사용 권한 제어</li>
+    <li><strong>게시 권한 세분화</strong>: 관리자는 <strong>워크스페이스 디렉터리에 publish할 수 있는 역할</strong>을 Role 단위로 제어할 수 있음</li>
     <li><strong>공유 방식</strong>: 비공개, 링크 공유, 워크스페이스 디렉터리</li>
-    <li><strong>주요 기능</strong>: 템플릿/직접 생성, 미리보기, 예약 실행, 버전 히스토리, usage analytics</li>
+    <li><strong>주요 기능</strong>: 템플릿/직접 생성, guided setup, 미리보기, 예약 실행, 버전 히스토리, usage analytics</li>
+    <li><strong>응답 기능</strong>: GPT-5.5 선택, reasoning effort 제어, audio 파일 생성, Slack thread 후속 응답 여부 제어</li>
     <li><strong>EKM 상태</strong>: 출시 초기 제한은 해제되었고, 이제 eligible EKM Enterprise도 사용 가능</li>
+    <li><strong>가격 메모</strong>: workspace agents 무료 기간은 <strong>2026년 7월 6일</strong>까지 연장되었고, 이후 credit 기반 과금 시작 예정</li>
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
     이 기능은 현재 개별 Help 문서보다 <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a>가
@@ -868,6 +871,9 @@
     <li>앱이 <strong>action 단위 제어</strong>를 지원하면 action별 검토·차단 가능</li>
     <li>Action control은 <strong>모두 허용 / 읽기만 허용 / 커스텀 선택</strong>을 지원하고, 이후 새 action이 추가될 때도
       <em>자동 허용 / 새 read action만 허용 / 새 action 기본 차단</em> 정책을 고를 수 있음</li>
+    <li><strong>App template</strong>: Enterprise/Edu Owner/Admin은 GitHub Enterprise, Snowflake, Databricks용
+      <strong>workspace-specific app template</strong>를 사용해 초안 앱을 만든 뒤, 게시 후 동일하게 role access, action controls,
+      action confirmation을 Apps 화면에서 운영</li>
   </ul>
 
   <h3 class="menu"><span class="num">08.2</span>Sync(인덱싱) 설정</h3>
@@ -900,6 +906,8 @@
     <li>Owner 또는 “developer mode 허용”된 사용자만 등록·게시 가능</li>
     <li>Member 역할은 자체 등록 불가</li>
     <li>RBAC로 누가 개발/테스트/사용할지 분리</li>
+    <li><strong>Template 기반 앱</strong>은 provider-specific OAuth, callback URL, webhook, managed MCP server URL 같은 초기 설정을 guided flow로 만들지만,
+      게시 후 거버넌스는 일반 Apps와 동일하게 관리</li>
   </ul>
 
   <h3 class="menu"><span class="num">08.5</span>Microsoft 계열 연결 시 주의</h3>
@@ -1101,6 +1109,14 @@
     <li>회사 보안 정책으로 TXT 레코드 추가가 어려우면 Account Director 통해 수동 검증 가능</li>
     <li>주 도메인을 검증해도 서브도메인은 <strong>각각 별도 검증</strong> 필요</li>
   </ul>
+  <div class="box">
+    <div class="label">Global Admin Console 도메인 매핑</div>
+    최신 Global Admin Console 기준으로 도메인을 검증해도 바로 SSO가 적용되는 것은 아닙니다.
+    도메인은 처음에는 <strong>Not Mapped</strong> 상태로 들어갈 수 있고, 실제로 특정 워크스페이스에 SSO를 적용하려면
+    그 도메인을 해당 워크스페이스에 <strong>명시적으로 매핑</strong>해야 합니다. SSO를 켰는데도 로그인 강제가 동작하지 않으면
+    Workspace/Domain mapping 누락을 먼저 확인하세요.
+    <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">[Global Admin Console]</a>
+  </div>
 
   <h3 class="menu"><span class="num">10.2</span>Login configuration · SSO/SAML</h3>
   <ul>
@@ -1137,7 +1153,7 @@
     SCIM의 자동 접근 회수가 작동하지 않는 사고가 발생합니다.
   </div>
   <p style="font-size:.88rem;color:var(--muted)">
-    <a href="https://help.openai.com/en/articles/9627404-openai-chatgpt-scim-integration-faq" target="_blank">→ SCIM integration FAQ</a>
+    <a href="https://help.openai.com/en/articles/10011769" target="_blank">→ SCIM integration FAQ</a>
   </p>
 
   <h3 class="menu"><span class="num">10.4</span>External domain invites</h3>
@@ -2229,6 +2245,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <li data-i18n="codex-gov-dashboard-2">일일 코드 리뷰 수 · 우선순위별 분포 · 피드백 성향(긍정/부정)</li>
     <li data-i18n="codex-gov-dashboard-3">일일 Cloud 작업 · VS Code 사용자 · CLI 사용자</li>
     <li data-i18n="codex-gov-dashboard-4">워크스페이스에서 제공되는 경우 개인별 credit/token 사용량 breakdown 확인</li>
+    <li>이 대시보드는 <strong>Owner / Admin / Analytics Viewer</strong>가 일상 운영 지표를 보는 기본 화면입니다.</li>
     <li data-i18n="codex-gov-dashboard-5">Global Admin Console의 Codex 영역에서는 권한이 있는 관리자가 활성 사용자, 완료된 실행, token/credit 사용량, 생성된 코드 라인 수, plugin 호출, access token, code review 활동을 요약 확인</li>
   </ul>
   <div class="box" data-i18n="codex-gov-global-console">
@@ -2247,11 +2264,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   <table>
     <thead><tr><th>Export</th><th data-i18n="codex-gov-export-th-included">포함 항목</th><th data-i18n="codex-gov-export-th-excel">Excel 활용</th></tr></thead>
     <tbody>
-      <tr><td>Code review users and reviews</td><td data-i18n="codex-gov-export-r1-included">Code Review 일일 고유 사용자, 완료 리뷰 수</td><td data-i18n="codex-gov-export-r1-excel">리뷰 도입률·팀별 사용량</td></tr>
-      <tr><td>Code review findings and feedback</td><td data-i18n="codex-gov-export-r2-included">댓글, 반응, 답글, 우선순위별 탐지 항목</td><td data-i18n="codex-gov-export-r2-excel">리뷰 품질·피드백 추세</td></tr>
-      <tr><td>cloud users and tasks</td><td data-i18n="codex-gov-export-r3-included">cloud 일일 고유 사용자, 완료 작업 수</td><td data-i18n="codex-gov-export-r3-excel">cloud 작업 증가 추세</td></tr>
-      <tr><td>CLI and VS Code users</td><td data-i18n="codex-gov-export-r4-included">CLI / VS Code Extension 일일 고유 사용자</td><td data-i18n="codex-gov-export-r4-excel">로컬 도입률 추적</td></tr>
-      <tr><td>Sessions, messages, credits, and tokens per user</td><td data-i18n="codex-gov-export-r5-included">전체 사용 환경의 일일 세션 시작, 사용자 메시지 수, 개인별 credit/token 사용량</td><td data-i18n="codex-gov-export-r5-excel">사용량 급증·개인별 follow-up·초과 사용 전조 확인</td></tr>
+      <tr><td>Workspace usage</td><td>사용 환경별 일일 활성 사용자, threads, turns, credits</td><td>surface별 도입률과 사용 추세 비교</td></tr>
+      <tr><td>Usage per user</td><td>사용자별 일일 threads, turns, credits, 선택적 email 표시</td><td>개인별 사용량 급증, 팀 리드 follow-up, seat/credit 운영</td></tr>
+      <tr><td>Code review details</td><td>완료 리뷰, 댓글, 반응, 답글, 우선순위별 finding</td><td>리뷰 품질, PR 운영 패턴, 보안/품질 신호 추적</td></tr>
     </tbody>
   </table>
 
@@ -2273,6 +2288,12 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     Compliance API는 워크스페이스의 감사·컴플라이언스 데이터를 SIEM, 데이터 레이크, eDiscovery, DLP 도구로 가져오는 채널입니다.
     OpenAI Help 문서 기준 Compliance Logs Platform의 보존 기간은 <strong>30일</strong>이므로, 더 긴 보존이 필요하면 모든 로그를 지속적으로 다운로드해 고객 보존 정책에 맞춰 저장해야 합니다.
   </p>
+  <div class="warn">
+    <span class="label">2026년 6월 5일 전 확인</span>
+    Compliance Platform 문서는 <strong>2026년 3월 5일</strong> 새 conversation logs 시스템이 릴리스되었고,
+    기존 <strong>stateful route</strong>는 <strong>2026년 6월 5일</strong> 제거된다고 안내합니다.
+    기존 연동이 stateful route를 쓰고 있다면, 반영 전후와 무관하게 새 logs system 기준으로 마이그레이션 상태를 점검해야 합니다.
+  </div>
   <p style="font-size:.88rem;color:var(--muted)">
     <a href="https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers" target="_blank">→ OpenAI Compliance Platform 공식 가이드</a>
   </p>
@@ -2488,12 +2509,12 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li>Create or delete groups and add or remove members.</li>
       <li>Review group membership.</li>
       <li>SCIM-synced groups display a <strong>SCIM badge</strong> so they are visually distinguished from manually managed groups.</li>
-      <li>If a group name already exists, SCIM creates a separate group rather than overwriting it.</li>
+      <li>If a ChatGPT group with the same name already exists, SCIM may convert that existing group into a <strong>SCIM-managed group</strong> instead of creating a duplicate, so review IdP membership before enabling sync.</li>
     </ul>
     <div class="box green">
       <div class="label">Required for RBAC</div>
       Roles are assigned to <strong>groups</strong>, not directly to individual users. If you use RBAC, groups are mandatory.
-      <a href="https://help.openai.com/en/articles/9627404-openai-chatgpt-scim-integration-faq" target="_blank">[SCIM FAQ]</a>
+      <a href="https://help.openai.com/en/articles/10011769" target="_blank">[SCIM FAQ]</a>
     </div>
   </section>
 
@@ -2561,7 +2582,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <p>Owner-only area for enabling or disabling pre-GA features at the workspace level.</p>
     <h3 class="menu"><span class="num">05.5</span>Workspace Agents <span class="pill green">gradual rollout</span></h3>
     <p>
-      As of the May 7, 2026 release notes, <strong>Workspace Agents</strong> are available not only to eligible
+      As of the May 28, 2026 release notes, <strong>Workspace Agents</strong> are available not only to eligible
       Enterprise and Business workspaces, but also to <strong>eligible Enterprise workspaces with EKM</strong>.
       Agents can automate repeatable work across ChatGPT and Slack, connect to apps, files, skills, and custom MCP servers,
       and run on schedules.
@@ -2569,9 +2590,12 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <ul>
       <li><strong>Default at launch</strong>: <strong>off</strong></li>
       <li><strong>Admin controls</strong>: agent building, publishing, and Slack usage</li>
+      <li><strong>Publishing permissions</strong>: admins can control which roles may <strong>publish agents to the shared workspace directory</strong></li>
       <li><strong>Sharing modes</strong>: private, link-based, or workspace directory</li>
-      <li><strong>Core capabilities</strong>: template or scratch creation, preview, scheduled runs, version history, and usage analytics</li>
+      <li><strong>Core capabilities</strong>: template or scratch creation, guided setup, preview, scheduled runs, version history, and usage analytics</li>
+      <li><strong>Response capabilities</strong>: GPT-5.5 selection, reasoning-effort control, audio-file output, and configurable Slack thread follow-up replies</li>
       <li><strong>EKM status</strong>: the launch-stage limitation has been removed for eligible Enterprise workspaces with EKM</li>
+      <li><strong>Pricing note</strong>: the free period for workspace agents has been extended through <strong>July 6, 2026</strong>, after which credit-based pricing is scheduled to begin</li>
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
       Right now the <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">release notes</a>
@@ -2667,6 +2691,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li>When an app is enabled, admins can immediately decide which custom roles should see it.</li>
       <li>If an app supports <strong>action-level control</strong>, admins can review or block actions individually.</li>
       <li>Action control supports <strong>allow all / read-only / custom</strong>, plus a policy for future actions: <em>enable all new actions, enable only new read actions, or disable new actions</em>.</li>
+      <li><strong>App templates</strong> let Enterprise and Edu owners or admins create <strong>workspace-specific apps</strong> for GitHub Enterprise, Snowflake, and Databricks, then manage the published result with the same role access, action controls, and action confirmation model.</li>
     </ul>
     <h3 class="menu"><span class="num">08.2</span>Sync / indexing controls</h3>
     <ul>
@@ -2695,6 +2720,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li>Owners or users with developer-mode permission can register and publish them.</li>
       <li>Members cannot self-register them.</li>
       <li>RBAC should separate who can develop, test, and use them.</li>
+      <li><strong>Template-generated apps</strong> use a guided setup flow for provider-specific OAuth credentials, callback URLs, webhooks, managed MCP server URLs, and workspace access controls, but once published they are governed like ordinary apps.</li>
     </ul>
     <h3 class="menu"><span class="num">08.5</span>Microsoft integration notes</h3>
     <p>
@@ -2878,6 +2904,14 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li>If corporate policy blocks TXT-record changes, manual verification can be handled through the account director.</li>
       <li>Verifying a parent domain does not automatically verify subdomains; each one must be <strong>verified separately</strong>.</li>
     </ul>
+    <div class="box">
+      <div class="label">Global Admin Console domain mapping</div>
+      In the current Global Admin Console flow, verifying a domain does not automatically make SSO effective.
+      Newly verified domains can start in <strong>Not Mapped</strong>, and the domain must be <strong>explicitly mapped</strong>
+      to the relevant workspace before SSO actually applies there. If SSO appears enabled but users are not being forced
+      through it, check workspace/domain mapping first.
+      <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">[Global Admin Console]</a>
+    </div>
     <h3 class="menu"><span class="num">10.2</span>Login configuration / SSO / SAML</h3>
     <ul>
       <li><strong>Enable SSO</strong> allows SAML 2.0 authentication through the IdP while password and social sign-in can still remain available.</li>
@@ -2912,7 +2946,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       which prevents SCIM's automatic deprovisioning flow from behaving as intended.
     </div>
     <p style="font-size:.88rem;color:var(--muted)">
-      <a href="https://help.openai.com/en/articles/9627404-openai-chatgpt-scim-integration-faq" target="_blank">→ SCIM integration FAQ</a>
+      <a href="https://help.openai.com/en/articles/10011769" target="_blank">→ SCIM integration FAQ</a>
     </p>
     <h3 class="menu"><span class="num">10.4</span>External domain invites</h3>
     <p>
@@ -3860,6 +3894,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li>Daily code-review volume, priority mix, and positive or negative feedback signals.</li>
       <li>Daily cloud tasks, VS Code users, and CLI users.</li>
       <li>Personal usage breakdowns, including credit and token usage where those metrics are available to the workspace.</li>
+      <li>This dashboard is the main day-to-day operating surface for <strong>owners, admins, and analytics viewers</strong>.</li>
       <li>Global Admin Console's Codex area gives authorized admins a summary of active users, completed runs, token/credit usage, lines of code generated, plugin calls, access tokens, and code review activity.</li>
     </ul>
     <div class="box">
@@ -3878,11 +3913,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <table>
       <thead><tr><th>Export</th><th>Included data</th><th>Typical Excel use</th></tr></thead>
       <tbody>
-        <tr><td>Code review users and reviews</td><td>Daily unique users and completed reviews</td><td>Review adoption by team</td></tr>
-        <tr><td>Code review findings and feedback</td><td>Comments, reactions, replies, and priority-level findings</td><td>Review quality and feedback trend</td></tr>
-        <tr><td>cloud users and tasks</td><td>Daily unique cloud users and completed tasks</td><td>Cloud growth tracking</td></tr>
-        <tr><td>CLI and VS Code users</td><td>Daily unique users for CLI and VS Code Extension</td><td>Local adoption tracking</td></tr>
-        <tr><td>Sessions, messages, credits, and tokens per user</td><td>Daily sessions started, user messages, and personal credit/token usage across surfaces</td><td>Spike detection, individual follow-up, and overage signals</td></tr>
+        <tr><td>Workspace usage</td><td>Daily active users, threads, turns, and credits by surface</td><td>Compare adoption and usage by client or surface</td></tr>
+        <tr><td>Usage per user</td><td>Daily per-user threads, turns, credits, and optional email fields</td><td>Individual follow-up, team operations, and credit oversight</td></tr>
+        <tr><td>Code review details</td><td>Completed reviews, comments, reactions, replies, and priority-level findings</td><td>Track review quality, PR operations, and security or quality signals</td></tr>
       </tbody>
     </table>
 
@@ -3906,6 +3939,12 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       eDiscovery, or DLP tooling. Compliance Logs Platform retention is <strong>30 days</strong>, so longer retention
       requires continuous export into customer-managed storage.
     </p>
+    <div class="warn">
+      <span class="label">Check before June 5, 2026</span>
+      The Compliance Platform article states that a new conversations logs system shipped on <strong>March 5, 2026</strong>,
+      and the deprecated <strong>stateful route</strong> will be removed on <strong>June 5, 2026</strong>. If an existing
+      integration still depends on that older route, review migration status against the new logs system.
+    </div>
     <p style="font-size:.88rem;color:var(--muted)">
       <a href="https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers" target="_blank">→ Official OpenAI Compliance Platform guide</a>
     </p>
@@ -3996,7 +4035,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><a href="https://help.openai.com/en/articles/8266431-what-is-the-difference-between-different-roles-on-my-chatgpt-enterprise-workspace" target="_blank">Workspace roles in ChatGPT Enterprise &amp; Edu</a></li>
       <li><a href="https://help.openai.com/en/articles/11750701-rbac" target="_blank">RBAC (Role-Based Access Controls)</a></li>
       <li><a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">Flexible pricing for Enterprise, Edu, and Business plans</a></li>
-      <li><a href="https://help.openai.com/en/articles/9627404-openai-chatgpt-scim-integration-faq" target="_blank">OpenAI ChatGPT SCIM Integration FAQ</a></li>
+      <li><a href="https://help.openai.com/en/articles/10011769" target="_blank">OpenAI ChatGPT SCIM Integration FAQ</a></li>
       <li><a href="https://help.openai.com/en/articles/9672121-getting-started-with-identity-and-provisioning-in-chatgpt-enterprise-edu-and-chatgpt-for-teachers" target="_blank">Getting started with Identity &amp; Provisioning</a></li>
       <li><a href="https://help.openai.com/en/articles/10468051-sso-overview" target="_blank">SSO Overview</a></li>
       <li><a href="https://help.openai.com/en/articles/9534785-configuring-sso" target="_blank">Configuring SSO</a></li>
@@ -4041,7 +4080,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 </section>
 
 <footer data-i18n="footer-note">
-  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-05-22
+  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-05-29
 </footer>
 
 <script>
@@ -4237,7 +4276,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "check-13-action": "Run <strong>final validation</strong> with sample users",
       "check-13-note": "Verify login, MFA, RBAC, managed policies, and analytics visibility",
       "sources-title": "Sources / Reference Links — All Sources",
-      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-05-22"
+      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-05-29"
     };
 
 
