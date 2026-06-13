@@ -2,7 +2,7 @@ guide:
   file: chatgpt-codex-enterprise-settings.html
   baseline_language: ko
   secondary_language: en
-  last_reviewed: 2026-05-29
+  last_reviewed: 2026-06-14
 
 sources:
   - id: workspace-settings
@@ -96,6 +96,13 @@ sources:
     priority: high
     sections: [analytics]
 
+  - id: chatgpt-library
+    url: https://help.openai.com/en/articles/20001052-library-for-chatgpt
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [general, codex-gov]
+
   - id: sso-overview
     url: https://help.openai.com/en/articles/10468051-sso-overview
     owner: openai_help
@@ -179,6 +186,41 @@ sources:
     cadence: weekly
     priority: high
     sections: [codex-cloud-toggle, codex-team]
+
+  - id: codex-plugins
+    url: https://developers.openai.com/codex/plugins
+    owner: openai_developers
+    cadence: weekly
+    priority: high
+    sections: [apps, codex-toggle, codex-policies, codex-team]
+
+  - id: codex-sites
+    url: https://developers.openai.com/codex/sites
+    owner: openai_developers
+    cadence: weekly
+    priority: high
+    sections: [apps, codex-toggle]
+
+  - id: codex-computer-use
+    url: https://developers.openai.com/codex/app/computer-use
+    owner: openai_developers
+    cadence: weekly
+    priority: high
+    sections: [codex-toggle, codex-cloud-toggle, codex-policies, codex-managed]
+
+  - id: codex-in-app-browser
+    url: https://developers.openai.com/codex/app/browser
+    owner: openai_developers
+    cadence: weekly
+    priority: high
+    sections: [codex-toggle, codex-policies]
+
+  - id: codex-config-reference
+    url: https://developers.openai.com/codex/config-reference
+    owner: openai_developers
+    cadence: weekly
+    priority: high
+    sections: [codex-policies, codex-managed, codex-team]
 
   - id: codex-auth
     url: https://developers.openai.com/codex/auth

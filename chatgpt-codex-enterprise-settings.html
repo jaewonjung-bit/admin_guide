@@ -465,7 +465,7 @@
       각 메뉴의 위치, 역할, 권장 설정값, 그리고 OpenAI 공식 화면 캡처와 출처 링크를 함께 제공합니다.
     </p>
     <div class="meta">
-      <span data-i18n="meta-updated">최종 업데이트: 2026-05-29</span>
+      <span data-i18n="meta-updated">최종 업데이트: 2026-06-14</span>
       <span data-i18n="meta-sources">출처: OpenAI Help Center · OpenAI Academy · developers.openai.com</span>
       <span data-i18n="meta-language">지원 언어: 한국어 / English</span>
     </div>
@@ -546,6 +546,7 @@
       <tr><td>Available Models</td><td>현재 허용 모델 계열·레거시 모델 접근</td><td>Owner / Admin</td></tr>
       <tr><td>GPTs</td><td>GPT 소유권·공유·서드파티·Action 도메인</td><td>Owner / Admin</td></tr>
       <tr><td>Apps</td><td>Google Drive, Slack, GitHub 등 연결 앱·MCP</td><td>Owner / Admin</td></tr>
+      <tr><td>Sites</td><td>Codex Sites로 게시된 내부 사이트 비활성화·운영</td><td>Owner / Admin</td></tr>
       <tr><td>Workspace Analytics</td><td>도입률·사용량·Task Insights·Impact 설문</td><td>Owner / Admin / Analytics Viewer</td></tr>
       <tr><td>Identity &amp; Access</td><td>SSO/SAML, SCIM, 도메인 검증, IP 허용 목록</td><td>Owner 중심, 일부 Access Restrictions는 Admin</td></tr>
       <tr><td>Billing</td><td>인보이스·seat 수·결제 정보</td><td>Owner</td></tr>
@@ -601,6 +602,37 @@
     Account Director에게 통합을 요청하세요.
     <a href="https://help.openai.com/en/articles/10468051-sso-overview" target="_blank">[SSO 개요]</a>
   </div>
+
+  <h3 class="menu"><span class="num">02.5</span>Active sessions — 계정 세션 확인</h3>
+  <p>
+    2026년 6월 2일 릴리스 노트 기준, 사용자는 <strong>Settings → Security → Active sessions</strong>에서
+    본인 계정에 연결된 OpenAI 자체 세션을 확인하고 개별 또는 전체 로그아웃을 실행할 수 있습니다.
+  </p>
+  <ul>
+    <li>표시 항목은 기기, 앱, 대략적 위치, 로그인 시각, 신뢰된 기기 여부, 현재 세션 여부 등입니다.</li>
+    <li>범위에는 ChatGPT, Codex, API Platform 세션이 포함될 수 있지만, 타사 앱 세션이나 타사 서비스용 Sign in with ChatGPT 세션은 관리하지 않습니다.</li>
+    <li><strong>조직 SSO(SAML/OIDC)에 연결된 계정에는 제공되지 않을 수 있고, Codex CLI 세션도 여기서 관리하지 않습니다.</strong></li>
+  </ul>
+  <p style="font-size:.88rem;color:var(--muted)">
+    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Enterprise/Edu 릴리스 노트</a>
+  </p>
+
+  <h3 class="menu"><span class="num">02.6</span>Library — 파일 저장소와 자동 참조</h3>
+  <p>
+    2026년 6월 11일 기준, <strong>Library</strong>는 Enterprise/Edu/Healthcare 워크스페이스로 배포 중입니다.
+    사용자가 ChatGPT에 업로드하거나 ChatGPT에서 만든 파일은 Library에 저장되어 나중에 다시 찾아 첨부할 수 있습니다.
+  </p>
+  <ul>
+    <li>Library 파일은 워크스페이스 보존 정책을 따르고, 일일 첨부/채팅 한도와 별도의 저장소로 관리됩니다.</li>
+    <li>Owner는 ChatGPT가 답변할 때 Library 파일을 자동으로 참조할지 제어할 수 있습니다. 이 기능을 꺼도 Library 자체, 검색, 열기, 수동 첨부는 막지 않습니다.</li>
+    <li>Healthcare 워크스페이스에서는 Library 자동 참조가 기본 OFF입니다.</li>
+    <li>Library는 새 외부 공유나 다중 사용자 공동 편집 기능을 추가하지 않습니다.</li>
+    <li>Compliance 관리자는 Library 전용 Compliance API endpoint로 Library 파일을 export/delete할 수 있습니다.</li>
+  </ul>
+  <p style="font-size:.88rem;color:var(--muted)">
+    출처: <a href="https://help.openai.com/en/articles/20001052-library-for-chatgpt" target="_blank">File storage and Library in ChatGPT</a> ·
+    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a>
+  </p>
 </section>
 
 <!-- ============ MEMBERS ============ -->
@@ -713,10 +745,11 @@
     <li><strong>Codex</strong> — Codex 사용 및 인터넷 접근 관련 제어(아래 Codex 섹션 참조)</li>
     <li><strong>Apps</strong> — 앱 사용 허용 여부, 앱별 선택, action 단위 제어</li>
     <li><strong>GPTs</strong> — 생성·편집·공유 범위(invite-only / workspace / public), 서드파티 GPT 접근</li>
-    <li><strong>Project creation</strong> — 프로젝트 생성 권한</li>
-    <li><strong>Record (Memory/Notes)</strong> — 메모리/노트 기능</li>
+    <li><strong>Projects</strong> — 프로젝트 생성·편집 권한</li>
+    <li><strong>Record</strong> — 과거 노트·녹취/기록 참조 권한</li>
     <li><strong>Search</strong> — 웹 검색, 에이전트 검색</li>
     <li><strong>Shared projects</strong> — 공유 프로젝트 참여</li>
+    <li><strong>Skills</strong> — Skill 생성·사용, skill 파일 업로드, 공유, 워크스페이스 게시, 다른 멤버용 설치</li>
     <li><strong>Link sharing</strong> — 대화 링크 공유 범위</li>
     <li><strong>Available models</strong> — 이 Role이 쓸 수 있는 모델 한정</li>
     <li><strong>Usage limits / Spend controls</strong> — 크레딧/메시지 한도(아래 참고)</li>
@@ -727,6 +760,12 @@
   <p style="font-size:.88rem;color:var(--muted)">
     참고로 Apps는 <strong>앱 단위 접근은 제어할 수 있지만, 앱 UI 자체를 개별로 숨기는 방식은 아닙니다.</strong>
   </p>
+  <div class="box">
+    <div class="label">Lockdown Mode 역할</div>
+    Lockdown Mode를 지원하는 워크스페이스에서는 이를 단일 토글이 아니라 <strong>역할 수준 보안 구성</strong>으로 다룹니다.
+    해당 역할을 받은 멤버는 live web search, deep research, agent mode, Canvas 네트워크, 일부 앱/MCP/connector 동작이 제한될 수 있으므로,
+    할당 전 각 앱과 action, 원본 시스템 권한을 함께 확인해야 합니다.
+  </div>
 
   <h3 class="menu"><span class="num">05.3</span>Spend controls (Usage limits)</h3>
   <p>
@@ -750,8 +789,8 @@
 
   <h3 class="menu"><span class="num">05.5</span>Workspace Agents <span class="pill green">점진 배포</span></h3>
   <p>
-    2026년 5월 28일 릴리스 노트 기준, <strong>Workspace Agents</strong>는 eligible Enterprise/Business 워크스페이스뿐 아니라
-    <strong>EKM이 적용된 eligible Enterprise 워크스페이스</strong>까지 지원합니다. 에이전트는 ChatGPT와 Slack에서 반복 업무를 자동화할 수 있으며,
+    2026년 5월 28일 릴리스 노트 기준, <strong>Workspace Agents</strong>는 대상 Enterprise/Business 워크스페이스뿐 아니라
+    <strong>EKM이 적용된 대상 Enterprise 워크스페이스</strong>까지 지원합니다. 에이전트는 ChatGPT와 Slack에서 반복 업무를 자동화할 수 있으며,
     앱·파일·스킬·커스텀 MCP 서버를 연결하고 예약 실행도 가능합니다.
   </p>
   <ul>
@@ -761,7 +800,7 @@
     <li><strong>공유 방식</strong>: 비공개, 링크 공유, 워크스페이스 디렉터리</li>
     <li><strong>주요 기능</strong>: 템플릿/직접 생성, guided setup, 미리보기, 예약 실행, 버전 히스토리, usage analytics</li>
     <li><strong>응답 기능</strong>: GPT-5.5 선택, reasoning effort 제어, audio 파일 생성, Slack thread 후속 응답 여부 제어</li>
-    <li><strong>EKM 상태</strong>: 출시 초기 제한은 해제되었고, 이제 eligible EKM Enterprise도 사용 가능</li>
+    <li><strong>EKM 상태</strong>: 출시 초기 제한은 해제되었고, 이제 대상 EKM Enterprise도 사용 가능</li>
     <li><strong>가격 메모</strong>: workspace agents 무료 기간은 <strong>2026년 7월 6일</strong>까지 연장되었고, 이후 credit 기반 과금 시작 예정</li>
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
@@ -871,10 +910,17 @@
     <li>앱이 <strong>action 단위 제어</strong>를 지원하면 action별 검토·차단 가능</li>
     <li>Action control은 <strong>모두 허용 / 읽기만 허용 / 커스텀 선택</strong>을 지원하고, 이후 새 action이 추가될 때도
       <em>자동 허용 / 새 read action만 허용 / 새 action 기본 차단</em> 정책을 고를 수 있음</li>
+    <li><strong>App permissions</strong>는 ChatGPT가 앱을 사용하기 전에 언제 사용자에게 묻는지 정하는 설정이며,
+      지원되는 앱에서는 기존 action confirmation을 대체합니다.</li>
     <li><strong>App template</strong>: Enterprise/Edu Owner/Admin은 GitHub Enterprise, Snowflake, Databricks용
       <strong>workspace-specific app template</strong>를 사용해 초안 앱을 만든 뒤, 게시 후 동일하게 role access, action controls,
-      action confirmation을 Apps 화면에서 운영</li>
+      app permissions를 Apps 화면에서 운영</li>
   </ul>
+  <p style="font-size:.88rem;color:var(--muted)">
+    RBAC는 <strong>누가 앱을 쓸 수 있는지</strong>, Action control은 <strong>그 앱이 무엇을 할 수 있는지</strong>,
+    App permissions는 <strong>ChatGPT가 언제 사용자 확인을 요청하는지</strong>를 다룹니다. App permissions 옵션은 배포 상태와 앱별 지원 여부에 따라
+    Always ask, Any changes, Important actions, Never ask 등으로 보일 수 있습니다.
+  </p>
 
   <h3 class="menu"><span class="num">08.2</span>Sync(인덱싱) 설정</h3>
   <ul>
@@ -908,6 +954,7 @@
     <li>RBAC로 누가 개발/테스트/사용할지 분리</li>
     <li><strong>Template 기반 앱</strong>은 provider-specific OAuth, callback URL, webhook, managed MCP server URL 같은 초기 설정을 guided flow로 만들지만,
       게시 후 거버넌스는 일반 Apps와 동일하게 관리</li>
+    <li>Custom MCP app 게시 후에는 워크스페이스에 앱을 연결하고, 관리자가 Action control에서 <strong>Refresh</strong>로 새 action 또는 변경 action을 검토합니다.</li>
   </ul>
 
   <h3 class="menu"><span class="num">08.5</span>Microsoft 계열 연결 시 주의</h3>
@@ -919,7 +966,7 @@
     또한 앱 설정에서 <strong>Microsoft Purview sensitivity labels</strong>를 구성할 수 있습니다.
   </p>
   <ul>
-    <li><strong>Microsoft Teams app with admin-managed sync</strong>는 eligible Enterprise/Edu 워크스페이스에서 사용할 수 있습니다.</li>
+    <li><strong>Microsoft Teams app with admin-managed sync</strong>는 대상 Enterprise/Edu 워크스페이스에서 사용할 수 있습니다.</li>
     <li>Owner/Admin이 Workspace settings → Apps에서 Teams를 한 번 연결하고, scope picker로 포함할 Teams 콘텐츠를 선택합니다.</li>
     <li>필요하면 <strong>Microsoft Purview sensitivity label filter</strong>로 동기화 범위를 더 좁힐 수 있습니다.</li>
     <li>이 경험은 <strong>read-only</strong>이며, 설정 후 인덱스가 완전히 채워지는 데 시간이 걸릴 수 있습니다.</li>
@@ -941,6 +988,23 @@
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
     <a href="https://help.openai.com/en/articles/20001063-chatgpt-for-excel-and-google-sheets" target="_blank">→ ChatGPT for Excel and Google Sheets 공식 가이드</a>
+  </p>
+
+  <h3 class="menu"><span class="num">08.7</span>ChatGPT Sites <span class="pill green">Preview</span></h3>
+  <p>
+    2026년 6월 2일 기준, <strong>ChatGPT Sites</strong>는 대상 Enterprise/Edu 워크스페이스에서 preview로 제공됩니다.
+    Codex의 Sites plugin을 통해 내부용 JavaScript/TypeScript 웹사이트, 웹앱, 게임을 만들고 OpenAI 호스팅 URL로 배포할 수 있습니다.
+  </p>
+  <ul>
+    <li><strong>기본값</strong>: Enterprise/Edu에서는 기본 OFF</li>
+    <li><strong>활성화</strong>: Workspace settings → Permissions &amp; Roles에서 역할별로 Sites 접근 허용</li>
+    <li><strong>운영</strong>: Workspace settings → Sites에서 게시된 사이트를 비활성화할 수 있음</li>
+    <li><strong>접근 모델</strong>: Sign in with ChatGPT, workspace-internal access, Sites storage/file storage 같은 기능을 사용할 수 있음</li>
+    <li><strong>주의</strong>: Sites deployment URL은 실제 배포(production)이므로, 검토가 필요하면 먼저 배포하지 말고 검토용 saved version을 만들도록 안내합니다.</li>
+  </ul>
+  <p style="font-size:.88rem;color:var(--muted)">
+    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a> ·
+    <a href="https://developers.openai.com/codex/sites" target="_blank">Codex Sites developer guide</a>
   </p>
 </section>
 
@@ -1082,6 +1146,21 @@
   </table>
   <p style="font-size:.88rem;color:var(--muted)">
     출처: <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>
+  </p>
+
+  <h3 class="menu"><span class="num">09.10</span>Global Admin Console External Access</h3>
+  <p>
+    Global Admin Console의 <strong>Access → External Access</strong>에서는 조직 멤버가 외부 애플리케이션에서
+    <strong>Sign in with ChatGPT</strong>를 사용할 수 있는지 중앙에서 제어합니다.
+  </p>
+  <ul>
+    <li><strong>Enable Sign in with ChatGPT for your organization</strong>를 끄면 구성원은 외부 애플리케이션에서 Sign in with ChatGPT를 사용할 수 없습니다.</li>
+    <li><strong>Approved applications</strong>를 켜면 승인된 애플리케이션만 사용할 수 있습니다.</li>
+    <li>관리자는 개별 애플리케이션을 승인하거나 비활성화할 수 있으며, OpenAI Academy 같은 외부 앱 접근도 이 범위에 포함될 수 있습니다.</li>
+  </ul>
+  <p style="font-size:.88rem;color:var(--muted)">
+    출처: <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a> ·
+    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a>
   </p>
 
   <p style="font-size:.88rem;color:var(--muted)">
@@ -1517,6 +1596,7 @@
             <tr><td>인증 저장</td><td>Windows Credential Manager. WSL2 사용 시 Linux 홈의 인증 파일 흐름을 따름</td></tr>
             <tr><td>설정 위치</td><td><code>C:\Users\&lt;계정&gt;\.codex\config.toml</code>, WSL2는 <code>~/.codex/config.toml</code></td></tr>
             <tr><td>관리형 정책</td><td><code>%ProgramData%\OpenAI\Codex\requirements.toml</code> 지원. 그룹별 정책이 필요하면 <strong>Cloud-managed requirements</strong> 병행</td></tr>
+            <tr><td>Computer Use</td><td>Enterprise plans에서 Windows Computer Use 지원. 작업 중 target app은 active desktop에 보여야 함</td></tr>
           </tbody>
         </table>
         <div class="warn">
@@ -1572,6 +1652,44 @@
     <li><strong>Codex access token</strong> — 신뢰된 자동화에서 ChatGPT 워크스페이스 ID와 Enterprise 제어가 필요할 때 <code>CODEX_ACCESS_TOKEN</code> 또는 <code>codex login --with-access-token</code> 사용</li>
     <li>인증 후 토큰은 OS별로 다른 위치에 저장: macOS Keychain / Windows Credential Manager / Linux <code>~/.codex/auth.json</code></li>
   </ul>
+
+  <h3 class="menu"><span class="num">12.5</span>Codex Plugins — 디렉터리·공유·권한</h3>
+  <p>
+    Codex plugin은 Skill, 앱 연동, MCP 서버를 묶은 재사용 가능한 workflow 번들입니다. 사용자는 Codex App의 Plugins 화면이나
+    CLI의 <code>/plugins</code>에서 OpenAI curated plugin, 워크스페이스 공유 plugin, 본인이 만든 plugin을 찾아 설치할 수 있습니다.
+  </p>
+  <ul>
+    <li><strong>역할별 plugin</strong>: Sales, Data Analytics, Product Design, Creative Production, Investment Banking, Public Equity Investing plugin이 지원 워크스페이스에 순차 배포됩니다.</li>
+    <li><strong>Single-app plugin</strong>: Databricks, Salesforce, Hex, Clay 같은 단일 앱 plugin이 추가되며, Databricks/Snowflake 등은 admin connector setup이 먼저 필요할 수 있습니다.</li>
+    <li><strong>Plugin sharing</strong>: 대상 Enterprise 워크스페이스에서는 plugin sharing이 기본 제공되며, 관리자는 MDM 또는 cloud-managed <code>requirements.toml</code>로 비활성화할 수 있습니다.</li>
+    <li><strong>권한 경계</strong>: plugin 설치가 외부 서비스 권한을 자동으로 부여하지 않습니다. bundled app은 ChatGPT Apps/RBAC/Action control/App permissions와 원본 시스템 권한을 그대로 따릅니다.</li>
+    <li><strong>비활성화</strong>: 개별 사용자는 설치된 plugin을 제거하거나 <code>~/.codex/config.toml</code>에서 <code>enabled = false</code>로 끌 수 있습니다.</li>
+  </ul>
+  <p style="font-size:.88rem;color:var(--muted)">
+    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a> ·
+    <a href="https://developers.openai.com/codex/plugins" target="_blank">Codex Plugins</a>
+  </p>
+
+  <h3 class="menu"><span class="num">12.6</span>Computer Use / Browser Developer mode</h3>
+  <p>
+    2026년 6월 11일 기준, Codex App은 macOS와 Windows에서 Computer Use를 지원합니다
+    (출시 시점의 지역 제한: EEA, 영국, 스위스 제외). Windows에서는 Computer Use가 <strong>active desktop foreground</strong>에서 동작하므로,
+    사용자가 같은 Windows 세션을 동시에 쓰는 동안 백그라운드 자동화처럼 운영할 수 없습니다.
+  </p>
+  <ul>
+    <li><strong>설치</strong>: Codex settings → Computer Use에서 plugin을 설치합니다. macOS는 Screen Recording과 Accessibility 권한이 필요합니다.</li>
+    <li><strong>Windows 운영</strong>: target app을 화면에 보이게 두고, 장시간 작업은 기기를 잠금 해제·인터넷 연결 상태로 유지하거나 VM/원격 제어 조합을 권장합니다.</li>
+    <li><strong>Windows app policy</strong>: <code>$CODEX_HOME/computer-use/config.toml</code>의 <code>[apps]</code>에서 allowed/denied 앱을 지정할 수 있고, denied가 allowed보다 우선합니다.</li>
+    <li><strong>관리자 제어</strong>: <code>requirements.toml</code>에서 <code>[features].computer_use = false</code>로 Computer Use 설치·활성화 흐름을 비활성화할 수 있습니다.</li>
+    <li><strong>Browser Developer mode</strong>: Browser use에서 CDP 기반 성능 프로파일링, console/network/DOM/style 진단을 허용합니다. 사용자 기본값은 OFF이며, 관리자는 <code>[features].browser_use_full_cdp_access = false</code>로 비활성화할 수 있습니다.</li>
+    <li><strong>기타 UX</strong>: app composer의 <code>/init</code>은 <code>AGENTS.md</code> scaffold를 생성하고, usage-limit 오류는 가능한 경우 워크스페이스 안내와 reset timing을 더 명확히 보여주며, command menu에는 Unread chats 섹션이 추가되었습니다.</li>
+  </ul>
+  <p style="font-size:.88rem;color:var(--muted)">
+    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a> ·
+    <a href="https://developers.openai.com/codex/app/computer-use" target="_blank">Computer Use</a> ·
+    <a href="https://developers.openai.com/codex/app/browser" target="_blank">In-app browser / Developer mode</a> ·
+    <a href="https://developers.openai.com/codex/config-reference" target="_blank">Configuration Reference</a>
+  </p>
 </section>
 
 <!-- ============ CODEX CLOUD TOGGLE ============ -->
@@ -1612,10 +1730,12 @@
     <strong>Remote Control access</strong>라고 표현됩니다. 같은 계열의 원격 제어 기능이므로 운영 문서에서는 두 용어를 함께 안내하세요.
   </p>
   <ul>
-    <li>ChatGPT 모바일 앱에서 연결된 Mac의 Codex App host를 제어하거나, 다른 Codex App 기기에서 작업을 이어갈 수 있습니다.</li>
+    <li>ChatGPT 모바일 앱에서 연결된 Mac/Windows Codex App host를 제어하거나, 다른 지원 Codex App 기기에서 작업을 이어갈 수 있습니다.</li>
+    <li>Windows host는 ChatGPT iOS/Android 또는 Mac의 Codex App에서 제어할 수 있지만, Windows Codex App은 현재 다른 컴퓨터를 제어하는 쪽으로는 사용할 수 없습니다.</li>
     <li>원격 연결은 host의 프로젝트, 스레드, 파일, credentials, 권한, 플러그인, 브라우저 설정, 로컬 도구를 그대로 사용합니다.</li>
     <li>사용자는 모바일에서 후속 지시, 질문 응답, 실행 방향 전환, command/action 승인, diff·테스트·터미널·스크린샷 확인을 할 수 있습니다.</li>
     <li>모바일 설정은 Codex App에서 시작하며, CLI나 IDE Extension만으로는 설정할 수 없습니다.</li>
+    <li>Windows에서 Computer Use를 함께 쓰는 작업은 foreground 세션이 필요하므로 host를 잠금 해제 상태로 유지하고 해당 데스크톱을 작업에 전용하는 편이 안전합니다.</li>
     <li>워크스페이스 환경에서는 admin이 Remote Control access를 켜야 할 수 있고, SSO/MFA/passkey 절차가 추가될 수 있습니다.</li>
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
@@ -1773,6 +1893,9 @@
     <li><strong>Managed hooks</strong> — <code>[hooks]</code>와 관리형 스크립트 디렉터리로 lifecycle hook 강제</li>
     <li><strong>Restrictive command rules</strong> — <code>rm</code>, <code>git push</code> 같은 위험 명령에 prompt/forbidden 적용</li>
     <li>Browser Use, in-app browser, Computer Use 등 <strong>특정 사용 환경 비활성화</strong></li>
+    <li>Browser Developer mode의 full CDP access를 금지하려면 <code>[features].browser_use_full_cdp_access = false</code>로 고정</li>
+    <li>Windows/macOS Computer Use 자체를 금지하려면 <code>[features].computer_use = false</code>로 고정</li>
+    <li>대상 Enterprise 워크스페이스에서 기본 제공되는 <strong>plugin sharing</strong>을 조직 정책상 꺼야 할 때 MDM 또는 cloud-managed requirements로 비활성화</li>
   </ul>
 
   <h3 class="menu"><span class="num">14.2</span>예시 정책</h3>
@@ -2289,10 +2412,10 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     OpenAI Help 문서 기준 Compliance Logs Platform의 보존 기간은 <strong>30일</strong>이므로, 더 긴 보존이 필요하면 모든 로그를 지속적으로 다운로드해 고객 보존 정책에 맞춰 저장해야 합니다.
   </p>
   <div class="warn">
-    <span class="label">2026년 6월 5일 전 확인</span>
+    <span class="label">2026년 6월 5일 이후 기준</span>
     Compliance Platform 문서는 <strong>2026년 3월 5일</strong> 새 conversation logs 시스템이 릴리스되었고,
-    기존 <strong>stateful route</strong>는 <strong>2026년 6월 5일</strong> 제거된다고 안내합니다.
-    기존 연동이 stateful route를 쓰고 있다면, 반영 전후와 무관하게 새 logs system 기준으로 마이그레이션 상태를 점검해야 합니다.
+    기존 <strong>stateful route</strong>는 <strong>2026년 6월 5일</strong> 제거 예정이라고 안내했습니다.
+    현재 날짜 기준으로는 해당 제거일이 지났으므로, 기존 연동이 stateful route에 의존하지 않고 새 logs system 기준으로 마이그레이션되었는지 확인해야 합니다.
   </div>
   <p style="font-size:.88rem;color:var(--muted)">
     <a href="https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers" target="_blank">→ OpenAI Compliance Platform 공식 가이드</a>
@@ -2413,6 +2536,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
         <tr><td>Available Models</td><td>Current model families and legacy access</td><td>Owner / Admin</td></tr>
         <tr><td>GPTs</td><td>Ownership, sharing, third-party access, action domains</td><td>Owner / Admin</td></tr>
         <tr><td>Apps</td><td>Connected tools and MCP apps</td><td>Owner / Admin</td></tr>
+        <tr><td>Sites</td><td>Disable or operate internal sites published through Codex Sites</td><td>Owner / Admin</td></tr>
         <tr><td>Workspace analytics</td><td>Adoption, usage, surveys</td><td>Owner / Admin / analytics viewer</td></tr>
         <tr><td>Identity &amp; Access</td><td>SSO, SCIM, domain verification, IP allowlist</td><td>Owner-led; some Access Restrictions also allow Admin</td></tr>
         <tr><td>Billing</td><td>Invoices, seats, billing details</td><td>Owner</td></tr>
@@ -2448,6 +2572,37 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       there may be separate organizations that need to be consolidated.
       <a href="https://help.openai.com/en/articles/10468051-sso-overview" target="_blank">[SSO overview]</a>
     </div>
+
+    <h3 class="menu"><span class="num">02.5</span>Active sessions - account session review</h3>
+    <p>
+      As of the June 2, 2026 release notes, users can open <strong>Settings → Security → Active sessions</strong>
+      to review first-party OpenAI sessions for their account and sign out of individual sessions or all sessions.
+    </p>
+    <ul>
+      <li>Available details can include device, app, approximate location, sign-in time, trusted-device status, and whether the session is current.</li>
+      <li>The surface can include ChatGPT, Codex, and API Platform sessions, but it does not manage third-party app sessions or Sign in with ChatGPT sessions used only for third-party services.</li>
+      <li><strong>It may not be available for accounts linked to organization SSO (SAML/OIDC), and it does not manage Codex CLI sessions.</strong></li>
+    </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Source: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Enterprise/Edu release notes</a>
+    </p>
+
+    <h3 class="menu"><span class="num">02.6</span>Library - file storage and automatic reference</h3>
+    <p>
+      As of June 11, 2026, <strong>Library</strong> is rolling out to Enterprise, Edu, and Healthcare workspaces.
+      Files that users upload to or create in ChatGPT are saved to Library so they can find and attach them later.
+    </p>
+    <ul>
+      <li>Library files follow workspace retention policy and are managed separately from daily attachment or chat limits.</li>
+      <li>Owners can control whether ChatGPT automatically references Library files when responding. Turning this off does not remove Library itself, search, open, or manual attachment.</li>
+      <li>For Healthcare workspaces, Library automatic reference is off by default.</li>
+      <li>Library does not introduce new external sharing or multiplayer collaboration.</li>
+      <li>Compliance admins can export or delete Library files through Library-specific Compliance API endpoints.</li>
+    </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Sources: <a href="https://help.openai.com/en/articles/20001052-library-for-chatgpt" target="_blank">File storage and Library in ChatGPT</a> ·
+      <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Release notes</a>
+    </p>
   </section>
 
   <section class="chapter" id="members">
@@ -2548,10 +2703,11 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><strong>Codex</strong> - Codex access and internet-access controls.</li>
       <li><strong>Apps</strong> - whether apps are allowed, which apps appear, and action-level controls where supported.</li>
       <li><strong>GPTs</strong> - create, edit, sharing scope, and third-party GPT access.</li>
-      <li><strong>Project creation</strong> - permission to create projects.</li>
-      <li><strong>Record</strong> - memory and notes features.</li>
+      <li><strong>Projects</strong> - project creation and editing.</li>
+      <li><strong>Record</strong> - use and ability to reference past notes and transcripts.</li>
       <li><strong>Search</strong> - web search and agent search.</li>
       <li><strong>Shared projects</strong> - participation in shared projects.</li>
+      <li><strong>Skills</strong> - skill creation and use, skill file uploads, sharing, workspace publishing, and installing for other workspace members.</li>
       <li><strong>Link sharing</strong> - scope for conversation-link sharing.</li>
       <li><strong>Available models</strong> - which models that role may use.</li>
       <li><strong>Usage limits / spend controls</strong> - credit or message limits.</li>
@@ -2562,6 +2718,12 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <p style="font-size:.88rem;color:var(--muted)">
       For apps, RBAC controls per-app access, but it does not independently <strong>hide the app UI itself</strong>.
     </p>
+    <div class="box">
+      <div class="label">Lockdown Mode roles</div>
+      In workspaces that support Lockdown Mode roles, treat Lockdown Mode as a <strong>role-level security configuration</strong>,
+      not a single permission toggle. Members assigned to that role may have live web search, deep research, agent mode,
+      Canvas networking, and some app, MCP, or connector behavior limited, so review each app, action, and source-system permission before assignment.
+    </div>
     <h3 class="menu"><span class="num">05.3</span>Spend controls / usage limits</h3>
     <p>
       Enterprise uses a contract-level <strong>shared credit pool</strong>. All users and seat types draw from that pool when they use advanced features.
@@ -2691,8 +2853,14 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li>When an app is enabled, admins can immediately decide which custom roles should see it.</li>
       <li>If an app supports <strong>action-level control</strong>, admins can review or block actions individually.</li>
       <li>Action control supports <strong>allow all / read-only / custom</strong>, plus a policy for future actions: <em>enable all new actions, enable only new read actions, or disable new actions</em>.</li>
-      <li><strong>App templates</strong> let Enterprise and Edu owners or admins create <strong>workspace-specific apps</strong> for GitHub Enterprise, Snowflake, and Databricks, then manage the published result with the same role access, action controls, and action confirmation model.</li>
+      <li><strong>App permissions</strong> control when ChatGPT asks before using an app and replace the previous action confirmation control where supported.</li>
+      <li><strong>App templates</strong> let Enterprise and Edu owners or admins create <strong>workspace-specific apps</strong> for GitHub Enterprise, Snowflake, and Databricks, then manage the published result with the same role access, action controls, and app permissions model.</li>
     </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      RBAC controls <strong>who can use an app</strong>, Action control determines <strong>what the app can do</strong>,
+      and App permissions determine <strong>when ChatGPT asks users for confirmation</strong>. Depending on rollout status and app support,
+      options can include Always ask, Any changes, Important actions, and Never ask.
+    </p>
     <h3 class="menu"><span class="num">08.2</span>Sync / indexing controls</h3>
     <ul>
       <li>Synced connectors such as Google Drive, SharePoint, and GitHub support <strong>pre-indexing</strong>, which improves answer quality and speed.</li>
@@ -2721,6 +2889,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li>Members cannot self-register them.</li>
       <li>RBAC should separate who can develop, test, and use them.</li>
       <li><strong>Template-generated apps</strong> use a guided setup flow for provider-specific OAuth credentials, callback URLs, webhooks, managed MCP server URLs, and workspace access controls, but once published they are governed like ordinary apps.</li>
+      <li>After a custom MCP app is published, connect it in the workspace and have an admin use <strong>Refresh</strong> in Action control to review new or changed actions.</li>
     </ul>
     <h3 class="menu"><span class="num">08.5</span>Microsoft integration notes</h3>
     <p>
@@ -2750,6 +2919,23 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
       <a href="https://help.openai.com/en/articles/20001063-chatgpt-for-excel-and-google-sheets" target="_blank">→ Official ChatGPT for Excel and Google Sheets guide</a>
+    </p>
+
+    <h3 class="menu"><span class="num">08.7</span>ChatGPT Sites <span class="pill green">Preview</span></h3>
+    <p>
+      As of June 2, 2026, <strong>ChatGPT Sites</strong> is available in preview for eligible Enterprise/Edu workspaces.
+      Through the Codex Sites plugin, users can build internal JavaScript/TypeScript websites, web apps, and games and deploy them to OpenAI-hosted URLs.
+    </p>
+    <ul>
+      <li><strong>Default</strong>: off by default for Enterprise/Edu.</li>
+      <li><strong>Enablement</strong>: allow Sites by role from Workspace settings → Permissions &amp; Roles.</li>
+      <li><strong>Operations</strong>: disable published sites from Workspace settings → Sites.</li>
+      <li><strong>Access model</strong>: can use Sign in with ChatGPT, workspace-internal access, and Sites data/file storage.</li>
+      <li><strong>Caution</strong>: every Sites deployment URL is a production deployment, so tell users to save a version first when review is required.</li>
+    </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Sources: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Release notes</a> ·
+      <a href="https://developers.openai.com/codex/sites" target="_blank">Codex Sites developer guide</a>
     </p>
   </section>
 
@@ -2880,6 +3066,21 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </table>
     <p style="font-size:.88rem;color:var(--muted)">
       Source: <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>
+    </p>
+
+    <h3 class="menu"><span class="num">09.10</span>Global Admin Console External Access</h3>
+    <p>
+      In the Global Admin Console, <strong>Access → External Access</strong> centrally controls whether organization members can use
+      <strong>Sign in with ChatGPT</strong> for external applications.
+    </p>
+    <ul>
+      <li>If <strong>Enable Sign in with ChatGPT for your organization</strong> is off, members cannot use Sign in with ChatGPT for external applications.</li>
+      <li>If <strong>Approved applications</strong> is on, members can use only approved applications.</li>
+      <li>Admins can approve or disable individual applications, and external apps such as OpenAI Academy can fall under this control surface.</li>
+    </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Sources: <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a> ·
+      <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Release notes</a>
     </p>
     <p style="font-size:.88rem;color:var(--muted)">
       <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">→ Official Workspace analytics guide</a> ·
@@ -3251,6 +3452,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
               <tr><td>Credential store</td><td>Windows Credential Manager; WSL2 follows Linux home-based storage</td></tr>
               <tr><td>Config path</td><td><code>C:\Users\&lt;user&gt;\.codex\config.toml</code>; WSL2 uses <code>~/.codex/config.toml</code></td></tr>
               <tr><td>Managed policy</td><td><code>%ProgramData%\OpenAI\Codex\requirements.toml</code> is supported. Pair it with <strong>cloud-managed requirements</strong> when group targeting is needed.</td></tr>
+              <tr><td>Computer Use</td><td>Windows Computer Use is supported for Enterprise plans; the target app must remain visible on the active desktop while the task runs.</td></tr>
             </tbody>
           </table>
           <div class="warn">
@@ -3306,6 +3508,44 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><strong>Codex access token</strong> supports trusted automation that needs ChatGPT workspace identity and Enterprise controls through <code>CODEX_ACCESS_TOKEN</code> or <code>codex login --with-access-token</code>.</li>
       <li>Tokens are then stored by OS: macOS Keychain, Windows Credential Manager, or Linux <code>~/.codex/auth.json</code>.</li>
     </ul>
+
+    <h3 class="menu"><span class="num">12.5</span>Codex Plugins - directory, sharing, and permissions</h3>
+    <p>
+      A Codex plugin is a reusable workflow bundle made of skills, app integrations, and MCP servers. Users can browse
+      OpenAI-curated plugins, workspace-shared plugins, and plugins they created from the Codex App Plugins page or the CLI <code>/plugins</code> browser.
+    </p>
+    <ul>
+      <li><strong>Role-specific plugins</strong>: Sales, Data Analytics, Product Design, Creative Production, Investment Banking, and Public Equity Investing plugins are rolling out for supported workspaces.</li>
+      <li><strong>Single-app plugins</strong>: app-focused plugins such as Databricks, Salesforce, Hex, and Clay are expanding; Databricks/Snowflake workflows may require admin connector setup first.</li>
+      <li><strong>Plugin sharing</strong>: eligible Enterprise workspaces get plugin sharing by default, and admins can disable it through MDM or cloud-managed <code>requirements.toml</code>.</li>
+      <li><strong>Permission boundary</strong>: installing a plugin does not grant external-service access by itself. Bundled apps still follow ChatGPT Apps, RBAC, Action control, App permissions, and source-system permissions.</li>
+      <li><strong>Disablement</strong>: individual users can uninstall a plugin or set <code>enabled = false</code> in <code>~/.codex/config.toml</code>.</li>
+    </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Sources: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Release notes</a> ·
+      <a href="https://developers.openai.com/codex/plugins" target="_blank">Codex Plugins</a>
+    </p>
+
+    <h3 class="menu"><span class="num">12.6</span>Computer Use / Browser Developer mode</h3>
+    <p>
+      As of June 11, 2026, the Codex App supports Computer Use on macOS and Windows
+      (launch regional exclusions: EEA, United Kingdom, and Switzerland). On Windows, Computer Use runs on the
+      <strong>active desktop foreground</strong>, so it should not be treated like background automation while the user keeps using the same Windows session.
+    </p>
+    <ul>
+      <li><strong>Install</strong>: install the plugin from Codex settings → Computer Use. macOS also requires Screen Recording and Accessibility permissions.</li>
+      <li><strong>Windows operations</strong>: keep the target app visible, and for longer tasks keep the device unlocked and online or use a VM/remote-control pattern.</li>
+      <li><strong>Windows app policy</strong>: define allowed and denied apps in <code>$CODEX_HOME/computer-use/config.toml</code> under <code>[apps]</code>; denied entries take precedence.</li>
+      <li><strong>Admin control</strong>: set <code>[features].computer_use = false</code> in <code>requirements.toml</code> to disable Computer Use install and enablement flows.</li>
+      <li><strong>Browser Developer mode</strong>: gives Browser use CDP-based access for profiling and console/network/DOM/style debugging. It is off by default for users, and admins can disable it with <code>[features].browser_use_full_cdp_access = false</code>.</li>
+      <li><strong>Other UX</strong>: <code>/init</code> in the app composer generates an <code>AGENTS.md</code> scaffold, usage-limit errors can show clearer workspace guidance and reset timing where available, and the command menu now includes an Unread chats section.</li>
+    </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Sources: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Release notes</a> ·
+      <a href="https://developers.openai.com/codex/app/computer-use" target="_blank">Computer Use</a> ·
+      <a href="https://developers.openai.com/codex/app/browser" target="_blank">In-app browser / Developer mode</a> ·
+      <a href="https://developers.openai.com/codex/config-reference" target="_blank">Configuration Reference</a>
+    </p>
   </section>
 
   <section class="chapter" id="codex-cloud-toggle">
@@ -3340,10 +3580,12 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <strong>Remote Control access</strong>. Treat them as the same remote-control capability family in operating guidance.
     </p>
     <ul>
-      <li>Users can control a connected Mac Codex App host from the ChatGPT mobile app, or continue work from another Codex App device.</li>
+      <li>Users can control a connected Mac or Windows Codex App host from the ChatGPT mobile app, or continue work from another supported Codex App device.</li>
+      <li>A Windows host can be controlled from ChatGPT on iOS/Android or from Codex on Mac, but the Windows Codex App cannot currently control another computer.</li>
       <li>Remote access uses the host's projects, threads, files, credentials, permissions, plugins, browser setup, and local tools.</li>
       <li>Users can send follow-up instructions, answer questions, redirect execution, approve commands/actions, and review diffs, tests, terminal output, and screenshots from mobile.</li>
       <li>Mobile setup starts from the Codex App; it cannot be set up from CLI or IDE Extension alone.</li>
+      <li>Windows tasks that use Computer Use need the foreground session to remain unlocked and available, so dedicate that host desktop to the task while it runs.</li>
       <li>In workspace environments, an admin may need to enable Remote Control access, and SSO/MFA/passkey steps may apply.</li>
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
@@ -3491,6 +3733,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><strong>Managed hooks</strong> - enforce lifecycle hooks through <code>[hooks]</code> and a managed script directory.</li>
       <li><strong>Restrictive command rules</strong> - prompt or forbid risky commands such as <code>rm</code> or <code>git push</code>.</li>
       <li><strong>Disable specific surfaces</strong> such as Browser Use, in-app browser, or Computer Use.</li>
+      <li>Pin <code>[features].browser_use_full_cdp_access = false</code> to prevent Browser Developer mode full CDP access.</li>
+      <li>Pin <code>[features].computer_use = false</code> to disable Windows/macOS Computer Use itself.</li>
+      <li>Disable <strong>plugin sharing</strong> through MDM or cloud-managed requirements when an eligible Enterprise workspace should not allow it by policy.</li>
     </ul>
     <h3 class="menu"><span class="num">14.2</span>Example policy</h3>
     <pre><code>allowed_web_search_modes = ["disabled", "cached"]
@@ -3940,10 +4185,10 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       requires continuous export into customer-managed storage.
     </p>
     <div class="warn">
-      <span class="label">Check before June 5, 2026</span>
+      <span class="label">Post-June 5, 2026 baseline</span>
       The Compliance Platform article states that a new conversations logs system shipped on <strong>March 5, 2026</strong>,
-      and the deprecated <strong>stateful route</strong> will be removed on <strong>June 5, 2026</strong>. If an existing
-      integration still depends on that older route, review migration status against the new logs system.
+      and that the deprecated <strong>stateful route</strong> was scheduled for removal on <strong>June 5, 2026</strong>.
+      Because that date has now passed, confirm existing integrations no longer depend on the old route and have migrated to the new logs system.
     </div>
     <p style="font-size:.88rem;color:var(--muted)">
       <a href="https://help.openai.com/en/articles/9261474-openai-compliance-platform-for-enterprise-and-edu-customers" target="_blank">→ Official OpenAI Compliance Platform guide</a>
@@ -4046,6 +4291,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><a href="https://help.openai.com/en/articles/9039756-billing-settings-in-chatgpt-vs-platform" target="_blank">Billing settings in ChatGPT vs Platform</a></li>
       <li><a href="https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-in-apps-enterprise-edu-and-business" target="_blank">Admin Controls, Security &amp; Compliance in Apps</a></li>
       <li><a href="https://help.openai.com/en/articles/20001063-chatgpt-for-excel-and-google-sheets" target="_blank">ChatGPT for Excel and Google Sheets</a></li>
+      <li><a href="https://help.openai.com/en/articles/20001052-library-for-chatgpt" target="_blank">File storage and Library in ChatGPT</a></li>
       <li><a href="https://help.openai.com/en/articles/8555535-gpts-chatgpt-enterprise-version" target="_blank">Managing GPT access in Enterprise &amp; Edu</a></li>
       <li><a href="https://help.openai.com/en/articles/9442513-gpt-actions-domain-settings-chatgpt-enterprise" target="_blank">GPT Actions — Domain Settings</a></li>
       <li><a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics for Enterprise &amp; Edu</a></li>
@@ -4060,9 +4306,13 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Codex Enterprise — Admin Setup</a></li>
       <li><a href="https://developers.openai.com/codex/enterprise/governance" target="_blank">Codex Enterprise — Governance</a></li>
       <li><a href="https://developers.openai.com/codex/enterprise/managed-configuration" target="_blank">Codex Enterprise — Managed Configuration</a></li>
+      <li><a href="https://developers.openai.com/codex/plugins" target="_blank">Codex — Plugins</a></li>
+      <li><a href="https://developers.openai.com/codex/sites" target="_blank">Codex — Sites</a></li>
       <li><a href="https://learn.microsoft.com/en-us/mem/intune/apps/intune-management-extension" target="_blank">Microsoft Intune — PowerShell scripts (Management Extension)</a></li>
       <li><a href="https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn789196(v=ws.11)" target="_blank">Windows Group Policy — File Preferences</a></li>
       <li><a href="https://developers.openai.com/codex/app" target="_blank">Codex — App</a></li>
+      <li><a href="https://developers.openai.com/codex/app/computer-use" target="_blank">Codex App — Computer Use</a></li>
+      <li><a href="https://developers.openai.com/codex/app/browser" target="_blank">Codex App — In-app Browser</a></li>
       <li><a href="https://developers.openai.com/codex/ide" target="_blank">Codex — IDE extension</a></li>
       <li><a href="https://developers.openai.com/codex/cli" target="_blank">Codex — CLI</a></li>
       <li><a href="https://developers.openai.com/codex/auth" target="_blank">Codex — Authentication</a></li>
@@ -4073,6 +4323,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><a href="https://developers.openai.com/codex/cloud/environments" target="_blank">Codex cloud — Environments</a></li>
       <li><a href="https://developers.openai.com/codex/integrations/github" target="_blank">Codex — GitHub integration</a></li>
       <li><a href="https://developers.openai.com/codex/config-basic" target="_blank">Codex — Config basics</a></li>
+      <li><a href="https://developers.openai.com/codex/config-reference" target="_blank">Codex — Config reference</a></li>
       <li><a href="https://openai.com/index/introducing-chatgpt-enterprise/" target="_blank">OpenAI — Introducing ChatGPT Enterprise</a></li>
       <li><a href="https://learn.microsoft.com/en-us/purview/archive-chatgpt-interactions" target="_blank">Microsoft Purview — ChatGPT Enterprise connector</a></li>
     </ul>
@@ -4080,7 +4331,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 </section>
 
 <footer data-i18n="footer-note">
-  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-05-29
+  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-06-14
 </footer>
 
 <script>
@@ -4089,7 +4340,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "hero-eyebrow": "OpenAI · Admin Guide · 2026",
       "hero-title": "ChatGPT Enterprise &amp;<br/>Codex Enterprise<br/><em>Workspace Settings Complete Guide</em>",
       "hero-subtitle": "A consolidated guide to every menu in the ChatGPT Enterprise/Edu workspace admin console and the Codex Enterprise admin surface, including where each setting lives, what it controls, recommended defaults, official screenshots, and source links.",
-      "meta-updated": "Last updated: 2026-05-22",
+      "meta-updated": "Last updated: 2026-06-14",
       "meta-sources": "Sources: OpenAI Help Center · OpenAI Academy · developers.openai.com",
       "meta-language": "Available languages: Korean / English",
       "toc-part1": "Contents — Part 1 · ChatGPT Enterprise",
@@ -4276,7 +4527,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "check-13-action": "Run <strong>final validation</strong> with sample users",
       "check-13-note": "Verify login, MFA, RBAC, managed policies, and analytics visibility",
       "sources-title": "Sources / Reference Links — All Sources",
-      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-05-29"
+      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-06-14"
     };
 
 
