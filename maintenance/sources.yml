@@ -96,6 +96,13 @@ sources:
     priority: high
     sections: [analytics]
 
+  - id: usage-limits
+    url: https://help.openai.com/en/articles/20001001-setting-usage-limits-in-chatgpt-enterprise-and-edu
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [permissions, billing, analytics]
+
   - id: chatgpt-library
     url: https://help.openai.com/en/articles/20001052-library-for-chatgpt
     owner: openai_help
@@ -207,6 +214,13 @@ sources:
     cadence: weekly
     priority: high
     sections: [codex-toggle, codex-cloud-toggle, codex-policies, codex-managed]
+
+  - id: codex-record-and-replay
+    url: https://developers.openai.com/codex/record-and-replay
+    owner: openai_developers
+    cadence: weekly
+    priority: high
+    sections: [codex-toggle]
 
   - id: codex-in-app-browser
     url: https://developers.openai.com/codex/app/browser

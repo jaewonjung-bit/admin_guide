@@ -465,7 +465,7 @@
       각 메뉴의 위치, 역할, 권장 설정값, 그리고 OpenAI 공식 화면 캡처와 출처 링크를 함께 제공합니다.
     </p>
     <div class="meta">
-      <span data-i18n="meta-updated">최종 업데이트: 2026-06-14</span>
+      <span data-i18n="meta-updated">최종 업데이트: 2026-06-22</span>
       <span data-i18n="meta-sources">출처: OpenAI Help Center · OpenAI Academy · developers.openai.com</span>
       <span data-i18n="meta-language">지원 언어: 한국어 / English</span>
     </div>
@@ -677,8 +677,8 @@
     <li><strong>초대(Invite member)</strong> — 이메일 직접 입력 또는 CSV 업로드(<code>email,role,seat type</code>).</li>
     <li><strong>대량 가져오기</strong> — CSV로 한 번에 수백 명 등록 가능(예: <code>user1@co.com,member,Codex</code>).</li>
     <li><strong>역할 변경</strong> — Owner만 가능.</li>
-    <li><strong>Seat 변경</strong> — Owner만 가능.</li>
-    <li><strong>Pending invites/Requests</strong> — 보류 중 초대·가입 요청을 승인/거절.</li>
+    <li><strong>Seat 변경</strong> — 현재 공식 가이드는 <strong>OpenAI 계정 담당자 경유</strong>를 안내합니다. 특히 ChatGPT seat → Codex seat 전환 전에는 ChatGPT 데이터 가시성 변화 여부를 먼저 검토해야 합니다.</li>
+    <li><strong>Pending invites/Requests</strong> — 보류 중 초대·가입 요청에서도 <strong>선택된 seat type</strong>을 함께 검토하며 승인/재전송/수정/거절합니다.</li>
     <li><strong>멤버 제거</strong> — ··· 메뉴 → Remove member.</li>
     <li><strong>기본 seat 타입(Default seat type)</strong> 설정 — 이후 신규 가입자(SCIM 포함)는 이 값으로 발급.</li>
   </ul>
@@ -770,17 +770,22 @@
   <h3 class="menu"><span class="num">05.3</span>Spend controls (Usage limits)</h3>
   <p>
     Enterprise는 계약 단위 <strong>shared credit pool</strong>을 사용하며, 모든 사용자와 seat type이 고급 기능 사용 시 이 pool에서 차감됩니다.
-    기본적으로 사용자별 seat cap이 아니라 조직 pool 방식이므로, 팀별·Role별 과다 사용을 막으려면 RBAC의
-    <strong>Usage limits / Spend controls</strong>를 함께 설계해야 합니다.
+    다만 2026년 6월 18일부터는 기존 <strong>Permissions &amp; Roles의 주간 제한</strong>과 별도로,
+    Workspace settings의 <strong>Usage limits</strong>에서 <strong>월간</strong> workspace / group / user 한도를 관리하는 흐름이 추가되었습니다.
     <a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">[Flexible pricing]</a>
   </p>
   <ul>
-    <li><strong>제어 단위</strong>: 개인 1명보다는 Custom Role/그룹 단위로 한도와 credit pool을 운영합니다.</li>
-    <li><strong>운영 패턴</strong>: AI 챔피언·개발자 그룹에는 넉넉히, 일반 사용자 그룹에는 보수적으로 배정합니다.</li>
-    <li><strong>관찰 위치</strong>: 한도 자체는 Permissions &amp; Roles에서 설계하고, 실제 사용량은 Workspace Analytics / Billing / Codex Analytics를 함께 봅니다.</li>
+    <li><strong>새 관리 화면</strong>: <strong>Usage limits</strong> 탭에서 월간 workspace 기본값, group 기본값, user override를 설정합니다.</li>
+    <li><strong>적용 순서</strong>: user override → 사용자가 속한 그룹 중 가장 높은 group limit → workspace default 순으로 적용됩니다.</li>
+    <li><strong>증액 요청</strong>: 사용자가 한도 초과 시 increase request를 보낼 수 있고, 관리자는 <strong>Usage limits → Pending Requests</strong>에서 승인/거절합니다. 승인된 값은 일회성 임시 해제가 아니라 user override로 남습니다.</li>
+    <li><strong>기존 주간 제한과의 관계</strong>: 새 Usage limits를 아직 설정하지 않았다면 기존 <strong>Permissions &amp; Roles</strong>의 주간 제한이 fallback으로 계속 적용됩니다.</li>
+    <li><strong>마이그레이션 일정</strong>: 남아 있는 주간 제한은 <strong>2026-07-15</strong>에 월간 workspace/group 기본값으로 자동 마이그레이션될 예정이므로, 그 전에 수동 점검이 안전합니다.</li>
+    <li><strong>운영 패턴</strong>: 엔지니어링/AI 챔피언 그룹은 넉넉한 group default, 일반 사용자 그룹은 보수적 default, 예외 사용자는 user override로 관리하는 편이 명확합니다.</li>
+    <li><strong>관찰 위치</strong>: 한도 설정은 Usage limits, 실제 소비 추세와 원인 분석은 Workspace Analytics / Billing / Codex Analytics를 함께 봅니다.</li>
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
     출처: <a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">Flexible pricing</a> ·
+    <a href="https://help.openai.com/en/articles/20001001-setting-usage-limits-in-chatgpt-enterprise-and-edu" target="_blank">Setting usage limits</a> ·
     <a href="https://help.openai.com/en/articles/11750701-rbac" target="_blank">RBAC</a>
   </p>
 
@@ -1463,10 +1468,11 @@
   </p>
   <ul>
     <li><strong>관리 토글</strong>: Codex Local을 켠 뒤 <em>Allow members to use Codex access tokens</em>를 켭니다.</li>
+    <li><strong>만료 한도 제어</strong>: Owner/Admin은 <strong>Workspace Settings → Permissions &amp; roles → Codex Local</strong>에서 <strong>Access token expiration limit</strong>를 정해, 멤버가 선택할 수 있는 최대 만료 기간을 제한할 수 있습니다. 이 제한은 <strong>신규 토큰</strong>에만 적용됩니다.</li>
     <li><strong>좁은 배포</strong>: Custom Role을 쓰는 조직은 access token 권한을 필요한 그룹에만 부여합니다.</li>
     <li><strong>일회성/비영구 자동화</strong>: <code>CODEX_ACCESS_TOKEN</code> 환경변수에 저장하고 <code>codex exec</code>를 실행합니다.</li>
     <li><strong>영구 로컬 로그인</strong>: <code>printf '%s' "$CODEX_ACCESS_TOKEN" | codex login --with-access-token</code>을 사용합니다.</li>
-    <li><strong>운영 원칙</strong>: secret manager에 저장하고, 로그·티켓·채팅에 노출하지 않으며, 만료일을 두고 정기 회전·폐기합니다.</li>
+    <li><strong>운영 원칙</strong>: secret manager에 저장하고, 로그·티켓·채팅에 노출하지 않으며, 가능하면 7/30/60/90일 같은 유한 만료일을 두고 정기 회전·폐기합니다.</li>
   </ul>
 
   <h3 class="menu" data-i18n="surface-tabs-title"><span class="num">12.2</span>사용 환경별 탭 — App / CLI / IDE / Cloud</h3>
@@ -1678,6 +1684,7 @@
   </p>
   <ul>
     <li><strong>설치</strong>: Codex settings → Computer Use에서 plugin을 설치합니다. macOS는 Screen Recording과 Accessibility 권한이 필요합니다.</li>
+    <li><strong>Record &amp; Replay</strong>: macOS에서는 반복 업무를 한번 시연해 <strong>재사용 가능한 skill</strong>로 만드는 <strong>Record &amp; Replay</strong>가 추가되었습니다. Computer Use가 켜져 있어야 하고, 조직이 <code>[features].computer_use = false</code>로 막아 두면 함께 비활성화됩니다.</li>
     <li><strong>Windows 운영</strong>: target app을 화면에 보이게 두고, 장시간 작업은 기기를 잠금 해제·인터넷 연결 상태로 유지하거나 VM/원격 제어 조합을 권장합니다.</li>
     <li><strong>Windows app policy</strong>: <code>$CODEX_HOME/computer-use/config.toml</code>의 <code>[apps]</code>에서 allowed/denied 앱을 지정할 수 있고, denied가 allowed보다 우선합니다.</li>
     <li><strong>관리자 제어</strong>: <code>requirements.toml</code>에서 <code>[features].computer_use = false</code>로 Computer Use 설치·활성화 흐름을 비활성화할 수 있습니다.</li>
@@ -1885,13 +1892,16 @@
   <ul>
     <li><code>allowed_approval_policies</code> — <em>untrusted</em>, <em>on-request</em> 등 승인 모드 허용 목록</li>
     <li><code>allowed_approvals_reviewers</code> / <code>guardian_policy_config</code> — 자동 검토자 허용 여부와 테넌트별 자동 검토 정책 조정</li>
-    <li><code>allowed_sandbox_modes</code> — <em>read-only</em> / <em>workspace-write</em> / <em>danger-full-access</em> 중 허용 목록</li>
+    <li><code>allowed_sandbox_modes</code> — 레거시 배포용 sandbox mode 허용 목록. <strong>Codex 0.138.0+</strong>에서는 가능하면 permission profile 기반 정책으로 옮기는 편이 맞습니다.</li>
+    <li><code>allowed_permission_profiles</code> / <code>default_permissions</code> — <strong>0.138.0+</strong> 기준 권장 방식. <code>:read-only</code>, <code>:workspace</code> 같은 built-in 또는 조직 정의 custom profile의 허용 목록과 기본값을 중앙 제어합니다.</li>
     <li><code>[[remote_sandbox_config]]</code> — 호스트 패턴별 샌드박스 요구사항 오버라이드</li>
     <li><code>allowed_web_search_modes</code> — <em>disabled</em> / <em>cached</em> / <em>live</em></li>
     <li><code>[permissions.filesystem].deny_read</code> — 정확한 경로 또는 glob 패턴 기준 읽기 차단</li>
     <li><strong>MCP 서버 허용 목록</strong> — 어떤 MCP 서버만 허용할지 이름·identity로 매칭. 빈 배열이면 <strong>전 MCP 차단</strong></li>
     <li><strong>Managed hooks</strong> — <code>[hooks]</code>와 관리형 스크립트 디렉터리로 lifecycle hook 강제</li>
     <li><strong>Restrictive command rules</strong> — <code>rm</code>, <code>git push</code> 같은 위험 명령에 prompt/forbidden 적용</li>
+    <li><code>allow_remote_control = false</code> — mobile/다른 기기에서 host를 제어하는 <strong>Remote Control access</strong>를 관리형으로 차단</li>
+    <li><code>allow_appshots = false</code> — Appshots를 관리형으로 차단</li>
     <li>Browser Use, in-app browser, Computer Use 등 <strong>특정 사용 환경 비활성화</strong></li>
     <li>Browser Developer mode의 full CDP access를 금지하려면 <code>[features].browser_use_full_cdp_access = false</code>로 고정</li>
     <li>Windows/macOS Computer Use 자체를 금지하려면 <code>[features].computer_use = false</code>로 고정</li>
@@ -1899,9 +1909,14 @@
   </ul>
 
   <h3 class="menu"><span class="num">14.2</span>예시 정책</h3>
-  <pre><code>allowed_web_search_modes = ["disabled", "cached"]
-allowed_sandbox_modes    = ["workspace-write"]
+  <pre><code>default_permissions      = ":workspace"
 allowed_approval_policies = ["on-request"]
+allowed_web_search_modes  = ["disabled", "cached"]
+
+[allowed_permission_profiles]
+":read-only" = true
+":workspace" = true
+# ":danger-full-access" is omitted, so it stays denied.
 
 [rules]
 prefix_rules = [
@@ -1956,6 +1971,12 @@ prefix_rules = [
     <li><strong>OS 레벨 관리형 설정</strong> — macOS는 MDM, Windows는 <code>%ProgramData%\OpenAI\Codex\requirements.toml</code>, Linux는 <code>/etc/codex/</code></li>
     <li><strong>사용자 개인 설정</strong> — <code>~/.codex/config.toml</code>. 사용자가 자유롭게 수정</li>
   </ol>
+  <div class="box">
+    <div class="label">0.138.0+ 권장 기준</div>
+    최신 공식 문서는 <strong>Codex 0.138.0 이상</strong>에서 <code>allowed_sandbox_modes</code>보다
+    <strong>permission profile</strong> 방식(<code>allowed_permission_profiles</code> + <code>default_permissions</code>)을 우선 권장합니다.
+    구버전 클라이언트(0.137.x 이하)는 이 키들을 무시할 수 있으므로, fleet 업그레이드 상태를 먼저 확인해야 합니다.
+  </div>
 
   <h3 class="menu"><span class="num">15.2</span>Requirements vs Managed defaults — 두 종류의 정책</h3>
   <table>
@@ -2005,12 +2026,17 @@ prefix_rules = [
 
   <h3 class="menu"><span class="num">15.4</span>공통 정책 예시</h3>
   <p>아래 TOML은 OS와 무관하게 동일하게 작성합니다. 차이는 “어디에 두느냐”뿐입니다.</p>
-  <pre class="lang-pre" data-lang="toml"><code># 보수적인 기본값
-approval_policy = "on-request"
-sandbox_mode    = "workspace-write"
+  <pre class="lang-pre" data-lang="toml"><code># 보수적인 기본값 (0.138.0+ 권장)
+approval_policy     = "on-request"
+default_permissions = ":workspace"
 
-[sandbox_workspace_write]
-network_access = false   # 명시적으로 허용하지 않는 한 네트워크 OFF
+[allowed_permission_profiles]
+":read-only" = true
+":workspace" = true
+
+[experimental_network]
+enabled = true
+managed_allowed_domains_only = true
 
 [otel]
 environment      = "prod"
@@ -2399,8 +2425,8 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   </p>
   <ol>
     <li data-i18n="codex-gov-api-step-1">Platform Portal → API keys → 신규 키 생성(읽기 전용 권장)</li>
-    <li data-i18n="codex-gov-api-step-2"><code>support@openai.com</code> 메일로 <strong>스코프 한정 요청</strong></li>
-    <li data-i18n="codex-gov-api-step-3">승인 후 <code>https://api.chatgpt.com/v1/analytics/codex/workspaces/{workspace_id}/...</code> 엔드포인트 호출</li>
+    <li data-i18n="codex-gov-api-step-2">키에 <code>codex.enterprise.analytics.read</code> 스코프가 포함되어 있는지 확인</li>
+    <li data-i18n="codex-gov-api-step-3"><code>https://api.chatgpt.com/v1/analytics/codex</code> 아래 endpoint를 <strong>최대 90일 lookback</strong> 범위로 호출</li>
   </ol>
   <pre><code>curl -H "Authorization: Bearer YOUR_PLATFORM_API_KEY" \
   "https://api.chatgpt.com/v1/analytics/codex/workspaces/WORKSPACE_ID/usage"</code></pre>
@@ -2642,8 +2668,8 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><strong>Invite member</strong> - enter email directly or upload a CSV with <code>email,role,seat type</code>.</li>
       <li><strong>Bulk import</strong> - register hundreds of users at once through CSV, for example <code>user1@co.com,member,Codex</code>.</li>
       <li><strong>Role change</strong> - owner only.</li>
-      <li><strong>Seat change</strong> - owner only.</li>
-      <li><strong>Pending invites / Requests</strong> - approve or reject outstanding invites and join requests.</li>
+      <li><strong>Seat change</strong> - the current official guidance says to coordinate seat changes <strong>through your OpenAI account team</strong>, and to review the user-impact of ChatGPT seat → Codex seat transitions before confirming.</li>
+      <li><strong>Pending invites / Requests</strong> - review the selected <strong>seat type</strong> together with the pending invite or request, then approve, resend, edit, or reject it.</li>
       <li><strong>Remove member</strong> - use the overflow menu and select Remove member.</li>
       <li><strong>Default seat type</strong> - define what future users, including SCIM-provisioned users, receive by default.</li>
     </ul>
@@ -2727,17 +2753,22 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h3 class="menu"><span class="num">05.3</span>Spend controls / usage limits</h3>
     <p>
       Enterprise uses a contract-level <strong>shared credit pool</strong>. All users and seat types draw from that pool when they use advanced features.
-      Because this is an organization pool rather than a default per-seat cap, design RBAC
-      <strong>Usage limits / spend controls</strong> to prevent one team or role from unexpectedly consuming too much usage.
+      Starting June 18, 2026, admins also get a dedicated <strong>Usage limits</strong> surface in Workspace settings for
+      <strong>monthly</strong> workspace, group, and user limits, alongside the older weekly limits still visible in <strong>Permissions &amp; roles</strong>.
       <a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">[Flexible pricing]</a>
     </p>
     <ul>
-      <li><strong>Control unit</strong>: operate limits and credit pools by custom role or group rather than by one-off individual user rules.</li>
-      <li><strong>Operating pattern</strong>: give AI champions and developer groups more room, while keeping general-user groups more conservative.</li>
-      <li><strong>Visibility path</strong>: design limits in Permissions &amp; Roles, then inspect actual usage across Workspace Analytics, Billing, and Codex Analytics.</li>
+      <li><strong>New admin surface</strong>: use <strong>Usage limits</strong> to set monthly workspace defaults, group defaults, and user overrides.</li>
+      <li><strong>Precedence</strong>: limits apply in this order: user override → highest applicable group limit → workspace default.</li>
+      <li><strong>Increase requests</strong>: users can request higher limits, and admins review them in <strong>Usage limits → Pending Requests</strong>. Approved requests become persistent user overrides.</li>
+      <li><strong>Weekly-limit fallback</strong>: if you have not configured the new Usage limits surface yet, existing weekly limits in <strong>Permissions &amp; Roles</strong> continue to apply as a fallback.</li>
+      <li><strong>Migration timing</strong>: OpenAI plans to auto-migrate remaining weekly limits to monthly workspace/group defaults on <strong>July 15, 2026</strong>.</li>
+      <li><strong>Operating pattern</strong>: use group defaults for broad policy, user overrides for exceptions, and keep developer or AI champion groups less constrained than general-user groups.</li>
+      <li><strong>Visibility path</strong>: configure guardrails in Usage limits, then inspect actual consumption across Workspace Analytics, Billing, and Codex Analytics.</li>
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
       Sources: <a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">Flexible pricing</a> ·
+      <a href="https://help.openai.com/en/articles/20001001-setting-usage-limits-in-chatgpt-enterprise-and-edu" target="_blank">Setting usage limits</a> ·
       <a href="https://help.openai.com/en/articles/11750701-rbac" target="_blank">RBAC</a>
     </p>
     <h3 class="menu"><span class="num">05.4</span>Early Access Features</h3>
@@ -3320,10 +3351,11 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </p>
     <ul>
       <li><strong>Admin toggle</strong>: enable Codex Local, then turn on <em>Allow members to use Codex access tokens</em>.</li>
+      <li><strong>Expiration-limit control</strong>: workspace owners and admins can set an <strong>Access token expiration limit</strong> in <strong>Workspace Settings → Permissions &amp; roles → Codex Local</strong>. The limit applies only to <strong>newly created tokens</strong>.</li>
       <li><strong>Narrow rollout</strong>: if you use custom roles, grant access token permission only to the groups that need it.</li>
       <li><strong>Ephemeral automation</strong>: store the token in <code>CODEX_ACCESS_TOKEN</code> and run <code>codex exec</code>.</li>
       <li><strong>Persistent local login</strong>: pipe the token with <code>printf '%s' "$CODEX_ACCESS_TOKEN" | codex login --with-access-token</code>.</li>
-      <li><strong>Operating rule</strong>: store tokens in a secret manager, keep them out of logs, tickets, and chats, set expirations, and rotate or revoke them regularly.</li>
+      <li><strong>Operating rule</strong>: store tokens in a secret manager, keep them out of logs, tickets, and chats, prefer finite expirations such as 7, 30, 60, or 90 days, and rotate or revoke them regularly.</li>
     </ul>
 
 
@@ -3534,9 +3566,10 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </p>
     <ul>
       <li><strong>Install</strong>: install the plugin from Codex settings → Computer Use. macOS also requires Screen Recording and Accessibility permissions.</li>
+      <li><strong>Record &amp; Replay</strong>: on macOS, admins may also encounter <strong>Record &amp; Replay</strong>, which lets users demonstrate a repeatable workflow once and turn it into a <strong>reusable skill</strong>. It depends on Computer Use being available and enabled, and if the org disables it with <code>[features].computer_use = false</code>, Record &amp; Replay is disabled with it.</li>
       <li><strong>Windows operations</strong>: keep the target app visible, and for longer tasks keep the device unlocked and online or use a VM/remote-control pattern.</li>
       <li><strong>Windows app policy</strong>: define allowed and denied apps in <code>$CODEX_HOME/computer-use/config.toml</code> under <code>[apps]</code>; denied entries take precedence.</li>
-      <li><strong>Admin control</strong>: set <code>[features].computer_use = false</code> in <code>requirements.toml</code> to disable Computer Use install and enablement flows.</li>
+      <li><strong>Admin control</strong>: set <code>[features].computer_use = false</code> in <code>requirements.toml</code> to disable Computer Use, Record &amp; Replay, and related install or enablement flows.</li>
       <li><strong>Browser Developer mode</strong>: gives Browser use CDP-based access for profiling and console/network/DOM/style debugging. It is off by default for users, and admins can disable it with <code>[features].browser_use_full_cdp_access = false</code>.</li>
       <li><strong>Other UX</strong>: <code>/init</code> in the app composer generates an <code>AGENTS.md</code> scaffold, usage-limit errors can show clearer workspace guidance and reset timing where available, and the command menu now includes an Unread chats section.</li>
     </ul>
@@ -3725,22 +3758,30 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <ul>
       <li><code>allowed_approval_policies</code> - approval-mode allowlists such as <em>untrusted</em> and <em>on-request</em>.</li>
       <li><code>allowed_approvals_reviewers</code> / <code>guardian_policy_config</code> - control automatic reviewers and tenant-specific automatic-review policy.</li>
-      <li><code>allowed_sandbox_modes</code> - allowed values among <em>read-only</em>, <em>workspace-write</em>, and <em>danger-full-access</em>.</li>
+      <li><code>allowed_sandbox_modes</code> - legacy sandbox-mode allowlists. For <strong>Codex 0.138.0+</strong>, prefer permission profiles instead.</li>
+      <li><code>allowed_permission_profiles</code> / <code>default_permissions</code> - the preferred <strong>0.138.0+</strong> pattern for centrally controlling which built-in or custom permission profiles users can select and which one is the default, including choices such as <code>:read-only</code> and <code>:workspace</code>.</li>
       <li><code>[[remote_sandbox_config]]</code> - override sandbox requirements by matching host patterns.</li>
       <li><code>allowed_web_search_modes</code> - <em>disabled</em>, <em>cached</em>, or <em>live</em>.</li>
       <li><code>[permissions.filesystem].deny_read</code> - deny exact paths or glob patterns from being read.</li>
       <li><strong>MCP server allowlists</strong> - match allowed MCP servers by name or identity; an empty array <strong>blocks all MCP servers</strong>.</li>
       <li><strong>Managed hooks</strong> - enforce lifecycle hooks through <code>[hooks]</code> and a managed script directory.</li>
       <li><strong>Restrictive command rules</strong> - prompt or forbid risky commands such as <code>rm</code> or <code>git push</code>.</li>
+      <li><code>allow_remote_control = false</code> - disable <strong>Remote Control access</strong> for managed users.</li>
+      <li><code>allow_appshots = false</code> - disable Appshots for managed users.</li>
       <li><strong>Disable specific surfaces</strong> such as Browser Use, in-app browser, or Computer Use.</li>
       <li>Pin <code>[features].browser_use_full_cdp_access = false</code> to prevent Browser Developer mode full CDP access.</li>
       <li>Pin <code>[features].computer_use = false</code> to disable Windows/macOS Computer Use itself.</li>
       <li>Disable <strong>plugin sharing</strong> through MDM or cloud-managed requirements when an eligible Enterprise workspace should not allow it by policy.</li>
     </ul>
     <h3 class="menu"><span class="num">14.2</span>Example policy</h3>
-    <pre><code>allowed_web_search_modes = ["disabled", "cached"]
-allowed_sandbox_modes    = ["workspace-write"]
+    <pre><code>default_permissions      = ":workspace"
 allowed_approval_policies = ["on-request"]
+allowed_web_search_modes  = ["disabled", "cached"]
+
+[allowed_permission_profiles]
+":read-only" = true
+":workspace" = true
+# ":danger-full-access" is omitted, so it stays denied.
 
 [rules]
 prefix_rules = [
@@ -3791,6 +3832,10 @@ prefix_rules = [
       <li><strong>OS-managed configuration</strong>: MDM on macOS, <code>%ProgramData%\OpenAI\Codex\requirements.toml</code> on Windows for system requirements, or <code>/etc/codex/</code> on Linux.</li>
       <li><strong>User-local configuration</strong>: <code>~/.codex/config.toml</code>, editable by the user.</li>
     </ol>
+    <div class="box">
+      <div class="label">0.138.0+ recommendation</div>
+      For <strong>Codex 0.138.0 and later</strong>, current official docs prefer replacing <code>allowed_sandbox_modes</code> with <strong>permission profiles</strong> (<code>allowed_permission_profiles</code> + <code>default_permissions</code>). Older 0.137.x clients can ignore these newer keys, so check fleet version before relying on them.
+    </div>
 
     <h3 class="menu"><span class="num">15.2</span>Requirements vs managed defaults</h3>
     <table>
@@ -3815,11 +3860,16 @@ prefix_rules = [
 
     <h3 class="menu"><span class="num">15.4</span>Shared policy example</h3>
     <p>The TOML itself is the same across operating systems; only the placement changes.</p>
-    <pre class="lang-pre" data-lang="toml"><code>approval_policy = "on-request"
-sandbox_mode    = "workspace-write"
+    <pre class="lang-pre" data-lang="toml"><code>approval_policy     = "on-request"
+default_permissions = ":workspace"
 
-[sandbox_workspace_write]
-network_access = false
+[allowed_permission_profiles]
+":read-only" = true
+":workspace" = true
+
+[experimental_network]
+enabled = true
+managed_allowed_domains_only = true
 
 [otel]
 environment      = "prod"
@@ -4171,8 +4221,8 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </p>
     <ol>
       <li>Create a new read-only API key in the Platform Portal.</li>
-      <li>Email <code>support@openai.com</code> to request the <strong>limited analytics scope</strong>.</li>
-      <li>After approval, call endpoints under <code>https://api.chatgpt.com/v1/analytics/codex/workspaces/{workspace_id}/...</code>.</li>
+      <li>Confirm that the key has the <code>codex.enterprise.analytics.read</code> scope.</li>
+      <li>Call endpoints under <code>https://api.chatgpt.com/v1/analytics/codex</code> with up to a <strong>90-day lookback</strong>.</li>
     </ol>
     <pre><code>curl -H "Authorization: Bearer YOUR_PLATFORM_API_KEY" \
   "https://api.chatgpt.com/v1/analytics/codex/workspaces/WORKSPACE_ID/usage"</code></pre>
@@ -4295,6 +4345,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><a href="https://help.openai.com/en/articles/8555535-gpts-chatgpt-enterprise-version" target="_blank">Managing GPT access in Enterprise &amp; Edu</a></li>
       <li><a href="https://help.openai.com/en/articles/9442513-gpt-actions-domain-settings-chatgpt-enterprise" target="_blank">GPT Actions — Domain Settings</a></li>
       <li><a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics for Enterprise &amp; Edu</a></li>
+      <li><a href="https://help.openai.com/en/articles/20001001-setting-usage-limits-in-chatgpt-enterprise-and-edu" target="_blank">Setting usage limits in ChatGPT Enterprise and Edu</a></li>
       <li><a href="https://help.openai.com/en/articles/20001149-managing-impact-surveys-in-workspace-analytics" target="_blank">Managing impact surveys in workspace analytics</a></li>
       <li><a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">ChatGPT Enterprise &amp; Edu — Release Notes</a></li>
       <li><a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a></li>
@@ -4312,6 +4363,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><a href="https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn789196(v=ws.11)" target="_blank">Windows Group Policy — File Preferences</a></li>
       <li><a href="https://developers.openai.com/codex/app" target="_blank">Codex — App</a></li>
       <li><a href="https://developers.openai.com/codex/app/computer-use" target="_blank">Codex App — Computer Use</a></li>
+      <li><a href="https://developers.openai.com/codex/record-and-replay" target="_blank">Codex App — Record &amp; Replay</a></li>
       <li><a href="https://developers.openai.com/codex/app/browser" target="_blank">Codex App — In-app Browser</a></li>
       <li><a href="https://developers.openai.com/codex/ide" target="_blank">Codex — IDE extension</a></li>
       <li><a href="https://developers.openai.com/codex/cli" target="_blank">Codex — CLI</a></li>
@@ -4331,7 +4383,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 </section>
 
 <footer data-i18n="footer-note">
-  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-06-14
+  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-06-22
 </footer>
 
 <script>
@@ -4340,7 +4392,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "hero-eyebrow": "OpenAI · Admin Guide · 2026",
       "hero-title": "ChatGPT Enterprise &amp;<br/>Codex Enterprise<br/><em>Workspace Settings Complete Guide</em>",
       "hero-subtitle": "A consolidated guide to every menu in the ChatGPT Enterprise/Edu workspace admin console and the Codex Enterprise admin surface, including where each setting lives, what it controls, recommended defaults, official screenshots, and source links.",
-      "meta-updated": "Last updated: 2026-06-14",
+      "meta-updated": "Last updated: 2026-06-22",
       "meta-sources": "Sources: OpenAI Help Center · OpenAI Academy · developers.openai.com",
       "meta-language": "Available languages: Korean / English",
       "toc-part1": "Contents — Part 1 · ChatGPT Enterprise",
@@ -4438,8 +4490,8 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "codex-gov-api-title": "<span class=\"num\">20.3</span>③ Analytics API <span class=\"pill\">programmatic</span>",
       "codex-gov-api-body": "For BI and data warehouse integration. Requires a dedicated API key scoped to <code>codex.enterprise.analytics.read</code>.",
       "codex-gov-api-step-1": "Platform Portal → API keys → create a new key; read-only is recommended",
-      "codex-gov-api-step-2": "Email <code>support@openai.com</code> to request the limited scope",
-      "codex-gov-api-step-3": "After approval, call the <code>https://api.chatgpt.com/v1/analytics/codex/workspaces/{workspace_id}/...</code> endpoints",
+      "codex-gov-api-step-2": "Confirm that the key has the <code>codex.enterprise.analytics.read</code> scope",
+      "codex-gov-api-step-3": "Call endpoints under <code>https://api.chatgpt.com/v1/analytics/codex</code> with up to a <strong>90-day lookback</strong>",
       "codex-gov-api-endpoints": "Key endpoints: <code>/usage</code> · <code>/code_reviews</code> · <code>/code_review_responses</code>",
       "codex-gov-compliance-title": "<span class=\"num\">20.4</span>④ Compliance API <span class=\"pill\">audit</span>",
       "codex-gov-compliance-body": "The Compliance API is the channel for bringing workspace audit and compliance data into SIEM, data lake, eDiscovery, and DLP tools. OpenAI Help states that the Compliance Logs Platform retention period is <strong>30 days</strong>, so customers that need longer retention should continuously download all logs and store them according to their own retention policy.",
@@ -4527,7 +4579,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "check-13-action": "Run <strong>final validation</strong> with sample users",
       "check-13-note": "Verify login, MFA, RBAC, managed policies, and analytics visibility",
       "sources-title": "Sources / Reference Links — All Sources",
-      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-06-14"
+      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-06-22"
     };
 
 
