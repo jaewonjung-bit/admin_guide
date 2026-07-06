@@ -465,7 +465,7 @@
       각 메뉴의 위치, 역할, 권장 설정값, 그리고 OpenAI 공식 화면 캡처와 출처 링크를 함께 제공합니다.
     </p>
     <div class="meta">
-      <span data-i18n="meta-updated">최종 업데이트: 2026-06-22</span>
+      <span data-i18n="meta-updated">최종 업데이트: 2026-07-06</span>
       <span data-i18n="meta-sources">출처: OpenAI Help Center · OpenAI Academy · developers.openai.com</span>
       <span data-i18n="meta-language">지원 언어: 한국어 / English</span>
     </div>
@@ -546,6 +546,7 @@
       <tr><td>Available Models</td><td>현재 허용 모델 계열·레거시 모델 접근</td><td>Owner / Admin</td></tr>
       <tr><td>GPTs</td><td>GPT 소유권·공유·서드파티·Action 도메인</td><td>Owner / Admin</td></tr>
       <tr><td>Apps</td><td>Google Drive, Slack, GitHub 등 연결 앱·MCP</td><td>Owner / Admin</td></tr>
+      <tr><td>Plugins</td><td>ChatGPT/Codex 플러그인 검색·설치 정책·역할별 기본 설치</td><td>Owner / Admin</td></tr>
       <tr><td>Sites</td><td>Codex Sites로 게시된 내부 사이트 비활성화·운영</td><td>Owner / Admin</td></tr>
       <tr><td>Workspace Analytics</td><td>도입률·사용량·Task Insights·Impact 설문</td><td>Owner / Admin / Analytics Viewer</td></tr>
       <tr><td>Identity &amp; Access</td><td>SSO/SAML, SCIM, 도메인 검증, IP 허용 목록</td><td>Owner 중심, 일부 Access Restrictions는 Admin</td></tr>
@@ -632,6 +633,22 @@
   <p style="font-size:.88rem;color:var(--muted)">
     출처: <a href="https://help.openai.com/en/articles/20001052-library-for-chatgpt" target="_blank">File storage and Library in ChatGPT</a> ·
     <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a>
+  </p>
+
+  <h3 class="menu"><span class="num">02.7</span>Improved memory — 개선된 메모리</h3>
+  <p>
+    2026년 6월 25일 릴리스 노트 기준, Enterprise/Edu에는 <strong>개선된 메모리</strong>가 배포 중입니다.
+    메모리가 켜져 있으면 ChatGPT는 수동 저장 메모리만이 아니라 과거 대화의 관련 맥락을 참조해 더 최신의 개인화 응답을 제공할 수 있습니다.
+  </p>
+  <ul>
+    <li>사용자는 메모리 요약을 검토하고, 개인화 응답 아래에서 어떤 메모리·과거 대화·custom instructions가 근거로 쓰였는지 볼 수 있습니다.</li>
+    <li>Enterprise에서는 약 2주간 early access 기간이 있으며, 이 기간에는 관리자가 Workspace settings에서 <strong>Use improved memory</strong>를 켤 수 있습니다.</li>
+    <li>early access 이후에는 대상 워크스페이스에서 기본 ON이 될 수 있으며, 관리자가 opt out할 수 있습니다.</li>
+    <li>관리자와 사용자는 legacy <strong>Saved memories</strong>로 되돌릴 수 있습니다.</li>
+    <li><strong>Codex memory에는 영향이 없습니다.</strong> 프로젝트 전용 메모리는 프로젝트 안에만 머물며, 프로젝트 밖 메모리나 대화를 사용하지 않습니다.</li>
+  </ul>
+  <p style="font-size:.88rem;color:var(--muted)">
+    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Enterprise/Edu 릴리스 노트</a>
   </p>
 </section>
 
@@ -767,25 +784,28 @@
     할당 전 각 앱과 action, 원본 시스템 권한을 함께 확인해야 합니다.
   </div>
 
-  <h3 class="menu"><span class="num">05.3</span>Spend controls (Usage limits)</h3>
+  <h3 class="menu"><span class="num">05.3</span>Spend controls (Usage limits / overages)</h3>
   <p>
     Enterprise는 계약 단위 <strong>shared credit pool</strong>을 사용하며, 모든 사용자와 seat type이 고급 기능 사용 시 이 pool에서 차감됩니다.
-    다만 2026년 6월 18일부터는 기존 <strong>Permissions &amp; Roles의 주간 제한</strong>과 별도로,
-    Workspace settings의 <strong>Usage limits</strong>에서 <strong>월간</strong> workspace / group / user 한도를 관리하는 흐름이 추가되었습니다.
+    공식 Usage limits 문서는 이제 <strong>사용자별 월간 한도</strong>와 <strong>워크스페이스 overage limit</strong>을 별도 제어로 설명합니다.
+    Usage limits는 Workspace settings에서, overage limit과 usage alert는 Global Admin Console의 Billing에서 관리합니다.
     <a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">[Flexible pricing]</a>
   </p>
   <ul>
-    <li><strong>새 관리 화면</strong>: <strong>Usage limits</strong> 탭에서 월간 workspace 기본값, group 기본값, user override를 설정합니다.</li>
+    <li><strong>Usage limits</strong>: <strong>Workspace settings → Usage limits</strong>에서 월간 workspace 기본값, group 기본값, user override를 설정합니다.</li>
     <li><strong>적용 순서</strong>: user override → 사용자가 속한 그룹 중 가장 높은 group limit → workspace default 순으로 적용됩니다.</li>
     <li><strong>증액 요청</strong>: 사용자가 한도 초과 시 increase request를 보낼 수 있고, 관리자는 <strong>Usage limits → Pending Requests</strong>에서 승인/거절합니다. 승인된 값은 일회성 임시 해제가 아니라 user override로 남습니다.</li>
-    <li><strong>기존 주간 제한과의 관계</strong>: 새 Usage limits를 아직 설정하지 않았다면 기존 <strong>Permissions &amp; Roles</strong>의 주간 제한이 fallback으로 계속 적용됩니다.</li>
-    <li><strong>마이그레이션 일정</strong>: 남아 있는 주간 제한은 <strong>2026-07-15</strong>에 월간 workspace/group 기본값으로 자동 마이그레이션될 예정이므로, 그 전에 수동 점검이 안전합니다.</li>
+    <li><strong>기존 주간 제한과의 관계</strong>: 새 Usage limits를 아직 설정하지 않았다면 기존 <strong>Permissions &amp; Roles → Weekly limits</strong>가 fallback으로 계속 적용됩니다.</li>
+    <li><strong>마이그레이션 일정</strong>: 남아 있는 주간 제한은 <strong>2026년 8월 초</strong> 월간 workspace/group 기본값으로 자동 마이그레이션될 예정입니다. 이후 weekly limit 설정은 더 이상 적용되지 않습니다.</li>
+    <li><strong>Overage limit</strong>: shared credit pool이 먼저 소진되면 <strong>Global Admin Console → Billing</strong>의 workspace overage limit이 추가 사용 가능 범위를 결정합니다. user usage limit은 overage 사용 중에도 계속 적용됩니다.</li>
+    <li><strong>No limit 의미 차이</strong>: Usage limits의 group override에서 No limit은 workspace default 상속을 뜻하지만, Billing의 workspace overage limit에서 No limit은 overage cap이 설정되지 않았다는 뜻입니다.</li>
+    <li><strong>Usage alerts</strong>: credit threshold, committed credits 소진, overage limit 도달 시 알림을 보낼 수 있지만 사용을 차단하지는 않습니다. 차단이 필요하면 overage limit을 설정합니다.</li>
     <li><strong>운영 패턴</strong>: 엔지니어링/AI 챔피언 그룹은 넉넉한 group default, 일반 사용자 그룹은 보수적 default, 예외 사용자는 user override로 관리하는 편이 명확합니다.</li>
-    <li><strong>관찰 위치</strong>: 한도 설정은 Usage limits, 실제 소비 추세와 원인 분석은 Workspace Analytics / Billing / Codex Analytics를 함께 봅니다.</li>
+    <li><strong>관찰 위치</strong>: 한도 설정은 Usage limits, overage와 unbilled usage는 Billing, 실제 소비 추세와 원인 분석은 Workspace Analytics / Billing / Codex Analytics를 함께 봅니다.</li>
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
     출처: <a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">Flexible pricing</a> ·
-    <a href="https://help.openai.com/en/articles/20001001-setting-usage-limits-in-chatgpt-enterprise-and-edu" target="_blank">Setting usage limits</a> ·
+    <a href="https://help.openai.com/en/articles/20001001-setting-usage-limits-in-chatgpt-enterprise-and-edu" target="_blank">Manage usage limits and overages</a> ·
     <a href="https://help.openai.com/en/articles/11750701-rbac" target="_blank">RBAC</a>
   </p>
 
@@ -827,15 +847,16 @@
   <p>
     워크스페이스에서 현재 어떤 <strong>모델 계열</strong>을 노출할지 정하는 영역입니다.
     다만 ChatGPT 모델 이름과 picker 구조는 자주 바뀌므로, 특정 모델명을 문서에 길게 고정하기보다
-    <strong>현재 제공 중인 기본 모델 / Thinking·Pro 계열 / 레거시 모델 접근</strong> 관점으로 설명하는 편이 안전합니다.
+    <strong>현재 제공 중인 기본 모델 / 추론 강도 / Pro 계열 / 레거시 모델 접근</strong> 관점으로 설명하는 편이 안전합니다.
     Custom Role 안에서도 “이 Role이 쓸 수 있는 모델”을 별도 제한할 수 있어, 고비용 모델은 일부 그룹에만 열어두는 식의 통제가 가능합니다.
   </p>
   <div class="box green">
-    <div class="label">모델명 드리프트 주의</div>
-    2026년 2월 이후 GPT-4o, GPT-4.1, GPT-4.1 mini, o4-mini, GPT-5 Instant/Thinking 등 일부 ChatGPT 모델은
-    은퇴 또는 picker 재구성 대상이 되었습니다. 따라서 운영 가이드는 <strong>현재 모델 가족 + 레거시 접근 정책</strong> 중심으로 유지하고,
-    구체 모델 예시는 최신 GPT 관리 문서와 릴리스 노트로 확인하는 편이 맞습니다.
-    <a href="https://help.openai.com/en/articles/8555535-gpts-chatgpt-enterprise-version" target="_blank">[GPT access]</a>
+    <div class="label">모델 선택기 최신 기준</div>
+    2026년 6월 26일 릴리스 기준 Enterprise/Edu 모델 선택기는 <strong>Instant, Medium, High, Extra High, Pro Standard, Pro Extended</strong>를 노출합니다.
+    Medium은 Thinking Standard, High는 Thinking Extended, Extra High는 Thinking Heavy를 대체하며, Thinking Light는 더 이상 제공되지 않습니다.
+    <strong>추론 모델 접근 권한</strong>은 Medium / High / Extra High를, <strong>Pro 모델 접근 권한</strong>은 Pro Standard / Pro Extended를 제어합니다.
+    멤버에게 권한이 없는 옵션은 모델 선택기에서 숨겨집니다.
+    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Release notes]</a>
   </div>
 </section>
 
@@ -1010,6 +1031,24 @@
   <p style="font-size:.88rem;color:var(--muted)">
     출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a> ·
     <a href="https://developers.openai.com/codex/sites" target="_blank">Codex Sites developer guide</a>
+  </p>
+
+  <h3 class="menu"><span class="num">08.8</span>Plugins — ChatGPT 관리자 표면</h3>
+  <p>
+    2026년 6월 26일 릴리스 노트 기준, Owner/Admin은 <strong>Workspace settings → Plugins</strong>에서
+    ChatGPT Enterprise/Edu 플러그인을 별도 관리자 표면으로 운영할 수 있습니다. 이는 사용자가 Codex App에서 여는
+    <strong>Codex Plugins 디렉터리</strong>와 구분되는 워크스페이스 거버넌스 화면입니다.
+  </p>
+  <ul>
+    <li><strong>검색·필터</strong>: status, installation policy, roles, category, catalog 기준으로 플러그인을 찾고 검토합니다.</li>
+    <li><strong>설치 정책</strong>: workspace 전체 또는 특정 role에 대해 멤버가 설치할 수 있는지, 기본 설치할지 설정할 수 있습니다.</li>
+    <li><strong>역할별 enablement</strong>: Workspace settings → Permissions &amp; Roles에서도 workspace 또는 선택 role 대상 플러그인 enable/disable을 조정할 수 있습니다.</li>
+    <li><strong>앱 의존성 확인</strong>: 관리자는 해당 플러그인이 사용하는 Apps를 확인하고, 앱 권한·action control·source system 권한을 함께 점검해야 합니다.</li>
+    <li><strong>운영 구분</strong>: ChatGPT Plugins는 설치·배포 정책 표면이고, Codex Plugins는 skill/app/MCP bundle을 사용자가 Codex에서 실행하는 표면입니다.</li>
+  </ul>
+  <p style="font-size:.88rem;color:var(--muted)">
+    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Enterprise/Edu 릴리스 노트</a> ·
+    <a href="https://developers.openai.com/codex/plugins" target="_blank">Codex Plugins</a>
   </p>
 </section>
 
@@ -1734,19 +1773,24 @@
   <h3 class="menu"><span class="num">12B.3</span>Remote connections / Remote Control access</h3>
   <p>
     공식 Codex 문서의 페이지명은 <strong>Remote connections</strong>이고, 일부 관리자·릴리즈 노트 표면에서는
-    <strong>Remote Control access</strong>라고 표현됩니다. 같은 계열의 원격 제어 기능이므로 운영 문서에서는 두 용어를 함께 안내하세요.
+    <strong>Remote Control access</strong>라고 표현됩니다. 2026년 6월 25일 기준 Codex Remote는 Enterprise/Edu에서
+    GA로 제공되며, 같은 계열의 원격 제어 기능이므로 운영 문서에서는 두 용어를 함께 안내하세요.
   </p>
   <ul>
     <li>ChatGPT 모바일 앱에서 연결된 Mac/Windows Codex App host를 제어하거나, 다른 지원 Codex App 기기에서 작업을 이어갈 수 있습니다.</li>
     <li>Windows host는 ChatGPT iOS/Android 또는 Mac의 Codex App에서 제어할 수 있지만, Windows Codex App은 현재 다른 컴퓨터를 제어하는 쪽으로는 사용할 수 없습니다.</li>
     <li>원격 연결은 host의 프로젝트, 스레드, 파일, credentials, 권한, 플러그인, 브라우저 설정, 로컬 도구를 그대로 사용합니다.</li>
     <li>사용자는 모바일에서 후속 지시, 질문 응답, 실행 방향 전환, command/action 승인, diff·테스트·터미널·스크린샷 확인을 할 수 있습니다.</li>
+    <li><strong>Pairing</strong>: Remote Control은 지원 모바일 기기와 host 간 인증된 1:1 QR pairing을 사용합니다. 2026년 6월 8일 이후 사용된 연결은 유지되지만, 오래 비활성 상태였던 연결은 다시 pairing해야 할 수 있습니다.</li>
+    <li><strong>Sign-out 동작</strong>: 로그아웃하면 Remote Control은 꺼지지만 기존 pairing 자체를 제거하지는 않습니다.</li>
     <li>모바일 설정은 Codex App에서 시작하며, CLI나 IDE Extension만으로는 설정할 수 없습니다.</li>
+    <li><strong>DigitalOcean Droplet Workspace plugin</strong>: 대상 Enterprise/Edu 사용자는 DigitalOcean Droplet을 만들고 SSH 접근을 구성해 Codex App의 remote workspace로 연결할 수 있습니다. 연결 전 ChatGPT 모바일 앱과 Codex App을 최신 버전으로 업데이트해야 합니다.</li>
     <li>Windows에서 Computer Use를 함께 쓰는 작업은 foreground 세션이 필요하므로 host를 잠금 해제 상태로 유지하고 해당 데스크톱을 작업에 전용하는 편이 안전합니다.</li>
     <li>워크스페이스 환경에서는 admin이 Remote Control access를 켜야 할 수 있고, SSO/MFA/passkey 절차가 추가될 수 있습니다.</li>
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
-    <a href="https://developers.openai.com/codex/remote-connections" target="_blank">→ Codex Remote connections 공식 가이드</a>
+    <a href="https://developers.openai.com/codex/remote-connections" target="_blank">→ Codex Remote connections 공식 가이드</a> ·
+    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Enterprise/Edu 릴리스 노트]</a>
   </p>
 </section>
 
@@ -2562,6 +2606,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
         <tr><td>Available Models</td><td>Current model families and legacy access</td><td>Owner / Admin</td></tr>
         <tr><td>GPTs</td><td>Ownership, sharing, third-party access, action domains</td><td>Owner / Admin</td></tr>
         <tr><td>Apps</td><td>Connected tools and MCP apps</td><td>Owner / Admin</td></tr>
+        <tr><td>Plugins</td><td>Plugin discovery, installation policies, and role-based defaults</td><td>Owner / Admin</td></tr>
         <tr><td>Sites</td><td>Disable or operate internal sites published through Codex Sites</td><td>Owner / Admin</td></tr>
         <tr><td>Workspace analytics</td><td>Adoption, usage, surveys</td><td>Owner / Admin / analytics viewer</td></tr>
         <tr><td>Identity &amp; Access</td><td>SSO, SCIM, domain verification, IP allowlist</td><td>Owner-led; some Access Restrictions also allow Admin</td></tr>
@@ -2628,6 +2673,22 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <p style="font-size:.88rem;color:var(--muted)">
       Sources: <a href="https://help.openai.com/en/articles/20001052-library-for-chatgpt" target="_blank">File storage and Library in ChatGPT</a> ·
       <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Release notes</a>
+    </p>
+
+    <h3 class="menu"><span class="num">02.7</span>Improved memory</h3>
+    <p>
+      As of the June 25, 2026 release notes, <strong>improved memory</strong> is rolling out for Enterprise and Edu.
+      When memory is enabled, ChatGPT can use relevant context from past chats to keep personalization current, instead of relying only on details saved manually.
+    </p>
+    <ul>
+      <li>Users can review a memory summary and see Sources below personalized responses for memories, past chats, and custom instructions used as context.</li>
+      <li>Enterprise starts with an early access period of about two weeks. During that period, admins can turn on <strong>Use improved memory</strong> in Workspace settings.</li>
+      <li>After early access, the improved experience may turn on by default for eligible workspaces unless an admin opts out.</li>
+      <li>Admins and users can switch back to legacy <strong>Saved memories</strong>.</li>
+      <li><strong>This does not affect Codex memory.</strong> Project-only memory stays contained inside each project and does not use memories or conversations from outside that project.</li>
+    </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Source: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Enterprise/Edu release notes</a>
     </p>
   </section>
 
@@ -2750,25 +2811,28 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       not a single permission toggle. Members assigned to that role may have live web search, deep research, agent mode,
       Canvas networking, and some app, MCP, or connector behavior limited, so review each app, action, and source-system permission before assignment.
     </div>
-    <h3 class="menu"><span class="num">05.3</span>Spend controls / usage limits</h3>
+    <h3 class="menu"><span class="num">05.3</span>Spend controls / usage limits and overages</h3>
     <p>
       Enterprise uses a contract-level <strong>shared credit pool</strong>. All users and seat types draw from that pool when they use advanced features.
-      Starting June 18, 2026, admins also get a dedicated <strong>Usage limits</strong> surface in Workspace settings for
-      <strong>monthly</strong> workspace, group, and user limits, alongside the older weekly limits still visible in <strong>Permissions &amp; roles</strong>.
+      The current Usage limits article separates <strong>per-user monthly usage limits</strong> from the <strong>workspace overage limit</strong>.
+      Usage limits live in Workspace settings, while overage limits and usage alerts live in Global Admin Console Billing.
       <a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">[Flexible pricing]</a>
     </p>
     <ul>
-      <li><strong>New admin surface</strong>: use <strong>Usage limits</strong> to set monthly workspace defaults, group defaults, and user overrides.</li>
+      <li><strong>Usage limits</strong>: use <strong>Workspace settings → Usage limits</strong> to set monthly workspace defaults, group defaults, and user overrides.</li>
       <li><strong>Precedence</strong>: limits apply in this order: user override → highest applicable group limit → workspace default.</li>
       <li><strong>Increase requests</strong>: users can request higher limits, and admins review them in <strong>Usage limits → Pending Requests</strong>. Approved requests become persistent user overrides.</li>
-      <li><strong>Weekly-limit fallback</strong>: if you have not configured the new Usage limits surface yet, existing weekly limits in <strong>Permissions &amp; Roles</strong> continue to apply as a fallback.</li>
-      <li><strong>Migration timing</strong>: OpenAI plans to auto-migrate remaining weekly limits to monthly workspace/group defaults on <strong>July 15, 2026</strong>.</li>
+      <li><strong>Weekly-limit fallback</strong>: if you have not configured the new Usage limits surface yet, existing weekly limits in <strong>Permissions &amp; Roles → Weekly limits</strong> continue to apply as a fallback.</li>
+      <li><strong>Migration timing</strong>: OpenAI plans to auto-migrate remaining weekly limits to monthly workspace/group defaults in <strong>early August 2026</strong>. After migration, weekly limits no longer take effect.</li>
+      <li><strong>Overage limit</strong>: if the shared credit pool is exhausted first, the workspace overage limit in <strong>Global Admin Console → Billing</strong> determines how much eligible usage can continue. User usage limits still apply during overage usage.</li>
+      <li><strong>No limit means different things</strong>: in Usage limits, No limit for a group override means inheriting the workspace default; in Billing, No limit for workspace overage means no overage cap is configured.</li>
+      <li><strong>Usage alerts</strong>: alerts can notify recipients at credit thresholds, committed-credit exhaustion, or overage-limit reach. Alerts do not block usage; use the overage limit when a cap is required.</li>
       <li><strong>Operating pattern</strong>: use group defaults for broad policy, user overrides for exceptions, and keep developer or AI champion groups less constrained than general-user groups.</li>
-      <li><strong>Visibility path</strong>: configure guardrails in Usage limits, then inspect actual consumption across Workspace Analytics, Billing, and Codex Analytics.</li>
+      <li><strong>Visibility path</strong>: configure guardrails in Usage limits, review overage and unbilled usage in Billing, then diagnose trends across Workspace Analytics, Billing, and Codex Analytics.</li>
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
       Sources: <a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">Flexible pricing</a> ·
-      <a href="https://help.openai.com/en/articles/20001001-setting-usage-limits-in-chatgpt-enterprise-and-edu" target="_blank">Setting usage limits</a> ·
+      <a href="https://help.openai.com/en/articles/20001001-setting-usage-limits-in-chatgpt-enterprise-and-edu" target="_blank">Manage usage limits and overages</a> ·
       <a href="https://help.openai.com/en/articles/11750701-rbac" target="_blank">RBAC</a>
     </p>
     <h3 class="menu"><span class="num">05.4</span>Early Access Features</h3>
@@ -2808,14 +2872,16 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <p>
       Owners and admins decide which <strong>current model families</strong> are exposed in the workspace.
       Because ChatGPT model names and picker options change often, this guide is safer when framed around
-      <strong>current default models, Thinking / Pro-style reasoning options, and legacy model access</strong> rather than a fixed list of model names.
+      <strong>current default models, reasoning effort, Pro options, and legacy model access</strong> rather than a fixed list of model names.
       Custom roles can further restrict which models selected groups may use, which makes it possible to expose higher-cost models only to selected populations.
     </p>
     <div class="box green">
-      <div class="label">Model-name drift</div>
-      Since February 2026, some ChatGPT models such as GPT-4o, GPT-4.1, GPT-4.1 mini, o4-mini, and GPT-5 Instant / Thinking have been retired or moved out of the picker.
-      Keep this guide centered on <strong>current model families plus legacy-access policy</strong>, and verify concrete examples against the latest GPT admin docs and release notes.
-      <a href="https://help.openai.com/en/articles/8555535-gpts-chatgpt-enterprise-version" target="_blank">[GPT access]</a>
+      <div class="label">Current model picker baseline</div>
+      As of the June 26, 2026 release notes, the Enterprise/Edu model picker exposes <strong>Instant, Medium, High, Extra High, Pro Standard, and Pro Extended</strong>.
+      Medium replaces Thinking Standard, High replaces Thinking Extended, Extra High replaces Thinking Heavy, and Thinking Light is no longer available.
+      <strong>Reasoning Model Access</strong> controls Medium / High / Extra High, while <strong>Pro Model Access</strong> controls Pro Standard / Pro Extended.
+      Options a member cannot access are hidden from the picker.
+      <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Release notes]</a>
     </div>
   </section>
 
@@ -2967,6 +3033,24 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <p style="font-size:.88rem;color:var(--muted)">
       Sources: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Release notes</a> ·
       <a href="https://developers.openai.com/codex/sites" target="_blank">Codex Sites developer guide</a>
+    </p>
+
+    <h3 class="menu"><span class="num">08.8</span>Plugins - ChatGPT admin surface</h3>
+    <p>
+      As of the June 26, 2026 release notes, owners and admins can manage ChatGPT Enterprise/Edu plugins from
+      <strong>Workspace settings → Plugins</strong>. This is a workspace governance surface, separate from the
+      <strong>Codex Plugins directory</strong> that users open inside the Codex App.
+    </p>
+    <ul>
+      <li><strong>Search and filters</strong>: review plugins by status, installation policy, roles, category, and catalog.</li>
+      <li><strong>Installation policy</strong>: decide whether plugins are available for members to install or installed by default for the workspace or selected roles.</li>
+      <li><strong>Role-based enablement</strong>: workspace owners can also enable or disable plugins for the workspace or selected roles from Workspace settings → Permissions &amp; Roles.</li>
+      <li><strong>App dependency review</strong>: admins can see which Apps a plugin uses and should review app permissions, action controls, and source-system permissions together.</li>
+      <li><strong>Operating distinction</strong>: ChatGPT Plugins govern installation and rollout policy; Codex Plugins are skill/app/MCP bundles that users run from Codex.</li>
+    </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Sources: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Enterprise/Edu release notes</a> ·
+      <a href="https://developers.openai.com/codex/plugins" target="_blank">Codex Plugins</a>
     </p>
   </section>
 
@@ -3610,19 +3694,24 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h3 class="menu"><span class="num">12B.3</span>Remote connections / Remote Control access</h3>
     <p>
       The official Codex docs page is named <strong>Remote connections</strong>, while some admin and release-note surfaces use
-      <strong>Remote Control access</strong>. Treat them as the same remote-control capability family in operating guidance.
+      <strong>Remote Control access</strong>. As of June 25, 2026, Codex Remote is generally available for Enterprise/Edu.
+      Treat the terms as the same remote-control capability family in operating guidance.
     </p>
     <ul>
       <li>Users can control a connected Mac or Windows Codex App host from the ChatGPT mobile app, or continue work from another supported Codex App device.</li>
       <li>A Windows host can be controlled from ChatGPT on iOS/Android or from Codex on Mac, but the Windows Codex App cannot currently control another computer.</li>
       <li>Remote access uses the host's projects, threads, files, credentials, permissions, plugins, browser setup, and local tools.</li>
       <li>Users can send follow-up instructions, answer questions, redirect execution, approve commands/actions, and review diffs, tests, terminal output, and screenshots from mobile.</li>
+      <li><strong>Pairing</strong>: Remote Control uses authenticated one-to-one QR pairing between each supported mobile device and each host. Connections used since June 8 remain paired; older inactive connections may need to pair again.</li>
+      <li><strong>Sign-out behavior</strong>: signing out turns off Remote Control without removing existing pairings.</li>
       <li>Mobile setup starts from the Codex App; it cannot be set up from CLI or IDE Extension alone.</li>
+      <li><strong>DigitalOcean Droplet Workspace plugin</strong>: eligible Enterprise/Edu users can provision a DigitalOcean Droplet, configure SSH access, and connect it to the Codex App as a remote workspace. Users should update the ChatGPT mobile app and Codex App to the latest versions before connecting.</li>
       <li>Windows tasks that use Computer Use need the foreground session to remain unlocked and available, so dedicate that host desktop to the task while it runs.</li>
       <li>In workspace environments, an admin may need to enable Remote Control access, and SSO/MFA/passkey steps may apply.</li>
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
-      <a href="https://developers.openai.com/codex/remote-connections" target="_blank">→ Official Codex Remote connections guide</a>
+      <a href="https://developers.openai.com/codex/remote-connections" target="_blank">→ Official Codex Remote connections guide</a> ·
+      <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Enterprise/Edu release notes]</a>
     </p>
   </section>
 
@@ -4345,7 +4434,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><a href="https://help.openai.com/en/articles/8555535-gpts-chatgpt-enterprise-version" target="_blank">Managing GPT access in Enterprise &amp; Edu</a></li>
       <li><a href="https://help.openai.com/en/articles/9442513-gpt-actions-domain-settings-chatgpt-enterprise" target="_blank">GPT Actions — Domain Settings</a></li>
       <li><a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics for Enterprise &amp; Edu</a></li>
-      <li><a href="https://help.openai.com/en/articles/20001001-setting-usage-limits-in-chatgpt-enterprise-and-edu" target="_blank">Setting usage limits in ChatGPT Enterprise and Edu</a></li>
+      <li><a href="https://help.openai.com/en/articles/20001001-setting-usage-limits-in-chatgpt-enterprise-and-edu" target="_blank">Manage usage limits and overages in ChatGPT Enterprise and Edu</a></li>
       <li><a href="https://help.openai.com/en/articles/20001149-managing-impact-surveys-in-workspace-analytics" target="_blank">Managing impact surveys in workspace analytics</a></li>
       <li><a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">ChatGPT Enterprise &amp; Edu — Release Notes</a></li>
       <li><a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a></li>
@@ -4383,7 +4472,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 </section>
 
 <footer data-i18n="footer-note">
-  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-06-22
+  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-07-06
 </footer>
 
 <script>
@@ -4392,7 +4481,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "hero-eyebrow": "OpenAI · Admin Guide · 2026",
       "hero-title": "ChatGPT Enterprise &amp;<br/>Codex Enterprise<br/><em>Workspace Settings Complete Guide</em>",
       "hero-subtitle": "A consolidated guide to every menu in the ChatGPT Enterprise/Edu workspace admin console and the Codex Enterprise admin surface, including where each setting lives, what it controls, recommended defaults, official screenshots, and source links.",
-      "meta-updated": "Last updated: 2026-06-22",
+      "meta-updated": "Last updated: 2026-07-06",
       "meta-sources": "Sources: OpenAI Help Center · OpenAI Academy · developers.openai.com",
       "meta-language": "Available languages: Korean / English",
       "toc-part1": "Contents — Part 1 · ChatGPT Enterprise",
@@ -4579,7 +4668,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "check-13-action": "Run <strong>final validation</strong> with sample users",
       "check-13-note": "Verify login, MFA, RBAC, managed policies, and analytics visibility",
       "sources-title": "Sources / Reference Links — All Sources",
-      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-06-22"
+      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-07-06"
     };
 
 
