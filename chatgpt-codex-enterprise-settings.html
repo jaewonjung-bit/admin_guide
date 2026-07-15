@@ -465,7 +465,7 @@
       각 메뉴의 위치, 역할, 권장 설정값, 그리고 OpenAI 공식 화면 캡처와 출처 링크를 함께 제공합니다.
     </p>
     <div class="meta">
-      <span data-i18n="meta-updated">최종 업데이트: 2026-07-06</span>
+      <span data-i18n="meta-updated">최종 업데이트: 2026-07-15</span>
       <span data-i18n="meta-sources">출처: OpenAI Help Center · OpenAI Academy · developers.openai.com</span>
       <span data-i18n="meta-language">지원 언어: 한국어 / English</span>
     </div>
@@ -547,6 +547,7 @@
       <tr><td>GPTs</td><td>GPT 소유권·공유·서드파티·Action 도메인</td><td>Owner / Admin</td></tr>
       <tr><td>Apps</td><td>Google Drive, Slack, GitHub 등 연결 앱·MCP</td><td>Owner / Admin</td></tr>
       <tr><td>Plugins</td><td>ChatGPT/Codex 플러그인 검색·설치 정책·역할별 기본 설치</td><td>Owner / Admin</td></tr>
+      <tr><td>Work / Scheduled</td><td>장기 작업·파일 생성·반복 실행을 위한 에이전트 작업 표면</td><td>워크스페이스·역할·앱 정책 적용</td></tr>
       <tr><td>Sites</td><td>Codex Sites로 게시된 내부 사이트 비활성화·운영</td><td>Owner / Admin</td></tr>
       <tr><td>Workspace Analytics</td><td>도입률·사용량·Task Insights·Impact 설문</td><td>Owner / Admin / Analytics Viewer</td></tr>
       <tr><td>Identity &amp; Access</td><td>SSO/SAML, SCIM, 도메인 검증, IP 허용 목록</td><td>Owner 중심, 일부 Access Restrictions는 Admin</td></tr>
@@ -824,18 +825,38 @@
     <li><strong>게시 권한 세분화</strong>: 관리자는 <strong>워크스페이스 디렉터리에 publish할 수 있는 역할</strong>을 Role 단위로 제어할 수 있음</li>
     <li><strong>공유 방식</strong>: 비공개, 링크 공유, 워크스페이스 디렉터리</li>
     <li><strong>주요 기능</strong>: 템플릿/직접 생성, guided setup, 미리보기, 예약 실행, 버전 히스토리, usage analytics</li>
-    <li><strong>응답 기능</strong>: GPT-5.5 선택, reasoning effort 제어, audio 파일 생성, Slack thread 후속 응답 여부 제어</li>
+    <li><strong>응답 기능</strong>: 사용 가능한 모델·reasoning effort 선택, audio 파일 생성, Slack thread 후속 응답 여부 제어</li>
     <li><strong>EKM 상태</strong>: 출시 초기 제한은 해제되었고, 이제 대상 EKM Enterprise도 사용 가능</li>
-    <li><strong>가격 메모</strong>: workspace agents 무료 기간은 <strong>2026년 7월 6일</strong>까지 연장되었고, 이후 credit 기반 과금 시작 예정</li>
+    <li><strong>가격 메모</strong>: Enterprise Workspace Agent 실행은 현재 <strong>token 기반 credit 과금</strong>이 적용됩니다. 고정 task 비용이 아니라 input, cached input, output token 구성에 따라 credit이 달라집니다.</li>
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
-    이 기능은 현재 개별 Help 문서보다 <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a>가
-    더 최신 설명을 제공합니다.
+    출처: <a href="https://help.openai.com/en/articles/20001143" target="_blank">Workspace Agents 공식 가이드</a> ·
+    <a href="https://help.openai.com/en/articles/11481834-chatgpt-rate-card" target="_blank">ChatGPT Rate Card</a>
   </p>
   <p style="font-size:.88rem;color:var(--muted)">
     별도로 2026년 5월 6일부터 <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>의
     <strong>Agents</strong> 영역에서도 조직 전체 agent inventory, schedules, recent activity, analytics를 볼 수 있습니다. 이 문서의 중심은
     Workspace Settings이므로 여기서는 운영 surface 차이만 짚습니다.
+  </p>
+
+  <h3 class="menu"><span class="num">05.6</span>ChatGPT Work · Scheduled tasks <span class="pill green">점진 배포</span></h3>
+  <p>
+    2026년 7월 6~10일 업데이트부터 ChatGPT에는 <strong>Chat / Work / Codex</strong>가 서로 다른 작업 표면으로 제공됩니다.
+    Chat은 질문·짧은 작성, Work는 조사·분석·문서·스프레드시트·프레젠테이션·Site 같은 완성 산출물,
+    Codex는 코드 작성·테스트·리뷰·리포지토리 작업에 초점을 둡니다.
+  </p>
+  <ul>
+    <li><strong>배포 상태</strong>: Work는 대상 계정에 점진 배포 중이며, 플랜·워크스페이스 설정·사용 surface에 따라 가시성이 달라질 수 있습니다.</li>
+    <li><strong>관리 경계</strong>: Work가 사용하는 Plugins, Apps, Skills와 연결 원본 권한은 기존 workspace RBAC, 앱 action control, source-system 권한을 그대로 따릅니다.</li>
+    <li><strong>Scheduled tasks</strong>: 한 번 실행, 반복 일정, 이벤트 트리거, 변경 모니터링으로 Work/Codex 작업을 백그라운드에서 실행할 수 있습니다.</li>
+    <li><strong>로컬 실행</strong>: 데스크톱 앱의 scheduled task가 로컬 프로젝트를 쓰면 컴퓨터와 앱이 켜져 있어야 하며, local project 또는 격리 worktree를 선택할 수 있습니다.</li>
+    <li><strong>보안 기준</strong>: unattended run은 기본 sandbox 설정을 사용하므로, 필요한 최소 filesystem/network 권한만 허용하고 첫 실행 결과를 검토해야 합니다.</li>
+    <li><strong>비용 기준</strong>: Work는 Codex와 같은 usage structure를 따르며, 긴 작업·여러 source·tool 사용은 더 많은 credit을 사용할 수 있습니다.</li>
+  </ul>
+  <p style="font-size:.88rem;color:var(--muted)">
+    출처: <a href="https://help.openai.com/en/articles/20001275" target="_blank">ChatGPT Work and Codex</a> ·
+    <a href="https://learn.chatgpt.com/docs/get-started-with-work" target="_blank">Get started with Work</a> ·
+    <a href="https://learn.chatgpt.com/docs/automations" target="_blank">Scheduled tasks</a>
   </p>
 </section>
 
@@ -857,6 +878,15 @@
     <strong>추론 모델 접근 권한</strong>은 Medium / High / Extra High를, <strong>Pro 모델 접근 권한</strong>은 Pro Standard / Pro Extended를 제어합니다.
     멤버에게 권한이 없는 옵션은 모델 선택기에서 숨겨집니다.
     <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Release notes]</a>
+  </div>
+  <div class="box">
+    <div class="label">Work / 데스크톱 Codex의 GPT-5.6 계열</div>
+    2026년 7월 6~10일 업데이트 기준, ChatGPT Work·ChatGPT desktop app의 Codex·Codex CLI·IDE Extension에는
+    <strong>GPT-5.6 Sol / Terra / Luna</strong>가 권장 모델로 안내됩니다. Sol은 복잡한 코딩·Computer Use·연구·보안,
+    Terra는 일상 작업의 성능·비용 균형, Luna는 빠르고 반복 가능한 작업에 적합합니다. 기본 <strong>Power</strong> 설정은
+    Sol + medium reasoning을 사용하며, Max는 단일 작업의 추론 시간을 늘리고 Ultra는 subagent로 병렬 분할합니다.
+    이 구분은 위의 ChatGPT web/mobile 모델 선택기 명칭과 같은 설정 화면으로 혼동하지 않아야 합니다.
+    <a href="https://learn.chatgpt.com/docs/models" target="_blank">[Models]</a>
   </div>
 </section>
 
@@ -1036,7 +1066,7 @@
   <h3 class="menu"><span class="num">08.8</span>Plugins — ChatGPT 관리자 표면</h3>
   <p>
     2026년 6월 26일 릴리스 노트 기준, Owner/Admin은 <strong>Workspace settings → Plugins</strong>에서
-    ChatGPT Enterprise/Edu 플러그인을 별도 관리자 표면으로 운영할 수 있습니다. 이는 사용자가 Codex App에서 여는
+    ChatGPT Enterprise/Edu 플러그인을 별도 관리자 표면으로 운영할 수 있습니다. 이는 사용자가 ChatGPT desktop app의 Work/Codex에서 여는
     <strong>Codex Plugins 디렉터리</strong>와 구분되는 워크스페이스 거버넌스 화면입니다.
   </p>
   <ul>
@@ -1049,6 +1079,23 @@
   <p style="font-size:.88rem;color:var(--muted)">
     출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Enterprise/Edu 릴리스 노트</a> ·
     <a href="https://developers.openai.com/codex/plugins" target="_blank">Codex Plugins</a>
+  </p>
+
+  <h3 class="menu"><span class="num">08.9</span>ChatGPT for PowerPoint <span class="pill green">GA</span></h3>
+  <p>
+    2026년 7월 6일부터 Enterprise/Edu에서 정식 제공되는 PowerPoint-native sidebar입니다. Microsoft PowerPoint 안에서
+    편집 가능한 슬라이드 구조를 유지하며 초안 생성, 기존 deck 수정, narrative·구성 분석, Skills·Apps 기반 source-grounded 작업을 지원합니다.
+  </p>
+  <ul>
+    <li><strong>배포</strong>: Microsoft Marketplace에서 설치하거나, Microsoft 365 admin center에서 manifest XML을 업로드해 사용자·그룹에 중앙 배포합니다.</li>
+    <li><strong>관리</strong>: workspace settings와 RBAC로 add-in 접근을 허용하고, 사용할 Apps는 기존 admin portal의 앱별 접근·action control·원본 시스템 권한을 따릅니다.</li>
+    <li><strong>Enterprise 범위</strong>: 대상 워크스페이스에서 정책 적용, 승인된 source 범위, prompts/responses의 Compliance API, EU Inference Residency, EKM을 지원할 수 있습니다. 실제 활성화 상태는 해당 workspace에서 확인합니다.</li>
+    <li><strong>검토</strong>: 고급 chart·shape·formatting·template matching은 제한될 수 있으므로 중요한 deck은 복사본에서 작업하고 숫자·인용·레이아웃을 검토합니다.</li>
+    <li><strong>과금</strong>: Enterprise 고객은 <strong>2026년 8월 6일까지 무료</strong>이며, 이후 Excel/Sheets와 같은 token 기반 credit 과금이 적용될 예정입니다.</li>
+  </ul>
+  <p style="font-size:.88rem;color:var(--muted)">
+    출처: <a href="https://help.openai.com/en/articles/20001242" target="_blank">ChatGPT for PowerPoint</a> ·
+    <a href="https://help.openai.com/en/articles/11481834-chatgpt-rate-card" target="_blank">ChatGPT Rate Card</a>
   </p>
 </section>
 
@@ -1374,9 +1421,16 @@
   <p class="lede" data-i18n="codex-intro-lede">
     Codex(Enterprise)는 ChatGPT Enterprise 워크스페이스 안에 “포함”되는 형태입니다. 따라서 모든 관리 진입점은
     동일한 <strong>Workspace Settings</strong>이며, Codex 전용 화면은 그 안에 별도 섹션으로 존재합니다.
-    Codex는 <strong>Local</strong>(App/CLI/IDE 확장) 과 <strong>Cloud</strong>(웹/iOS/Code Review/Slack/Linear) 두 사용 환경으로 나뉘며,
+    2026년 7월 9일부터 기존 독립 Codex app은 macOS/Windows의 <strong>ChatGPT desktop app</strong>에 통합되어 Chat·Work와 나란히 Codex 모드로 제공됩니다.
+    Codex는 <strong>Local</strong>(ChatGPT desktop app의 Codex/CLI/IDE 확장) 과 <strong>Cloud</strong>(웹/iOS/Code Review/Slack/Linear) 두 사용 환경으로 나뉘며,
     둘은 독립적으로 켜고 끌 수 있습니다.
   </p>
+  <div class="box green">
+    <div class="label">제품명 변경</div>
+    이 문서의 기존 <strong>Codex App</strong> 표기는 현재 제품에서는 <strong>ChatGPT desktop app의 Codex 모드</strong>를 뜻합니다.
+    기존 사용자는 일반 업데이트 경로로 전환하며, Codex를 기본 view로 설정하거나 Codex icon을 앱 아이콘으로 선택할 수 있습니다.
+    <a href="https://learn.chatgpt.com/docs/whats-new" target="_blank">[What's new]</a>
+  </div>
 
   <figure>
     <img src="https://developers.openai.com/images/codex/codex_enterprise_admin.png"
@@ -1481,7 +1535,7 @@
 
   <h3 class="menu" data-i18n="local-toggle-title"><span class="num">12.1</span>Allow members to use Codex Local</h3>
   <p data-i18n="local-toggle-body">
-    Codex App, CLI, IDE 확장 사용 허용. 신규 Enterprise 워크스페이스는 <strong>기본 ON</strong>.
+    ChatGPT desktop app의 Codex, CLI, IDE 확장 사용 허용. 신규 Enterprise 워크스페이스는 <strong>기본 ON</strong>.
     OFF 상태에서 Codex를 실행하면 사용자는
     <code>403 - Unauthorized. Contact your ChatGPT administrator for access.</code> 오류를 봅니다.
   </p>
@@ -1534,7 +1588,7 @@
       <div class="tab-panel" id="surface-app-panel">
         <div class="surface-grid">
           <div>
-            <h4 data-i18n="surface-app-title">Codex App — 로컬 작업을 가장 쉽게 시작하는 환경</h4>
+            <h4 data-i18n="surface-app-title">ChatGPT desktop app의 Codex — 로컬 작업을 가장 쉽게 시작하는 환경</h4>
             <p data-i18n="surface-app-body">데스크톱 UI에서 스레드, diff, worktree, in-app browser, Computer Use 같은 로컬 기능을 한 화면에서 다룹니다.</p>
             <ul>
               <li><strong>관리 토글</strong>: Allow members to use Codex Local</li>
@@ -1661,7 +1715,7 @@
             <tr><td>설치</td><td>App은 DMG, CLI는 <code>brew install --cask codex</code> 또는 <code>npm i -g @openai/codex</code></td></tr>
             <tr><td>인증 저장</td><td>macOS Keychain (<code>com.openai.codex</code>)</td></tr>
             <tr><td>설정 위치</td><td><code>~/.codex/config.toml</code>, 관리형 정책은 <code>/etc/codex/requirements.toml</code> 또는 MDM</td></tr>
-            <tr><td>고유 기능</td><td>Codex App에서 Computer Use, in-app browser, 로컬 GUI 자동화 흐름 사용 가능</td></tr>
+            <tr><td>고유 기능</td><td>ChatGPT desktop app의 Codex에서 Computer Use, in-app browser, 로컬 GUI 자동화 흐름 사용 가능</td></tr>
           </tbody>
         </table>
         <p>기업 배포는 Jamf/Kandji/Mosyle/Fleet 같은 MDM으로 Section 15의 <code>com.openai.codex</code> 페이로드를 적용하는 방식이 가장 강합니다.</p>
@@ -1693,14 +1747,14 @@
   <ul>
     <li><strong>OAuth 브라우저 흐름</strong> (기본) — Codex가 로컬 OAuth callback 서버를 띄우고 PKCE로 ChatGPT 인증</li>
     <li><strong>Device code</strong> — 헤드리스/원격 환경. 위 12.1 토글이 ON이어야 함</li>
-    <li><strong>API key</strong> — Codex App/CLI/IDE의 API key 로그인 또는 자동화 환경의 Platform API key. 이 경우 ChatGPT 워크스페이스 RBAC·보존·레지던시가 아니라 API organization 정책을 따름</li>
+    <li><strong>API key</strong> — ChatGPT desktop app의 Codex/CLI/IDE의 API key 로그인 또는 자동화 환경의 Platform API key. 이 경우 ChatGPT 워크스페이스 RBAC·보존·레지던시가 아니라 API organization 정책을 따름</li>
     <li><strong>Codex access token</strong> — 신뢰된 자동화에서 ChatGPT 워크스페이스 ID와 Enterprise 제어가 필요할 때 <code>CODEX_ACCESS_TOKEN</code> 또는 <code>codex login --with-access-token</code> 사용</li>
     <li>인증 후 토큰은 OS별로 다른 위치에 저장: macOS Keychain / Windows Credential Manager / Linux <code>~/.codex/auth.json</code></li>
   </ul>
 
   <h3 class="menu"><span class="num">12.5</span>Codex Plugins — 디렉터리·공유·권한</h3>
   <p>
-    Codex plugin은 Skill, 앱 연동, MCP 서버를 묶은 재사용 가능한 workflow 번들입니다. 사용자는 Codex App의 Plugins 화면이나
+    Codex plugin은 Skill, 앱 연동, MCP 서버를 묶은 재사용 가능한 workflow 번들입니다. 사용자는 ChatGPT desktop app의 Work/Codex Plugins 화면이나
     CLI의 <code>/plugins</code>에서 OpenAI curated plugin, 워크스페이스 공유 plugin, 본인이 만든 plugin을 찾아 설치할 수 있습니다.
   </p>
   <ul>
@@ -1717,8 +1771,9 @@
 
   <h3 class="menu"><span class="num">12.6</span>Computer Use / Browser Developer mode</h3>
   <p>
-    2026년 6월 11일 기준, Codex App은 macOS와 Windows에서 Computer Use를 지원합니다
-    (출시 시점의 지역 제한: EEA, 영국, 스위스 제외). Windows에서는 Computer Use가 <strong>active desktop foreground</strong>에서 동작하므로,
+    ChatGPT desktop app의 Work/Codex는 지원 지역의 macOS와 Windows에서 Computer Use를 제공합니다.
+    EEA·영국·스위스도 2026년 6월부터 순차 배포가 시작됐으므로 실제 가용성은 해당 계정·워크스페이스에서 확인합니다.
+    Windows에서는 Computer Use가 <strong>active desktop foreground</strong>에서 동작하므로,
     사용자가 같은 Windows 세션을 동시에 쓰는 동안 백그라운드 자동화처럼 운영할 수 없습니다.
   </p>
   <ul>
@@ -1777,14 +1832,14 @@
     GA로 제공되며, 같은 계열의 원격 제어 기능이므로 운영 문서에서는 두 용어를 함께 안내하세요.
   </p>
   <ul>
-    <li>ChatGPT 모바일 앱에서 연결된 Mac/Windows Codex App host를 제어하거나, 다른 지원 Codex App 기기에서 작업을 이어갈 수 있습니다.</li>
-    <li>Windows host는 ChatGPT iOS/Android 또는 Mac의 Codex App에서 제어할 수 있지만, Windows Codex App은 현재 다른 컴퓨터를 제어하는 쪽으로는 사용할 수 없습니다.</li>
+    <li>ChatGPT 모바일 앱에서 연결된 Mac/Windows ChatGPT desktop app host를 제어하거나, 다른 지원 desktop app 기기에서 작업을 이어갈 수 있습니다.</li>
+    <li>Windows host는 ChatGPT iOS/Android 또는 Mac의 ChatGPT desktop app에서 제어할 수 있습니다.</li>
     <li>원격 연결은 host의 프로젝트, 스레드, 파일, credentials, 권한, 플러그인, 브라우저 설정, 로컬 도구를 그대로 사용합니다.</li>
     <li>사용자는 모바일에서 후속 지시, 질문 응답, 실행 방향 전환, command/action 승인, diff·테스트·터미널·스크린샷 확인을 할 수 있습니다.</li>
     <li><strong>Pairing</strong>: Remote Control은 지원 모바일 기기와 host 간 인증된 1:1 QR pairing을 사용합니다. 2026년 6월 8일 이후 사용된 연결은 유지되지만, 오래 비활성 상태였던 연결은 다시 pairing해야 할 수 있습니다.</li>
     <li><strong>Sign-out 동작</strong>: 로그아웃하면 Remote Control은 꺼지지만 기존 pairing 자체를 제거하지는 않습니다.</li>
-    <li>모바일 설정은 Codex App에서 시작하며, CLI나 IDE Extension만으로는 설정할 수 없습니다.</li>
-    <li><strong>DigitalOcean Droplet Workspace plugin</strong>: 대상 Enterprise/Edu 사용자는 DigitalOcean Droplet을 만들고 SSH 접근을 구성해 Codex App의 remote workspace로 연결할 수 있습니다. 연결 전 ChatGPT 모바일 앱과 Codex App을 최신 버전으로 업데이트해야 합니다.</li>
+    <li>모바일 설정은 ChatGPT desktop app에서 시작하며, CLI나 IDE Extension만으로는 설정할 수 없습니다.</li>
+    <li><strong>DigitalOcean Droplet Workspace plugin</strong>: 대상 Enterprise/Edu 사용자는 DigitalOcean Droplet을 만들고 SSH 접근을 구성해 ChatGPT desktop app의 remote workspace로 연결할 수 있습니다. 연결 전 모바일·데스크톱 ChatGPT 앱을 최신 버전으로 업데이트해야 합니다.</li>
     <li>Windows에서 Computer Use를 함께 쓰는 작업은 foreground 세션이 필요하므로 host를 잠금 해제 상태로 유지하고 해당 데스크톱을 작업에 전용하는 편이 안전합니다.</li>
     <li>워크스페이스 환경에서는 admin이 Remote Control access를 켜야 할 수 있고, SSO/MFA/passkey 절차가 추가될 수 있습니다.</li>
   </ul>
@@ -1826,7 +1881,7 @@
   </p>
   <p style="font-size:.88rem;color:var(--muted)">
     공식 기준:
-    <a href="https://developers.openai.com/codex/app" target="_blank">Codex App</a> ·
+    <a href="https://developers.openai.com/codex/app" target="_blank">ChatGPT desktop app — Codex</a> ·
     <a href="https://developers.openai.com/codex/ide" target="_blank">Codex IDE Extension</a> ·
     <a href="https://developers.openai.com/codex/cli" target="_blank">Codex CLI</a> ·
     <a href="https://developers.openai.com/codex/auth" target="_blank">Codex Authentication</a> ·
@@ -1835,17 +1890,17 @@
   <div class="login-grid" aria-label="Codex user login paths">
     <div class="login-card">
       <span class="badge">App</span>
-      <h4>Codex App</h4>
+      <h4>ChatGPT desktop app — Codex</h4>
       <ol>
-        <li>macOS 또는 Windows용 Codex App을 설치합니다. Linux는 데스크톱 App이 없으므로 CLI/IDE를 안내합니다.</li>
+        <li>macOS 또는 Windows용 ChatGPT desktop app을 설치하고 Codex를 선택합니다. Linux는 데스크톱 앱이 없으므로 CLI/IDE를 안내합니다.</li>
         <li>앱을 열고 <strong>ChatGPT 계정</strong> 또는 <strong>OpenAI API key</strong>로 로그인합니다.</li>
         <li>작업할 프로젝트 폴더를 선택하고, Local이 선택된 상태에서 첫 메시지를 보냅니다.</li>
       </ol>
       <figure>
         <img src="https://developers.openai.com/images/codex/windows/codex-windows-light.webp"
-             alt="Codex App 공식 화면"
+             alt="ChatGPT desktop app의 Codex 공식 화면"
              onerror="this.parentElement.style.display='none'"/>
-        <figcaption>Codex App 화면 · <a href="https://developers.openai.com/codex/app" target="_blank">출처</a></figcaption>
+        <figcaption>ChatGPT desktop app의 Codex 화면 · <a href="https://developers.openai.com/codex/app" target="_blank">출처</a></figcaption>
       </figure>
     </div>
     <div class="login-card">
@@ -1883,7 +1938,7 @@
   <div class="box green">
     <div class="label">Linux 사용자 접속 안내</div>
     <ul>
-      <li><strong>데스크톱 App은 없음</strong> — Linux 사용자는 Codex App 대신 <strong>CLI</strong> 또는 <strong>IDE Extension</strong>으로 접속합니다.</li>
+      <li><strong>데스크톱 App은 없음</strong> — Linux 사용자는 ChatGPT desktop app 대신 <strong>CLI</strong> 또는 <strong>IDE Extension</strong>으로 접속합니다.</li>
       <li><strong>CLI 접속</strong> — Linux 터미널에서 <code>npm i -g @openai/codex</code>로 설치하고 <code>codex</code>를 실행합니다. 첫 실행 시 ChatGPT 계정 OAuth 또는 API key로 로그인합니다.</li>
       <li><strong>원격/SSH/headless 서버</strong> — 브라우저 로그인이 어렵다면 device auth를 켜고 <code>codex login --device-auth</code>를 사용합니다.</li>
       <li><strong>자동화</strong> — 사용자 브라우저 로그인 없이 워크스페이스 ID가 필요한 신뢰된 runner는 Codex access token을 사용합니다.</li>
@@ -2607,6 +2662,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
         <tr><td>GPTs</td><td>Ownership, sharing, third-party access, action domains</td><td>Owner / Admin</td></tr>
         <tr><td>Apps</td><td>Connected tools and MCP apps</td><td>Owner / Admin</td></tr>
         <tr><td>Plugins</td><td>Plugin discovery, installation policies, and role-based defaults</td><td>Owner / Admin</td></tr>
+        <tr><td>Work / Scheduled</td><td>Agentic surface for long-running work, file creation, and recurring runs</td><td>Workspace, role, and app policies apply</td></tr>
         <tr><td>Sites</td><td>Disable or operate internal sites published through Codex Sites</td><td>Owner / Admin</td></tr>
         <tr><td>Workspace analytics</td><td>Adoption, usage, surveys</td><td>Owner / Admin / analytics viewer</td></tr>
         <tr><td>Identity &amp; Access</td><td>SSO, SCIM, domain verification, IP allowlist</td><td>Owner-led; some Access Restrictions also allow Admin</td></tr>
@@ -2850,18 +2906,37 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><strong>Publishing permissions</strong>: admins can control which roles may <strong>publish agents to the shared workspace directory</strong></li>
       <li><strong>Sharing modes</strong>: private, link-based, or workspace directory</li>
       <li><strong>Core capabilities</strong>: template or scratch creation, guided setup, preview, scheduled runs, version history, and usage analytics</li>
-      <li><strong>Response capabilities</strong>: GPT-5.5 selection, reasoning-effort control, audio-file output, and configurable Slack thread follow-up replies</li>
+      <li><strong>Response capabilities</strong>: available model and reasoning-effort selection, audio-file output, and configurable Slack thread follow-up replies</li>
       <li><strong>EKM status</strong>: the launch-stage limitation has been removed for eligible Enterprise workspaces with EKM</li>
-      <li><strong>Pricing note</strong>: the free period for workspace agents has been extended through <strong>July 6, 2026</strong>, after which credit-based pricing is scheduled to begin</li>
+      <li><strong>Pricing note</strong>: Enterprise Workspace Agent runs now use <strong>token-based credit pricing</strong>. Credits vary with input, cached input, and output tokens rather than a fixed task cost.</li>
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
-      Right now the <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">release notes</a>
-      are more current than the broader workspace-settings article for this feature.
+      Sources: <a href="https://help.openai.com/en/articles/20001143" target="_blank">Workspace Agents guide</a> ·
+      <a href="https://help.openai.com/en/articles/11481834-chatgpt-rate-card" target="_blank">ChatGPT Rate Card</a>
     </p>
     <p style="font-size:.88rem;color:var(--muted)">
       Starting May 6, 2026, the <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a>
       also includes an <strong>Agents</strong> area for organization-wide agent inventory, schedules, recent activity, and analytics.
       This guide remains centered on Workspace Settings, so it only notes the operating-surface split here.
+    </p>
+    <h3 class="menu"><span class="num">05.6</span>ChatGPT Work and Scheduled tasks <span class="pill green">gradual rollout</span></h3>
+    <p>
+      Beginning with the July 6–10, 2026 update, ChatGPT presents <strong>Chat, Work, and Codex</strong> as distinct work surfaces.
+      Chat is for questions and short drafting; Work is for research, analysis, and finished deliverables such as documents,
+      spreadsheets, presentations, and Sites; Codex focuses on coding, testing, review, and repository work.
+    </p>
+    <ul>
+      <li><strong>Rollout</strong>: Work is rolling out gradually to eligible accounts, so visibility can vary by plan, workspace setting, and surface.</li>
+      <li><strong>Admin boundaries</strong>: plugins, apps, skills, and connected sources used by Work remain governed by workspace RBAC, app action controls, and source-system permissions.</li>
+      <li><strong>Scheduled tasks</strong>: Work or Codex can run once, on a recurring schedule, on an event trigger, or while monitoring for changes.</li>
+      <li><strong>Local execution</strong>: scheduled tasks that use a local desktop project require the computer and app to stay running and can use the local project or an isolated worktree.</li>
+      <li><strong>Security baseline</strong>: unattended runs use the default sandbox configuration, so grant only the filesystem and network access required and review the first runs.</li>
+      <li><strong>Usage</strong>: Work follows the Codex usage structure, and longer tasks that use multiple sources and tools may consume more credits.</li>
+    </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Sources: <a href="https://help.openai.com/en/articles/20001275" target="_blank">ChatGPT Work and Codex</a> ·
+      <a href="https://learn.chatgpt.com/docs/get-started-with-work" target="_blank">Get started with Work</a> ·
+      <a href="https://learn.chatgpt.com/docs/automations" target="_blank">Scheduled tasks</a>
     </p>
   </section>
 
@@ -2882,6 +2957,15 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <strong>Reasoning Model Access</strong> controls Medium / High / Extra High, while <strong>Pro Model Access</strong> controls Pro Standard / Pro Extended.
       Options a member cannot access are hidden from the picker.
       <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Release notes]</a>
+    </div>
+    <div class="box">
+      <div class="label">GPT-5.6 family in Work and desktop Codex</div>
+      As of the July 6–10, 2026 update, ChatGPT Work, Codex in the ChatGPT desktop app, Codex CLI, and the IDE extension
+      recommend <strong>GPT-5.6 Sol, Terra, and Luna</strong>. Sol targets complex coding, Computer Use, research, and security;
+      Terra balances capability and cost for everyday work; Luna is optimized for fast, repeatable tasks. The default
+      <strong>Power</strong> setting uses Sol with medium reasoning. Max gives one task more reasoning time, while Ultra uses
+      subagents to split suitable work in parallel. Do not confuse this control with the ChatGPT web/mobile picker labels above.
+      <a href="https://learn.chatgpt.com/docs/models" target="_blank">[Models]</a>
     </div>
   </section>
 
@@ -3039,7 +3123,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <p>
       As of the June 26, 2026 release notes, owners and admins can manage ChatGPT Enterprise/Edu plugins from
       <strong>Workspace settings → Plugins</strong>. This is a workspace governance surface, separate from the
-      <strong>Codex Plugins directory</strong> that users open inside the Codex App.
+      <strong>Codex Plugins directory</strong> that users open from Work or Codex in the ChatGPT desktop app.
     </p>
     <ul>
       <li><strong>Search and filters</strong>: review plugins by status, installation policy, roles, category, and catalog.</li>
@@ -3051,6 +3135,23 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <p style="font-size:.88rem;color:var(--muted)">
       Sources: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Enterprise/Edu release notes</a> ·
       <a href="https://developers.openai.com/codex/plugins" target="_blank">Codex Plugins</a>
+    </p>
+
+    <h3 class="menu"><span class="num">08.9</span>ChatGPT for PowerPoint <span class="pill green">GA</span></h3>
+    <p>
+      Generally available for Enterprise and Edu since July 6, 2026, this PowerPoint-native sidebar can create drafts,
+      revise existing decks, analyze narrative and structure, and use approved Skills and Apps while preserving editable slide structure.
+    </p>
+    <ul>
+      <li><strong>Deployment</strong>: install from Microsoft Marketplace or upload the manifest XML in the Microsoft 365 admin center and assign it to users or groups.</li>
+      <li><strong>Administration</strong>: enable add-in access through workspace settings and RBAC. Apps still follow admin-portal app access, action controls, and source-system permissions.</li>
+      <li><strong>Enterprise coverage</strong>: eligible workspaces can support policy enforcement, scoped approved sources, Compliance API coverage for prompts and responses, EU Inference Residency, and EKM. Confirm the controls shown for the workspace.</li>
+      <li><strong>Review</strong>: advanced chart, shape, formatting, and template-matching edits can remain limited. Work from a copy for important decks and review numbers, citations, and layout.</li>
+      <li><strong>Pricing</strong>: Enterprise usage remains <strong>free through August 6, 2026</strong>; token-based credit pricing aligned with Excel/Sheets is scheduled to begin afterward.</li>
+    </ul>
+    <p style="font-size:.88rem;color:var(--muted)">
+      Sources: <a href="https://help.openai.com/en/articles/20001242" target="_blank">ChatGPT for PowerPoint</a> ·
+      <a href="https://help.openai.com/en/articles/11481834-chatgpt-rate-card" target="_blank">ChatGPT Rate Card</a>
     </p>
   </section>
 
@@ -3347,10 +3448,18 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <div class="chap-num">Part 02 · Codex Enterprise</div>
     <h2>Codex Enterprise Overview</h2>
     <p class="lede">
-      Codex Enterprise is configured inside the same <strong>Workspace Settings</strong> area. It splits into
-      <strong>Local</strong> surfaces such as App, CLI, and IDE extension, and <strong>Cloud</strong> surfaces such as
+      Codex Enterprise is configured inside the same <strong>Workspace Settings</strong> area.
+      As of July 9, 2026, the former standalone Codex app is integrated into the <strong>ChatGPT desktop app</strong> on macOS and Windows,
+      where Codex appears alongside Chat and Work. Codex splits into <strong>Local</strong> surfaces such as Codex in the desktop app,
+      CLI, and IDE extension, and <strong>Cloud</strong> surfaces such as
       web, iOS, Code Review, Slack, and Linear. These two environments can be enabled independently.
     </p>
+    <div class="box green">
+      <div class="label">Product naming</div>
+      References to <strong>Codex App</strong> in this guide now mean <strong>Codex mode in the ChatGPT desktop app</strong>.
+      Existing users transition through the normal update path and can make Codex the default view or use the Codex logo as the app icon.
+      <a href="https://learn.chatgpt.com/docs/whats-new" target="_blank">[What's new]</a>
+    </div>
     <figure>
       <img src="https://developers.openai.com/images/codex/codex_enterprise_admin.png"
            alt="Codex Enterprise admin toggles"
@@ -3411,7 +3520,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 
     <h3 class="menu"><span class="num">12.1</span>Allow members to use Codex Local</h3>
     <p>
-      Enables Codex App, CLI, and IDE extension access. New Enterprise workspaces are <strong>ON by default</strong>.
+      Enables Codex in the ChatGPT desktop app, CLI, and IDE extension. New Enterprise workspaces are <strong>ON by default</strong>.
       If the toggle is off, users see <code>403 - Unauthorized. Contact your ChatGPT administrator for access.</code>
     </p>
     <figure>
@@ -3463,7 +3572,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
         <div class="tab-panel" id="surface-app-en-panel">
           <div class="surface-grid">
             <div>
-              <h4>Codex App - the easiest local starting point</h4>
+              <h4>Codex in the ChatGPT desktop app - the easiest local starting point</h4>
               <p>Desktop UI for threads, diffs, worktrees, in-app browser, and local GUI-assisted workflows.</p>
               <ul>
                 <li><strong>Admin toggle</strong>: Allow members to use Codex Local</li>
@@ -3588,7 +3697,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
               <tr><td>Install</td><td>DMG for App, <code>brew install --cask codex</code> or <code>npm i -g @openai/codex</code> for CLI</td></tr>
               <tr><td>Credential store</td><td>macOS Keychain (<code>com.openai.codex</code>)</td></tr>
               <tr><td>Config path</td><td><code>~/.codex/config.toml</code>, with managed policy in <code>/etc/codex/requirements.toml</code> or MDM</td></tr>
-              <tr><td>Unique capability</td><td>Codex App supports Computer Use, in-app browser, and local GUI automation</td></tr>
+              <tr><td>Unique capability</td><td>Codex in the ChatGPT desktop app supports Computer Use, the in-app browser, and local GUI automation</td></tr>
             </tbody>
           </table>
           <p>For enterprise deployment, Jamf, Kandji, Mosyle, or Fleet are the strongest paths for the <code>com.openai.codex</code> payload.</p>
@@ -3620,7 +3729,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <ul>
       <li><strong>OAuth browser flow</strong> is the default local sign-in path.</li>
       <li><strong>Device code</strong> covers headless and remote environments.</li>
-      <li><strong>API key</strong> supports API-key sign-in in the Codex App/CLI/IDE or Platform API keys in automation. In this mode, usage follows API organization policies rather than ChatGPT workspace RBAC, retention, and residency.</li>
+      <li><strong>API key</strong> supports API-key sign-in in Codex in the ChatGPT desktop app, CLI, or IDE, or Platform API keys in automation. In this mode, usage follows API organization policies rather than ChatGPT workspace RBAC, retention, and residency.</li>
       <li><strong>Codex access token</strong> supports trusted automation that needs ChatGPT workspace identity and Enterprise controls through <code>CODEX_ACCESS_TOKEN</code> or <code>codex login --with-access-token</code>.</li>
       <li>Tokens are then stored by OS: macOS Keychain, Windows Credential Manager, or Linux <code>~/.codex/auth.json</code>.</li>
     </ul>
@@ -3628,7 +3737,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <h3 class="menu"><span class="num">12.5</span>Codex Plugins - directory, sharing, and permissions</h3>
     <p>
       A Codex plugin is a reusable workflow bundle made of skills, app integrations, and MCP servers. Users can browse
-      OpenAI-curated plugins, workspace-shared plugins, and plugins they created from the Codex App Plugins page or the CLI <code>/plugins</code> browser.
+      OpenAI-curated plugins, workspace-shared plugins, and plugins they created from the Work/Codex Plugins page in the ChatGPT desktop app or the CLI <code>/plugins</code> browser.
     </p>
     <ul>
       <li><strong>Role-specific plugins</strong>: Sales, Data Analytics, Product Design, Creative Production, Investment Banking, and Public Equity Investing plugins are rolling out for supported workspaces.</li>
@@ -3644,8 +3753,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 
     <h3 class="menu"><span class="num">12.6</span>Computer Use / Browser Developer mode</h3>
     <p>
-      As of June 11, 2026, the Codex App supports Computer Use on macOS and Windows
-      (launch regional exclusions: EEA, United Kingdom, and Switzerland). On Windows, Computer Use runs on the
+      Work and Codex in the ChatGPT desktop app support Computer Use on macOS and Windows in supported regions.
+      Rollout to the EEA, United Kingdom, and Switzerland began in June 2026, so confirm availability in the relevant account and workspace.
+      On Windows, Computer Use runs on the
       <strong>active desktop foreground</strong>, so it should not be treated like background automation while the user keeps using the same Windows session.
     </p>
     <ul>
@@ -3698,14 +3808,14 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       Treat the terms as the same remote-control capability family in operating guidance.
     </p>
     <ul>
-      <li>Users can control a connected Mac or Windows Codex App host from the ChatGPT mobile app, or continue work from another supported Codex App device.</li>
-      <li>A Windows host can be controlled from ChatGPT on iOS/Android or from Codex on Mac, but the Windows Codex App cannot currently control another computer.</li>
+      <li>Users can control a connected Mac or Windows ChatGPT desktop app host from the ChatGPT mobile app, or continue work from another supported desktop app device.</li>
+      <li>A Windows host can be controlled from ChatGPT on iOS/Android or from the ChatGPT desktop app on Mac.</li>
       <li>Remote access uses the host's projects, threads, files, credentials, permissions, plugins, browser setup, and local tools.</li>
       <li>Users can send follow-up instructions, answer questions, redirect execution, approve commands/actions, and review diffs, tests, terminal output, and screenshots from mobile.</li>
       <li><strong>Pairing</strong>: Remote Control uses authenticated one-to-one QR pairing between each supported mobile device and each host. Connections used since June 8 remain paired; older inactive connections may need to pair again.</li>
       <li><strong>Sign-out behavior</strong>: signing out turns off Remote Control without removing existing pairings.</li>
-      <li>Mobile setup starts from the Codex App; it cannot be set up from CLI or IDE Extension alone.</li>
-      <li><strong>DigitalOcean Droplet Workspace plugin</strong>: eligible Enterprise/Edu users can provision a DigitalOcean Droplet, configure SSH access, and connect it to the Codex App as a remote workspace. Users should update the ChatGPT mobile app and Codex App to the latest versions before connecting.</li>
+      <li>Mobile setup starts from the ChatGPT desktop app; it cannot be set up from CLI or IDE Extension alone.</li>
+      <li><strong>DigitalOcean Droplet Workspace plugin</strong>: eligible Enterprise/Edu users can provision a DigitalOcean Droplet, configure SSH access, and connect it to the ChatGPT desktop app as a remote workspace. Users should update the ChatGPT mobile and desktop apps before connecting.</li>
       <li>Windows tasks that use Computer Use need the foreground session to remain unlocked and available, so dedicate that host desktop to the task while it runs.</li>
       <li>In workspace environments, an admin may need to enable Remote Control access, and SSO/MFA/passkey steps may apply.</li>
     </ul>
@@ -3741,7 +3851,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </p>
     <p style="font-size:.88rem;color:var(--muted)">
       Official basis:
-      <a href="https://developers.openai.com/codex/app" target="_blank">Codex App</a> ·
+      <a href="https://developers.openai.com/codex/app" target="_blank">ChatGPT desktop app - Codex</a> ·
       <a href="https://developers.openai.com/codex/ide" target="_blank">Codex IDE Extension</a> ·
       <a href="https://developers.openai.com/codex/cli" target="_blank">Codex CLI</a> ·
       <a href="https://developers.openai.com/codex/auth" target="_blank">Codex Authentication</a> ·
@@ -3750,17 +3860,17 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <div class="login-grid" aria-label="Codex user login paths">
       <div class="login-card">
         <span class="badge">App</span>
-        <h4>Codex App</h4>
+        <h4>ChatGPT desktop app - Codex</h4>
         <ol>
-          <li>Install the Codex App for macOS or Windows. Linux users should use CLI or IDE because there is no desktop App.</li>
+          <li>Install the ChatGPT desktop app for macOS or Windows and select Codex. Linux users should use CLI or IDE because there is no desktop app.</li>
           <li>Open the app and sign in with a <strong>ChatGPT account</strong> or an <strong>OpenAI API key</strong>.</li>
           <li>Select the project folder, keep Local selected, and send the first message.</li>
         </ol>
         <figure>
           <img src="https://developers.openai.com/images/codex/windows/codex-windows-light.webp"
-               alt="Official Codex App screenshot"
+               alt="Official Codex view in the ChatGPT desktop app"
                onerror="this.parentElement.style.display='none'"/>
-          <figcaption>Codex App screenshot · <a href="https://developers.openai.com/codex/app" target="_blank">Source</a></figcaption>
+          <figcaption>Codex in the ChatGPT desktop app · <a href="https://developers.openai.com/codex/app" target="_blank">Source</a></figcaption>
         </figure>
       </div>
       <div class="login-card">
@@ -3798,7 +3908,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     <div class="box green">
       <div class="label">Linux user access guide</div>
       <ul>
-        <li><strong>No desktop App</strong> - Linux users access Codex through the <strong>CLI</strong> or <strong>IDE Extension</strong>, not the Codex App.</li>
+        <li><strong>No desktop app</strong> - Linux users access Codex through the <strong>CLI</strong> or <strong>IDE Extension</strong>, not the ChatGPT desktop app.</li>
         <li><strong>CLI access</strong> - install from the Linux terminal with <code>npm i -g @openai/codex</code>, then run <code>codex</code>. On first run, sign in with ChatGPT OAuth or an API key.</li>
         <li><strong>Remote / SSH / headless servers</strong> - when browser login is difficult, enable device auth and use <code>codex login --device-auth</code>.</li>
         <li><strong>Automation</strong> - use Codex access tokens for trusted runners that need workspace identity without user browser sign-in.</li>
@@ -4430,6 +4540,11 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><a href="https://help.openai.com/en/articles/9039756-billing-settings-in-chatgpt-vs-platform" target="_blank">Billing settings in ChatGPT vs Platform</a></li>
       <li><a href="https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-in-apps-enterprise-edu-and-business" target="_blank">Admin Controls, Security &amp; Compliance in Apps</a></li>
       <li><a href="https://help.openai.com/en/articles/20001063-chatgpt-for-excel-and-google-sheets" target="_blank">ChatGPT for Excel and Google Sheets</a></li>
+      <li><a href="https://help.openai.com/en/articles/20001242" target="_blank">ChatGPT for PowerPoint</a></li>
+      <li><a href="https://help.openai.com/en/articles/20001275" target="_blank">ChatGPT Work and Codex</a></li>
+      <li><a href="https://help.openai.com/en/articles/20001278" target="_blank">Creating and editing files with ChatGPT Work</a></li>
+      <li><a href="https://help.openai.com/en/articles/20001143" target="_blank">ChatGPT Workspace Agents</a></li>
+      <li><a href="https://help.openai.com/en/articles/11481834-chatgpt-rate-card" target="_blank">ChatGPT Rate Card</a></li>
       <li><a href="https://help.openai.com/en/articles/20001052-library-for-chatgpt" target="_blank">File storage and Library in ChatGPT</a></li>
       <li><a href="https://help.openai.com/en/articles/8555535-gpts-chatgpt-enterprise-version" target="_blank">Managing GPT access in Enterprise &amp; Edu</a></li>
       <li><a href="https://help.openai.com/en/articles/9442513-gpt-actions-domain-settings-chatgpt-enterprise" target="_blank">GPT Actions — Domain Settings</a></li>
@@ -4443,6 +4558,10 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><a href="https://academy.openai.com/public/clubs/builders-etkn1/resources/codex-for-builders" target="_blank">OpenAI Academy — Codex for Builders</a></li>
       <li><a href="https://academy.openai.com/en/public/clubs/higher-education-05x4z/blogs/deploying-codex-in-higher-education-2026-04-09" target="_blank">OpenAI Academy — Deploying Codex in Higher Education</a></li>
       <li><a href="https://developers.openai.com/codex" target="_blank">OpenAI Developers — Codex docs hub</a></li>
+      <li><a href="https://learn.chatgpt.com/docs/whats-new" target="_blank">ChatGPT and Codex — What's new</a></li>
+      <li><a href="https://learn.chatgpt.com/docs/get-started-with-work" target="_blank">ChatGPT Work — Get started</a></li>
+      <li><a href="https://learn.chatgpt.com/docs/models" target="_blank">ChatGPT and Codex — Models</a></li>
+      <li><a href="https://learn.chatgpt.com/docs/automations" target="_blank">ChatGPT and Codex — Scheduled tasks</a></li>
       <li><a href="https://developers.openai.com/codex/enterprise/admin-setup" target="_blank">Codex Enterprise — Admin Setup</a></li>
       <li><a href="https://developers.openai.com/codex/enterprise/governance" target="_blank">Codex Enterprise — Governance</a></li>
       <li><a href="https://developers.openai.com/codex/enterprise/managed-configuration" target="_blank">Codex Enterprise — Managed Configuration</a></li>
@@ -4451,9 +4570,9 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       <li><a href="https://learn.microsoft.com/en-us/mem/intune/apps/intune-management-extension" target="_blank">Microsoft Intune — PowerShell scripts (Management Extension)</a></li>
       <li><a href="https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn789196(v=ws.11)" target="_blank">Windows Group Policy — File Preferences</a></li>
       <li><a href="https://developers.openai.com/codex/app" target="_blank">Codex — App</a></li>
-      <li><a href="https://developers.openai.com/codex/app/computer-use" target="_blank">Codex App — Computer Use</a></li>
-      <li><a href="https://developers.openai.com/codex/record-and-replay" target="_blank">Codex App — Record &amp; Replay</a></li>
-      <li><a href="https://developers.openai.com/codex/app/browser" target="_blank">Codex App — In-app Browser</a></li>
+      <li><a href="https://developers.openai.com/codex/app/computer-use" target="_blank">ChatGPT desktop app — Computer Use</a></li>
+      <li><a href="https://developers.openai.com/codex/record-and-replay" target="_blank">ChatGPT desktop app — Record &amp; Replay</a></li>
+      <li><a href="https://developers.openai.com/codex/app/browser" target="_blank">ChatGPT desktop app — In-app Browser</a></li>
       <li><a href="https://developers.openai.com/codex/ide" target="_blank">Codex — IDE extension</a></li>
       <li><a href="https://developers.openai.com/codex/cli" target="_blank">Codex — CLI</a></li>
       <li><a href="https://developers.openai.com/codex/auth" target="_blank">Codex — Authentication</a></li>
@@ -4472,7 +4591,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
 </section>
 
 <footer data-i18n="footer-note">
-  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-07-06
+  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-07-15
 </footer>
 
 <script>
@@ -4481,7 +4600,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "hero-eyebrow": "OpenAI · Admin Guide · 2026",
       "hero-title": "ChatGPT Enterprise &amp;<br/>Codex Enterprise<br/><em>Workspace Settings Complete Guide</em>",
       "hero-subtitle": "A consolidated guide to every menu in the ChatGPT Enterprise/Edu workspace admin console and the Codex Enterprise admin surface, including where each setting lives, what it controls, recommended defaults, official screenshots, and source links.",
-      "meta-updated": "Last updated: 2026-07-06",
+      "meta-updated": "Last updated: 2026-07-15",
       "meta-sources": "Sources: OpenAI Help Center · OpenAI Academy · developers.openai.com",
       "meta-language": "Available languages: Korean / English",
       "toc-part1": "Contents — Part 1 · ChatGPT Enterprise",
@@ -4530,12 +4649,12 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "division-4": "Detailed policy deployment is covered again by OS in Section 15, Managed Configuration",
       "codex-tabs-title": "Codex Surface and OS Tabs — App / CLI / IDE / Cloud",
       "local-toggle-title": "<span class=\"num\">12.1</span>Allow members to use Codex Local",
-      "local-toggle-body": "Allows members to use the Codex App, CLI, and IDE extension. New Enterprise workspaces have this <strong>ON by default</strong>. If it is OFF, users see <code>403 - Unauthorized. Contact your ChatGPT administrator for access.</code>",
+      "local-toggle-body": "Allows members to use Codex in the ChatGPT desktop app, CLI, and IDE extension. New Enterprise workspaces have this <strong>ON by default</strong>. If it is OFF, users see <code>403 - Unauthorized. Contact your ChatGPT administrator for access.</code>",
       "device-code-title": "Device code authentication for CLI",
       "device-code-body": "Controls whether developers can sign in to <code>codex</code> CLI using device code in non-interactive environments such as remote development boxes, SSH servers, and containers. Teams using remote or Linux servers should keep this ON. Command: <code>codex login --device-auth</code>",
       "surface-tabs-title": "<span class=\"num\">12.2</span>Surface Tabs — App / CLI / IDE / Cloud",
       "surface-tabs-lede": "OpenAI Academy describes Codex as one product that meets developers where they work. For admins, the cleanest starting point is deciding which surface to enable first.",
-      "surface-app-title": "Codex App — the easiest local starting point",
+      "surface-app-title": "Codex in the ChatGPT desktop app — the easiest local starting point",
       "surface-app-body": "A desktop UI for threads, diffs, worktrees, in-app browser, Computer Use, and other local capabilities in one place.",
       "surface-cli-title": "Codex CLI — terminal, remote, and automation workflows",
       "surface-cli-body": "Run Codex from a local repository with the <code>codex</code> command. CLI is the best fit for remote development boxes, SSH servers, containers, and CI/CD automation.",
@@ -4668,7 +4787,7 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       "check-13-action": "Run <strong>final validation</strong> with sample users",
       "check-13-note": "Verify login, MFA, RBAC, managed policies, and analytics visibility",
       "sources-title": "Sources / Reference Links — All Sources",
-      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-07-06"
+      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-07-15"
     };
 
 

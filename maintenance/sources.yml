@@ -2,7 +2,7 @@ guide:
   file: chatgpt-codex-enterprise-settings.html
   baseline_language: ko
   secondary_language: en
-  last_reviewed: 2026-07-06
+  last_reviewed: 2026-07-15
 
 sources:
   - id: workspace-settings
@@ -18,6 +18,27 @@ sources:
     cadence: weekly
     priority: high
     sections: [general]
+
+  - id: chatgpt-work-and-codex
+    url: https://help.openai.com/en/articles/20001275
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [general, permissions, available-models, codex-intro, codex-toggle]
+
+  - id: chatgpt-work-file-creation
+    url: https://help.openai.com/en/articles/20001278
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [general, apps]
+
+  - id: chatgpt-powerpoint
+    url: https://help.openai.com/en/articles/20001242
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [permissions, apps, billing]
 
   - id: enterprise-workspace-overview
     url: https://help.openai.com/en/articles/8265430-what-is-a-chatgpt-enterprise-workspace-how-can-i-switch-workspaces
@@ -53,6 +74,20 @@ sources:
     cadence: weekly
     priority: high
     sections: [permissions, analytics, billing, codex-gov]
+
+  - id: chatgpt-rate-card
+    url: https://help.openai.com/en/articles/11481834-chatgpt-rate-card
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [permissions, available-models, billing]
+
+  - id: workspace-agents
+    url: https://help.openai.com/en/articles/20001143
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [permissions, apps, analytics, billing]
 
   - id: apps-admin-controls
     url: https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-in-apps-enterprise-edu-and-business
@@ -165,6 +200,34 @@ sources:
     cadence: weekly
     priority: high
     sections: [codex-intro, codex-toggle, codex-cloud-toggle, codex-rbac, codex-policies, codex-review]
+
+  - id: chatgpt-whats-new
+    url: https://learn.chatgpt.com/docs/whats-new
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [general, available-models, apps, codex-intro, codex-toggle]
+
+  - id: chatgpt-work
+    url: https://learn.chatgpt.com/docs/get-started-with-work
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [general, permissions, apps]
+
+  - id: chatgpt-models
+    url: https://learn.chatgpt.com/docs/models
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [available-models, codex-toggle]
+
+  - id: chatgpt-scheduled-tasks
+    url: https://learn.chatgpt.com/docs/automations
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [permissions, codex-policies, codex-team]
 
   - id: codex-managed-configuration
     url: https://developers.openai.com/codex/enterprise/managed-configuration
