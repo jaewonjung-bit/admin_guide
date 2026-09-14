@@ -719,6 +719,9 @@
 <p>Enterprise의 Owner/Admin은 기존 그룹 멤버를 <strong>Group manager</strong>로 지정하고 별도로 위임 권한을 선택합니다. 이 지정은 workspace Admin/Owner 또는 테넌트 User manager 역할을 부여하지 않습니다.</p>
 <ul><li>위임 가능: <strong>View group analytics / Manage spend controls / Manage model access and defaults</strong>.</li><li><strong>Edit permissions on assigned roles</strong>의 위임은 Owner만 변경할 수 있습니다. 여러 그룹이 같은 Custom Role을 공유하면 역할 수정이 모든 대상 그룹에 영향을 줍니다.</li><li>그룹 생성·삭제, 역할 할당/해제, 그룹 관리자 임명 및 자기 권한 확대는 위임에 포함되지 않습니다. SCIM 멤버십은 IdP에서 관리합니다.</li></ul>
 <p><a href="https://help.openai.com/en/articles/9083985" target="_blank">→ 그룹 관리자 권한과 범위</a></p>
+<h3 class="menu"><span class="num">04.2</span>멤버·그룹·역할의 Admin API 자동화</h3>
+<p><strong>2026-08-20 Invitations / Users API</strong>: 초대 조회·생성·재전송·삭제와 가입 완료 멤버 조회를 자동화합니다. 멤버의 기본 역할·seat 변경과 workspace 탈퇴 처리는 <strong>Owner</strong> 권한이 필요하며, SCIM 관리 변경은 IdP를 통하고 마지막 Owner 보호가 적용됩니다. <strong>2026-09-11 Groups API</strong>는 대상 workspace에서 그룹 생성·수정·삭제를 지원합니다. <strong>Credentials → Admin keys</strong>에서 해당 workspace의 최소 필요 권한을 부여합니다. Group manager 지정만으로 Admin key 사용 권한을 얻지는 않습니다. <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[8/20·9/11 릴리즈 노트]</a> · <a href="https://help.openai.com/en/articles/20001407" target="_blank">[Admin key 권한]</a></p>
+<p><strong>Workspace Roles and Permissions API</strong>: Custom Role과 그룹의 역할 할당을 관리합니다. 조회는 활성 Owner/Admin + <code>chatgpt.enterprise.rbac.read</code>, 변경은 활성 Owner + <code>chatgpt.enterprise.rbac.write</code>가 필요합니다. Admin은 write scope가 있어도 변경할 수 없습니다. 이 API의 Custom Role·그룹 할당과 Users API의 기본 멤버 역할·seat 변경을 구분하며, 개인 사용자에게 Custom Role을 직접 할당하는 변경 API는 포함하지 않습니다. <a href="https://chatgpt.com/admin/api-reference#tag/Workspace%20Roles%20and%20Permissions" target="_blank">[RBAC API 범위]</a></p>
 </section>
 
 <!-- ============ PERMISSIONS & ROLES ============ -->
@@ -782,7 +785,7 @@
 
   <h3 class="menu"><span class="num">05.3</span>Spend controls (Usage limits / overages)</h3>
   <p>
-    Enterprise는 계약 단위 <strong>shared credit pool</strong>을 사용하며, 모든 사용자와 seat type이 고급 기능 사용 시 이 pool에서 차감됩니다.
+    크레딧 기반 Enterprise 계약에서는 <strong>shared credit pool</strong>에서 대상 기능의 사용량이 차감됩니다. 비용과 한도를 자동화할 때는 선택한 workspace의 청구 방식과 API 응답 단위를 먼저 확인합니다.
     공식 Usage limits 문서는 이제 <strong>사용자별 월간 한도</strong>와 <strong>워크스페이스 overage limit</strong>을 별도 제어로 설명합니다.
     Usage limits는 <strong>Admin Console</strong>에서, overage limit과 usage alert는 선택한 workspace의 <strong>Billing</strong>에서 관리합니다.
     <a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">[Flexible pricing]</a>
@@ -796,10 +799,22 @@
     <li><strong>기존 주간 제한과의 관계</strong>: legacy weekly role-based limit이 남아 있으면 Admin Console의 migration banner에서 <strong>Usage limits → Workspace → Migrate now</strong>를 실행합니다. 배너가 없으면 이미 이전되었거나 대상이 아닐 수 있습니다.</li>
     <li><strong>Overage limit</strong>: shared credit pool이 먼저 소진되면 <strong>Global Admin Console → Billing</strong>의 workspace overage limit이 추가 사용 가능 범위를 결정합니다. user usage limit은 overage 사용 중에도 계속 적용됩니다.</li>
     <li><strong>No limit 의미 차이</strong>: Usage limits의 group override에서 No limit은 workspace default 상속을 뜻하지만, Billing의 workspace overage limit에서 No limit은 overage cap이 설정되지 않았다는 뜻입니다.</li>
-    <li><strong>Usage alerts</strong>: credit threshold, committed credits 소진, overage limit 도달 시 알림을 보낼 수 있지만 사용을 차단하지는 않습니다. 차단이 필요하면 overage limit을 설정합니다.</li>
+    <li><strong>Usage alerts</strong>: 크레딧 기반 workspace에서는 credit threshold, committed credits 소진, overage limit 도달 시 알림을 보낼 수 있지만 사용을 차단하지는 않습니다. 차단이 필요하면 overage limit을 설정합니다.</li>
     <li><strong>운영 패턴</strong>: 엔지니어링/AI 챔피언 그룹은 넉넉한 group default, 일반 사용자 그룹은 보수적 default, 예외 사용자는 user override로 관리하는 편이 명확합니다.</li>
     <li><strong>관찰 위치</strong>: Usage limits는 <strong>제한·차단선</strong>, Billing/credit analytics는 비용 운영, Workspace analytics는 채택·활동 분석입니다. 같은 화면을 복제하는 구조가 아니므로 숫자가 일시적으로 다를 수 있습니다.</li>
   </ul>
+  <div class="box">
+    <div class="label">Spend Controls API — 금액과 단위를 함께 지정</div>
+    <p>지원되는 workspace에서는 Admin API로 workspace·group·user 한도를 조회하고 수정할 수 있습니다. 2026-09-10 API v2.5.18 기준으로 새 연동은 <code>limit_amount</code>를 사용합니다.</p>
+    <ul>
+      <li><strong>청구 단위</strong>: USD workspace의 예시는 <code>"limit_amount": {"amount":"250.00","unit":"usd"}</code>입니다. 크레딧 workspace는 <code>unit: "credit"</code>을 사용합니다. workspace와 같은 단위를 지정해야 하며, API는 달러와 크레딧을 자동 환산하지 않습니다.</li>
+      <li><strong>기존 연동 이전</strong>: 정수형 <code>limit</code>은 크레딧 전용 legacy 필드이며 deprecated 상태입니다. USD workspace에서 기존 숫자를 그대로 재사용하지 말고 금액과 단위를 명시하세요.</li>
+      <li><strong>현재 사용량</strong>: <code>current_month_usage_unit</code>을 함께 읽어 사용량 단위를 확인합니다. 응답의 숫자를 일괄 크레딧으로 해석하지 않습니다.</li>
+      <li><strong>권한</strong>: 조회에는 <code>chatgpt.enterprise.usage_limit.read</code>, 변경에는 <code>chatgpt.enterprise.usage_limit.write</code> 권한이 있는 해당 workspace의 Admin key를 사용합니다.</li>
+      <li><strong>사용 기간</strong>: API로 Monthly / Aligned to billing cycle을 변경할 수 없습니다. 사용 기간은 Admin Console에서 설정합니다.</li>
+    </ul>
+    <p><a href="https://chatgpt.com/admin/api-reference" target="_blank">→ Spend Controls API와 Version History</a> · <a href="#codex-gov">§20.3 API 종류·인증·집계 규칙</a></p>
+  </div>
   <div class="box">
     <div class="label">설정 동기화와 분석 데이터 갱신은 다른 문제</div>
     Admin Console과 Workspace analytics 사이에 공개된 단일 “동기화 주기”는 없습니다.
@@ -1209,10 +1224,10 @@
     </tbody>
   </table>
   <div class="box green">
-    <div class="label">개인별 credit 추적 범위</div>
-    <strong>ChatGPT Enterprise</strong>에서 개인별 사용량은 Workspace Analytics의 <strong>Users export</strong>가 기준입니다.
+    <div class="label">개인별 활동과 비용 추적</div>
+    <strong>ChatGPT Enterprise</strong>에서 개인별 활동 분석은 Workspace Analytics의 <strong>Users export</strong>가 기준입니다.
     이 export는 사용자 identity/status와 메시지, GPT, tool, project 활동 같은 집계 지표를 포함합니다.
-    일부 대상 워크스페이스에서는 <code>credits_used</code> 선택 필드가 포함될 수 있지만, 모든 워크스페이스에 항상 제공되는 실시간 개인별 과금 원장으로 보기는 어렵습니다.
+    CSV의 제공 필드는 workspace별로 확인합니다. API의 <code>CHATGPT_USER_ANALYTICS.credits_used</code>는 deprecated이며 새 기록에서 빠질 수 있습니다. 개인별 비용 분석은 Costs 로그를 기준으로 설계하고 Section 20.3의 단위·권한·지연 기준을 적용합니다.
   </div>
   <p style="font-size:.88rem;color:var(--muted)">
     출처: <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics</a>
@@ -1243,9 +1258,9 @@
     <thead><tr><th>질문</th><th>관리 화면</th><th>한계</th></tr></thead>
     <tbody>
       <tr><td>누가 많이 쓰는가?</td><td>Workspace Analytics → Users / Users CSV</td><td>집계 지표이며 원문·파일 내용은 없음</td></tr>
-      <tr><td>어떤 기능이 credit을 많이 쓰는가?</td><td>Billing usage report + Workspace Analytics CSV</td><td>ChatGPT 쪽은 workspace별 제공 필드가 다를 수 있음</td></tr>
-      <tr><td>팀별 비용 배부가 필요한가?</td><td>Users CSV + SCIM group / 내부 HR 데이터 조인</td><td>UI만으로는 정교한 비용 배부가 어려움</td></tr>
-      <tr><td>감사·조사 목적인가?</td><td>Compliance API</td><td>비용/credit 운영 리포팅의 기준 화면으로 사용하지 않습니다.</td></tr>
+      <tr><td>어떤 기능·모델이 비용을 많이 쓰는가?</td><td>Billing usage report + Costs API</td><td>USD와 CREDITS를 분리하고 데이터 지연을 고려</td></tr>
+      <tr><td>팀별 비용 배부가 필요한가?</td><td>Costs의 사용자·그룹 정보 + 내부 배부 기준</td><td>여러 그룹에 속한 사용자의 비용 중복 배부를 방지</td></tr>
+      <tr><td>감사·조사 목적인가?</td><td>Compliance의 해당 감사·대화 로그</td><td>같은 로그 플랫폼의 COSTS와 목적·권한을 구분</td></tr>
     </tbody>
   </table>
   <p style="font-size:.88rem;color:var(--muted)">
@@ -1274,7 +1289,7 @@
   </table>
   <div class="box">
     <div class="label">Admin key 권한 모델</div>
-Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성합니다. Owner는 <strong>All / Read only / Custom</strong>을 선택합니다. Admin은 허용된 범주별 <strong>None / Read / Write</strong>를 설정하며 결과 키는 Custom으로 표시됩니다. 광범위 Compliance·Conversation messages·Roles and permissions는 지원되는 경우 Owner 전용이며, Admin은 허용된 개별 감사·인증 로그 범주에 접근할 수 있습니다.</div>
+Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성합니다. Owner는 <strong>All / Read only / Custom</strong>을 선택합니다. Admin은 허용된 범주별 <strong>None / Read / Write</strong>를 설정하며 결과 키는 Custom으로 표시됩니다. 광범위 Compliance·Conversation messages는 지원되는 경우 Owner 전용이며, Admin은 허용된 개별 로그 범주에 접근할 수 있습니다. 역할 관리 API는 읽기와 쓰기를 구분하고 쓰기에는 Owner 역할이 필요합니다.</div>
   <div class="box">
     <div class="label">Analytics 보존 기간과 신선도</div>
     Global Admin Console은 ChatGPT &amp; Codex credit analytics와 Codex usage를 <strong>최대 120일</strong>,
@@ -1285,7 +1300,7 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
     <div class="label">분석 화면 비교 원칙</div>
     Global Admin Console의 credit/Codex 분석과 Workspace analytics는 같은 화면을 복제하지 않습니다.
     전자는 비용·credit·Codex 중심 통합 분석, 후자는 GPT·Project·Skill·메시지 등 workspace 채택 분석입니다.
-    수치가 다르면 동일 workspace, UTC 기간, 필터, 지표 정의, Last updated 시각을 먼저 맞추고,
+    수치가 다르면 동일 workspace, UTC 기간, 필터, 지표 정의, 청구 방식·금액 단위·환산율, Last updated 시각을 먼저 맞추고,
     확정 청구 금액은 <strong>Billing → Invoices</strong>를 기준으로 판단합니다.
   </div>
   <p style="font-size:.88rem;color:var(--muted)">
@@ -1362,7 +1377,8 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
       <tr><td>수동 초대</td><td>Members 탭에서 1인씩 또는 CSV</td><td>소규모/POC</td></tr>
       <tr><td>SCIM Directory Sync</td><td>IdP 그룹 변화 → 자동 초대/접근 회수</td><td>대규모 운영 ※ 권장</td></tr>
       <tr><td>Automatic Account Creation (AAC)</td><td>검증 도메인 사용자가 로그인 시 자동 추가, 이메일 초대 없음</td><td>도메인 전체 오픈 정책</td></tr>
-      <tr><td>API 초대 엔드포인트</td><td>프로젝트 단위 지정 가능</td><td>Platform 측 통합</td></tr>
+      <tr><td>ChatGPT Workspace Invitations API</td><td>워크스페이스 초대 조회·생성·재전송·삭제. Workspace Admin key 사용</td><td>ChatGPT/Codex 가입 자동화 · <a href="https://chatgpt.com/admin/api-reference#tag/Workspace%20Invitations" target="_blank">API reference</a></td></tr>
+      <tr><td>API Platform Invites API</td><td>API 조직 초대 및 선택적 프로젝트 역할 지정. Platform Admin key 사용</td><td>API Platform 가입 자동화 · <a href="https://platform.openai.com/docs/api-reference/invite" target="_blank">API reference</a></td></tr>
     </tbody>
   </table>
   <div class="box">
@@ -1430,19 +1446,19 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
   </ul>
   <div class="box green">
     <div class="label">Enterprise credit pool</div>
-    Enterprise는 사용자별 기본 cap이 아니라 <strong>계약 단위 shared credit pool</strong>을 사용합니다.
+    크레딧 기반 Enterprise 계약에서는 <strong>계약 단위 shared credit pool</strong>을 사용합니다. 사용자 한도와 workspace overage limit은 별도로 관리합니다.
     Deep Research, Thinking models, Image Gen, Advanced Voice, Codex 같은 advanced feature가 이 pool에서 차감됩니다.
     pool이 소진되면 advanced feature가 pause될 수 있으며, Owner는 Billing에서 <strong>usage alerts</strong>와
     <strong>hard overage limits</strong>를 설정해 committed plan 초과 사용을 제한할 수 있습니다.
     <a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">[Flexible pricing]</a>
   </div>
-  <h3 class="menu"><span class="num">11.1</span>사용량·Codex·Credit 관리 표</h3>
+  <h3 class="menu"><span class="num">11.1</span>사용량·Codex·비용·크레딧 관리 표</h3>
   <table>
     <thead><tr><th>관리 질문</th><th>주요 화면</th><th>개인별 추적</th><th>운영 한계</th></tr></thead>
     <tbody>
       <tr><td>일반 ChatGPT 사용량</td><td>Workspace Analytics → Users / GPTs / Projects / Skills</td><td>Users CSV에서 메시지·tool·project 등 집계 지표 확인</td><td>원문, 파일 내용, item-level compliance record는 없음</td></tr>
       <tr><td>Codex 사용량</td><td>Global Admin Console → Codex + Codex Analytics Dashboard / CSV / JSON / Analytics API</td><td>사용 환경, 세션, 메시지, credit, token을 사용자 단위로 확인</td><td>운영 리포팅용이며 감사 원문 로그는 Compliance API로 분리</td></tr>
-      <tr><td>ChatGPT/Codex credit 사용량</td><td>Global Admin Console → Analytics/Credits + Billing export</td><td>제품 영역, metered item(input/output/cached input token 등), model, 사용자/agent별 소비 원인 확인</td><td>GAC analytics는 최근 120일 한도이므로 장기 리포트는 Billing export를 기준으로 보관</td></tr>
+      <tr><td>ChatGPT/Codex 비용·크레딧 사용량</td><td>Global Admin Console → Analytics + Billing export + Costs API</td><td>제품 영역, metered item(input/output/cached input token 등), model, 사용자/agent별 소비 원인 확인</td><td>GAC analytics는 최근 120일 한도이므로 장기 리포트는 Billing export와 함께 보관합니다. API 단위·집계 규칙은 <a href="#codex-gov">§20.3</a>을 참고합니다.</td></tr>
       <tr><td>ChatGPT/Codex 관리자 API 자동화</td><td>Global Admin Console → Credentials → Admin keys + <a href="https://chatgpt.com/admin/api-reference" target="_blank">Admin API reference</a></td><td>workspace role에 따라 analytics/cost reporting, Spend Controls API, group/member 관리, workspace directory, service account, compliance scope를 자동화</td><td>Workspace-scoped key이며 모델 추론용 API key가 아님. Owner/Admin별 허용 scope가 다름</td></tr>
       <tr><td>API Platform 비용/사용량</td><td>Platform Usage/Costs API (<code>/v1/organization/usage/*</code>, <code>/v1/organization/costs</code>)</td><td>API organization의 project, line item, API key, model 기준 사용량·비용 분석</td><td>ChatGPT workspace 비용과 별도 시스템. 재무 기준은 Costs endpoint 또는 Usage Dashboard Costs tab을 사용</td></tr>
       <tr><td>감사·조사</td><td>Compliance API</td><td>사용자 활동 감사 가능</td><td>credit 운영 리포팅의 기준 화면으로 사용하지 않습니다.</td></tr>
@@ -2655,22 +2671,59 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
   </table>
 
   <h3 class="menu" data-i18n="codex-gov-api-title"><span class="num">20.3</span>③ Admin / Analytics / Cost APIs <span class="pill">programmatic</span></h3>
-  <p data-i18n="codex-gov-api-body">
-    BI/데이터 웨어하우스 및 운영 자동화용 API는 두 계열을 분리해야 합니다.
-    <strong>ChatGPT/Codex workspace Admin APIs</strong>는 Global Admin Console의 <strong>Credentials → Admin keys</strong>에서 만든 workspace-scoped key를 사용하고,
-    analytics, cost reporting, Spend Controls API, group/member 관리, service account, compliance scope를 다룹니다.
-    <strong>API Platform Admin/Usage/Costs APIs</strong>는 API organization의 <code>OPENAI_ADMIN_KEY</code>와 <code>/v1/organization/*</code> endpoint를 사용하며, ChatGPT workspace 비용과 별도입니다.
-    두 계열 모두 모델 추론용 key가 아닙니다.
-  </p>
-  <ol>
-    <li data-i18n="codex-gov-api-step-1">ChatGPT/Codex workspace 자동화는 <strong>Admin Console → Credentials → Admin keys</strong>에서 workspace를 선택하고 key 이름, 만료, 권한을 설정합니다.</li>
-    <li data-i18n="codex-gov-api-step-2">Owner는 All / Read only / Custom을, Admin은 허용 범주별 None / Read / Write를 선택합니다. Admin의 결과 키는 Custom입니다. 광범위 Compliance 및 Conversation messages는 지원되는 경우 Owner 전용이며, 개별 로그 범주는 역할에 따라 달라집니다.</li>
-    <li data-i18n="codex-gov-api-step-3">API Platform 비용/사용량 자동화는 Platform Admin API key로 <code>/v1/organization/usage/*</code>와 <code>/v1/organization/costs</code>를 호출합니다. 재무 대사는 Costs endpoint 또는 Usage Dashboard Costs tab을 기준으로 합니다.</li>
-  </ol>
-  <pre><code># API Platform Costs API 예시
-curl -H "Authorization: Bearer $OPENAI_ADMIN_KEY" \
-  "https://api.openai.com/v1/organization/costs?start_time=1730419200&group_by[]=project_id&group_by[]=line_item"</code></pre>
-  <p data-i18n="codex-gov-api-endpoints">주요 확인 위치: <a href="https://chatgpt.com/admin/api-reference" target="_blank">ChatGPT Admin API reference</a> · <a href="https://help.openai.com/en/articles/20001407" target="_blank">Managing Admin keys</a> · <a href="https://platform.openai.com/docs/api-reference/usage" target="_blank">Platform Usage/Costs API</a> · <a href="https://platform.openai.com/docs/api-reference/admin-api-keys" target="_blank">Platform Admin API Keys</a></p>
+
+<p>운영 자동화와 분석은 <strong>무엇을 조회·변경하는지</strong>에 따라 API를 선택합니다. ChatGPT/Codex Admin API는 <strong>Admin Console → Credentials → Admin keys</strong>에서 만든 키와 <code>https://api.chatgpt.com/v1</code>을 사용합니다. API Platform의 Admin key 및 <code>https://api.openai.com/v1/organization/*</code>와 구분합니다. 두 Admin key 모두 모델 추론용이 아닙니다.</p>
+<table>
+  <thead><tr><th>목적</th><th>API / 데이터</th><th>권한·범위</th></tr></thead>
+  <tbody>
+    <tr><td>제품·사용자·모델별 비용 분석</td><td>Costs의 <code>COSTS</code> 로그</td><td><code>chatgpt.enterprise.compliance_logs_platform.costs.read</code>; organization 경로로 조회</td></tr>
+    <tr><td>한도 조회·설정·증액 처리</td><td>Spend Controls: workspace / group / user 한도, 월 사용량, 증액 요청</td><td><code>chatgpt.enterprise.usage_limit.read</code> / <code>chatgpt.enterprise.usage_limit.write</code>; workspace 범위</td></tr>
+    <tr><td>도입률·활동 분석</td><td>Workspace Analytics: 사용자 / Project / GPT / 설문 로그</td><td><code>chatgpt.enterprise.compliance_logs_platform.workspace_analytics.read</code>; 제공 여부 확인</td></tr>
+    <tr><td>ChatGPT·Codex 통합 일일 사용량</td><td>Daily Usage <strong>Alpha</strong></td><td><code>enterprise.analytics.usage.read</code>; 기능·필드·제공 범위 변경 가능</td></tr>
+    <tr><td>Codex 운영 분석</td><td>Turn Insights, 일일 사용량, Code Review 지표</td><td><code>codex.enterprise.analytics.read</code>; workspace 범위</td></tr>
+  </tbody>
+</table>
+<p>키 생성에는 지원되는 workspace의 Owner/Admin 역할이 필요합니다. Owner는 All / Read only / Custom, Admin은 허용된 범주별 None / Read / Write를 선택합니다. 키의 scope와 호출자의 역할을 모두 만족해야 하며, Group Manager 지정만으로 Admin key 발급 권한이 생기지 않습니다.</p>
+
+<h4>비용 조회 — Costs 전용 권한과 단위</h4>
+<p>비용만 조회하려면 <strong>Costs → Read</strong>, 나머지 범주는 None인 키를 만듭니다. <code>/compliance/</code> 경로를 쓰더라도 <strong>대화 원문 접근 권한은 필요하지 않습니다</strong>. 비용 기록에는 사용자·그룹 식별 정보가 포함될 수 있습니다. 이 권한 분리는 2026-09-11 문서 v2.5.19에서 명확해졌으며, 새 기능 출시와는 구분합니다.</p>
+<p><code>COSTS</code> 파일은 <strong>API Platform organization ID</strong>를 넣는 organization 경로에서 조회합니다. workspace 로그 경로에서는 제공하지 않습니다. 이 식별자를 쓴다고 해서 아래 Platform Costs API와 같은 데이터가 되는 것은 아닙니다.</p>
+<pre><code># ChatGPT/Codex Costs: 비용 로그 파일 목록 조회
+curl --get "https://api.chatgpt.com/v1/compliance/organizations/$ORGANIZATION_ID/logs" \
+  -H "Authorization: Bearer $CHATGPT_ADMIN_API_KEY" \
+  --data-urlencode "event_type=COSTS" \
+  --data-urlencode "after=2026-09-01T00:00:00Z"</code></pre>
+<ul>
+  <li>목록 응답은 비용 합계가 아닌 파일 정보입니다. 파일을 다운로드해 처리하고, <code>last_end_time</code>으로 다음 목록을 조회합니다. 수집 시 <code>event_id</code>로 중복을 제거하고 지연 도착 데이터를 반영합니다.</li>
+  <li>데이터는 UTC 시간별 보고 행이며 예상 지연은 <strong>3–5시간</strong>입니다. 사용자·그룹은 <code>payload.identity</code>, 제품·사용 환경·모델은 <code>payload</code>에서 확인합니다.</li>
+  <li><code>payload.measures.billing[].cost.unit</code>은 <strong>CREDITS 또는 USD</strong>입니다. 같은 배열에 두 단위가 있을 수 있으므로 단위별로 합산합니다. USD 금액에 크레딧 환산율을 다시 곱하지 않습니다.</li>
+  <li><code>estimated_cost_usd</code>는 크레딧 항목에만 제공되는 선택적 달러 추정치입니다. 실제 USD 항목까지 포함한 총액이 아닙니다. 기록된 비용과 이 추정치는 최종 청구서 금액과 구분합니다.</li>
+</ul>
+
+<h4>한도 제어 — Spend Controls</h4>
+<p>Spend Controls는 월 한도와 현재 사용량을 조회하고 workspace·group·user 한도, 사용자 일괄 변경, 증액 요청 승인·거절을 처리합니다. 상세 비용 배부에는 Costs를 사용합니다. 현재 기간에만 적용할 사용자 한도는 <code>temporary: true</code>, 만료 시점은 <code>limit_expires_at</code>으로 확인합니다. usage period 자체는 Console에서 설정하며 API로 변경하지 않습니다.</p>
+<pre><code># 사용자 현재 월 사용량과 유효 한도 조회
+curl "https://api.chatgpt.com/v1/manage/workspaces/$WORKSPACE_ID/usage_limits/users/$USER_ID/monthly-usage" \
+  -H "Authorization: Bearer $CHATGPT_ADMIN_API_KEY"</code></pre>
+<p>현재 응답의 <code>current_month_usage_unit</code>과 한도의 <code>limit_amount.unit</code>을 함께 읽습니다. <strong>USD / credit 단위가 workspace 청구 방식과 일치해야 하며 자동 환산되지 않습니다.</strong> 신규 연동은 <code>limit_amount</code>를 사용합니다. 자세한 입력 형식과 이전 <code>limit</code> 필드 호환성은 Section 05.3을 확인합니다.</p>
+
+<h4>사용 분석 — 집계 기록과 제공 단계</h4>
+<ul>
+  <li>Workspace Analytics 로그는 사용자·Project·GPT별 일일 활동과 설문 응답을 제공합니다. 현재 멤버·프로젝트 목록이 아닌 과거 보고 기록입니다. <code>CHATGPT_USER_ANALYTICS.credits_used</code>는 <strong>deprecated</strong>이며 새 기록에서 생략될 수 있으므로 비용 리포트의 필수 입력으로 두지 않습니다.</li>
+  <li>ChatGPT·Codex 통합 <strong>Daily Usage는 Alpha</strong>입니다. UTC 일일 사용자별 결과 또는 <code>group=workspace</code> 합계를 제공합니다. 제공 여부·지표 의미·필드는 정식 출시 전 변경될 수 있습니다.</li>
+  <li>Codex Turn Insights의 <code>credits</code>는 크레딧 과금, <code>cost_usd</code>는 직접 USD 과금입니다. 각각 집계하고, 확인 불가능한 USD의 <code>null</code>을 0으로 바꾸지 않습니다. 날짜는 양끝 포함 UTC 기준이며 최대 120일 범위입니다.</li>
+</ul>
+
+<h4>API Platform — 별도 사용량·비용</h4>
+<p>API Platform의 <code>/organization/costs</code>는 <code>api_key_ids</code> 필터와 <code>project_id</code>·<code>line_item</code>·<code>api_key_id</code>별 그룹 집계를 지원합니다. 모델·토큰·요청 수 분석은 해당 Usage endpoint의 지원 필드를 확인합니다. 모든 Usage API와 Costs API가 동일한 집계 차원을 지원한다고 가정하지 않습니다.</p>
+<pre><code># API Platform Costs: 프로젝트·API key별 비용
+curl --get "https://api.openai.com/v1/organization/costs" \
+  -H "Authorization: Bearer $OPENAI_ADMIN_KEY" \
+  --data-urlencode "start_time=$START_TIME_UNIX" \
+  --data-urlencode "group_by[]=project_id" \
+  --data-urlencode "group_by[]=api_key_id"</code></pre>
+<p style="font-size:.88rem;color:var(--muted)">2026-09-14 확인: <a href="https://chatgpt.com/admin/api-reference#tag/Version%20History" target="_blank">Admin API 변경 이력</a> · <a href="https://chatgpt.com/admin/api-reference#tag/Costs" target="_blank">Costs</a> · <a href="https://chatgpt.com/admin/api-reference#tag/Spend%20Controls" target="_blank">Spend Controls</a> · <a href="https://chatgpt.com/admin/api-reference#tag/Workspace%20Analytics" target="_blank">Workspace Analytics</a> · <a href="https://chatgpt.com/admin/api-reference#tag/Alpha%3A%20Daily%20Usage" target="_blank">Daily Usage Alpha</a> · <a href="https://chatgpt.com/admin/api-reference#operation/get-analytics-codex-workspaces-workspace-id-turn-insights" target="_blank">Codex Turn Insights</a> · <a href="https://help.openai.com/en/articles/20001407" target="_blank">Managing Admin keys</a> · <a href="https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/usage/methods/costs" target="_blank">Platform Costs</a></p>
+
 
   <h3 class="menu" data-i18n="codex-gov-compliance-title"><span class="num">20.4</span>④ Compliance API <span class="pill">audit</span></h3>
   <p data-i18n="codex-gov-compliance-body">
@@ -2710,7 +2763,7 @@ curl -H "Authorization: Bearer $OPENAI_ADMIN_KEY" \
       </tr>
     </thead>
     <tbody>
-      <tr><td data-i18n="compare-target">대상 데이터</td><td data-i18n="compare-chatgpt-target">ChatGPT 사용 및 optional credit 필드</td><td data-i18n="compare-codex-target">Codex 사용, credits, tokens</td><td data-i18n="compare-compliance-target">ChatGPT 대화 + Codex + 인증 + 관리자 감사</td></tr>
+      <tr><td data-i18n="compare-target">대상 데이터</td><td data-i18n="compare-chatgpt-target">ChatGPT 활동 지표; 비용은 Costs 로그로 확인</td><td data-i18n="compare-codex-target">Codex 사용, credits, tokens</td><td data-i18n="compare-compliance-target">ChatGPT 대화 + Codex + 인증 + 관리자 감사</td></tr>
       <tr><td data-i18n="compare-format">형태</td><td data-i18n="compare-chatgpt-format">집계 대시보드 + CSV</td><td data-i18n="compare-codex-format">대시보드 + CSV/JSON + REST API</td><td data-i18n="compare-compliance-format">원시 JSONL 로그 파일</td></tr>
       <tr><td data-i18n="compare-content">메시지 본문</td><td data-i18n="compare-chatgpt-content">제공하지 않음</td><td data-i18n="compare-codex-content">제공하지 않음</td><td data-i18n="compare-compliance-content">제공 가능</td></tr>
       <tr><td data-i18n="compare-latency">실시간성</td><td data-i18n="compare-chatgpt-latency">1–24시간 주기 · 통상 6–12시간</td><td data-i18n="compare-codex-latency">Credit/Codex 통상 1–6시간</td><td data-i18n="compare-compliance-latency">분 단위 지연</td></tr>
@@ -2958,6 +3011,9 @@ curl -H "Authorization: Bearer $OPENAI_ADMIN_KEY" \
 <p>Enterprise owners/admins can designate an existing member as a <strong>Group manager</strong>, then separately configure delegated permissions. This does not confer workspace Admin/Owner or tenant User manager roles.</p>
 <ul><li>Delegation options: <strong>View group analytics / Manage spend controls / Manage model access and defaults</strong>.</li><li>Only an Owner can change delegation of <strong>Edit permissions on assigned roles</strong>. Editing a custom role shared by multiple groups affects all assigned groups.</li><li>Creating/deleting groups, assigning/unassigning roles, appointing group managers, and expanding one's own permissions are outside delegation. Manage SCIM membership in the IdP.</li></ul>
 <p><a href="https://help.openai.com/en/articles/9083985" target="_blank">→ Group manager permissions and boundaries</a></p>
+<h3 class="menu"><span class="num">04.2</span>Admin APIs for members, groups, and roles</h3>
+<p><strong>August 20, 2026 — Invitations / Users APIs</strong>: automate invitation lookup, creation, resend, and deletion, and retrieve accepted members. Updating built-in member roles or seats and removing workspace memberships requires an <strong>Owner</strong>; SCIM-managed changes go through the IdP, and last-owner protections apply. <strong>September 11, 2026 — Groups API</strong> supports group creation, updates, and deletion in eligible workspaces. Use <strong>Credentials → Admin keys</strong> with the minimum required permissions for the selected workspace. Group manager designation alone does not grant Admin key access. <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[August 20 / September 11 release notes]</a> · <a href="https://help.openai.com/en/articles/20001407" target="_blank">[Admin key permissions]</a></p>
+<p><strong>Workspace Roles and Permissions API</strong>: manage custom roles and group role assignments. Reads require an active Owner/Admin plus <code>chatgpt.enterprise.rbac.read</code>; writes require an active Owner plus <code>chatgpt.enterprise.rbac.write</code>. Admins cannot make changes even with the write scope. Separate custom roles and group assignments from built-in membership roles and seats managed through the Users API; this API does not include mutations to assign custom roles directly to individual users. <a href="https://chatgpt.com/admin/api-reference#tag/Workspace%20Roles%20and%20Permissions" target="_blank">[RBAC API scope]</a></p>
 </section>
 
   <section class="chapter" id="permissions">
@@ -3017,7 +3073,7 @@ curl -H "Authorization: Bearer $OPENAI_ADMIN_KEY" \
     </div>
     <h3 class="menu"><span class="num">05.3</span>Spend controls / usage limits and overages</h3>
     <p>
-      Enterprise uses a contract-level <strong>shared credit pool</strong>. All users and seat types draw from that pool when they use advanced features.
+      Credit-based Enterprise contracts draw eligible feature usage from a <strong>shared credit pool</strong>. Before automating costs and limits, check the selected workspace’s billing mode and the units returned by the API.
       The current Usage limits article separates <strong>per-user monthly usage limits</strong> from the <strong>workspace overage limit</strong>.
       Usage limits live in the <strong>Admin Console</strong>, while overage limits and usage alerts live in the selected workspace's <strong>Billing</strong> area.
       <a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">[Flexible pricing]</a>
@@ -3031,10 +3087,22 @@ curl -H "Authorization: Bearer $OPENAI_ADMIN_KEY" \
     <li><strong>Legacy weekly limits</strong>: if a legacy role-based weekly limit remains, use the Admin Console migration banner and select <strong>Usage limits → Workspace → Migrate now</strong>. If the banner is absent, the workspace may already be migrated or may not be eligible.</li>
       <li><strong>Overage limit</strong>: if the shared credit pool is exhausted first, the workspace overage limit in <strong>Global Admin Console → Billing</strong> determines how much eligible usage can continue. User usage limits still apply during overage usage.</li>
       <li><strong>No limit means different things</strong>: in Usage limits, No limit for a group override means inheriting the workspace default; in Billing, No limit for workspace overage means no overage cap is configured.</li>
-      <li><strong>Usage alerts</strong>: alerts can notify recipients at credit thresholds, committed-credit exhaustion, or overage-limit reach. Alerts do not block usage; use the overage limit when a cap is required.</li>
+      <li><strong>Usage alerts</strong>: in credit-based workspaces, alerts can notify recipients at credit thresholds, committed-credit exhaustion, or overage-limit reach. Alerts do not block usage; use the overage limit when a cap is required.</li>
       <li><strong>Operating pattern</strong>: use group defaults for broad policy, user overrides for exceptions, and keep developer or AI champion groups less constrained than general-user groups.</li>
       <li><strong>Visibility path</strong>: Usage limits are <strong>enforcement guardrails</strong>, Billing and credit analytics support cost operations, and Workspace analytics measures adoption and activity. These are not duplicate views, so their numbers can differ temporarily.</li>
     </ul>
+    <div class="box">
+      <div class="label">Spend Controls API — Specify amount and unit together</div>
+      <p>Eligible workspaces can read and update workspace, group, and user limits through the Admin API. As of API v2.5.18 on 2026-09-10, new integrations should use <code>limit_amount</code>.</p>
+      <ul>
+        <li><strong>Billing unit</strong>: an example for a USD workspace is <code>"limit_amount": {"amount":"250.00","unit":"usd"}</code>. Credit-based workspaces use <code>unit: "credit"</code>. Match the workspace’s unit; the API does not automatically convert between dollars and credits.</li>
+        <li><strong>Migrate existing integrations</strong>: the integer <code>limit</code> field is a deprecated, credit-only legacy field. Do not reuse the old number for a USD workspace; specify the amount and unit explicitly.</li>
+        <li><strong>Current usage</strong>: read <code>current_month_usage_unit</code> alongside usage to identify its unit. Do not interpret all numeric usage values as credits.</li>
+        <li><strong>Permissions</strong>: use an Admin key for the selected workspace with <code>chatgpt.enterprise.usage_limit.read</code> to read limits or <code>chatgpt.enterprise.usage_limit.write</code> to change them.</li>
+        <li><strong>Usage period</strong>: the API cannot change Monthly / Aligned to billing cycle. Configure the usage period in Admin Console.</li>
+      </ul>
+      <p><a href="https://chatgpt.com/admin/api-reference" target="_blank">→ Spend Controls API and Version History</a> · <a href="#codex-gov">§20.3 API types, authentication, and aggregation rules</a></p>
+    </div>
     <div class="box">
       <div class="label">Settings synchronization and analytics freshness are different questions</div>
       OpenAI does not publish one synchronization interval between Admin Console and Workspace analytics.
@@ -3420,10 +3488,10 @@ curl -H "Authorization: Bearer $OPENAI_ADMIN_KEY" \
       </tbody>
     </table>
     <div class="box green">
-      <div class="label">Per-user credit tracking boundary</div>
-      For <strong>ChatGPT Enterprise</strong>, per-user usage tracking primarily comes from the Workspace Analytics <strong>Users export</strong>.
+      <div class="label">Per-user activity and cost tracking</div>
+      For <strong>ChatGPT Enterprise</strong>, per-user activity reporting comes from the Workspace Analytics <strong>Users export</strong>.
       That export combines user identity/status with aggregate message, GPT, tool, and project metrics.
-      Some workspaces may also include an optional <code>credits_used</code> field, but this is best treated as an analytics export field rather than a universal real-time per-user billing ledger.
+      Confirm available CSV fields for the workspace. In the API, <code>CHATGPT_USER_ANALYTICS.credits_used</code> is deprecated and may be absent from newer records. Design per-user cost reporting around Costs logs and apply the unit, permission, and freshness rules in Section 20.3.
     </div>
     <p style="font-size:.88rem;color:var(--muted)">
       Source: <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics</a>
@@ -3451,9 +3519,9 @@ curl -H "Authorization: Bearer $OPENAI_ADMIN_KEY" \
       <thead><tr><th>Question</th><th>Admin surface</th><th>Limit</th></tr></thead>
       <tbody>
         <tr><td>Who is using ChatGPT the most?</td><td>Workspace Analytics → Users / Users CSV</td><td>Aggregate metrics only; no message text or file contents</td></tr>
-        <tr><td>Which features are consuming credits?</td><td>Billing usage report + Workspace Analytics CSV</td><td>ChatGPT fields can vary by workspace eligibility</td></tr>
-        <tr><td>Do we need team cost allocation?</td><td>Users CSV joined with SCIM group / internal HR data</td><td>The UI alone is not enough for detailed allocation</td></tr>
-        <tr><td>Is this for audit or investigation?</td><td>Compliance API</td><td>Not the operating surface for cost or credit reporting</td></tr>
+        <tr><td>Which features or models drive cost?</td><td>Billing usage report + Costs API</td><td>Separate USD and CREDITS and account for reporting delay</td></tr>
+        <tr><td>Do we need team cost allocation?</td><td>Costs user/group attribution + internal allocation rules</td><td>Avoid allocating the same cost twice for multi-group users</td></tr>
+        <tr><td>Is this for audit or investigation?</td><td>Relevant Compliance audit or conversation logs</td><td>Separate purpose and permissions from COSTS on the same log platform</td></tr>
       </tbody>
     </table>
     <p style="font-size:.88rem;color:var(--muted)">
@@ -3481,7 +3549,7 @@ curl -H "Authorization: Bearer $OPENAI_ADMIN_KEY" \
     </table>
     <div class="box">
       <div class="label">Admin key permission model</div>
-Admin keys require the <strong>Owner/Admin</strong> role in an eligible workspace. Owners select <strong>All / Read only / Custom</strong>. Admins select <strong>None / Read / Write</strong> for available categories and receive a key labeled Custom. Broad compliance, Conversation messages, and Roles and permissions are owner-only where supported; admins may access permitted individual audit or authentication log categories.</div>
+Admin keys require the <strong>Owner/Admin</strong> role in an eligible workspace. Owners select <strong>All / Read only / Custom</strong>. Admins select <strong>None / Read / Write</strong> for available categories and receive a key labeled Custom. Broad compliance and Conversation messages are owner-only where supported; admins may access permitted individual log categories. Role-management APIs distinguish read and write access, and writes require the Owner role.</div>
     <div class="box">
       <div class="label">Analytics history and freshness</div>
       Global Admin Console shows ChatGPT &amp; Codex credit analytics and Codex usage for up to <strong>120 days</strong>,
@@ -3492,7 +3560,7 @@ Admin keys require the <strong>Owner/Admin</strong> role in an eligible workspac
       <div class="label">How to compare analytics surfaces</div>
       Global Admin Console credit/Codex analytics and Workspace analytics are not duplicate views.
       The former is a consolidated cost, credit, and Codex view; the latter measures workspace adoption across GPTs, Projects, Skills, messages, and related activity.
-      When figures differ, first align workspace, UTC range, filters, metric definitions, and Last updated timestamps.
+      When figures differ, first align workspace, UTC range, filters, metric definitions, billing mode, amount units, conversion rates, and Last updated timestamps.
       Treat <strong>Billing → Invoices</strong> as the authority for settled charges.
     </div>
     <p style="font-size:.88rem;color:var(--muted)">
@@ -3564,7 +3632,8 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
         <tr><td>Manual invite</td><td>One-by-one or CSV from Members</td><td>Small pilots</td></tr>
         <tr><td>SCIM Directory Sync</td><td>Automatic invite and deprovision from IdP groups</td><td>Large-scale operations</td></tr>
         <tr><td>Automatic Account Creation</td><td>Verified-domain users are added when they log in</td><td>Open-domain rollout</td></tr>
-        <tr><td>Invite API endpoint</td><td>Can target specific projects</td><td>Platform-side integration</td></tr>
+        <tr><td>ChatGPT Workspace Invitations API</td><td>List, retrieve, create, resend, or delete workspace invitations using a workspace Admin key</td><td>ChatGPT/Codex onboarding automation · <a href="https://chatgpt.com/admin/api-reference#tag/Workspace%20Invitations" target="_blank">API reference</a></td></tr>
+        <tr><td>API Platform Invites API</td><td>Invite to an API organization with optional project-role assignments using a Platform Admin key</td><td>API Platform onboarding automation · <a href="https://platform.openai.com/docs/api-reference/invite" target="_blank">API reference</a></td></tr>
       </tbody>
     </table>
     <div class="box">
@@ -3627,19 +3696,19 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
     </ul>
     <div class="box green">
       <div class="label">Enterprise credit pool</div>
-      Enterprise uses a <strong>contract-level shared credit pool</strong>, not a default per-user cap.
+      Credit-based Enterprise contracts use a <strong>contract-level shared credit pool</strong>. User usage limits and the workspace overage limit are managed separately.
       Advanced features such as Deep Research, Thinking models, Image Gen, Advanced Voice, and Codex draw from this pool.
       If the pool is exhausted, advanced features may pause. Owners can configure <strong>usage alerts</strong> and
       <strong>hard overage limits</strong> in Billing to restrict usage beyond the committed plan.
       <a href="https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans" target="_blank">[Flexible pricing]</a>
     </div>
-    <h3 class="menu"><span class="num">11.1</span>Usage, Codex, and Credit Visibility Matrix</h3>
+    <h3 class="menu"><span class="num">11.1</span>Usage, Codex, Cost, and Credit Visibility Matrix</h3>
     <table>
       <thead><tr><th>Admin question</th><th>Primary surface</th><th>Per-user tracking</th><th>Operating limit</th></tr></thead>
       <tbody>
         <tr><td>General ChatGPT usage</td><td>Workspace Analytics → Users / GPTs / Projects / Skills</td><td>Users CSV shows aggregate message, tool, project, and related metrics</td><td>No message text, file contents, or item-level compliance record</td></tr>
         <tr><td>Codex usage</td><td>Global Admin Console → Codex + Codex Analytics Dashboard / CSV / JSON / Analytics API</td><td>Review user-level surface, session, message, credit, and token metrics</td><td>Operational reporting; audit-level source logs remain separate in Compliance API</td></tr>
-        <tr><td>ChatGPT/Codex credit usage</td><td>Global Admin Console → Analytics/Credits + Billing export</td><td>Review consumption drivers by product surface, metered item such as input/output/cached-input tokens, model, user, or agent</td><td>Global Admin Console analytics is limited to the most recent 120 days, so retain Billing exports for longer-term reporting</td></tr>
+        <tr><td>ChatGPT/Codex cost and credit usage</td><td>Global Admin Console → Analytics + Billing export + Costs API</td><td>Review consumption drivers by product surface, metered item such as input/output/cached-input tokens, model, user, or agent</td><td>Global Admin Console analytics is limited to the most recent 120 days, so retain Billing exports for longer-term reporting. See <a href="#codex-gov">§20.3</a> for API units and aggregation rules.</td></tr>
         <tr><td>ChatGPT/Codex Admin API automation</td><td>Global Admin Console → Credentials → Admin keys + <a href="https://chatgpt.com/admin/api-reference" target="_blank">Admin API reference</a></td><td>Depending on workspace role, automate analytics and cost reporting, Spend Controls API, group/member management, workspace directory, service accounts, and compliance scopes</td><td>The key is workspace-scoped, not a model-inference API key, and permitted scopes differ for owners and admins</td></tr>
         <tr><td>API Platform cost and usage</td><td>Platform Usage/Costs API (<code>/v1/organization/usage/*</code>, <code>/v1/organization/costs</code>)</td><td>Analyze usage and cost by API organization project, line item, API key, and model</td><td>Separate from ChatGPT workspace billing; use the Costs endpoint or Usage Dashboard Costs tab for financial reconciliation</td></tr>
         <tr><td>Audit / investigation</td><td>Compliance API</td><td>User activity can be audited</td><td>Not the operating surface for credit reporting</td></tr>
@@ -4713,22 +4782,59 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     </table>
 
     <h3 class="menu"><span class="num">20.3</span>Admin / Analytics / Cost APIs <span class="pill">programmatic</span></h3>
-    <p>
-      Separate two API families for BI, warehouse, and operating automation.
-      <strong>ChatGPT/Codex workspace Admin APIs</strong> use a workspace-scoped key created from Global Admin Console <strong>Credentials → Admin keys</strong>
-      and cover analytics, cost reporting, Spend Controls API, group/member management, service accounts, and compliance scopes.
-      <strong>API Platform Admin/Usage/Costs APIs</strong> use the API organization's <code>OPENAI_ADMIN_KEY</code> and <code>/v1/organization/*</code> endpoints and remain separate from ChatGPT workspace billing.
-      Neither key family is for model inference.
-    </p>
-    <ol>
-      <li>For ChatGPT/Codex workspace automation, select the workspace from <strong>Admin Console → Credentials → Admin keys</strong> and configure the key name, expiration, and permissions.</li>
-      <li>Owners choose All / Read only / Custom; admins choose None / Read / Write by available category and receive a Custom key. Broad compliance and Conversation messages are owner-only where supported; individual log-category access depends on role.</li>
-      <li>For API Platform cost and usage automation, call <code>/v1/organization/usage/*</code> and <code>/v1/organization/costs</code> with a Platform Admin API key. Use the Costs endpoint or Usage Dashboard Costs tab for financial reconciliation.</li>
-    </ol>
-    <pre><code># API Platform Costs API example
-curl -H "Authorization: Bearer $OPENAI_ADMIN_KEY" \
-  "https://api.openai.com/v1/organization/costs?start_time=1730419200&amp;group_by[]=project_id&amp;group_by[]=line_item"</code></pre>
-    <p>Primary references: <a href="https://chatgpt.com/admin/api-reference" target="_blank">ChatGPT Admin API reference</a> · <a href="https://help.openai.com/en/articles/20001407" target="_blank">Managing Admin keys</a> · <a href="https://platform.openai.com/docs/api-reference/usage" target="_blank">Platform Usage/Costs API</a> · <a href="https://platform.openai.com/docs/api-reference/admin-api-keys" target="_blank">Platform Admin API Keys</a></p>
+
+<p>Select APIs by <strong>what you need to read or change</strong>. ChatGPT/Codex Admin APIs use keys from <strong>Admin Console → Credentials → Admin keys</strong> and <code>https://api.chatgpt.com/v1</code>. Separate them from API Platform Admin keys and <code>https://api.openai.com/v1/organization/*</code>. Neither Admin key is for model inference.</p>
+<table>
+  <thead><tr><th>Purpose</th><th>API / data</th><th>Permission and scope</th></tr></thead>
+  <tbody>
+    <tr><td>Costs by product, user, or model</td><td>Costs <code>COSTS</code> logs</td><td><code>chatgpt.enterprise.compliance_logs_platform.costs.read</code>; organization route</td></tr>
+    <tr><td>Read/set limits and resolve increases</td><td>Spend Controls: workspace / group / user limits, monthly usage, increase requests</td><td><code>chatgpt.enterprise.usage_limit.read</code> / <code>chatgpt.enterprise.usage_limit.write</code>; workspace scope</td></tr>
+    <tr><td>Adoption and activity</td><td>Workspace Analytics: user / Project / GPT / survey logs</td><td><code>chatgpt.enterprise.compliance_logs_platform.workspace_analytics.read</code>; confirm availability</td></tr>
+    <tr><td>Combined daily ChatGPT and Codex usage</td><td>Daily Usage <strong>Alpha</strong></td><td><code>enterprise.analytics.usage.read</code>; availability, semantics, and fields may change</td></tr>
+    <tr><td>Codex operations</td><td>Turn Insights, daily usage, Code Review metrics</td><td><code>codex.enterprise.analytics.read</code>; workspace scope</td></tr>
+  </tbody>
+</table>
+<p>Creating keys requires the Owner/Admin role in an eligible workspace. Owners choose All / Read only / Custom; admins select None / Read / Write for available categories. Both the key scope and caller role must authorize the operation. Group Manager status alone does not grant Admin key creation.</p>
+
+<h4>Costs — dedicated access and units</h4>
+<p>For cost reporting alone, create a key with <strong>Costs → Read</strong> and every other category set to None. The <code>/compliance/</code> path <strong>does not require conversation-content access</strong>. Cost records may include user and group identity. Documentation v2.5.19 clarified this boundary on 2026-09-11; this clarification is separate from a new feature launch.</p>
+<p>Retrieve <code>COSTS</code> files through the organization route using the <strong>API Platform organization ID</strong>. The workspace logs route does not provide COSTS. Using that identifier does not make this the same dataset as the Platform Costs API below.</p>
+<pre><code># ChatGPT/Codex Costs: list cost log files
+curl --get "https://api.chatgpt.com/v1/compliance/organizations/$ORGANIZATION_ID/logs" \
+  -H "Authorization: Bearer $CHATGPT_ADMIN_API_KEY" \
+  --data-urlencode "event_type=COSTS" \
+  --data-urlencode "after=2026-09-01T00:00:00Z"</code></pre>
+<ul>
+  <li>The list response contains file metadata, not cost totals. Download and process the files, then use <code>last_end_time</code> for subsequent listings. Deduplicate ingestion by <code>event_id</code> and handle late arrivals.</li>
+  <li>Records are UTC hourly reporting rows with an expected <strong>3–5 hour</strong> delay. User/group attribution is under <code>payload.identity</code>; product, surface, and model are on <code>payload</code>.</li>
+  <li><code>payload.measures.billing[].cost.unit</code> is <strong>CREDITS or USD</strong>. Both can occur in one array, so sum separately by unit. Do not apply a credit conversion rate to native USD amounts.</li>
+  <li><code>estimated_cost_usd</code> is an optional dollar estimate for credit-priced entries only. It is not a total including native USD entries. Distinguish reported costs and these estimates from final invoice amounts.</li>
+</ul>
+
+<h4>Limit enforcement — Spend Controls</h4>
+<p>Spend Controls reads monthly limits and current usage, updates workspace/group/user limits, supports batch user changes, and approves or denies increase requests. Use Costs for detailed cost allocation. Set <code>temporary: true</code> for a user limit that expires with the current usage period, and inspect <code>limit_expires_at</code>. Configure the usage period itself in the Console; the API does not change it.</p>
+<pre><code># Read a user's current monthly usage and effective limit
+curl "https://api.chatgpt.com/v1/manage/workspaces/$WORKSPACE_ID/usage_limits/users/$USER_ID/monthly-usage" \
+  -H "Authorization: Bearer $CHATGPT_ADMIN_API_KEY"</code></pre>
+<p>Read <code>current_month_usage_unit</code> together with the limit's <code>limit_amount.unit</code>. <strong>The USD / credit unit must match workspace billing; the API does not convert between units.</strong> New integrations should use <code>limit_amount</code>. See Section 05.3 for the input shape and legacy <code>limit</code> compatibility.</p>
+
+<h4>Usage analytics — reporting records and availability</h4>
+<ul>
+  <li>Workspace Analytics logs provide daily user, Project, and GPT activity plus survey responses. They are historical reporting records, not live member/project inventories. <code>CHATGPT_USER_ANALYTICS.credits_used</code> is <strong>deprecated</strong> and may be absent from newer records; do not require it as an input to cost reporting.</li>
+  <li>Combined ChatGPT/Codex <strong>Daily Usage is Alpha</strong>. It returns UTC daily per-user rows or totals with <code>group=workspace</code>. Availability, metric semantics, and response fields can change before general availability.</li>
+  <li>Codex Turn Insights reports credit-priced usage in <code>credits</code> and native USD usage in <code>cost_usd</code>. Aggregate them separately, and do not replace unknown USD <code>null</code> values with zero. UTC date boundaries are inclusive, with a maximum 120-day range.</li>
+</ul>
+
+<h4>API Platform — separate usage and costs</h4>
+<p>API Platform <code>/organization/costs</code> supports the <code>api_key_ids</code> filter and grouping by <code>project_id</code>, <code>line_item</code>, and <code>api_key_id</code>. For model, token, and request analysis, check the dimensions supported by the relevant Usage endpoint. Do not assume every Usage API and Costs API supports the same dimensions.</p>
+<pre><code># API Platform Costs: costs by project and API key
+curl --get "https://api.openai.com/v1/organization/costs" \
+  -H "Authorization: Bearer $OPENAI_ADMIN_KEY" \
+  --data-urlencode "start_time=$START_TIME_UNIX" \
+  --data-urlencode "group_by[]=project_id" \
+  --data-urlencode "group_by[]=api_key_id"</code></pre>
+<p style="font-size:.88rem;color:var(--muted)">Verified 2026-09-14: <a href="https://chatgpt.com/admin/api-reference#tag/Version%20History" target="_blank">Admin API version history</a> · <a href="https://chatgpt.com/admin/api-reference#tag/Costs" target="_blank">Costs</a> · <a href="https://chatgpt.com/admin/api-reference#tag/Spend%20Controls" target="_blank">Spend Controls</a> · <a href="https://chatgpt.com/admin/api-reference#tag/Workspace%20Analytics" target="_blank">Workspace Analytics</a> · <a href="https://chatgpt.com/admin/api-reference#tag/Alpha%3A%20Daily%20Usage" target="_blank">Daily Usage Alpha</a> · <a href="https://chatgpt.com/admin/api-reference#operation/get-analytics-codex-workspaces-workspace-id-turn-insights" target="_blank">Codex Turn Insights</a> · <a href="https://help.openai.com/en/articles/20001407" target="_blank">Managing Admin keys</a> · <a href="https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/usage/methods/costs" target="_blank">Platform Costs</a></p>
+
 
     <h3 class="menu"><span class="num">20.4</span>Compliance API <span class="pill">audit</span></h3>
     <p>
@@ -4763,7 +4869,7 @@ curl -H "Authorization: Bearer $OPENAI_ADMIN_KEY" \
     <table>
       <thead><tr><th>Dimension</th><th>Workspace analytics</th><th>Codex Analytics</th><th>Compliance API</th></tr></thead>
       <tbody>
-        <tr><td>Target data</td><td>ChatGPT usage and optional credits fields</td><td>Codex usage, credits, and tokens</td><td>Conversations, Codex, auth, admin audit</td></tr>
+        <tr><td>Target data</td><td>ChatGPT activity metrics; use Costs logs for costs</td><td>Codex usage, credits, and tokens</td><td>Conversations, Codex, auth, admin audit</td></tr>
         <tr><td>Format</td><td>Dashboard + CSV</td><td>Dashboard + CSV/JSON + REST</td><td>Raw JSONL log files</td></tr>
         <tr><td>Message body</td><td>Not provided</td><td>Not provided</td><td>Available where covered by the log</td></tr>
         <tr><td>Latency</td><td>1–24 hour refresh; typically 6–12 hours</td><td>Credits/Codex typically 1–6 hours</td><td>Minute-level</td></tr>

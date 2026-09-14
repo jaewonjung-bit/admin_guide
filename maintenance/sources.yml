@@ -571,3 +571,59 @@ sources:
     cadence: weekly
     priority: high
     sections: [groups, permissions, analytics]
+
+  - id: admin-api-version-history
+    url: https://chatgpt.com/admin/api-reference#tag/Version%20History
+    owner: openai_docs
+    cadence: weekly
+    priority: high
+    sections: [permissions, analytics, groups, identity, billing, codex-gov]
+
+  - id: admin-api-spend-controls
+    url: https://chatgpt.com/admin/api-reference#tag/Spend%20Controls
+    owner: openai_docs
+    cadence: weekly
+    priority: high
+    sections: [permissions, billing, analytics, codex-gov]
+
+  - id: admin-api-costs
+    url: https://chatgpt.com/admin/api-reference#tag/Costs
+    owner: openai_docs
+    cadence: weekly
+    priority: high
+    sections: [analytics, billing, codex-gov]
+
+  - id: admin-api-workspace-analytics
+    url: https://chatgpt.com/admin/api-reference#tag/Workspace%20Analytics
+    owner: openai_docs
+    cadence: weekly
+    priority: high
+    sections: [analytics, codex-gov]
+
+  - id: admin-api-daily-usage-alpha
+    url: https://chatgpt.com/admin/api-reference#tag/Alpha%3A%20Daily%20Usage
+    owner: openai_docs
+    cadence: weekly
+    priority: high
+    sections: [analytics, codex-gov]
+
+  - id: admin-api-turn-insights
+    url: https://chatgpt.com/admin/api-reference#operation/get-analytics-codex-workspaces-workspace-id-turn-insights
+    owner: openai_docs
+    cadence: weekly
+    priority: high
+    sections: [analytics, codex-gov]
+
+  - id: admin-api-workspace-rbac
+    url: https://chatgpt.com/admin/api-reference#tag/Workspace%20Roles%20and%20Permissions
+    owner: openai_docs
+    cadence: weekly
+    priority: high
+    sections: [groups, permissions]
+
+  - id: platform-costs-current
+    url: https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/usage/methods/costs
+    owner: openai_docs
+    cadence: weekly
+    priority: high
+    sections: [billing, codex-gov]
