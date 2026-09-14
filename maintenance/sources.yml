@@ -2,7 +2,7 @@ guide:
   file: chatgpt-codex-enterprise-settings.html
   baseline_language: ko
   secondary_language: en
-  last_reviewed: 2026-07-15
+  last_reviewed: 2026-09-14
 
 sources:
   - id: workspace-settings
@@ -124,6 +124,20 @@ sources:
     priority: high
     sections: [general, identity, analytics, codex-gov]
 
+  - id: admin-keys
+    url: https://help.openai.com/en/articles/20001407
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [general, analytics, codex-gov]
+
+  - id: personal-analytics
+    url: https://help.openai.com/en/articles/20001478
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [analytics, codex-gov]
+
   - id: workspace-impact-surveys
     url: https://help.openai.com/en/articles/20001149-managing-impact-surveys-in-workspace-analytics
     owner: openai_help
@@ -138,6 +152,27 @@ sources:
     priority: high
     sections: [permissions, billing, analytics]
 
+  - id: chatgpt-sites-admin
+    url: https://help.openai.com/en/articles/20001338
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [apps]
+
+  - id: plugin-marketplace-sync
+    url: https://help.openai.com/en/articles/20001504
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [apps, codex-policies]
+
+  - id: chatgpt-voice
+    url: https://help.openai.com/en/articles/20001274
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [general, permissions, billing, codex-toggle]
+
   - id: chatgpt-library
     url: https://help.openai.com/en/articles/20001052-library-for-chatgpt
     owner: openai_help
@@ -145,15 +180,8 @@ sources:
     priority: high
     sections: [general, codex-gov]
 
-  - id: sso-overview
-    url: https://help.openai.com/en/articles/10468051-sso-overview
-    owner: openai_help
-    cadence: monthly
-    priority: medium
-    sections: [identity]
-
   - id: configuring-sso
-    url: https://help.openai.com/en/articles/9534785-configuring-sso
+    url: https://help.openai.com/en/articles/9534785
     owner: openai_help
     cadence: monthly
     priority: medium
@@ -195,8 +223,8 @@ sources:
     sections: [codex-gov]
 
   - id: codex-admin-setup
-    url: https://developers.openai.com/codex/enterprise/admin-setup
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/enterprise/admin-setup
+    owner: openai_learn
     cadence: weekly
     priority: high
     sections: [codex-intro, codex-toggle, codex-cloud-toggle, codex-rbac, codex-policies, codex-review]
@@ -229,128 +257,219 @@ sources:
     priority: high
     sections: [permissions, codex-policies, codex-team]
 
+  - id: codex-work-admin-faq
+    url: https://learn.chatgpt.com/docs/enterprise/work-admin-faq
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [general, permissions, codex-toggle]
+
+  - id: codex-groups-provisioning
+    url: https://learn.chatgpt.com/docs/enterprise/groups-and-provisioning
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [groups, identity, codex-rbac]
+
+  - id: codex-roles-workspace-permissions
+    url: https://learn.chatgpt.com/docs/enterprise/roles-and-workspace-permissions
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [permissions, codex-rbac]
+
+  - id: codex-apps-connectors
+    url: https://learn.chatgpt.com/docs/enterprise/apps-and-connectors
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [apps, codex-policies]
+
+  - id: codex-skills
+    url: https://learn.chatgpt.com/docs/enterprise/skills
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [permissions, apps, codex-policies]
+
+  - id: codex-service-accounts
+    url: https://learn.chatgpt.com/docs/enterprise/service-accounts
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [codex-rbac, codex-gov]
+
+  - id: manage-app-updates
+    url: https://learn.chatgpt.com/docs/enterprise/manage-app-updates
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [codex-managed, codex-policies]
+
+  - id: codex-workspace-model-availability
+    url: https://learn.chatgpt.com/docs/enterprise/workspace-model-availability
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [available-models, codex-toggle]
+
+  - id: codex-workspace-analytics
+    url: https://learn.chatgpt.com/docs/enterprise/workspace-analytics
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [analytics, codex-gov]
+
+  - id: codex-analytics-api
+    url: https://learn.chatgpt.com/docs/enterprise/analytics-api
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [analytics, codex-gov]
+
+  - id: codex-compliance-api
+    url: https://learn.chatgpt.com/docs/enterprise/compliance-api
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [codex-gov]
+
+  - id: codex-windows-deployment
+    url: https://learn.chatgpt.com/docs/enterprise/windows-deployment
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [codex-managed]
+
   - id: codex-managed-configuration
-    url: https://developers.openai.com/codex/enterprise/managed-configuration
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/enterprise/managed-configuration
+    owner: openai_learn
     cadence: weekly
     priority: high
     sections: [codex-policies, codex-managed]
 
   - id: codex-governance
-    url: https://developers.openai.com/codex/enterprise/governance
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/enterprise/governance
+    owner: openai_learn
     cadence: weekly
     priority: high
     sections: [codex-gov]
 
   - id: codex-access-tokens
-    url: https://developers.openai.com/codex/enterprise/access-tokens
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/enterprise/access-tokens
+    owner: openai_learn
     cadence: weekly
     priority: high
     sections: [codex-toggle, codex-rbac, codex-gov]
 
   - id: codex-remote-connections
-    url: https://developers.openai.com/codex/remote-connections
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/remote-connections
+    owner: openai_learn
     cadence: weekly
     priority: high
     sections: [codex-cloud-toggle, codex-team]
 
   - id: codex-plugins
-    url: https://developers.openai.com/codex/plugins
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/plugins
+    owner: openai_learn
     cadence: weekly
     priority: high
     sections: [apps, codex-toggle, codex-policies, codex-team]
 
   - id: codex-sites
-    url: https://developers.openai.com/codex/sites
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/sites
+    owner: openai_learn
     cadence: weekly
     priority: high
     sections: [apps, codex-toggle]
 
   - id: codex-computer-use
-    url: https://developers.openai.com/codex/app/computer-use
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/computer-use
+    owner: openai_learn
     cadence: weekly
     priority: high
     sections: [codex-toggle, codex-cloud-toggle, codex-policies, codex-managed]
 
+  - id: computer-history
+    url: https://learn.chatgpt.com/docs/customization/computer-history
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [general, codex-toggle, codex-policies]
+
   - id: codex-record-and-replay
-    url: https://developers.openai.com/codex/record-and-replay
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/extend/record-and-replay
+    owner: openai_learn
     cadence: weekly
     priority: high
     sections: [codex-toggle]
 
   - id: codex-in-app-browser
-    url: https://developers.openai.com/codex/app/browser
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/browser?surface=app
+    owner: openai_learn
     cadence: weekly
     priority: high
     sections: [codex-toggle, codex-policies]
 
   - id: codex-config-reference
-    url: https://developers.openai.com/codex/config-reference
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/config-file/config-reference
+    owner: openai_learn
     cadence: weekly
     priority: high
     sections: [codex-policies, codex-managed, codex-team]
 
   - id: codex-auth
-    url: https://developers.openai.com/codex/auth
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/auth
+    owner: openai_learn
     cadence: monthly
     priority: medium
     sections: [codex-toggle]
 
   - id: codex-approvals-security
-    url: https://developers.openai.com/codex/agent-approvals-security
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/agent-approvals-security
+    owner: openai_learn
     cadence: monthly
     priority: medium
     sections: [codex-policies]
 
   - id: codex-security
-    url: https://developers.openai.com/codex/security
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/security
+    owner: openai_learn
     cadence: monthly
     priority: medium
     sections: [codex-security]
 
   - id: codex-security-setup
-    url: https://developers.openai.com/codex/security/setup
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/security/setup
+    owner: openai_learn
     cadence: monthly
     priority: medium
     sections: [codex-security]
 
   - id: codex-security-threat-model
-    url: https://developers.openai.com/codex/security/threat-model
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/security/threat-model
+    owner: openai_learn
     cadence: monthly
     priority: medium
     sections: [codex-security]
 
   - id: codex-cloud-environments
-    url: https://developers.openai.com/codex/cloud/environments
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/environments/cloud-environment
+    owner: openai_learn
     cadence: weekly
     priority: high
     sections: [codex-cloud]
 
   - id: codex-github
-    url: https://developers.openai.com/codex/integrations/github
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/third-party/github
+    owner: openai_learn
     cadence: monthly
     priority: medium
     sections: [codex-cloud]
 
   - id: codex-config-basic
-    url: https://developers.openai.com/codex/config-basic
-    owner: openai_developers
+    url: https://learn.chatgpt.com/docs/config-file/config-basic
+    owner: openai_learn
     cadence: monthly
     priority: medium
     sections: [codex-team]
@@ -368,3 +487,87 @@ sources:
     cadence: monthly
     priority: low
     sections: [codex-managed]
+
+  - id: enterprise-models-limits
+    url: https://help.openai.com/en/articles/11165333-chatgpt-enterprise-and-edu-models-limits
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [available-models, permissions, codex-toggle]
+
+  - id: data-plugin
+    url: https://help.openai.com/en/articles/20001518
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [apps, permissions]
+
+  - id: deep-research
+    url: https://help.openai.com/en/articles/10500283
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [apps, billing, permissions]
+
+  - id: chatgpt-pricing
+    url: https://learn.chatgpt.com/docs/pricing
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [permissions, available-models, billing]
+
+  - id: custom-gpt-retirement
+    url: https://help.openai.com/en/articles/20001519
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [gpts]
+
+  - id: app-permissions
+    url: https://help.openai.com/en/articles/20001495
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [apps]
+
+  - id: google-drive-setup
+    url: https://help.openai.com/en/articles/10929079
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [apps]
+
+  - id: developer-mode-mcp-apps
+    url: https://help.openai.com/en/articles/12584461
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [apps]
+
+  - id: codex-appshots
+    url: https://learn.chatgpt.com/docs/appshots
+    owner: openai_learn
+    cadence: weekly
+    priority: medium
+    sections: [codex-toggle]
+
+  - id: codex-work-local-security
+    url: https://learn.chatgpt.com/docs/enterprise/chatgpt-work-local-security
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [codex-intro, codex-policies]
+
+  - id: codex-linux-desktop
+    url: https://learn.chatgpt.com/docs/linux/linux-app
+    owner: openai_learn
+    cadence: weekly
+    priority: high
+    sections: [codex-toggle, codex-rbac]
+
+  - id: group-managers
+    url: https://help.openai.com/en/articles/9083985
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [groups, permissions, analytics]
