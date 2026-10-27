@@ -465,7 +465,7 @@
       각 메뉴의 위치, 역할, 권장 설정값, 그리고 OpenAI 공식 화면 캡처와 출처 링크를 함께 제공합니다.
     </p>
     <div class="meta">
-      <span data-i18n="meta-updated">최종 업데이트: 2026-09-14</span>
+      <span data-i18n="meta-updated">최종 업데이트: 2026-10-27</span>
       <span data-i18n="meta-sources">출처: OpenAI Help Center · OpenAI Academy · ChatGPT Learn</span>
       <span data-i18n="meta-language">지원 언어: 한국어 / English</span>
     </div>
@@ -496,7 +496,7 @@
     <li><a href="#codex-toggle" data-i18n="toc-codex-tabs">Codex 사용 환경·OS 탭</a></li>
     <li><a href="#codex-cloud-toggle" data-i18n="toc-codex-cloud-toggle">Codex Cloud 토글</a></li>
     <li><a href="#codex-rbac" data-i18n="toc-codex-rbac">Codex RBAC · 사용자 로그인</a></li>
-    <li><a href="#codex-policies" data-i18n="toc-codex-policies">Policies (requirements.toml)</a></li>
+    <li><a href="#codex-policies" data-i18n="toc-codex-policies">Agent Security (requirements.toml)</a></li>
     <li><a href="#codex-managed" data-i18n="toc-codex-managed">Managed Configuration (OS별 가이드)</a></li>
     <li><a href="#codex-team">Team Config (.codex)</a></li>
     <li><a href="#codex-cloud" data-i18n="toc-codex-cloud">Cloud 환경 &amp; GitHub</a></li>
@@ -558,7 +558,7 @@
     ※ 2026년 1월 업데이트로 기존 <em>“Settings &amp; permissions”</em> 탭은
     <strong>Permissions &amp; Roles</strong>로, <em>Identity &amp; provisioning</em>과
     <em>IP allowlists</em>는 <strong>Identity &amp; Access</strong>로 통합되었습니다.
-    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[릴리스 노트]</a>
+    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">[릴리스 노트]</a>
   </p>
 </section>
 
@@ -605,7 +605,7 @@
     <li><strong>조직 SSO(SAML/OIDC)에 연결된 계정에는 제공되지 않을 수 있고, Codex CLI 세션도 여기서 관리하지 않습니다.</strong></li>
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
-    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Enterprise/Edu 릴리스 노트</a>
+    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">Enterprise/Edu 릴리스 노트</a>
   </p>
 
   <h3 class="menu"><span class="num">02.6</span>Library — 파일 저장소와 자동 참조</h3>
@@ -618,7 +618,7 @@
 <li>Google Drive 초기 범위는 My Drive와 직접 공유된 항목이며 Shared Drives는 아직 포함되지 않습니다. 원본 접근 권한을 따르고, 지원·승인된 작업은 원본을 직접 수정할 수 있습니다.</li>
 <li>Compliance 관리자는 Library 전용 endpoint로 내보내기·삭제할 수 있습니다.</li>
 </ul>
-<p style="font-size:.88rem;color:var(--muted)">출처: <a href="https://help.openai.com/en/articles/20001052-library-for-chatgpt" target="_blank">Library</a> · <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">9월 9일 공유 업데이트</a></p>
+<p style="font-size:.88rem;color:var(--muted)">출처: <a href="https://help.openai.com/en/articles/20001052-library-for-chatgpt" target="_blank">Library</a> · <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">9월 9일 공유 업데이트</a></p>
 
 
   <h3 class="menu"><span class="num">02.7</span>Improved memory — 개선된 메모리</h3>
@@ -633,7 +633,7 @@
     <li><strong>Codex memory에는 영향이 없습니다.</strong> 프로젝트 전용 메모리는 프로젝트 안에만 머물며, 프로젝트 밖 메모리나 대화를 사용하지 않습니다.</li>
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
-    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Enterprise/Edu 릴리스 노트</a>
+    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">Enterprise/Edu 릴리스 노트</a>
    · <a href="https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise" target="_blank">Workspace settings</a></p>
 </section>
 
@@ -704,8 +704,8 @@
     <li>그룹 생성·삭제, 멤버 추가/제거</li>
     <li>그룹 멤버십 검토</li>
     <li>SCIM 동기화 그룹은 이름 옆에 <strong>SCIM 배지</strong>가 표시되어 직접 관리 그룹과 구분</li>
-    <li><strong>테넌트 전역 SCIM</strong>은 지원되는 ChatGPT workspace와 Ads account에 product access를 배정하지만 API Platform organization은 프로비저닝하지 않습니다.</li>
-    <li><strong>워크스페이스 단위 SCIM</strong>도 계속 지원됩니다. 연결된 ChatGPT workspace 또는 API organization에 product-level SCIM이 활성 상태이면 tenant-wide SCIM을 켤 수 없으므로, 작동 중인 연결을 삭제하지 말고 승인된 마이그레이션을 먼저 계획합니다.</li>
+    <li><strong>테넌트 전역 SCIM</strong>은 지원되는 ChatGPT workspace와 Ads account에 product access를 배정합니다. Enterprise/Edu 테넌트에서는 API organization 및 지원되는 project 접근도 배정할 수 있습니다.</li>
+    <li><strong>워크스페이스 단위 SCIM</strong>도 계속 지원됩니다. tenant-wide와 product-level SCIM은 함께 활성화할 수 있습니다. 다만 product-level SCIM이 켜진 리소스의 tenant-wide Product access assignment는 변경할 수 없으므로 account team과 이전을 조정합니다.</li>
     <li>tenant-wide SCIM은 같은 이름의 수동 그룹을 인수하지 않고 별도 동기화 그룹을 만들 수 있습니다. workspace-level SCIM은 구성에 따라 기존 동명 그룹을 IdP 관리로 전환할 수 있으므로 범위를 구분해 확인합니다.</li>
   </ul>
   <div class="box green">
@@ -720,7 +720,7 @@
 <ul><li>위임 가능: <strong>View group analytics / Manage spend controls / Manage model access and defaults</strong>.</li><li><strong>Edit permissions on assigned roles</strong>의 위임은 Owner만 변경할 수 있습니다. 여러 그룹이 같은 Custom Role을 공유하면 역할 수정이 모든 대상 그룹에 영향을 줍니다.</li><li>그룹 생성·삭제, 역할 할당/해제, 그룹 관리자 임명 및 자기 권한 확대는 위임에 포함되지 않습니다. SCIM 멤버십은 IdP에서 관리합니다.</li></ul>
 <p><a href="https://help.openai.com/en/articles/9083985" target="_blank">→ 그룹 관리자 권한과 범위</a></p>
 <h3 class="menu"><span class="num">04.2</span>멤버·그룹·역할의 Admin API 자동화</h3>
-<p><strong>2026-08-20 Invitations / Users API</strong>: 초대 조회·생성·재전송·삭제와 가입 완료 멤버 조회를 자동화합니다. 멤버의 기본 역할·seat 변경과 workspace 탈퇴 처리는 <strong>Owner</strong> 권한이 필요하며, SCIM 관리 변경은 IdP를 통하고 마지막 Owner 보호가 적용됩니다. <strong>2026-09-11 Groups API</strong>는 대상 workspace에서 그룹 생성·수정·삭제를 지원합니다. <strong>Credentials → Admin keys</strong>에서 해당 workspace의 최소 필요 권한을 부여합니다. Group manager 지정만으로 Admin key 사용 권한을 얻지는 않습니다. <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[8/20·9/11 릴리즈 노트]</a> · <a href="https://help.openai.com/en/articles/20001407" target="_blank">[Admin key 권한]</a></p>
+<p><strong>2026-08-20 Invitations / Users API</strong>: 초대 조회·생성·재전송·삭제와 가입 완료 멤버 조회를 자동화합니다. 멤버의 기본 역할·seat 변경과 workspace 탈퇴 처리는 <strong>Owner</strong> 권한이 필요하며, SCIM 관리 변경은 IdP를 통하고 마지막 Owner 보호가 적용됩니다. <strong>2026-09-11 Groups API</strong>는 대상 workspace에서 그룹 생성·수정·삭제를 지원합니다. <strong>Credentials → Admin keys</strong>에서 해당 workspace의 최소 필요 권한을 부여합니다. Group manager 지정만으로 Admin key 사용 권한을 얻지는 않습니다. <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">[8/20·9/11 릴리즈 노트]</a> · <a href="https://help.openai.com/en/articles/20001407" target="_blank">[Admin key 권한]</a></p>
 <p><strong>Workspace Roles and Permissions API</strong>: Custom Role과 그룹의 역할 할당을 관리합니다. 조회는 활성 Owner/Admin + <code>chatgpt.enterprise.rbac.read</code>, 변경은 활성 Owner + <code>chatgpt.enterprise.rbac.write</code>가 필요합니다. Admin은 write scope가 있어도 변경할 수 없습니다. 이 API의 Custom Role·그룹 할당과 Users API의 기본 멤버 역할·seat 변경을 구분하며, 개인 사용자에게 Custom Role을 직접 할당하는 변경 API는 포함하지 않습니다. <a href="https://chatgpt.com/admin/api-reference#tag/Workspace%20Roles%20and%20Permissions" target="_blank">[RBAC API 범위]</a></p>
 </section>
 
@@ -819,7 +819,7 @@
     <div class="label">설정 동기화와 분석 데이터 갱신은 다른 문제</div>
     Admin Console과 Workspace analytics 사이에 공개된 단일 “동기화 주기”는 없습니다.
     Global Admin Console의 ChatGPT/Codex credit·Codex usage analytics는 보통 <strong>1~6시간</strong>, ChatGPT usage는 최대 <strong>48시간</strong> 지연될 수 있습니다.
-    Workspace settings → Workspace analytics는 <strong>1~24시간마다 갱신</strong>되고 보통 <strong>6~12시간</strong> 내 반영되며, UTC 보고일 기준 최대 48시간을 목표로 합니다.
+    Admin Console → Usage / Insights는 <strong>1~24시간마다 갱신</strong>되고 보통 <strong>6~12시간</strong> 내 반영되며, UTC 보고일 기준 최대 48시간을 목표로 합니다.
     동일 workspace·UTC 기간·필터·각 화면의 Last updated 시각을 맞춰 비교하고, 확정 청구는 <strong>Billing → Invoices</strong>를 기준으로 봅니다.
     이 가이드에서는 설정·정책 전파에는 <strong>동기화(sync)</strong>, 대시보드 데이터 지연에는 <strong>갱신(refresh)·반영 지연</strong>이라는 용어를 사용합니다.
   </div>
@@ -888,7 +888,8 @@
     <a href="https://learn.chatgpt.com/docs/get-started-with-work" target="_blank">Get started with Work</a> ·
     <a href="https://learn.chatgpt.com/docs/automations" target="_blank">Scheduled tasks</a>
   </p>
-<p style="font-size:.88rem;color:var(--muted)">출처: <a href="https://help.openai.com/en/articles/10500283" target="_blank">Deep research</a> · <a href="https://help.openai.com/en/articles/20001518" target="_blank">Data plugin</a> · <a href="https://help.openai.com/en/articles/20001274" target="_blank">ChatGPT Voice</a> · <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">September release notes</a></p>
+<p style="font-size:.88rem;color:var(--muted)">출처: <a href="https://help.openai.com/en/articles/10500283" target="_blank">Deep research</a> · <a href="https://help.openai.com/en/articles/20001518" target="_blank">Data plugin</a> · <a href="https://help.openai.com/en/articles/20001274" target="_blank">ChatGPT Voice</a> · <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">September release notes</a></p>
+<h3 class="menu"><span class="num">05.7</span>Member profiles — Enterprise 내부 프로필</h3><p>Owner는 <strong>Workspace settings → Permissions &amp; roles → Member profiles</strong>에서 프로필·활동 제공 여부와 Member profile sharing을 관리합니다. Only the profile owner 또는 Workspace members only를 선택합니다. Enterprise 프로필은 같은 workspace 안에서만 공유되며 대화 제목·본문은 표시하지 않습니다. 프로필에 Site를 추가해도 Site 접근 권한은 바뀌지 않습니다. <a href="https://help.openai.com/en/articles/20001539-shareable-profiles-in-chatgpt" target="_blank">공식 도움말</a></p>
 </section>
 
 <!-- ============ MODELS ============ -->
@@ -898,7 +899,7 @@
   <div class="path">Admin Console → workspace → <b>Models</b> · Workspace settings → <b>Models / Permissions &amp; roles</b></div>
   <p>모델 접근 권한과 시작 모델은 별도 설정입니다. 제품·seat·배포 상태에 따라 선택 가능한 모델이 달라지며, 시작 모델을 지정해도 추가 권한이 생기지 않습니다.</p>
   <div class="box green">
-    <div class="label">GPT-6 Astra — 2026-09-14 확인</div>
+    <div class="label">GPT-6 Astra — 2026-10-27 확인</div>
     대상 Enterprise/Edu에서 Astra는 출시 시 <strong>기본 OFF</strong>이고 점진 배포됩니다. 기존 Early Model Access는 승계되지 않으며 <strong>2주 후 자동 활성화되지 않습니다</strong>.
     Owner가 제공된 모델 접근 제어에서 워크스페이스 또는 역할별로 허용합니다. Chat의 <strong>GPT-6 Pro</strong>는 Astra 기반이며 Work/Codex와 제공 시점이 다를 수 있습니다.
     <a href="https://help.openai.com/en/articles/11165333-chatgpt-enterprise-and-edu-models-limits" target="_blank">[Models &amp; Limits]</a>
@@ -913,7 +914,7 @@
     <div class="label">Chat 모델 선택기</div>
     <strong>Instant / Medium / High / Extra High / Pro Standard / Pro Extended</strong> 등의 옵션은 현재 모델 접근 권한과 배포 상태를 따릅니다.
     Medium·High·Extra High는 추론 수준을 구분하며, 권한이 없는 옵션은 표시되지 않습니다. 자동 추론 라우팅도 Models에서 확인합니다.
-    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Release notes]</a>
+    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">[Release notes]</a>
   </div>
   <div class="box">
     <div class="label">Work / Codex 모델과 추론 수준</div>
@@ -934,6 +935,7 @@
     OpenAI o3의 ChatGPT 지원 종료일은 2026-08-26입니다. 일부 Learn 문서의 Astra ‘첫 2주’ 설명과 달리, 이 가이드는 최신 Models &amp; Limits의 자동 활성화 없음 안내를 따릅니다.
     <a href="https://learn.chatgpt.com/docs/enterprise/workspace-model-availability" target="_blank">[Workspace model availability]</a> · <a href="https://help.openai.com/en/articles/11481834-chatgpt-rate-card" target="_blank">[Rate Card]</a>
   </div>
+<h3 class="menu"><span class="num">06.1</span>2026-10-27 모델 접근 업데이트</h3><p><strong>GPT-6 Chat</strong>은 기존 GPT-6 Sol 접근 설정을 사용하며 Pro는 별도 Astra 제어를 따릅니다. <strong>GPT-6.1 Sol / GPT-6.1 Terra</strong>는 Work·Codex 모델입니다. Terra는 10월 26일부터 점진 배포되며 Chat에는 제공되지 않습니다. 모델과 Work/Codex 사용 권한을 모두 확인합니다.</p><p>시작 모델 설정이 접근 권한을 부여하지는 않습니다. 보이지 않으면 최신 앱, rollout, 할당 역할을 확인하고 Admin Console → Models → Test로 진단합니다. <a href="https://help.openai.com/en/articles/11165333-chatgpt-enterprise-and-edu-models-and-limits" target="_blank">Models &amp; limits</a> · <a href="https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex" target="_blank">Work 및 Codex 모델</a></p>
 </section>
 
 <!-- ============ GPTs ============ -->
@@ -948,9 +950,9 @@
     <a href="https://help.openai.com/en/articles/8555535-gpts-chatgpt-enterprise-version" target="_blank">→ GPT access/governance 공식 가이드</a>
   </p>
 
-  <div class="warn"><span class="label">2026-09-14 기준 · Custom GPT 지원 종료 준비</span>아래 일정은 <strong>영향받는 Enterprise 워크스페이스</strong>의 계획이며 변경될 수 있습니다. 다른 플랜의 사용자가 이용하는 공개 GPT도 생성된 Enterprise 워크스페이스에 따라 영향을 받습니다. 실제 적용 범위는 해당 워크스페이스 공지를 확인합니다.</div>
+  <div class="warn"><span class="label">2026-10-27 확인 · Custom GPT 생성 중단 및 지원 종료 준비</span>아래 일정은 <strong>영향받는 Enterprise 워크스페이스</strong>의 계획이며 변경될 수 있습니다. 다른 플랜의 사용자가 이용하는 공개 GPT도 생성된 Enterprise 워크스페이스에 따라 영향을 받습니다. 실제 적용 범위는 해당 워크스페이스 공지를 확인합니다.</div>
 <h3 class="menu"><span class="num">07.0</span>지원 종료 일정과 이전 점검</h3>
-<table><thead><tr><th>계획일</th><th>의미</th></tr></thead><tbody><tr><td>2026-09-11</td><td>관리자 사전 공지</td></tr><tr><td>2026-09-17</td><td>마이그레이션 기능·배너 제공 목표일 — 전 계정 동시 제공 보장 아님</td></tr><tr><td>2026-09-25</td><td>신규 Custom GPT 생성 종료 예정 — 이전할 초안은 그 전에 게시(공개 공유 불필요)</td></tr><tr><td>2026-12-11</td><td>Custom GPT 실행 종료 예정</td></tr></tbody></table><ul>
+<table><thead><tr><th>계획일</th><th>의미</th></tr></thead><tbody><tr><td>2026-09-11</td><td>관리자 사전 공지</td></tr><tr><td>2026-09-22</td><td>마이그레이션 기능·배너 제공 목표일 — 전 계정 동시 제공 보장 아님</td></tr><tr><td>2026-10-26</td><td>대상 Enterprise 신규 GPT 생성 중단 적용 완료(FedRAMP 제외). 기존 미이전 GPT는 편집 가능</td></tr><tr><td>2026-12-11</td><td>일반 지원 종료 예정. 승인된 연기 대상·FedRAMP는 2027-02-11 적용; 개별 공지 확인</td></tr></tbody></table><ul>
 <li><strong>이전 조건</strong>: Plugins 활성화 + 게시된 GPT + 작성자 또는 워크스페이스 Admin. 초안은 직접 이전할 수 없습니다. 내장 이전에는 Upload plugins / Upload plugins with custom MCP servers 권한이 필요하지 않습니다.</li>
 <li><strong>전환 내용</strong>: 지침은 plugin의 skill로, 연결 Apps는 plugin의 apps로 이전됩니다. 참조 파일·템플릿·도구를 검토하고, 대화 시작 문구·이전 대화는 복사를 기대하지 않습니다. 선택 모델은 유지되지 않고 Enterprise 기본값을 따릅니다.</li>
 <li><strong>Custom Actions</strong>: 자동 이전되지 않습니다. 필요한 연결은 지원되는 앱 또는 custom MCP server로 재구성한 뒤 기능·권한을 검증합니다.</li>
@@ -1020,14 +1022,12 @@
 <li><strong>App templates</strong>: GitHub Enterprise·Snowflake·Databricks 등에서 만든 앱은 검토·게시 후 동일한 역할·동작·권한 체계로 관리합니다.</li>
 </ul><p>현재 App permissions: <strong>Always ask</strong>(읽기·변경 전 확인), <strong>Allow read actions</strong>(읽기는 자동, 변경 전 확인), <strong>Allow low-risk actions</strong>(저위험 자동, 고위험 확인 또는 거부), <strong>Allow all actions</strong>(지원되는 개별 앱에만 제공 가능). 마지막 옵션은 표준 워크스페이스 전체 선택기에 없습니다. 권한 설정은 provider 승인·동작 제한·안전 보호를 우회하지 않습니다. <a href="https://help.openai.com/en/articles/20001495" target="_blank">[앱 권한]</a></p>
 
-<h3 class="menu"><span class="num">08.2</span>Sync(인덱싱)와 실시간 앱 동작</h3>
-<ul>
-<li><strong>개인별 sync 종료</strong>: 신규 개인 인증 sync는 2026-08-10 중단, 기존 연결은 08-14 비활성화 및 동기화 데이터 삭제 시작이 공지되었습니다. Quick setup·개인 sync 안내를 사용하지 않습니다. 관리자 관리형 sync는 유지됩니다.</li>
-<li><strong>Google Drive</strong>: 관리자 관리형 sync는 별도 인덱스를 구성합니다. 개인 계정 연결은 실시간 파일 접근만 제공하며 개인 인덱스를 만들지 않습니다. 필요한 경우 Shared Drive·폴더·파일 형식과 계정 매칭을 관리합니다.</li>
-<li><strong>Google Docs / Sheets / Slides</strong>: Google Drive 앱으로 통합되었습니다. Enterprise/Edu 신규 통합 동작은 관리자 활성화와 필요한 Google Workspace scope 승인을 확인합니다.</li>
-<li><strong>제어 범위</strong>: sync 콘텐츠 선택과 실시간 Actions 권한은 별개입니다. 실시간 동작을 막아도 인덱스 검색을 모두 막는 것은 아니며, sync 제외가 실시간 접근까지 차단하는 것도 아닙니다.</li>
-<li><strong>이전 점검</strong>: Drive·SharePoint에 인덱스가 필요하면 관리자 관리형 sync를 구성하고, GitHub는 non-synced plugin을 확인합니다. EKM 지원·레지던시·사용 가능 지역은 앱별 현재 문서와 워크스페이스 설정을 확인합니다.</li>
-</ul><p><a href="https://help.openai.com/en/articles/10929079" target="_blank">[Google Drive 설정]</a> · <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[개인 sync 종료 공지]</a></p>
+<h3 class="menu"><span class="num">08.2</span>Sync 종료와 실시간 앱 전환</h3><div class="warn"><span class="label">2026-10-16 변경</span>관리자 관리형 sync connectors도 종료되었습니다. 기존 인덱스 구성을 신규 도입 절차로 안내하지 않습니다.</div><ul>
+<li><strong>사용 경로</strong>: Google Drive, SharePoint, Microsoft Teams의 실시간 앱을 사용합니다. 각 사용자의 연결 계정과 원본 서비스 권한이 적용됩니다.</li>
+<li><strong>Google Docs / Sheets / Slides</strong>: Google Drive 앱에서 지원합니다. ChatGPT의 허용 Actions와 Google Workspace의 OAuth scope 승인을 함께 확인합니다.</li>
+<li><strong>콘텐츠 제한</strong>: 대상 Enterprise의 앱 설정에서 Safety &amp; Security Controls를 확인합니다. 과거 sync 제외 목록만으로 실시간 접근이 제한된다고 가정하지 않습니다.</li>
+<li><strong>Drive 설정</strong>: Allowed drives 또는 Blocked drives 중 하나를 선택하고 Allow My Drive를 별도로 설정합니다. 빈 Allowed 목록은 모든 shared drive를 차단하며, 빈 Blocked 목록은 아무 drive도 제외하지 않습니다. My Drive 기본값은 ON입니다.</li>
+<li><strong>검증</strong>: Save 후 설정을 다시 열어 확인하고, 새 대화에서 허용 위치와 제외 위치를 각각 테스트합니다. 이미 대화·Memory에 들어온 내용은 콘텐츠 제한 변경으로 삭제되지 않습니다.</li></ul><p><a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">Sync 종료 공지</a> · <a href="https://help.openai.com/en/articles/10929079" target="_blank">Google Drive 설정</a> · <a href="https://help.openai.com/en/articles/20001608-managing-google-drive-access-in-chatgpt" target="_blank">Google Drive 콘텐츠 제어</a></p>
 
 <h3 class="menu"><span class="num">08.3</span>RBAC for Plugins &amp; Apps</h3>
 <p>Permissions &amp; roles → Custom roles → <strong>Plugins &amp; connected data</strong>에서 <em>Allow members to use plugins</em> 또는 <em>Use plugins</em>를 설정하고, <strong>Select</strong>로 해당 역할의 앱을 선택합니다. FedRAMP는 <em>Use apps</em>로 표시될 수 있습니다. Marketing에는 Drive/Slack, Engineering에는 GitHub/Linear를 추가하는 식으로 운영하되, plugin 설치와 포함 앱 접근을 각각 확인합니다. <a href="https://help.openai.com/en/articles/11509118" target="_blank">[Plugin·앱 관리]</a></p>
@@ -1044,28 +1044,9 @@
   </ul>
 
   <p><a href="https://help.openai.com/en/articles/12584461" target="_blank">[Custom MCP apps / Developer mode]</a></p>
-<h3 class="menu"><span class="num">08.5</span>Microsoft 계열 연결 시 주의</h3>
-  <p>
-    Outlook, Teams, SharePoint 연결은 <strong>Microsoft Entra ID(구 Azure AD)</strong>에서
-    각 서비스마다 권한 부여가 선행되어야 합니다. 특히 2026년 4월 기준 <strong>admin-managed SharePoint sync</strong>는
-    delegated scope에서 <strong>Microsoft application scope</strong>로 마이그레이션 중이므로,
-    앱 상단의 <em>Reconnect SharePoint for better syncing</em> 또는 <em>Re-auth required</em> 경로로 재인증이 필요할 수 있습니다.
-    또한 앱 설정에서 <strong>Microsoft Purview sensitivity labels</strong>를 구성할 수 있습니다.
-  </p>
-  <ul>
-    <li><strong>Microsoft Teams app with admin-managed sync</strong>는 대상 Enterprise/Edu 워크스페이스에서 사용할 수 있습니다.</li>
-    <li>Owner/Admin이 Workspace settings → Apps에서 Teams를 한 번 연결하고, scope picker로 포함할 Teams 콘텐츠를 선택합니다.</li>
-    <li>필요하면 <strong>Microsoft Purview sensitivity label filter</strong>로 동기화 범위를 더 좁힐 수 있습니다.</li>
-    <li>이 경험은 <strong>read-only</strong>이며, 설정 후 인덱스가 완전히 채워지는 데 시간이 걸릴 수 있습니다.</li>
-    <li>정기 self-service Microsoft Teams 앱과는 별도이므로, 사용자별 앱 연결 안내와 관리자 관리형 sync 안내를 구분해야 합니다.</li>
-  </ul>
-  <p style="font-size:.88rem;color:var(--muted)">
-    최근 Box / Notion / Linear / Dropbox와 Google / Microsoft 계열 앱에도 새 write action이 추가되고 있어,
-    앱을 켤 때는 <strong>scope 승인 + Manage actions 검토 + 필요 시 사용자 재연결</strong>을 함께 운영 절차로 잡는 편이 좋습니다.
-    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Release Notes]</a>
-  </p>
+<h3 class="menu"><span class="num">08.5</span>Microsoft 계열 연결과 콘텐츠 제한</h3><p>Outlook, Teams, SharePoint의 실시간 앱은 Microsoft Entra ID의 승인된 권한과 연결 계정의 원본 접근 권한을 따릅니다. 종료된 admin-managed sync의 application-scope 마이그레이션·인덱싱 안내를 현재 설치 절차로 사용하지 않습니다.</p><ul><li><strong>콘텐츠 제어</strong>: 제공되는 Enterprise 워크스페이스에서는 Microsoft Teams와 Outlook Email의 Safety &amp; Security Controls를 확인합니다. Outlook의 sensitivity-label 제외 정책도 별도로 검토합니다.</li><li><strong>실행 권한</strong>: 플러그인 설치, 포함 앱 접근, 허용 Actions, 사용자 승인 설정과 Microsoft 측 OAuth 승인을 함께 확인합니다.</li><li><strong>변경 검증</strong>: 저장 후 허용·제외 콘텐츠를 새 요청으로 각각 검증합니다. 기능 제공 범위는 앱·워크스페이스에 따라 다릅니다.</li></ul><p><a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">실시간 앱 전환 안내</a> · <a href="https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-for-plugins-and-apps" target="_blank">Plugins와 Apps 관리</a></p>
 
-  <h3 class="menu"><span class="num">08.6</span>ChatGPT for Excel and Google Sheets</h3>
+<h3 class="menu"><span class="num">08.6</span>ChatGPT for Excel and Google Sheets</h3>
   <ul>
     <li>Excel과 Google Sheets 안에서 동작하는 <strong>spreadsheet-native sidebar</strong> 경험입니다.</li>
     <li>RBAC를 쓰는 조직은 <strong>Workspace settings → Permissions &amp; roles → ChatGPT for Excel and Google Sheets</strong>에서
@@ -1090,11 +1071,11 @@
 <li><strong>접근 모델</strong>: Sign in with ChatGPT, workspace-internal access, Sites storage/file storage 같은 기능을 사용할 수 있음</li>
     <li><strong>공동 편집</strong>: Enterprise Site owner는 같은 workspace의 active member를 editor로 추가할 수 있습니다. Editor는 수정·저장하고, owner가 최초 게시한 뒤 같은 URL에 후속 버전을 게시할 수 있습니다.</li>
     <li><strong>Owner 전용</strong>: 공유, Site settings, analytics, ownership, version restore, editor access는 owner가 계속 관리합니다.</li>
-    <li><strong>레지던시 경계</strong>: Enterprise Sites는 출시 시점 기준 data residency와 inference residency를 지원하지 않으므로, 게시 전 데이터 분류와 내부 정책을 확인합니다.</li>
+    <li><strong>레지던시 경계</strong>: US/EU data residency 워크스페이스의 새 Sites는 지원되는 저장·호스팅에 기존 지역을 사용합니다. 한국 등 다른 지역의 residency는 현재 Sites 저장·호스팅에 적용되지 않습니다. 기존 Sites는 자동 이전되지 않으며 inference residency는 별도입니다.</li>
     <li><strong>주의</strong>: Sites deployment URL은 실제 배포(production)이므로, 검토가 필요하면 먼저 검토용 saved version 또는 private preview를 만들도록 안내합니다.</li>
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
-    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a> ·
+    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">릴리스 노트</a> ·
     <a href="https://learn.chatgpt.com/docs/sites" target="_blank">Codex Sites guide</a> ·
     <a href="https://help.openai.com/en/articles/20001338" target="_blank">Workspace Sites administration</a>
   </p>
@@ -1117,7 +1098,7 @@
     <li><strong>삭제 경계</strong>: repository에서 entry를 지워도 workspace copy는 자동 삭제되지 않고 <em>No longer in source</em>로 표시됩니다. marketplace 자체를 삭제하면 그 source에서 가져온 plugins가 삭제되므로 재연결 목적으로 삭제하지 않습니다.</li>
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
-    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Enterprise/Edu 릴리스 노트</a> ·
+    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">Enterprise/Edu 릴리스 노트</a> ·
     <a href="https://learn.chatgpt.com/docs/plugins" target="_blank">Codex Plugins</a> ·
     <a href="https://help.openai.com/en/articles/20001504" target="_blank">GitHub plugin marketplace import and sync</a>
   </p>
@@ -1145,6 +1126,8 @@
 <li><strong>Deep Research · 2026-09-09</strong>: Work/Codex에서 <em>@Deep Research</em>로 웹·파일·지원되는 승인 앱을 조사하고 출처가 있는 결과물을 만듭니다. Work/Codex 접근 외에 <em>Deep research</em> 권한과 Web search 활성화가 필요합니다.</li>
 <li><strong>사용량·데이터 경계</strong>: Work의 Deep Research는 Work/Codex 사용량·크레딧을 쓰고, Chat의 별도 deep research 횟수는 차감하지 않습니다. 설치나 조사 요청은 원본 서비스의 접근 권한을 늘리지 않습니다.</li>
 </ul><p><a href="https://help.openai.com/en/articles/20001518" target="_blank">[Data plugin]</a> · <a href="https://help.openai.com/en/articles/10500283" target="_blank">[Deep Research]</a></p>
+<h3 class="menu"><span class="num">08.11</span>Plugins 역할별 접근과 일괄 관리</h3><p><strong>Admin Console → ChatGPT workspace → Plugins</strong>에서 관리합니다. Marketplaces는 별도 메뉴이며, 기존 앱 화면은 Manage Legacy Apps로 열 수 있습니다. RBAC 제공 시 workspace default와 custom role별로 Available / Install / Disabled를 설정하고, role의 Default는 workspace 설정을 상속합니다.</p><p>최대 <strong>25개 플러그인</strong>을 선택해 Edit로 일괄 변경할 수 있습니다. 의존 앱을 검토하고 적용 후 각 플러그인의 결과를 확인합니다. 설치 허용만으로 포함 앱·Actions·원본 서비스 권한이 부여되지는 않습니다. <a href="https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-for-plugins-and-apps" target="_blank">관리 절차</a></p>
+<h3 class="menu"><span class="num">08.12</span>Sites — preview·연결 앱·tunnels</h3><p>대상 Enterprise의 Sites admin preview는 현재 preview 접근과 출시 후 Launch access를 구분합니다. Public publishing은 별도 기본 OFF입니다. Private workspace Site의 연결 앱은 방문자의 본인 계정과 승인을 사용하며, Enterprise에서 Allow site visitors to use this plugin은 기본 OFF입니다. 방문자 승인은 백그라운드 scheduled task에 계정 접근을 부여하지 않습니다.</p><p>Tunnels는 비공개 네트워크 서비스를 연결하는 기능으로 대상 workspace에 점진 제공됩니다. Tunnel 연결과 이를 사용하는 Site의 public publishing은 별도 권한입니다. <a href="https://help.openai.com/en/articles/20001338-managing-chatgpt-sites-for-your-workspace" target="_blank">Sites 관리자 도움말</a></p>
 </section>
 
 <!-- ============ ANALYTICS ============ -->
@@ -1153,8 +1136,8 @@
   <h2>Workspace analytics — 도입률·사용 패턴 측정</h2>
   <div class="path">Workspace settings → <b>Workspace analytics</b></div>
   <p class="lede">
-    “구매한 seat이 실제로 쓰이고 있는가?”를 보는 영역입니다. 현재 공식 대시보드 구조는
-    <strong>Overview / Benchmarks / Impact / Task insights / Users / GPTs / Projects / Skills</strong>이며,
+    “구매한 seat이 실제로 쓰이고 있는가?”를 보는 영역입니다. 현재 공식 분석 메뉴는
+    <strong>Usage / Insights (Benchmarks · User surveys)</strong>이며,
     <strong>analytics viewer</strong> 역할이 읽기 전용 접근을 제공합니다.
   </p>
   <div class="box">
@@ -1180,12 +1163,12 @@
     <li>제품 내 드롭다운에서 선택한 업계 중앙값과 비교</li>
   </ul>
 
-  <h3 class="menu"><span class="num">09.3</span>Impact</h3>
+  <h3 class="menu"><span class="num">09.3</span>Insights → User surveys</h3>
   <ul>
     <li>선택형 인앱 <strong>Impact survey</strong>의 집계 결과</li>
     <li>생산성, 절감 시간, 작업 품질, 업무 만족도, 신규 작업 수행 능력, 이해관계자 서비스에 대한 자가 보고 지표</li>
     <li>질문별 응답 분포와 설문 참여율까지 함께 확인</li>
-    <li>Owner는 Impact 탭에서 관리자 생성 설문을 시작할 수 있고, OpenAI 생성 설문은 워크스페이스 생성 후 120일·240일 시점에 기본 예약됨</li>
+    <li>Owner는 Insights → User surveys에서 관리자 생성 설문을 시작할 수 있고, OpenAI 생성 설문은 워크스페이스 생성 후 120일·240일 시점에 기본 예약됨</li>
     <li>질문·응답 선택지는 사전 정의되어 있으며 커스텀 질문은 지원하지 않고, 응답 집계는 보통 1–2일 뒤 표시</li>
     <li>방향성 분석용 지표이며, 인과적 ROI 측정이나 컴플라이언스 로그 용도로 사용하지 않습니다.</li>
   </ul>
@@ -1209,38 +1192,9 @@
     <li><strong>Skills</strong>: 스킬 사용 추세, 메시지 활동 기준 상위 스킬</li>
   </ul>
 
-  <h3 class="menu"><span class="num">09.6</span>Export — on-demand CSV</h3>
-  <p>
-    Workspace analytics의 Export는 현재 <strong>CSV 형식만 지원</strong>합니다. Excel 파일(.xlsx)을 직접 받는 방식은 아니지만,
-    CSV를 Excel/Sheets에서 열어 분석에 사용할 수 있습니다. Users / GPTs / Projects export는 preset range 또는 최대 12개월 custom range를 지원합니다.
-  </p>
-  <table>
-    <thead><tr><th>Export 대상</th><th>용도</th><th>지원 기간</th></tr></thead>
-    <tbody>
-      <tr><td>GPTs</td><td>GPT 분석 리포트</td><td>Preset 또는 최대 12개월 custom range</td></tr>
-      <tr><td>Impact survey</td><td>임팩트 설문 응답 분석</td><td>Export data에서 제공</td></tr>
-      <tr><td>Projects</td><td>프로젝트 분석 리포트</td><td>Preset 또는 최대 12개월 custom range</td></tr>
-      <tr><td>Users</td><td>사용자 분석 리포트</td><td>Preset 또는 최대 12개월 custom range</td></tr>
-    </tbody>
-  </table>
-  <div class="box green">
-    <div class="label">개인별 활동과 비용 추적</div>
-    <strong>ChatGPT Enterprise</strong>에서 개인별 활동 분석은 Workspace Analytics의 <strong>Users export</strong>가 기준입니다.
-    이 export는 사용자 identity/status와 메시지, GPT, tool, project 활동 같은 집계 지표를 포함합니다.
-    CSV의 제공 필드는 workspace별로 확인합니다. API의 <code>CHATGPT_USER_ANALYTICS.credits_used</code>는 deprecated이며 새 기록에서 빠질 수 있습니다. 개인별 비용 분석은 Costs 로그를 기준으로 설계하고 Section 20.3의 단위·권한·지연 기준을 적용합니다.
-  </div>
-  <p style="font-size:.88rem;color:var(--muted)">
-    출처: <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics</a>
-  </p>
-  <ol>
-    <li>Workspace settings → Workspace analytics로 이동</li>
-    <li><strong>Export data</strong> 열기</li>
-    <li>Data type에서 GPTs / Impact survey / Projects / Users 중 하나 선택</li>
-    <li>Preset date range를 고르거나, 가능한 경우 custom range에서 시작일·종료일 선택</li>
-    <li><strong>Generate CSV</strong>로 다운로드</li>
-  </ol>
+  <h3 class="menu"><span class="num">09.6</span>Export — 최신 CSV 다운로드 경로</h3><p><strong>사용자별 리포트</strong>: Admin Console → Usage → Overview → Export → Workspace reports에서 UTC 시작일·종료일을 지정한 뒤 Download CSV를 선택합니다. 이 기간은 차트와 별도이며 페이지의 그룹·사용자·검색 필터는 내보내기에 적용되지 않습니다.</p><p><strong>GPT / Project 리포트</strong>: Usage → GPTs 또는 Projects에서 기간을 지정하고 Export → Download CSV를 선택합니다. 검색·정렬·페이지 구분과 무관하게 전체 리포트 행을 내보냅니다.</p><p><strong>설문</strong>: Insights → User surveys → Export는 현재 선택한 설문과 무관하게 전체 workspace 설문을 포함합니다. 이름·이메일 포함 여부는 Include user identifiers in impact survey exports 설정에 따릅니다. 활동 CSV는 메시지 원문이나 비용 원장을 대신하지 않습니다. <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics 공식 도움말</a></p>
 
-  <h3 class="menu"><span class="num">09.7</span>analytics viewer 역할</h3>
+<h3 class="menu"><span class="num">09.7</span>analytics viewer 역할</h3>
   <p>
     AI 챔피언, 부서 리더, 프로그램 매니저가 <strong>관리자 권한 없이</strong> 분석 화면만 읽을 수 있도록 하는 신규 역할.
     도입 현황 보고서를 만드는 사람과 권한을 분리해 보안성을 높이는 용도입니다.
@@ -1257,7 +1211,7 @@
   <table>
     <thead><tr><th>질문</th><th>관리 화면</th><th>한계</th></tr></thead>
     <tbody>
-      <tr><td>누가 많이 쓰는가?</td><td>Workspace Analytics → Users / Users CSV</td><td>집계 지표이며 원문·파일 내용은 없음</td></tr>
+      <tr><td>누가 많이 쓰는가?</td><td>Admin Console → Usage → Overview → Workspace reports</td><td>집계 지표이며 원문·파일 내용은 없음</td></tr>
       <tr><td>어떤 기능·모델이 비용을 많이 쓰는가?</td><td>Billing usage report + Costs API</td><td>USD와 CREDITS를 분리하고 데이터 지연을 고려</td></tr>
       <tr><td>팀별 비용 배부가 필요한가?</td><td>Costs의 사용자·그룹 정보 + 내부 배부 기준</td><td>여러 그룹에 속한 사용자의 비용 중복 배부를 방지</td></tr>
       <tr><td>감사·조사 목적인가?</td><td>Compliance의 해당 감사·대화 로그</td><td>같은 로그 플랫폼의 COSTS와 목적·권한을 구분</td></tr>
@@ -1306,29 +1260,12 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
   <p style="font-size:.88rem;color:var(--muted)">
     출처: <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a> ·
     <a href="https://help.openai.com/en/articles/20001407" target="_blank">Managing Admin keys</a> ·
-    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a>
+    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">릴리스 노트</a>
   </p>
 
-  <h3 class="menu"><span class="num">09.10</span>Global Admin Console External Access</h3>
-  <p>
-    Global Admin Console의 <strong>Access → External Access</strong>에서는 조직 멤버가 외부 애플리케이션에서
-    <strong>Sign in with ChatGPT</strong>를 사용할 수 있는지 중앙에서 제어합니다.
-  </p>
-  <ul>
-    <li><strong>Enable Sign in with ChatGPT for your organization</strong>를 끄면 구성원은 외부 애플리케이션에서 Sign in with ChatGPT를 사용할 수 없습니다.</li>
-    <li><strong>Approved applications</strong>를 켜면 승인된 애플리케이션만 사용할 수 있습니다.</li>
-    <li>관리자는 개별 애플리케이션을 승인하거나 비활성화할 수 있으며, OpenAI Academy 같은 외부 앱 접근도 이 범위에 포함될 수 있습니다.</li>
-  </ul>
-  <p style="font-size:.88rem;color:var(--muted)">
-    출처: <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a> ·
-    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a>
-  </p>
+  <h3 class="menu"><span class="num">09.10</span>Admin Console → External access</h3><p>Global admin은 조직 기본값과 앱별 예외를 통해 Sign in with ChatGPT, connected-app 접근, Ads 데이터 권한을 각각 관리합니다. 신원 확인 로그인 허용이 데이터 접근 허용을 의미하지 않습니다. 앱의 Access와 Users에서 저장 정책과 연결 사용자를 확인할 수 있습니다.</p><p>ChatGPT Sites는 identity sign-in이 필수입니다. Sites의 명시적 connected-app 정책이 없으면 조직 수준에서는 허용되지만, Enterprise의 개별 plugin Sites 접근 기본값은 OFF입니다. 조직 승인·workspace/plugin 허용·방문자 승인·원본 앱 권한을 모두 확인합니다. Workspace Owner/Admin 역할만으로 Global admin 권한이 생기지는 않습니다. <a href="https://help.openai.com/en/articles/12289294-managing-your-tenant-in-admin-console" target="_blank">Tenant 및 External access 관리</a></p>
 
-  <p style="font-size:.88rem;color:var(--muted)">
-    <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">→ Workspace analytics 공식 가이드</a> ·
-    <a href="https://help.openai.com/en/articles/20001149-managing-impact-surveys-in-workspace-analytics" target="_blank">[Impact survey 관리]</a> ·
-    <a href="https://academy.openai.com/public/clubs/admins-6o6xf/resources/chatgpt-enterprise-user-analytics-guide" target="_blank">[Academy 활용 가이드]</a>
-  </p>
+<h3 class="menu"><span class="num">09.11</span>Workplace health와 활성 사용자 정의</h3><p><strong>Usage → Overview → Workplace health</strong>에서 ChatGPT·Work·Codex의 도입률을 확인합니다. Seats enabled는 대기·삭제 초대를 제외한 할당 사용자, Seats activated는 메시지를 한 번 이상 보낸 사용자입니다. WAU는 가장 최근 완료된 일요일~토요일 주간에 메시지를 보낸 고유 사용자입니다. 차트를 보려면 User 필터를 비우고 그룹은 최대 하나만 선택합니다. <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">지표 정의</a></p>
 </section>
 
 <!-- ============ IDENTITY & ACCESS ============ -->
@@ -1384,7 +1321,7 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
   <div class="box">
     <div class="label">SCIM 연결 전환 안전 규칙</div>
     tenant-wide SCIM은 <strong>Admin Console → Global settings → Access → Directory</strong>에서 관리하며 지원되는 ChatGPT workspace와 Ads account에 product access를 배정합니다.
-    API Platform organization은 포함되지 않습니다. 연결된 ChatGPT workspace 또는 API organization에 product-level SCIM이 활성 상태이면 tenant-wide SCIM을 켤 수 없으므로,
+    Enterprise/Edu tenant는 API organization에도 배정할 수 있습니다. Tenant-wide와 product-level 연결은 공존할 수 있으나 해당 리소스의 product-level SCIM이 켜져 있으면 tenant-wide Product access assignment를 바꿀 수 없습니다.
     작동 중인 연결을 삭제하지 말고 사용자·그룹·product assignment·role을 검토한 뒤 OpenAI account team과 migration을 조정합니다.
   </div>
   <p style="font-size:.88rem;color:var(--muted)">
@@ -1429,6 +1366,7 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
     <a href="https://help.openai.com/en/articles/12111596-ip-allowlisting-for-chatgpt" target="_blank">→ IP Allowlisting 공식 가이드</a> ·
     <a href="https://help.openai.com/en/articles/9672121-getting-started-with-identity-and-provisioning-in-chatgpt-enterprise-edu-and-chatgpt-for-teachers" target="_blank">[Identity 가이드]</a>
   </p>
+<h3 class="menu"><span class="num">10.7</span>개인 워크스페이스 이전 — 7일 유예</h3><p>검증된 도메인이 있는 Enterprise/Edu에서 이전 또는 개인 workspace 비활성화가 요구되면, workspace에 추가된 때부터 고정 <strong>7일 유예</strong>가 제공됩니다. 그동안 개인 workspace를 사용할 수 있지만 필요한 이전·비활성화를 완료할 때까지 Enterprise/Edu 접근은 차단됩니다. 관리자가 유예 기간을 변경할 수 없으며 검증된 도메인이 없는 workspace에는 이 요구가 적용되지 않습니다.</p><p>이전 전 내보내기와 필요한 데이터 보존을 안내합니다. <strong>Sites는 이전되지 않습니다.</strong> 이전 후 개인 Sites의 편집·관리 접근을 잃을 수 있으므로 미리 확인합니다. <a href="https://help.openai.com/en/articles/8801890-migrating-your-personal-workspace-to-chatgpt-business-or-enterprise" target="_blank">이전 범위와 준비사항</a></p>
 </section>
 
 <!-- ============ BILLING ============ -->
@@ -1507,6 +1445,8 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
   <h3 class="menu"><span class="num">11.3</span>초과 사용에서 인보이스까지</h3>
   <p>계약 청구 기간 종료 후 초과 사용을 검토하며, 일반적으로 <strong>영업일 5일 검토 기간 이후</strong> 인보이스가 발행·전송됩니다. 첫 청구서는 기간 일부만 포함할 수 있습니다. 사용 기간·청구 기간·보고서 갱신 시각·계약 단가를 맞춰 대사하고, 확정 청구는 <strong>Billing → Invoices</strong>로 확인합니다.</p>
   <p style="font-size:.88rem;color:var(--muted)"><a href="https://help.openai.com/en/articles/20001001-setting-usage-limits-in-chatgpt-enterprise-and-edu" target="_blank">Usage limits and overage invoices</a></p>
+<h3 class="menu"><span class="num">11.4</span>청구 방식별 한도 — credits / USD</h3><p><strong>Admin Console → Usage limits</strong>는 사용자 월 한도, Billing은 workspace 지출 상한입니다. 사용자 한도는 User override → 가장 높은 해당 Group default → Workspace default 순으로 적용됩니다. Credit 계약은 공유 pool 소진 후 overage limit, token-based USD 계약은 monthly workspace budget을 확인합니다. 사용자 한도 증액이 workspace 상한을 올리지는 않습니다.</p><p>Group의 No limit는 workspace 기본값 상속이며 무제한이 아닙니다. Overage의 No limit는 추가 사용 상한 없음입니다. Overage 0은 pool 소진 후 새 credit 요청을 막지만 진행 중 요청 정산으로 소폭 음수가 될 수 있습니다. USD budget 0은 지출을 막습니다. Alert는 사용을 중단하지 않습니다. <a href="https://help.openai.com/en/articles/20001001-manage-usage-limits-and-overages-in-chatgpt-enterprise-and-edu" target="_blank">한도 및 overage 도움말</a></p>
+<h3 class="menu"><span class="num">11.5</span>Token-based Enterprise 계약과 commitment</h3><p>대상 Enterprise 계약에서는 Chat·Work·Codex 사용을 tokens 또는 rate card 단위로 측정하고 USD로 청구합니다. 계약상 seat fee가 있으면 사용료와 별도입니다. 현재 Edu·Healthcare에는 이 청구 방식이 제공되지 않으며 기존 credit 계약은 계속 존재합니다.</p><p>ChatGPT와 API의 공동 spending commitment가 있어도 선불 workspace credit pool을 뜻하지 않습니다. 사용은 계약 기간 중 청구되고 미달분은 계약에 따라 정산됩니다. ChatGPT와 API의 청구·사용량 화면은 별도이므로 ChatGPT 리포트만으로 전체 commitment 달성률을 계산하지 않습니다. <a href="https://help.openai.com/en/articles/20001520-token-based-billing-for-chatgpt-enterprise" target="_blank">Token-based billing 공식 도움말</a></p>
 </section>
 
 <hr class="div"/>
@@ -1625,6 +1565,7 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
     <li data-i18n="division-4">상세 정책 배포는 Section 15의 Managed Configuration에서 다시 OS별로 정리</li>
   </ul>
 <p style="font-size:.88rem;color:var(--muted)"><a href="https://learn.chatgpt.com/docs/enterprise/chatgpt-work-local-security" target="_blank">로컬 보안·데이터 처리</a></p>
+<div class="box green"><div class="label">2026-10-27 관리자 확인 사항</div><p>현재 정책 진입점은 <strong>Admin Console → Agent security</strong>입니다. Workspace 접근 권한, 모델 권한, 실행 정책, 연결 앱 권한을 각각 확인합니다. Work/Codex의 GPT-6.1 Sol·Terra 접근과 Codex Cloud의 공유 environment 지원은 아래 관련 섹션에 반영했습니다.</p><p><a href="#codex-policies">Agent Security 설정</a> · <a href="#models">모델 접근</a> · <a href="#codex-cloud-toggle">Cloud 접근</a></p></div>
 </section>
 
 <!-- ============ CODEX TOGGLE ============ -->
@@ -1753,10 +1694,10 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
         <div class="surface-grid">
           <div>
             <h4 data-i18n="surface-cloud-title">Codex cloud — 브라우저·iOS·GitHub·Slack/Linear 기반 비동기 작업</h4>
-            <p data-i18n="surface-cloud-body">클라우드 에이전트가 호스팅 컨테이너에서 리포지토리 작업을 수행합니다. OS와 무관하며, GitHub Cloud 리포지토리와 Connector 설정이 전제입니다.</p>
+            <p data-i18n="surface-cloud-body">클라우드 에이전트가 호스팅 컨테이너에서 리포지토리 작업을 수행합니다. OS와 무관하며, workspace Cloud 권한과 사용할 environment 접근을 확인합니다.</p>
             <ul>
               <li><strong>관리 토글</strong>: Allow members to use Codex cloud</li>
-              <li><strong>전제</strong>: ChatGPT GitHub Connector, 리포지토리 범위, Codex environments</li>
+              <li><strong>설정</strong>: Cloud 접근, environments, 필요한 저장소 연결</li>
               <li><strong>연동</strong>: Code Review, Slack 작업, Linear 작업, iOS 확인</li>
             </ul>
           </div>
@@ -1866,7 +1807,7 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
     <li><strong>비활성화</strong>: 개별 사용자는 설치된 plugin을 제거하거나 <code>~/.codex/config.toml</code>에서 <code>enabled = false</code>로 끌 수 있습니다.</li>
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
-    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a> ·
+    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">릴리스 노트</a> ·
     <a href="https://learn.chatgpt.com/docs/plugins" target="_blank">Codex Plugins</a> ·
     <a href="https://help.openai.com/en/articles/20001504" target="_blank">GitHub marketplace sync</a>
   </p>
@@ -1892,7 +1833,7 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
     <li><strong>기타 UX</strong>: app composer의 <code>/init</code>은 <code>AGENTS.md</code> scaffold를 생성하고, usage-limit 오류는 가능한 경우 워크스페이스 안내와 reset timing을 더 명확히 보여주며, command menu에는 Unread chats 섹션이 추가되었습니다.</li>
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
-    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">릴리스 노트</a> ·
+    출처: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">릴리스 노트</a> ·
     <a href="https://learn.chatgpt.com/docs/computer-use" target="_blank">Computer Use</a> ·
     <a href="https://learn.chatgpt.com/docs/browser?surface=app" target="_blank">In-app browser / Developer mode</a> ·
     <a href="https://learn.chatgpt.com/docs/config-file/config-reference" target="_blank">Configuration Reference</a> ·
@@ -1912,8 +1853,8 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
     Cloud는 브라우저 기반이므로 OS 무관하게 동일하게 동작합니다. 활성화 전제 조건:
   </p>
   <ul>
-    <li><strong>전제 조건</strong>: 코드베이스가 <strong>GitHub Cloud</strong>에 있어야 함. 온프레미스나 비-GitHub은 Codex SDK로 자체 구축</li>
-    <li>먼저 <strong>ChatGPT GitHub Connector</strong>를 설치해야 토글이 의미를 가짐</li>
+    <li><strong>Cloud 실행</strong>: 허용된 사용자는 재사용 가능한 cloud environment를 생성·공유하고 desktop·web·mobile에서 작업을 시작·이어갈 수 있습니다. 작업마다 격리된 실행 공간을 사용하며 컴퓨터가 잠들어도 계속됩니다.</li>
+    <li><strong>GitHub 연동</strong>: 저장소 연결·Code Review의 추가 설정으로 구분합니다. Cloud 접근 권한과 environment 접근을 먼저 확인합니다.</li>
     <li>토글 ON 후 좌측 네비게이션에 Codex가 나타나기까지 <strong>최대 10분</strong> 소요</li>
     <li>GitHub Enterprise Managed Users(EMU)는 조직 Owner가 Codex GitHub App을 미리 설치</li>
   </ul>
@@ -1954,7 +1895,7 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
   </ul>
   <p style="font-size:.88rem;color:var(--muted)">
     <a href="https://learn.chatgpt.com/docs/remote-connections" target="_blank">→ Codex Remote connections 공식 가이드</a> ·
-    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Enterprise/Edu 릴리스 노트]</a>
+    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">[Enterprise/Edu 릴리스 노트]</a>
   </p>
 </section>
 
@@ -2090,19 +2031,14 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
 <!-- ============ CODEX POLICIES ============ -->
 <section class="chapter" id="codex-policies">
   <div class="chap-num">Section 14 · Codex</div>
-  <h2>Codex Policies — 클라우드 관리 requirements.toml</h2>
-  <div class="path"><a href="https://chatgpt.com/codex/settings/managed-configs" target="_blank">chatgpt.com/codex/settings/managed-configs</a></div>
+  <h2>Agent Security — 중앙 실행 정책</h2>
+  <div class="path"><a href="https://admin.openai.com/" target="_blank">Admin Console → Agent security</a></div>
   <p class="lede">
     개발자 노트북에 디바이스 파일을 직접 뿌리지 않고도, 그룹별로 다른 Codex 로컬 제약을 적용할 수 있는 화면입니다.
     지원되는 <strong>App / CLI / IDE</strong>가 시작할 때 로그인 ID에 맞는 서명된 캐시 또는 서버 정책을 불러옵니다. 백그라운드 정책 갱신은 다음 실행에 반영되므로, 실행 중인 세션까지 즉시 바뀐다고 안내하지 않습니다.
   </p>
 
-  <figure>
-    <img src="https://developers.openai.com/images/codex/enterprise/policies_and_configurations_page.png"
-         alt="Codex Policies &amp; Configurations page"
-         onerror="this.parentElement.style.display='none'"/>
-    <figcaption>Codex Policies and Configurations · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">출처</a></figcaption>
-  </figure>
+
 
   <h3 class="menu"><span class="num">14.1</span>제어 가능한 항목</h3>
   <ul>
@@ -2144,12 +2080,7 @@ prefix_rules = [
     justification = "Require review before mutating remote history." },
 ]</code></pre>
 
-  <figure>
-    <img src="https://developers.openai.com/images/codex/enterprise/example_policy.png"
-         alt="Example managed requirements policy"
-         onerror="this.parentElement.style.display='none'"/>
-    <figcaption>관리형 requirements 정책 예시 · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">출처</a></figcaption>
-  </figure>
+
 
   <h3 class="menu"><span class="num">14.3</span>그룹 할당 &amp; 폴백</h3>
   <ul>
@@ -2161,12 +2092,7 @@ prefix_rules = [
 
   <h3 class="menu"><span class="num">14.4</span>Policy lookup — 누구에게 어떤 정책이 적용되는지 확인</h3>
   <p>이메일 또는 그룹으로 조회해 적용 정책을 즉시 확인할 수 있습니다.</p>
-  <figure>
-    <img src="https://developers.openai.com/images/codex/enterprise/policy_lookup.png"
-         alt="Policy lookup by user/group"
-         onerror="this.parentElement.style.display='none'"/>
-    <figcaption>Policy lookup 화면 · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">출처</a></figcaption>
-  </figure>
+
 
   <h3 class="menu"><span class="num">14.5</span>브라우저 오리진 · 네이티브 앱 정책</h3>
   <p>2026년 9월 기준 지원 클라이언트에서는 <code>[browser_use]</code>와 <code>[computer_use]</code>로 사이트·앱별 접근을 제한합니다. 오리진(origin)은 <code>https://example.com:8443</code>처럼 프로토콜·호스트·포트로 구성하며 경로는 넣지 않습니다.</p>
@@ -2185,6 +2111,7 @@ prefix_rules = [
   <p>여러 오리진 규칙이 겹치면 항목별로 더 제한적인 값이 적용됩니다. 로컬 설정은 관리형 deny를 완화할 수 없으며, allow는 OS 권한·플러그인 설치·사용자 승인을 대신하지 않습니다. 명령 네트워크 allowlist와 사이트 오리진 정책을 각각 검증합니다.</p>
   <p style="font-size:.88rem;color:var(--muted)">출처: <a href="https://learn.chatgpt.com/docs/enterprise/managed-configuration" target="_blank">Managed configuration</a> · <a href="https://learn.chatgpt.com/docs/config-file/config-reference" target="_blank">Configuration Reference</a></p>
 <p>네이티브 Computer Use로 브라우저 앱 자체를 조작하는 경로에는 Browser Use의 사이트별 정책이 적용되지 않습니다. 해당 경로는 네이티브 앱 정책·OS 권한·앱 승인·로그인 계정 권한으로 제한해야 합니다. <a href="https://learn.chatgpt.com/docs/enterprise/chatgpt-work-local-security" target="_blank">[로컬 보안 경계]</a></p>
+<h3 class="menu"><span class="num">14.6</span>Agent Security — Global과 환경별 설정</h3><p><strong>Agent Security</strong>는 기존 Policies &amp; Configuration을 대체합니다. 이전되는 legacy 정책은 Global에 설정·할당·순서를 유지합니다. 각 정책은 Global을 기준으로 하고 Local / Codex Cloud의 지원 실행 설정을 별도로 재정의할 수 있습니다. Cloud 정책을 작성해도 Codex Cloud 접근 토글이 자동으로 켜지지 않습니다.</p><p>Workspace default 또는 Overrides를 선택하고, <strong>Requirements</strong>에서 강제 제한, <strong>Defaults</strong>에서 변경 가능한 시작값을 설정합니다. Edit as TOML로 해당 scope의 requirements.toml / config.toml을 편집할 수 있습니다. 승인·web search 같은 orchestrator 제어는 Global에 둡니다. 빈 환경 문서는 Global을 상속합니다. Save changes 후 실제 대상 사용자·환경에서 동작을 검증합니다. <a href="https://learn.chatgpt.com/docs/enterprise/agent-security" target="_blank">Agent Security</a> · <a href="https://learn.chatgpt.com/docs/enterprise/managed-configuration" target="_blank">Managed configuration</a></p>
 </section>
 
 <!-- ============ MANAGED CONFIGURATION ============ -->
@@ -2811,7 +2738,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       <tr><td>02</td><td><a href="#identity">Identity</a></td><td data-i18n="check-2-action">도메인 검증 + SSO/SCIM 설정</td><td data-i18n="check-2-note">잠금 사고 방지를 위해 SSO는 일단 Optional 유지</td></tr>
       <tr><td>03</td><td><a href="#members">Seat</a></td><td data-i18n="check-3-action">기본 seat 타입 결정 + 신규 사용자 자동 seat 발급 정책</td><td data-i18n="check-3-note">ChatGPT seat / Codex seat 기준 확정</td></tr>
       <tr><td>04</td><td><a href="#permissions" data-i18n="check-4-area">권한</a></td><td data-i18n="check-4-action">Default permissions와 Custom Roles, Spend controls 설계</td><td data-i18n="check-4-note">역할별 최소 권한 기준</td></tr>
-      <tr><td>05</td><td><a href="#gpts" data-i18n="check-5-area">GPT 거버넌스</a></td><td data-i18n="check-5-action">Custom GPT 목록·소유자 확인, Plugins 이전·권한 검증</td><td data-i18n="check-5-note">9/17 이전 기능 목표 · 9/25 생성 종료 예정 · 12/11 실행 종료 예정</td></tr>
+      <tr><td>05</td><td><a href="#gpts" data-i18n="check-5-area">GPT 거버넌스</a></td><td data-i18n="check-5-action">Custom GPT 목록·소유자 확인, Plugins 이전·권한 검증</td><td data-i18n="check-5-note">10/26 생성 중단 · 12/11 일반 종료 예정 · 승인 연기·FedRAMP 2027/2/11</td></tr>
       <tr><td>06</td><td><a href="#apps">Apps</a></td><td data-i18n="check-6-action">Apps 워크스페이스 단위 활성/비활성 + 그룹별 노출</td><td data-i18n="check-6-note">민감 앱은 그룹 단위로 제한</td></tr>
       <tr><td>07</td><td><a href="#analytics">Analytics</a></td><td data-i18n="check-7-action">Workspace Analytics에 <strong>Analytics Viewer</strong> 부여, 임팩트 설문 설계</td><td data-i18n="check-7-note">도입 효과 측정 준비</td></tr>
       <tr><td>08</td><td><a href="#identity">Network</a></td><td data-i18n="check-8-action">IP Allowlist 적용</td><td data-i18n="check-8-note">필요한 조직만 적용</td></tr>
@@ -2868,7 +2795,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       As of the January 2026 update, the former <em>Settings &amp; permissions</em> tab became
       <strong>Permissions &amp; Roles</strong>, while <em>Identity &amp; provisioning</em> and
       <em>IP allowlists</em> were consolidated into <strong>Identity &amp; Access</strong>.
-      <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Release notes]</a>
+      <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">[Release notes]</a>
     </p>
   </section>
 
@@ -2904,7 +2831,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       <li><strong>It may not be available for accounts linked to organization SSO (SAML/OIDC), and it does not manage Codex CLI sessions.</strong></li>
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
-      Source: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Enterprise/Edu release notes</a>
+      Source: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">Enterprise/Edu release notes</a>
     </p>
 
     <h3 class="menu"><span class="num">02.6</span>Library - file storage and automatic reference</h3>
@@ -2917,7 +2844,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
 <li>Initial Google Drive coverage includes My Drive and directly shared items; Shared Drives are not yet included. Source permissions apply, and supported, authorized actions can edit the original file.</li>
 <li>Compliance admins can export or delete files through Library-specific endpoints.</li>
 </ul>
-<p style="font-size:.88rem;color:var(--muted)">Sources: <a href="https://help.openai.com/en/articles/20001052-library-for-chatgpt" target="_blank">Library</a> · <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">September 9 sharing update</a></p>
+<p style="font-size:.88rem;color:var(--muted)">Sources: <a href="https://help.openai.com/en/articles/20001052-library-for-chatgpt" target="_blank">Library</a> · <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">September 9 sharing update</a></p>
 
 
     <h3 class="menu"><span class="num">02.7</span>Improved memory</h3>
@@ -2932,7 +2859,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       <li><strong>This does not affect Codex memory.</strong> Project-only memory stays contained inside each project and does not use memories or conversations from outside that project.</li>
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
-      Source: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Enterprise/Edu release notes</a>
+      Source: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">Enterprise/Edu release notes</a>
      · <a href="https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise" target="_blank">Workspace settings</a></p>
   </section>
 
@@ -2996,8 +2923,8 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       <li>Create or delete groups and add or remove members.</li>
       <li>Review group membership.</li>
       <li>SCIM-synced groups display a <strong>SCIM badge</strong> so they are visually distinguished from manually managed groups.</li>
-      <li><strong>Tenant-wide SCIM</strong> can assign product access to supported ChatGPT workspaces and Ads accounts, but it does not provision API Platform organizations.</li>
-      <li><strong>Workspace-level SCIM</strong> remains supported. Tenant-wide SCIM cannot be activated while a linked ChatGPT workspace or API organization has an active product-level SCIM connection, so do not delete a working connection before planning an approved migration.</li>
+      <li><strong>Tenant-wide SCIM</strong> can assign product access to supported ChatGPT workspaces and Ads accounts. Enterprise/Edu tenants can also assign API organizations and supported project access.</li>
+      <li><strong>Workspace-level SCIM</strong> remains supported. Tenant-wide and product-level SCIM can both be enabled. A resource with product-level SCIM enabled cannot have its tenant-wide Product access assignment changed; coordinate migration with the account team.</li>
       <li>Tenant-wide SCIM may create a separate synchronized group instead of taking over a same-name manual group. Workspace-level SCIM can convert a same-name group to IdP management in some configurations, so confirm which scope you are operating.</li>
     </ul>
     <div class="box green">
@@ -3012,7 +2939,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
 <ul><li>Delegation options: <strong>View group analytics / Manage spend controls / Manage model access and defaults</strong>.</li><li>Only an Owner can change delegation of <strong>Edit permissions on assigned roles</strong>. Editing a custom role shared by multiple groups affects all assigned groups.</li><li>Creating/deleting groups, assigning/unassigning roles, appointing group managers, and expanding one's own permissions are outside delegation. Manage SCIM membership in the IdP.</li></ul>
 <p><a href="https://help.openai.com/en/articles/9083985" target="_blank">→ Group manager permissions and boundaries</a></p>
 <h3 class="menu"><span class="num">04.2</span>Admin APIs for members, groups, and roles</h3>
-<p><strong>August 20, 2026 — Invitations / Users APIs</strong>: automate invitation lookup, creation, resend, and deletion, and retrieve accepted members. Updating built-in member roles or seats and removing workspace memberships requires an <strong>Owner</strong>; SCIM-managed changes go through the IdP, and last-owner protections apply. <strong>September 11, 2026 — Groups API</strong> supports group creation, updates, and deletion in eligible workspaces. Use <strong>Credentials → Admin keys</strong> with the minimum required permissions for the selected workspace. Group manager designation alone does not grant Admin key access. <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[August 20 / September 11 release notes]</a> · <a href="https://help.openai.com/en/articles/20001407" target="_blank">[Admin key permissions]</a></p>
+<p><strong>August 20, 2026 — Invitations / Users APIs</strong>: automate invitation lookup, creation, resend, and deletion, and retrieve accepted members. Updating built-in member roles or seats and removing workspace memberships requires an <strong>Owner</strong>; SCIM-managed changes go through the IdP, and last-owner protections apply. <strong>September 11, 2026 — Groups API</strong> supports group creation, updates, and deletion in eligible workspaces. Use <strong>Credentials → Admin keys</strong> with the minimum required permissions for the selected workspace. Group manager designation alone does not grant Admin key access. <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">[August 20 / September 11 release notes]</a> · <a href="https://help.openai.com/en/articles/20001407" target="_blank">[Admin key permissions]</a></p>
 <p><strong>Workspace Roles and Permissions API</strong>: manage custom roles and group role assignments. Reads require an active Owner/Admin plus <code>chatgpt.enterprise.rbac.read</code>; writes require an active Owner plus <code>chatgpt.enterprise.rbac.write</code>. Admins cannot make changes even with the write scope. Separate custom roles and group assignments from built-in membership roles and seats managed through the Users API; this API does not include mutations to assign custom roles directly to individual users. <a href="https://chatgpt.com/admin/api-reference#tag/Workspace%20Roles%20and%20Permissions" target="_blank">[RBAC API scope]</a></p>
 </section>
 
@@ -3107,7 +3034,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       <div class="label">Settings synchronization and analytics freshness are different questions</div>
       OpenAI does not publish one synchronization interval between Admin Console and Workspace analytics.
       ChatGPT/Codex credit analytics and Codex usage in Global Admin Console are typically delayed by <strong>1–6 hours</strong>, while ChatGPT usage can be delayed by up to <strong>48 hours</strong>.
-      Workspace settings → Workspace analytics refreshes every <strong>1–24 hours</strong>, typically reflects changes within <strong>6–12 hours</strong>, and targets up to 48 hours based on the UTC reporting day.
+      Admin Console → Usage / Insights refreshes every <strong>1–24 hours</strong>, typically reflects changes within <strong>6–12 hours</strong>, and targets up to 48 hours based on the UTC reporting day.
       Compare the same workspace, UTC range, filters, metric definitions, and each surface's Last updated timestamp. Use <strong>Billing → Invoices</strong> as the authority for settled charges.
       This guide uses <strong>synchronization</strong> for settings or policy propagation, and <strong>refresh or reporting delay</strong> for analytics data freshness.
     </div>
@@ -3174,7 +3101,8 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       <a href="https://learn.chatgpt.com/docs/get-started-with-work" target="_blank">Get started with Work</a> ·
       <a href="https://learn.chatgpt.com/docs/automations" target="_blank">Scheduled tasks</a>
     </p>
-  <p style="font-size:.88rem;color:var(--muted)">Sources: <a href="https://help.openai.com/en/articles/10500283" target="_blank">Deep research</a> · <a href="https://help.openai.com/en/articles/20001518" target="_blank">Data plugin</a> · <a href="https://help.openai.com/en/articles/20001274" target="_blank">ChatGPT Voice</a> · <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">September release notes</a></p>
+  <p style="font-size:.88rem;color:var(--muted)">Sources: <a href="https://help.openai.com/en/articles/10500283" target="_blank">Deep research</a> · <a href="https://help.openai.com/en/articles/20001518" target="_blank">Data plugin</a> · <a href="https://help.openai.com/en/articles/20001274" target="_blank">ChatGPT Voice</a> · <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">September release notes</a></p>
+<h3 class="menu"><span class="num">05.7</span>Member profiles — Enterprise workspace profiles</h3><p>Owners manage profile/activity availability and Member profile sharing in <strong>Workspace settings → Permissions &amp; roles → Member profiles</strong>. Choose Only the profile owner or Workspace members only. Enterprise profiles are limited to the same workspace and do not expose conversation titles or content. Adding a Site to a profile does not change Site access. <a href="https://help.openai.com/en/articles/20001539-shareable-profiles-in-chatgpt" target="_blank">Official help</a></p>
 </section>
 
   <section class="chapter" id="models">
@@ -3183,7 +3111,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
   <div class="path">Admin Console → workspace → <b>Models</b> · Workspace settings → <b>Models / Permissions &amp; roles</b></div>
   <p>Model access and starting models are separate settings. Product, seat, and rollout eligibility determine available choices; selecting a starting model grants no additional access.</p>
   <div class="box green">
-    <div class="label">GPT-6 Astra — verified 2026-09-14</div>
+    <div class="label">GPT-6 Astra — verified 2026-10-27</div>
     Astra is <strong>off by default at launch</strong> and rolls out gradually to eligible Enterprise/Edu workspaces. Early Model Access does not carry over, and access <strong>does not enable automatically after two weeks</strong>.
     Owners enable workspace or role access through the available model controls. Chat’s <strong>GPT-6 Pro</strong> uses Astra; availability can differ from Work/Codex.
     <a href="https://help.openai.com/en/articles/11165333-chatgpt-enterprise-and-edu-models-limits" target="_blank">[Models &amp; Limits]</a>
@@ -3198,7 +3126,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
     <div class="label">Chat model picker</div>
     Options such as <strong>Instant / Medium / High / Extra High / Pro Standard / Pro Extended</strong> follow current model access and rollout.
     Medium, High, and Extra High distinguish reasoning effort; unavailable options are hidden. Review automatic reasoning routing under Models as well.
-    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Release notes]</a>
+    <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">[Release notes]</a>
   </div>
   <div class="box">
     <div class="label">Work / Codex models and reasoning</div>
@@ -3219,6 +3147,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
     OpenAI o3’s ChatGPT retirement date was 2026-08-26. Where Learn’s Astra “first two weeks” wording differs, this guide follows the newer Models &amp; Limits statement that access will not automatically enable.
     <a href="https://learn.chatgpt.com/docs/enterprise/workspace-model-availability" target="_blank">[Workspace model availability]</a> · <a href="https://help.openai.com/en/articles/11481834-chatgpt-rate-card" target="_blank">[Rate Card]</a>
   </div>
+<h3 class="menu"><span class="num">06.1</span>Model-access update — 2026-10-27</h3><p><strong>GPT-6 Chat</strong> uses the existing GPT-6 Sol access setting; Pro retains its separate Astra control. <strong>GPT-6.1 Sol / GPT-6.1 Terra</strong> are Work and Codex models. Terra began rolling out on October 26 and is not available in Chat. Check both model access and Work/Codex permissions.</p><p>A starting-model setting does not grant access. If a model is missing, check the latest app, rollout, and assigned roles, then use Admin Console → Models → Test. <a href="https://help.openai.com/en/articles/11165333-chatgpt-enterprise-and-edu-models-and-limits" target="_blank">Models &amp; limits</a> · <a href="https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex" target="_blank">Work and Codex models</a></p>
 </section>
 
   <section class="chapter" id="gpts">
@@ -3231,9 +3160,9 @@ curl --get "https://api.openai.com/v1/organization/costs" \
     <p style="font-size:.88rem;color:var(--muted)">
       <a href="https://help.openai.com/en/articles/8555535-gpts-chatgpt-enterprise-version" target="_blank">→ Official GPT access / governance guide</a>
     </p>
-    <div class="warn"><span class="label">As of 2026-09-14 · Prepare for custom GPT retirement</span>The dates below are planned for <strong>affected Enterprise workspaces</strong> and may change. Public GPTs can affect users on other plans based on the Enterprise workspace where they were created. Confirm scope in the applicable workspace notice.</div>
+    <div class="warn"><span class="label">Checked 2026-10-27 · Custom GPT creation cutoff and retirement</span>The dates below are planned for <strong>affected Enterprise workspaces</strong> and may change. Public GPTs can affect users on other plans based on the Enterprise workspace where they were created. Confirm scope in the applicable workspace notice.</div>
 <h3 class="menu"><span class="num">07.0</span>Retirement timeline and migration checks</h3>
-<table><thead><tr><th>Planned date</th><th>Meaning</th></tr></thead><tbody><tr><td>2026-09-11</td><td>Administrator notice</td></tr><tr><td>2026-09-17</td><td>Migration experience and banner target; availability in every account is not guaranteed</td></tr><tr><td>2026-09-25</td><td>New custom GPT creation planned to end; publish drafts to migrate beforehand (public sharing is unnecessary)</td></tr><tr><td>2026-12-11</td><td>Custom GPTs scheduled to stop running</td></tr></tbody></table><ul>
+<table><thead><tr><th>Planned date</th><th>Meaning</th></tr></thead><tbody><tr><td>2026-09-11</td><td>Administrator notice</td></tr><tr><td>2026-09-22</td><td>Migration experience and banner target; availability in every account is not guaranteed</td></tr><tr><td>2026-10-26</td><td>Creation cutoff now applies to affected Enterprise workspaces, except FedRAMP. Existing unmigrated GPTs remain editable</td></tr><tr><td>2026-12-11</td><td>Standard scheduled retirement. Approved deferrals and FedRAMP: 2027-02-11; check the workspace notice</td></tr></tbody></table><ul>
 <li><strong>Eligibility</strong>: plugins enabled, a published GPT, and its creator or a workspace admin. Drafts cannot migrate directly. Built-in migration does not require Upload plugins or Upload plugins with custom MCP servers.</li>
 <li><strong>Transfer</strong>: instructions become a plugin skill; connected apps become plugin apps. Review reference files, templates, and tools. Do not assume conversation starters or prior chats copy. The selected model does not carry over; Enterprise defaults apply.</li>
 <li><strong>Custom actions</strong>: do not migrate automatically. Rebuild needed integrations with supported apps or custom MCP servers, then validate functionality and permissions.</li>
@@ -3296,14 +3225,12 @@ curl --get "https://api.openai.com/v1/organization/costs" \
 <li><strong>App templates</strong>: apps generated for GitHub Enterprise, Snowflake, Databricks, and other supported providers use the same role, action, and permission governance after review and publication.</li>
 </ul><p>Current App permissions: <strong>Always ask</strong> (before reads/changes), <strong>Allow read actions</strong> (read automatically; ask before changes), <strong>Allow low-risk actions</strong> (approve low risk; confirm or deny higher risk), <strong>Allow all actions</strong> (may be offered for supported individual apps). The last option is absent from the standard workspace-wide selector. Permissions do not bypass provider authorization, action controls, or safety protections. <a href="https://help.openai.com/en/articles/20001495" target="_blank">[App permissions]</a></p>
 
-<h3 class="menu"><span class="num">08.2</span>Sync / indexing and live app actions</h3>
-<ul>
-<li><strong>Individual sync retirement</strong>: new individually authorized sync ended August 10, 2026; existing connections were scheduled for disablement and indexed-data deletion starting August 14. Do not use Quick setup or individual-sync instructions. Administrator-managed sync is unaffected.</li>
-<li><strong>Google Drive</strong>: administrator-managed sync creates a separate index. Individual account connections provide live file access only, without a personal index. Review shared drives, folders, file types, and account matching where supported.</li>
-<li><strong>Google Docs / Sheets / Slides</strong>: actions are unified in Google Drive. For Enterprise/Edu, check administrator enablement of new unified actions and required Google Workspace scope approval.</li>
-<li><strong>Control boundaries</strong>: sync content selection and live Actions are separate. Restricting live actions may not block indexed retrieval; excluding content from sync may not block live access.</li>
-<li><strong>Migration review</strong>: configure administrator-managed Drive or SharePoint sync when an index is needed; review the non-synced GitHub plugin. Check app-specific EKM, residency, regional availability, and workspace configuration in current guidance.</li>
-</ul><p><a href="https://help.openai.com/en/articles/10929079" target="_blank">[Google Drive setup]</a> · <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Individual-sync retirement notice]</a></p>
+<h3 class="menu"><span class="num">08.2</span>Sync retirement and real-time apps</h3><div class="warn"><span class="label">Changed 2026-10-16</span>Administrator-managed sync connectors have also retired. Do not use the former index setup as a new deployment procedure.</div><ul>
+<li><strong>Access path</strong>: use the real-time Google Drive, SharePoint, and Microsoft Teams apps. Each connected account retains its source-service permissions.</li>
+<li><strong>Google Docs / Sheets / Slides</strong>: use the Google Drive app. Check enabled ChatGPT actions alongside Google Workspace OAuth scope approval.</li>
+<li><strong>Content restrictions</strong>: review Safety &amp; Security Controls in eligible Enterprise app settings. Former sync exclusions alone do not establish real-time access restrictions.</li>
+<li><strong>Drive configuration</strong>: choose Allowed drives or Blocked drives and set Allow My Drive separately. An empty Allowed list blocks all shared drives; an empty Blocked list excludes none. My Drive is on by default.</li>
+<li><strong>Validation</strong>: save, reopen the controls, and test permitted and excluded locations in new conversations. Changing content restrictions does not erase information already in conversations or Memory.</li></ul><p><a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">Sync retirement notice</a> · <a href="https://help.openai.com/en/articles/10929079" target="_blank">Google Drive setup</a> · <a href="https://help.openai.com/en/articles/20001608-managing-google-drive-access-in-chatgpt" target="_blank">Google Drive content controls</a></p>
 
 <h3 class="menu"><span class="num">08.3</span>RBAC for Plugins &amp; Apps</h3>
 <p>In Permissions &amp; roles → Custom roles → <strong>Plugins &amp; connected data</strong>, set <em>Allow members to use plugins</em> or <em>Use plugins</em>, then use <strong>Select</strong> for the role’s apps. FedRAMP may show <em>Use apps</em>. For example, allow Marketing to use Drive/Slack and Engineering to additionally use GitHub/Linear; verify both plugin installation and included-app access. <a href="https://help.openai.com/en/articles/11509118" target="_blank">[Plugin and app administration]</a></p>
@@ -3318,26 +3245,9 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       <li>After a custom MCP app is published, connect it in the workspace and have an admin use <strong>Refresh</strong> in Action control to review new or changed actions.</li>
     </ul>
     <p><a href="https://help.openai.com/en/articles/12584461" target="_blank">[Custom MCP apps / Developer mode]</a></p>
-<h3 class="menu"><span class="num">08.5</span>Microsoft integration notes</h3>
-    <p>
-      Outlook, Teams, and SharePoint often require prior permissions in <strong>Microsoft Entra ID</strong>, and some Google Workspace
-      integrations may require re-consent for Drive, Docs, Sheets, or Slides scopes. As of April 2026, the <strong>admin-managed SharePoint sync</strong> flow is migrating
-      from delegated scopes to <strong>Microsoft application scopes</strong>, so admins may need to use the
-      <em>Reconnect SharePoint for better syncing</em> or <em>Re-auth required</em> prompt to activate the updated feature set.
-      App settings can also expose <strong>Microsoft Purview sensitivity labels</strong>.
-    </p>
-    <ul>
-      <li>The <strong>Microsoft Teams app with admin-managed sync</strong> is available for eligible Enterprise/Edu workspaces.</li>
-      <li>Owners or admins connect Teams once from Workspace settings → Apps, then use the scope picker to choose the Teams content to include.</li>
-      <li>Admins can narrow sync further with a <strong>Microsoft Purview sensitivity label filter</strong> where needed.</li>
-      <li>The synced experience is <strong>read-only</strong>, and the index may take time to fully populate after setup.</li>
-      <li>This flow is separate from the regular self-service Microsoft Teams app, so user connection guidance and admin-managed sync guidance should stay distinct.</li>
-    </ul>
-    <p style="font-size:.88rem;color:var(--muted)">
-      Recent updates to Box, Notion, Linear, Dropbox, and Google / Microsoft apps also add new write actions, so app enablement should usually include <strong>scope review, Manage actions review, and possible end-user reconnect guidance</strong>.
-      <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Release Notes]</a>
-    </p>
-    <h3 class="menu"><span class="num">08.6</span>ChatGPT for Excel and Google Sheets</h3>
+<h3 class="menu"><span class="num">08.5</span>Microsoft connections and content restrictions</h3><p>The real-time Outlook, Teams, and SharePoint apps follow approved Microsoft Entra ID permissions and the connected account’s source access. Retired admin-managed sync application-scope migration and indexing instructions are no longer current installation steps.</p><ul><li><strong>Content controls</strong>: review Safety &amp; Security Controls for Microsoft Teams and Outlook Email where available in Enterprise. Review Outlook sensitivity-label exclusions separately.</li><li><strong>Action access</strong>: verify plugin installation, included-app access, allowed actions, user approvals, and Microsoft OAuth approval together.</li><li><strong>Validation</strong>: after saving, test permitted and excluded content with fresh requests. Availability varies by app and workspace.</li></ul><p><a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">Real-time app transition</a> · <a href="https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-for-plugins-and-apps" target="_blank">Plugin and app administration</a></p>
+
+<h3 class="menu"><span class="num">08.6</span>ChatGPT for Excel and Google Sheets</h3>
     <ul>
       <li>A <strong>spreadsheet-native sidebar</strong> experience that runs inside Excel and Google Sheets.</li>
       <li>Organizations using RBAC may need to enable it from <strong>Workspace settings → Permissions &amp; roles → ChatGPT for Excel and Google Sheets</strong> by turning on <strong>Enable ChatGPT for Excel and Sheets</strong>.</li>
@@ -3361,11 +3271,11 @@ curl --get "https://api.openai.com/v1/organization/costs" \
 <li><strong>Access model</strong>: can use Sign in with ChatGPT, workspace-internal access, and Sites data/file storage.</li>
       <li><strong>Co-editing</strong>: an Enterprise Site owner can add active members of the same workspace as editors. Editors can modify and save the Site and, after the owner publishes it once, publish later versions to the same URL.</li>
       <li><strong>Owner-only controls</strong>: sharing, Site settings, analytics, ownership, version restore, and editor access remain with the owner.</li>
-      <li><strong>Residency boundary</strong>: Enterprise Sites do not support data residency or inference residency as of launch, so review data classification and internal policy before publishing.</li>
+      <li><strong>Residency boundary</strong>: New Sites in US/EU data-residency workspaces use the existing region for supported storage and hosting. Residency in other regions, including Korea, does not currently apply to Sites storage and hosting. Existing Sites are not automatically migrated; inference residency is separate.</li>
       <li><strong>Caution</strong>: every Sites deployment URL is a production deployment, so tell users to create a saved version or private preview first when review is required.</li>
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
-      Sources: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Release notes</a> ·
+      Sources: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">Release notes</a> ·
       <a href="https://learn.chatgpt.com/docs/sites" target="_blank">Codex Sites guide</a> ·
       <a href="https://help.openai.com/en/articles/20001338" target="_blank">Workspace Sites administration</a>
     </p>
@@ -3388,7 +3298,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       <li><strong>Deletion boundary</strong>: removing an entry from the repository does not automatically delete the workspace copy; it is marked <em>No longer in source</em>. Deleting the marketplace itself removes plugins imported from that source, so do not delete it merely to reconnect.</li>
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
-      Sources: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Enterprise/Edu release notes</a> ·
+      Sources: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">Enterprise/Edu release notes</a> ·
       <a href="https://learn.chatgpt.com/docs/plugins" target="_blank">Codex Plugins</a> ·
       <a href="https://help.openai.com/en/articles/20001504" target="_blank">GitHub plugin marketplace import and sync</a>
     </p>
@@ -3416,6 +3326,8 @@ curl --get "https://api.openai.com/v1/organization/costs" \
 <li><strong>Deep Research · September 9, 2026</strong>: use <em>@Deep Research</em> in Work/Codex to investigate web, files, and supported authorized apps and create cited deliverables. It requires Work/Codex access, the <em>Deep research</em> permission, and enabled Web search.</li>
 <li><strong>Usage and access boundaries</strong>: Deep Research in Work consumes Work/Codex allowance or credits, without using Chat’s separate deep-research task allowance. Installation or a research request does not grant additional source-system access.</li>
 </ul><p><a href="https://help.openai.com/en/articles/20001518" target="_blank">[Data plugin]</a> · <a href="https://help.openai.com/en/articles/10500283" target="_blank">[Deep Research]</a></p>
+<h3 class="menu"><span class="num">08.11</span>Plugin access by role and bulk management</h3><p>Use <strong>Admin Console → ChatGPT workspace → Plugins</strong>. Marketplaces has a separate page; Manage Legacy Apps opens the retained app controls. Where RBAC is available, set Available / Install / Disabled for the workspace default and custom roles; a role’s Default inherits workspace settings.</p><p>Select up to <strong>25 plugins</strong> and use Edit for bulk changes. Review required apps and check each plugin’s result afterward. Installation access alone does not grant included-app access, actions, or provider permissions. <a href="https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-for-plugins-and-apps" target="_blank">Administration steps</a></p>
+<h3 class="menu"><span class="num">08.12</span>Sites — preview, connected apps, and tunnels</h3><p>Eligible Enterprise Sites admin previews distinguish current preview access from Launch access. Public publishing is separately off by default. Connected apps in private workspace Sites use each visitor’s account and consent; Allow site visitors to use this plugin is off by default in Enterprise. Visitor consent does not grant background scheduled tasks access to that account.</p><p>Tunnels connect private-network services and are rolling out to eligible workspaces. Connecting a tunnel and publicly publishing a Site that uses it require separate permissions. <a href="https://help.openai.com/en/articles/20001338-managing-chatgpt-sites-for-your-workspace" target="_blank">Sites administration help</a></p>
 </section>
 
   <section class="chapter" id="analytics">
@@ -3424,7 +3336,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
     <div class="path">Workspace settings → <b>Workspace analytics</b></div>
     <p class="lede">
       Workspace analytics answers, “Are the seats we purchased actually being used?” The current official dashboard
-      structure is <strong>Overview / Benchmarks / Impact / Task insights / Users / GPTs / Projects / Skills</strong>,
+      structure is <strong>Usage / Insights in Admin Console</strong>,
       with the <strong>analytics viewer</strong> role providing read-only access.
     </p>
     <div class="box">
@@ -3447,12 +3359,12 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       <li>Messages per WAU.</li>
       <li>Comparison against an industry median selected from the in-product dropdown.</li>
     </ul>
-    <h3 class="menu"><span class="num">09.3</span>Impact</h3>
+    <h3 class="menu"><span class="num">09.3</span>Insights → User surveys</h3>
     <ul>
       <li>Aggregated results from the optional in-product <strong>Impact survey</strong>.</li>
       <li>Self-reported signals for productivity, time saved, work quality, work satisfaction, ability to complete new tasks, and stakeholder service.</li>
       <li>Per-question response distributions and survey participation rate.</li>
-      <li>Owners can launch admin-created surveys from the Impact tab, while OpenAI-created surveys are scheduled by default at day 120 and day 240 after workspace creation.</li>
+      <li>Owners can launch admin-created surveys from Insights → User surveys, while OpenAI-created surveys are scheduled by default at day 120 and day 240 after workspace creation.</li>
       <li>Questions and answer choices are predefined rather than customizable, and responses typically begin appearing in reporting within 1-2 days.</li>
       <li>Use these metrics for directional analysis; they are not designed for causal ROI measurement or compliance logging.</li>
     </ul>
@@ -3473,37 +3385,9 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       <li><strong>Projects</strong>: total projects, projects created in period, active projects, and project-level usage and reach metrics.</li>
       <li><strong>Skills</strong>: skill usage trends and top skills by message activity.</li>
     </ul>
-    <h3 class="menu"><span class="num">09.6</span>Export - on-demand CSV</h3>
-    <p>
-      Workspace analytics exports currently support <strong>CSV only</strong>. They are not direct .xlsx downloads, but the CSVs can
-      be opened in Excel or Sheets for analysis. Users, GPTs, and Projects exports support preset ranges or custom ranges of up to 12 months.
-    </p>
-    <table>
-      <thead><tr><th>Export target</th><th>Use</th><th>Supported range</th></tr></thead>
-      <tbody>
-        <tr><td>GPTs</td><td>GPT analytics report</td><td>Preset or custom range up to 12 months</td></tr>
-        <tr><td>Impact survey</td><td>Survey response analysis</td><td>Available from Export data</td></tr>
-        <tr><td>Projects</td><td>Project analytics report</td><td>Preset or custom range up to 12 months</td></tr>
-        <tr><td>Users</td><td>User analytics report</td><td>Preset or custom range up to 12 months</td></tr>
-      </tbody>
-    </table>
-    <div class="box green">
-      <div class="label">Per-user activity and cost tracking</div>
-      For <strong>ChatGPT Enterprise</strong>, per-user activity reporting comes from the Workspace Analytics <strong>Users export</strong>.
-      That export combines user identity/status with aggregate message, GPT, tool, and project metrics.
-      Confirm available CSV fields for the workspace. In the API, <code>CHATGPT_USER_ANALYTICS.credits_used</code> is deprecated and may be absent from newer records. Design per-user cost reporting around Costs logs and apply the unit, permission, and freshness rules in Section 20.3.
-    </div>
-    <p style="font-size:.88rem;color:var(--muted)">
-      Source: <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics</a>
-    </p>
-    <ol>
-      <li>Go to Workspace settings → Workspace analytics.</li>
-      <li>Open <strong>Export data</strong>.</li>
-      <li>Select a data type: GPTs, Impact survey, Projects, or Users.</li>
-      <li>Choose a preset date range, or use a custom start and end date where supported.</li>
-      <li>Click <strong>Generate CSV</strong>.</li>
-    </ol>
-    <h3 class="menu"><span class="num">09.7</span>analytics viewer role</h3>
+    <h3 class="menu"><span class="num">09.6</span>Export — current CSV download paths</h3><p><strong>By-user report</strong>: open Admin Console → Usage → Overview → Export → Workspace reports, set UTC start and end dates, then select Download CSV. The export range is separate from the charts; page group, user, and search filters do not apply.</p><p><strong>GPT / Project reports</strong>: set the date range in Usage → GPTs or Projects, then select Export → Download CSV. All report rows are included regardless of search, sorting, or pagination.</p><p><strong>Surveys</strong>: Insights → User surveys → Export includes all workspace surveys regardless of the selected survey. Names and emails depend on Include user identifiers in impact survey exports. Activity CSVs do not replace message-content logs or cost records. <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics help</a></p>
+
+<h3 class="menu"><span class="num">09.7</span>analytics viewer role</h3>
     <p>
       A read-only analytics role for AI champions, team leads, and program managers who should be able to read analytics
       <strong>without receiving broader admin privileges</strong>.
@@ -3518,7 +3402,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
     <table>
       <thead><tr><th>Question</th><th>Admin surface</th><th>Limit</th></tr></thead>
       <tbody>
-        <tr><td>Who is using ChatGPT the most?</td><td>Workspace Analytics → Users / Users CSV</td><td>Aggregate metrics only; no message text or file contents</td></tr>
+        <tr><td>Who is using ChatGPT the most?</td><td>Admin Console → Usage → Overview → Workspace reports</td><td>Aggregate metrics only; no message text or file contents</td></tr>
         <tr><td>Which features or models drive cost?</td><td>Billing usage report + Costs API</td><td>Separate USD and CREDITS and account for reporting delay</td></tr>
         <tr><td>Do we need team cost allocation?</td><td>Costs user/group attribution + internal allocation rules</td><td>Avoid allocating the same cost twice for multi-group users</td></tr>
         <tr><td>Is this for audit or investigation?</td><td>Relevant Compliance audit or conversation logs</td><td>Separate purpose and permissions from COSTS on the same log platform</td></tr>
@@ -3566,29 +3450,13 @@ Admin keys require the <strong>Owner/Admin</strong> role in an eligible workspac
     <p style="font-size:.88rem;color:var(--muted)">
       Sources: <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a> ·
       <a href="https://help.openai.com/en/articles/20001407" target="_blank">Managing Admin keys</a> ·
-      <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Release notes</a>
+      <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">Release notes</a>
     </p>
 
-    <h3 class="menu"><span class="num">09.10</span>Global Admin Console External Access</h3>
-    <p>
-      In the Global Admin Console, <strong>Access → External Access</strong> centrally controls whether organization members can use
-      <strong>Sign in with ChatGPT</strong> for external applications.
-    </p>
-    <ul>
-      <li>If <strong>Enable Sign in with ChatGPT for your organization</strong> is off, members cannot use Sign in with ChatGPT for external applications.</li>
-      <li>If <strong>Approved applications</strong> is on, members can use only approved applications.</li>
-      <li>Admins can approve or disable individual applications, and external apps such as OpenAI Academy can fall under this control surface.</li>
-    </ul>
-    <p style="font-size:.88rem;color:var(--muted)">
-      Sources: <a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a> ·
-      <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Release notes</a>
-    </p>
-    <p style="font-size:.88rem;color:var(--muted)">
-      <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">→ Official Workspace analytics guide</a> ·
-      <a href="https://help.openai.com/en/articles/20001149-managing-impact-surveys-in-workspace-analytics" target="_blank">[Managing impact surveys]</a> ·
-      <a href="https://academy.openai.com/public/clubs/admins-6o6xf/resources/chatgpt-enterprise-user-analytics-guide" target="_blank">[Academy usage guide]</a>
-    </p>
-  </section>
+    <h3 class="menu"><span class="num">09.10</span>Admin Console → External access</h3><p>Global admins manage organization defaults and app exceptions separately for Sign in with ChatGPT, connected-app access, and Ads data. Identity sign-in does not grant data access. Review saved permissions under Access and current connections under Users.</p><p>ChatGPT Sites requires identity sign-in. With no explicit Sites connected-app policy, organization-level access is allowed; individual plugin access in Sites is off by default in Enterprise. Check organization approval, workspace/plugin availability, visitor consent, and provider permissions together. A workspace Owner/Admin role does not automatically grant Global admin access. <a href="https://help.openai.com/en/articles/12289294-managing-your-tenant-in-admin-console" target="_blank">Tenant and External access administration</a></p>
+
+<h3 class="menu"><span class="num">09.11</span>Workplace health and active-user definitions</h3><p>Use <strong>Usage → Overview → Workplace health</strong> for ChatGPT, Work, and Codex adoption. Seats enabled counts assigned users, excluding pending or deleted invitations; Seats activated counts those who have sent a message. WAU counts unique message senders in the most recently completed Sunday–Saturday week. Clear the User filter and select at most one group to display the chart. <a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Metric definitions</a></p>
+</section>
 
   <section class="chapter" id="identity">
     <div class="chap-num">Section 10 · ChatGPT</div>
@@ -3639,7 +3507,7 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
     <div class="box">
       <div class="label">Safe SCIM connection transition</div>
       Manage tenant-wide SCIM from <strong>Admin Console → Global settings → Access → Directory</strong>; it assigns product access to supported ChatGPT workspaces and Ads accounts.
-      API Platform organizations are not included. Tenant-wide SCIM cannot be enabled while a linked ChatGPT workspace or API organization has active product-level SCIM,
+      Enterprise/Edu tenants can also assign API organizations. Both directory scopes can be enabled, but a resource’s tenant-wide Product access assignment cannot change while that resource has product-level SCIM enabled;
       so do not delete a working connection before reviewing users, groups, product assignments, and roles and coordinating the migration with the OpenAI account team.
     </div>
     <p style="font-size:.88rem;color:var(--muted)">
@@ -3680,7 +3548,8 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
       <a href="https://help.openai.com/en/articles/12111596-ip-allowlisting-for-chatgpt" target="_blank">→ Official IP Allowlisting guide</a> ·
       <a href="https://help.openai.com/en/articles/9672121-getting-started-with-identity-and-provisioning-in-chatgpt-enterprise-edu-and-chatgpt-for-teachers" target="_blank">[Identity guide]</a>
     </p>
-  </section>
+  <h3 class="menu"><span class="num">10.7</span>Personal workspace migration — seven-day grace period</h3><p>Where a verified-domain Enterprise/Edu workspace requires migration or personal-workspace deactivation, a fixed <strong>seven-day grace period</strong> starts when the user is added. The personal workspace stays usable during the grace period, but Enterprise/Edu access remains blocked until the required migration or deactivation is complete. Admins cannot change the period; this requirement does not apply to workspaces without a verified domain.</p><p>Explain export and data-preservation steps before migration. <strong>Sites do not transfer.</strong> Users may lose editing and management access to personal Sites afterward, so review those needs first. <a href="https://help.openai.com/en/articles/8801890-migrating-your-personal-workspace-to-chatgpt-business-or-enterprise" target="_blank">Migration scope and preparation</a></p>
+</section>
 
   <section class="chapter" id="billing">
     <div class="chap-num">Section 11 · ChatGPT</div>
@@ -3757,6 +3626,8 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
   <h3 class="menu"><span class="num">11.3</span>From overage usage to invoices</h3>
   <p>Overages are reviewed after the contractual billing period; invoices are generally generated and sent after a <strong>five-business-day review window</strong>. The first invoice may cover a partial period. Reconcile usage/billing periods, report timestamps, and contracted rates; use <strong>Billing → Invoices</strong> for settled charges.</p>
   <p style="font-size:.88rem;color:var(--muted)"><a href="https://help.openai.com/en/articles/20001001-setting-usage-limits-in-chatgpt-enterprise-and-edu" target="_blank">Usage limits and overage invoices</a></p>
+<h3 class="menu"><span class="num">11.4</span>Billing-specific limits — credits / USD</h3><p><strong>Admin Console → Usage limits</strong> controls monthly user limits; Billing controls the workspace spending cap. User-limit precedence is user override, highest applicable group default, then workspace default. Credit agreements use an overage limit after the shared pool is exhausted; token-based USD agreements use a monthly workspace budget. Raising a user limit does not raise the workspace cap.</p><p>A group’s No limit inherits the workspace default; it is not unlimited. Overage No limit means no additional-usage cap. Overage 0 blocks new credit requests after pool exhaustion, but settling in-progress requests may leave a small negative balance. A USD budget of 0 blocks spending. Alerts do not stop usage. <a href="https://help.openai.com/en/articles/20001001-manage-usage-limits-and-overages-in-chatgpt-enterprise-and-edu" target="_blank">Limits and overages help</a></p>
+<h3 class="menu"><span class="num">11.5</span>Token-based Enterprise agreements and commitments</h3><p>Eligible Enterprise agreements meter Chat, Work, and Codex in tokens or rate-card units and bill in USD. Contracted seat fees, where applicable, are separate. This billing model is not currently offered for Edu or Healthcare; credit-based agreements continue to exist.</p><p>A combined ChatGPT/API spending commitment is not a prepaid workspace credit pool. Usage is invoiced during the term and shortfalls are settled under the agreement. ChatGPT and API retain separate invoices and reporting, so ChatGPT reports alone cannot establish total commitment attainment. <a href="https://help.openai.com/en/articles/20001520-token-based-billing-for-chatgpt-enterprise" target="_blank">Token-based billing help</a></p>
 </section>
 
   <section class="chapter" id="codex-intro">
@@ -3827,6 +3698,7 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
       <li>Detailed client deployment guidance is revisited in Section 16.</li>
     </ul>
   <p style="font-size:.88rem;color:var(--muted)"><a href="https://learn.chatgpt.com/docs/enterprise/chatgpt-work-local-security" target="_blank">Local security and data handling</a></p>
+<div class="box green"><div class="label">Admin checks — 2026-10-27</div><p>The current policy entry point is <strong>Admin Console → Agent security</strong>. Check workspace access, model access, execution policies, and connected-app permissions separately. The relevant sections below cover GPT-6.1 Sol/Terra access for Work/Codex and shared Codex Cloud environments.</p><p><a href="#codex-policies">Agent Security setup</a> · <a href="#models">Model access</a> · <a href="#codex-cloud-toggle">Cloud access</a></p></div>
 </section>
 
   <section class="chapter" id="codex-toggle">
@@ -3953,10 +3825,10 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
           <div class="surface-grid">
             <div>
               <h4>Codex cloud - asynchronous work from browser, iOS, GitHub, Slack, and Linear</h4>
-              <p>Hosted agents run repo tasks in cloud containers. This path is OS-neutral but depends on GitHub Cloud.</p>
+              <p>Hosted agents run tasks in cloud containers. This path is OS-neutral; verify workspace Cloud permission and access to the selected environment.</p>
               <ul>
                 <li><strong>Admin toggle</strong>: Allow members to use Codex cloud</li>
-                <li><strong>Prerequisites</strong>: GitHub Connector, repo scope, Codex environments</li>
+                <li><strong>Setup</strong>: Cloud access, environments, and required repository connections</li>
                 <li><strong>Integrations</strong>: Code Review, Slack tasks, Linear tasks, and iOS viewing</li>
               </ul>
             </div>
@@ -4064,7 +3936,7 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
       <li><strong>Disablement</strong>: individual users can uninstall a plugin or set <code>enabled = false</code> in <code>~/.codex/config.toml</code>.</li>
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
-      Sources: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Release notes</a> ·
+      Sources: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">Release notes</a> ·
       <a href="https://learn.chatgpt.com/docs/plugins" target="_blank">Codex Plugins</a> ·
       <a href="https://help.openai.com/en/articles/20001504" target="_blank">GitHub marketplace sync</a>
     </p>
@@ -4090,7 +3962,7 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
       <li><strong>Other UX</strong>: <code>/init</code> in the app composer generates an <code>AGENTS.md</code> scaffold, usage-limit errors can show clearer workspace guidance and reset timing where available, and the command menu now includes an Unread chats section.</li>
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
-      Sources: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">Release notes</a> ·
+      Sources: <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">Release notes</a> ·
       <a href="https://learn.chatgpt.com/docs/computer-use" target="_blank">Computer Use</a> ·
       <a href="https://learn.chatgpt.com/docs/browser?surface=app" target="_blank">In-app browser / Developer mode</a> ·
       <a href="https://learn.chatgpt.com/docs/config-file/config-reference" target="_blank">Configuration Reference</a> ·
@@ -4108,8 +3980,8 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
       Cloud is browser-based, so it behaves the same across operating systems. Before enabling it, confirm:
     </p>
     <ul>
-      <li><strong>Prerequisite</strong>: the codebase must live in <strong>GitHub Cloud</strong>. For on-prem or non-GitHub setups, build through the Codex SDK instead.</li>
-      <li>The <strong>ChatGPT GitHub Connector</strong> must be installed first for the toggle to matter.</li>
+      <li><strong>Cloud execution</strong>: authorized members can create and share reusable environments and start or continue tasks from desktop, web, or mobile. Each task has isolated execution and can continue while the computer sleeps.</li>
+      <li><strong>GitHub integration</strong>: treat repository connections and Code Review as additional setup. First verify Cloud permission and environment access.</li>
       <li>The Codex navigation entry may take <strong>up to 10 minutes</strong> to appear after enablement.</li>
       <li>For GitHub Enterprise Managed Users, the organization owner must pre-install the Codex GitHub App.</li>
     </ul>
@@ -4146,7 +4018,7 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
     </ul>
     <p style="font-size:.88rem;color:var(--muted)">
       <a href="https://learn.chatgpt.com/docs/remote-connections" target="_blank">→ Official Codex Remote connections guide</a> ·
-      <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">[Enterprise/Edu release notes]</a>
+      <a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">[Enterprise/Edu release notes]</a>
     </p>
   </section>
 
@@ -4274,18 +4146,13 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
 
   <section class="chapter" id="codex-policies">
     <div class="chap-num">Section 14 · Codex</div>
-    <h2>Codex Policies - Cloud-managed requirements.toml</h2>
-    <div class="path"><a href="https://chatgpt.com/codex/settings/managed-configs" target="_blank">chatgpt.com/codex/settings/managed-configs</a></div>
+    <h2>Agent Security — centrally managed execution policies</h2>
+    <div class="path"><a href="https://admin.openai.com/" target="_blank">Admin Console → Agent security</a></div>
     <p class="lede">
       This surface applies different Codex local restrictions by group without shipping device files directly to developer laptops.
       Supported <strong>App / CLI / IDE</strong> clients load an identity-matched signed cache or server policy at startup. Background refresh affects a later launch; it does not replace requirements already loaded in the current process.
     </p>
-    <figure>
-      <img src="https://developers.openai.com/images/codex/enterprise/policies_and_configurations_page.png"
-           alt="Codex policies and configurations page"
-           onerror="this.parentElement.style.display='none'"/>
-      <figcaption>Codex Policies and Configurations · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">Source</a></figcaption>
-    </figure>
+
     <h3 class="menu"><span class="num">14.1</span>Controls you can enforce</h3>
     <ul>
       <li><code>allowed_approval_policies</code> - constrain permitted approval behavior. Explicit <code>approval_policy = "untrusted"</code> is retired and <code>on-failure</code> is deprecated. Review <code>on-request</code> for interactive runs; project trust is a separate mechanism described in Section 15.7.</li>
@@ -4324,12 +4191,7 @@ prefix_rules = [
     decision = "prompt",
     justification = "Require review before mutating remote history." },
 ]</code></pre>
-    <figure>
-      <img src="https://developers.openai.com/images/codex/enterprise/example_policy.png"
-           alt="Example Codex policy"
-           onerror="this.parentElement.style.display='none'"/>
-      <figcaption>Example managed requirements policy · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">Source</a></figcaption>
-    </figure>
+
     <h3 class="menu"><span class="num">14.3</span>Group assignment and fallback</h3>
     <ul>
       <li>Assign each policy to one or more user groups.</li>
@@ -4339,12 +4201,7 @@ prefix_rules = [
     </ul>
     <h3 class="menu"><span class="num">14.4</span>Policy lookup - verify which policy applies</h3>
     <p>Look up by email address or group to confirm which policy is effective for that user.</p>
-    <figure>
-      <img src="https://developers.openai.com/images/codex/enterprise/policy_lookup.png"
-           alt="Codex policy lookup"
-           onerror="this.parentElement.style.display='none'"/>
-      <figcaption>Policy lookup view · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">Source</a></figcaption>
-    </figure>
+
 
   <h3 class="menu"><span class="num">14.5</span>Browser origins and native-app policies</h3>
   <p>As of September 2026, supported clients use <code>[browser_use]</code> and <code>[computer_use]</code> for site- and app-specific restrictions. An origin contains a scheme, host, and port, such as <code>https://example.com:8443</code>; do not include a path.</p>
@@ -4363,6 +4220,7 @@ prefix_rules = [
   <p>Overlapping origin rules use the more restrictive value per field. Local settings cannot relax managed denies, and an allow does not grant OS permissions, install plugins, or approve actions. Validate command-network allowlists and browser-origin policies separately.</p>
   <p style="font-size:.88rem;color:var(--muted)">Sources: <a href="https://learn.chatgpt.com/docs/enterprise/managed-configuration" target="_blank">Managed configuration</a> · <a href="https://learn.chatgpt.com/docs/config-file/config-reference" target="_blank">Configuration Reference</a></p>
 <p>When native Computer Use operates a browser as an app, Browser Use site policies do not apply. Restrict that path with native-app policy, OS permissions, app approvals, and signed-in account permissions. <a href="https://learn.chatgpt.com/docs/enterprise/chatgpt-work-local-security" target="_blank">[Local security boundaries]</a></p>
+<h3 class="menu"><span class="num">14.6</span>Agent Security — Global and environment settings</h3><p><strong>Agent Security</strong> replaces Policies &amp; Configuration. Migrated legacy policies retain settings, assignments, and ordering in Global. Each policy starts with Global; supported Local / Codex Cloud execution settings can override it. Configuring Cloud policy does not enable Codex Cloud access.</p><p>Select Workspace default or Overrides. Set enforced constraints in <strong>Requirements</strong> and changeable starting values in <strong>Defaults</strong>. Edit as TOML exposes the scope’s requirements.toml / config.toml. Keep orchestrator controls such as approvals and web search in Global. An empty environment document inherits Global. Save changes and verify the target user and environment. <a href="https://learn.chatgpt.com/docs/enterprise/agent-security" target="_blank">Agent Security</a> · <a href="https://learn.chatgpt.com/docs/enterprise/managed-configuration" target="_blank">Managed configuration</a></p>
 </section>
 
   <section class="chapter" id="codex-managed">
@@ -4973,7 +4831,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       <li><a href="https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu" target="_blank">Workspace analytics for Enterprise &amp; Edu</a></li>
       <li><a href="https://help.openai.com/en/articles/20001001-setting-usage-limits-in-chatgpt-enterprise-and-edu" target="_blank">Manage usage limits and overages in ChatGPT Enterprise and Edu</a></li>
       <li><a href="https://help.openai.com/en/articles/20001149-managing-impact-surveys-in-workspace-analytics" target="_blank">Managing impact surveys in workspace analytics</a></li>
-      <li><a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank">ChatGPT Enterprise &amp; Edu — Release Notes</a></li>
+      <li><a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes" target="_blank">ChatGPT Enterprise &amp; Edu — Release Notes</a></li>
       <li><a href="https://help.openai.com/en/articles/12289294-global-admin-console" target="_blank">Global Admin Console</a></li>
       <li><a href="https://help.openai.com/en/articles/20001407" target="_blank">Managing Admin keys in Global Admin Console</a></li>
       <li><a href="https://help.openai.com/en/articles/20001478" target="_blank">Personal Analytics for ChatGPT Enterprise and Edu</a></li>
@@ -5026,12 +4884,16 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       <li><a href="https://learn.chatgpt.com/docs/config-file/config-reference" target="_blank">Codex — Config reference</a></li>
       <li><a href="https://openai.com/index/introducing-chatgpt-enterprise/" target="_blank">OpenAI — Introducing ChatGPT Enterprise</a></li>
       <li><a href="https://learn.microsoft.com/en-us/purview/archive-chatgpt-interactions" target="_blank">Microsoft Purview — ChatGPT Enterprise connector</a></li>
-    </ul>
+    <li><a href="https://learn.chatgpt.com/docs/enterprise/agent-security" target="_blank">Agent Security — Global and environment policies</a></li>
+<li><a href="https://help.openai.com/en/articles/20001608-managing-google-drive-access-in-chatgpt" target="_blank">Google Drive content controls</a></li>
+<li><a href="https://help.openai.com/en/articles/20001520-token-based-billing-for-chatgpt-enterprise" target="_blank">Enterprise token-based billing</a></li>
+<li><a href="https://help.openai.com/en/articles/20001539-shareable-profiles-in-chatgpt" target="_blank">Shareable profiles</a></li>
+<li><a href="https://help.openai.com/en/articles/8801890-migrating-your-personal-workspace-to-chatgpt-business-or-enterprise" target="_blank">Personal workspace migration</a></li></ul>
   </div>
 </section>
 
 <footer data-i18n="footer-note">
-  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-09-14
+  본 문서는 OpenAI 공식 자료를 바탕으로 작성된 비공식 한국어 정리본입니다 · Updated 2026-10-27
 </footer>
 
 <script>
@@ -5040,7 +4902,7 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       "hero-eyebrow": "OpenAI · Admin Guide · 2026",
       "hero-title": "ChatGPT Enterprise &amp;<br/>Codex Enterprise<br/><em>Workspace Settings Complete Guide</em>",
       "hero-subtitle": "A consolidated guide to key menus in the ChatGPT Enterprise/Edu workspace admin console and the Codex Enterprise admin surface, including where each setting lives, what it controls, recommended defaults, official screenshots, and source links.",
-      "meta-updated": "Last updated: 2026-09-14",
+      "meta-updated": "Last updated: 2026-10-27",
       "meta-sources": "Sources: OpenAI Help Center · OpenAI Academy · ChatGPT Learn",
       "meta-language": "Available languages: Korean / English",
       "toc-part1": "Contents — Part 1 · ChatGPT Enterprise",
@@ -5053,11 +4915,11 @@ curl --get "https://api.openai.com/v1/organization/costs" \
       "toc-codex-tabs": "Codex surface and OS tabs",
       "toc-codex-cloud-toggle": "Codex cloud toggle",
       "toc-codex-rbac": "Codex RBAC · User login",
-      "toc-codex-policies": "Policies (requirements.toml)",
+      "toc-codex-policies": "Agent Security (requirements.toml)",
       "toc-codex-managed": "Managed Configuration (OS guide)",
       "toc-codex-cloud": "Cloud environments & GitHub",
       "sources-title": "Sources / Reference Links — All Sources",
-      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-09-14"
+      "footer-note": "Unofficial English/Korean admin guide based on OpenAI public documentation · Updated 2026-10-27"
 };
 
 
