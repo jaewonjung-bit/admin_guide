@@ -1581,12 +1581,7 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
     <code>403 - Unauthorized. Contact your ChatGPT administrator for access.</code> 오류를 봅니다.
   </p>
 
-  <figure>
-    <img src="https://developers.openai.com/images/codex/enterprise/local-toggle-config.png"
-         alt="Codex Local 토글"
-         onerror="this.parentElement.style.display='none'"/>
-    <figcaption>Codex Local 토글 화면 · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">출처</a></figcaption>
-  </figure>
+
 
   <h4 class="sub" data-i18n="device-code-title">Device code authentication for CLI</h4>
   <p data-i18n="device-code-body">
@@ -1859,12 +1854,7 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
     <li>GitHub Enterprise Managed Users(EMU)는 조직 Owner가 Codex GitHub App을 미리 설치</li>
   </ul>
 
-  <figure>
-    <img src="https://developers.openai.com/images/codex/enterprise/cloud-toggle-config.png"
-         alt="Codex cloud 토글"
-         onerror="this.parentElement.style.display='none'"/>
-    <figcaption>Codex cloud 토글 화면 · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">출처</a></figcaption>
-  </figure>
+
 
   <h3 class="menu"><span class="num">12B.2</span>하위 옵션</h3>
   <ul>
@@ -1915,12 +1905,7 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
     <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">[Codex Admin Setup]</a>
   </p>
 
-  <figure>
-    <img src="https://developers.openai.com/images/codex/enterprise/rbac_custom_roles.png"
-         alt="Codex RBAC custom roles"
-         onerror="this.parentElement.style.display='none'"/>
-    <figcaption>Codex RBAC Custom Role · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">출처</a></figcaption>
-  </figure>
+
 
   <h3 class="menu" id="codex-user-login"><span class="num">13.1</span>사용자 접속·로그인 방법 — App / IDE / CLI</h3>
   <p>
@@ -1977,12 +1962,7 @@ Admin keys는 지원되는 workspace의 <strong>Owner/Admin</strong>이 생성�
         <li>원격·헤드리스 환경은 device auth를 켜고 <code>codex login --device-auth</code>를 사용합니다.</li>
         <li>신뢰된 CI/CD·스케줄러·로컬 스크립트는 access token 권한을 받은 뒤 <code>CODEX_ACCESS_TOKEN</code> 또는 <code>codex login --with-access-token</code>을 사용합니다.</li>
       </ol>
-      <figure>
-        <img src="https://developers.openai.com/images/codex/enterprise/local-toggle-config.png"
-             alt="Codex Local 및 device auth 관리자 토글"
-             onerror="this.parentElement.style.display='none'"/>
-        <figcaption>Codex Local 및 device auth 토글 · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">출처</a></figcaption>
-      </figure>
+
     </div>
   </div>
   <div class="box green">
@@ -2501,30 +2481,15 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
     Codex cloud로 GitHub PR을 자동 리뷰합니다. 워크스페이스/리포지토리 단위로 켜고, 사용자별로 본인 PR에 자동 리뷰 옵션을 켤 수도 있습니다.
   </p>
 
-  <figure>
-    <img src="https://developers.openai.com/images/codex/enterprise/code_review_settings_overview.png"
-         alt="Code review settings overview"
-         onerror="this.parentElement.style.display='none'"/>
-    <figcaption>Code review 개요 · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">출처</a></figcaption>
-  </figure>
+
 
   <h3 class="menu"><span class="num">18.1</span>Auto review</h3>
   <p>연결된 리포지토리의 PR을 Codex가 자동 리뷰할지 여부.</p>
-  <figure>
-    <img src="https://developers.openai.com/images/codex/enterprise/auto_code_review_settings.png"
-         alt="Automatic code review settings"
-         onerror="this.parentElement.style.display='none'"/>
-    <figcaption>Auto review · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">출처</a></figcaption>
-  </figure>
+
 
   <h3 class="menu"><span class="num">18.2</span>Triggers</h3>
   <p>어떤 PR 이벤트(open, push, draft 해제 등)가 리뷰를 트리거하는지 선택.</p>
-  <figure>
-    <img src="https://developers.openai.com/images/codex/enterprise/review_triggers.png"
-         alt="Code review trigger settings"
-         onerror="this.parentElement.style.display='none'"/>
-    <figcaption>Review triggers · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">출처</a></figcaption>
-  </figure>
+
 </section>
 
 <!-- ============ CODEX SECURITY ============ -->
@@ -3711,12 +3676,7 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
       Enables Codex in the ChatGPT desktop app, CLI, and IDE extension. New Enterprise workspaces are <strong>ON by default</strong>.
       If the toggle is off, users see <code>403 - Unauthorized. Contact your ChatGPT administrator for access.</code>
     </p>
-    <figure>
-      <img src="https://developers.openai.com/images/codex/enterprise/local-toggle-config.png"
-           alt="Codex Local toggle"
-           onerror="this.parentElement.style.display='none'"/>
-      <figcaption>Codex Local toggle · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">Source</a></figcaption>
-    </figure>
+
 
     <h4 class="sub">Device code authentication for CLI</h4>
     <p>
@@ -3985,12 +3945,7 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
       <li>The Codex navigation entry may take <strong>up to 10 minutes</strong> to appear after enablement.</li>
       <li>For GitHub Enterprise Managed Users, the organization owner must pre-install the Codex GitHub App.</li>
     </ul>
-    <figure>
-      <img src="https://developers.openai.com/images/codex/enterprise/cloud-toggle-config.png"
-           alt="Codex cloud toggle"
-           onerror="this.parentElement.style.display='none'"/>
-      <figcaption>Codex cloud toggle · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">Source</a></figcaption>
-    </figure>
+
     <h3 class="menu"><span class="num">12B.2</span>Sub-options</h3>
     <ul>
       <li><strong>Post answer bodies to Slack</strong> - when off, Slack receives only task links.</li>
@@ -4034,12 +3989,7 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
       <a href="https://help.openai.com/en/articles/11750701-rbac" target="_blank">→ ChatGPT RBAC guide</a> ·
       <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">[Codex Admin Setup]</a>
     </p>
-    <figure>
-      <img src="https://developers.openai.com/images/codex/enterprise/rbac_custom_roles.png"
-           alt="Codex RBAC custom roles"
-           onerror="this.parentElement.style.display='none'"/>
-      <figcaption>Codex RBAC custom role · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">Source</a></figcaption>
-    </figure>
+
     <h3 class="menu" id="codex-user-login"><span class="num">13.1</span>User Access and Sign-In Paths — App / IDE / CLI</h3>
     <p>
       After Step 04 defines the RBAC groups, the rollout guide should also explain how end users actually enter Codex from each client.
@@ -4094,12 +4044,7 @@ A newly verified domain can initially apply to <strong>all eligible ChatGPT work
           <li>For remote or headless environments, enable device auth and run <code>codex login --device-auth</code>.</li>
           <li>For trusted CI/CD, schedulers, or local scripts, grant access token permission and use <code>CODEX_ACCESS_TOKEN</code> or <code>codex login --with-access-token</code>.</li>
         </ol>
-        <figure>
-          <img src="https://developers.openai.com/images/codex/enterprise/local-toggle-config.png"
-               alt="Codex Local and device auth admin toggles"
-               onerror="this.parentElement.style.display='none'"/>
-          <figcaption>Codex Local and device auth toggles · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">Source</a></figcaption>
-        </figure>
+
       </div>
     </div>
     <div class="box green">
@@ -4549,28 +4494,13 @@ codex --print-config | grep -E "managed|requirements"</code></pre>
       Codex cloud can automatically review GitHub pull requests. Admins can enable it at the workspace or repository level,
       and individual users can also enable automatic review for their own pull requests.
     </p>
-    <figure>
-      <img src="https://developers.openai.com/images/codex/enterprise/code_review_settings_overview.png"
-           alt="Code review settings overview"
-           onerror="this.parentElement.style.display='none'"/>
-      <figcaption>Code review overview · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">Source</a></figcaption>
-    </figure>
+
     <h3 class="menu"><span class="num">18.1</span>Auto review</h3>
     <p>Choose whether Codex automatically reviews pull requests in connected repositories.</p>
-    <figure>
-      <img src="https://developers.openai.com/images/codex/enterprise/auto_code_review_settings.png"
-           alt="Automatic code review settings"
-           onerror="this.parentElement.style.display='none'"/>
-      <figcaption>Auto review settings · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">Source</a></figcaption>
-    </figure>
+
     <h3 class="menu"><span class="num">18.2</span>Triggers</h3>
     <p>Select which pull request events, such as open, push, or draft-ready, should trigger a review.</p>
-    <figure>
-      <img src="https://developers.openai.com/images/codex/enterprise/review_triggers.png"
-           alt="Code review triggers"
-           onerror="this.parentElement.style.display='none'"/>
-      <figcaption>Review triggers · <a href="https://learn.chatgpt.com/docs/enterprise/admin-setup" target="_blank">Source</a></figcaption>
-    </figure>
+
   </section>
 
   <section class="chapter" id="codex-security">
