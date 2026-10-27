@@ -2,7 +2,7 @@ guide:
   file: chatgpt-codex-enterprise-settings.html
   baseline_language: ko
   secondary_language: en
-  last_reviewed: 2026-09-14
+  last_reviewed: 2026-10-27
 
 sources:
   - id: workspace-settings
@@ -13,7 +13,7 @@ sources:
     sections: [intro, general, available-models]
 
   - id: enterprise-release-notes
-    url: https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes
+    url: https://help.openai.com/en/articles/10128477-chatgpt-enterprise-and-edu-release-notes
     owner: openai_help
     cadence: weekly
     priority: high
@@ -627,3 +627,38 @@ sources:
     cadence: weekly
     priority: high
     sections: [billing, codex-gov]
+
+  - id: agent-security
+    url: https://learn.chatgpt.com/docs/enterprise/agent-security
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [codex-intro, codex-policies, codex-managed]
+
+  - id: google-drive-content-controls
+    url: https://help.openai.com/en/articles/20001608-managing-google-drive-access-in-chatgpt
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [apps]
+
+  - id: enterprise-token-billing
+    url: https://help.openai.com/en/articles/20001520-token-based-billing-for-chatgpt-enterprise
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [billing]
+
+  - id: member-profiles
+    url: https://help.openai.com/en/articles/20001539-shareable-profiles-in-chatgpt
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [permissions]
+
+  - id: personal-workspace-migration
+    url: https://help.openai.com/en/articles/8801890-migrating-your-personal-workspace-to-chatgpt-business-or-enterprise
+    owner: openai_help
+    cadence: weekly
+    priority: high
+    sections: [identity]
